@@ -27,9 +27,9 @@
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
-  .team-card { height: 240px; position: relative; border-radius: 4px; overflow: hidden; border: 1px solid rgba(244,237,225,0.1); box-shadow: 0 14px 30px -8px rgba(0,0,0,0.55); }
-  .team-card img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .team-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,19,17,0.45) 0%, rgba(20,19,17,0) 22%, rgba(20,19,17,0) 60%, rgba(20,19,17,0.6) 100%); }
+  .team-card { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid rgba(244,237,225,0.1); box-shadow: 0 14px 30px -8px rgba(0,0,0,0.55); }
+  .team-card img { width: 100%; height: auto; display: block; }
+  .team-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,19,17,0) 70%, rgba(20,19,17,0.75) 100%); }
   .team-num { position: absolute; top: 8px; left: 10px; font-family: 'Fraunces', serif; font-size: 10px; color: rgba(244,237,225,0.6); text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
   .team-badge { position: absolute; bottom: 8px; left: 10px; right: 10px; background: rgba(20,19,17,0.6); backdrop-filter: blur(6px); border: 1px solid rgba(244,237,225,0.15); border-radius: 3px; padding: 9px 12px; }
   .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
@@ -117,7 +117,7 @@
 
   <div style="padding:18px 24px 0;display:flex;flex-direction:column;gap:10px;">
     <div class="team-card">
-      <img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis" style="object-position:50% 15%;">
+      <img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis">
       <div class="team-shade"></div>
       <div class="team-num">01</div>
       <div class="team-badge">
@@ -130,7 +130,7 @@
     </div>
 
     <div class="team-card">
-      <img src="assets/karvy.jpg" alt="Karvy — barber" style="object-position:50% 18%;">
+      <img src="assets/karvy.jpg" alt="Karvy — barber">
       <div class="team-shade"></div>
       <div class="team-num">02</div>
       <div class="team-badge">
@@ -143,7 +143,7 @@
     </div>
 
     <div class="team-card">
-      <img src="assets/vladis.jpg" alt="Vladis — barber" style="object-position:50% 10%;">
+      <img src="assets/vladis.jpg" alt="Vladis — barber">
       <div class="team-shade"></div>
       <div class="team-num">03</div>
       <div class="team-badge">
