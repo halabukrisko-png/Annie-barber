@@ -27,11 +27,13 @@
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
-  .team-card { position: relative; border-radius: 4px; overflow: hidden; border: 1px solid rgba(244,237,225,0.1); box-shadow: 0 14px 30px -8px rgba(0,0,0,0.55); }
-  .team-card img { width: 100%; height: auto; display: block; }
-  .team-shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,19,17,0) 70%, rgba(20,19,17,0.75) 100%); }
-  .team-num { position: absolute; top: 8px; left: 10px; font-family: 'Fraunces', serif; font-size: 10px; color: rgba(244,237,225,0.6); text-shadow: 0 1px 4px rgba(0,0,0,0.6); }
-  .team-badge { position: absolute; bottom: 8px; left: 10px; right: 10px; background: rgba(20,19,17,0.6); backdrop-filter: blur(6px); border: 1px solid rgba(244,237,225,0.15); border-radius: 3px; padding: 9px 12px; }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
+  .team-photo { width: 100%; aspect-ratio: 3 / 4; border-radius: 2px; overflow: hidden; background: #0f0e0c; display: flex; align-items: center; justify-content: center; }
+  .team-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
+  .team-caption { padding: 9px 3px 3px; text-align: center; }
+  .team-caption h3 { font-size: 12.5px; }
+  .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
   .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
 </style>
 </head>
@@ -115,43 +117,28 @@
     <h2 style="font-size:22px;">O BARBERIS<br>NÁŠ TÍM</h2>
   </div>
 
-  <div style="padding:18px 24px 0;display:flex;flex-direction:column;gap:10px;">
-    <div class="team-card">
-      <img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis">
-      <div class="team-shade"></div>
-      <div class="team-num">01</div>
-      <div class="team-badge">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;">
-          <h3 style="font-size:16px;">ANETT</h3>
-          <div style="font-size:8px;letter-spacing:0.06em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;">Zakladateľka</div>
-        </div>
-        <p style="margin:3px 0 0;font-size:10px;line-height:1.32;color:var(--cream-dim);">Barberingu sa venujem už takmer 7 rokov — od začiatku mi bola táto práca prirodzená.</p>
+  <div style="padding:18px 24px 0;" class="team-grid">
+    <div class="team-frame">
+      <div class="team-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"></div>
+      <div class="team-caption">
+        <h3>ANETT</h3>
+        <div class="role">Zakladateľka</div>
       </div>
     </div>
 
-    <div class="team-card">
-      <img src="assets/karvy.jpg" alt="Karvy — barber">
-      <div class="team-shade"></div>
-      <div class="team-num">02</div>
-      <div class="team-badge">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;">
-          <h3 style="font-size:16px;">KARVY</h3>
-          <div style="font-size:8px;letter-spacing:0.06em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;">Barber · 6 rokov</div>
-        </div>
-        <p style="margin:3px 0 0;font-size:10px;line-height:1.32;color:var(--cream-dim);">Okrem precíznych strihov je jeho veľkou špecialitou ornamentálna tvorba.</p>
+    <div class="team-frame">
+      <div class="team-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"></div>
+      <div class="team-caption">
+        <h3>KARVY</h3>
+        <div class="role">Barber · 6 rokov</div>
       </div>
     </div>
 
-    <div class="team-card">
-      <img src="assets/vladis.jpg" alt="Vladis — barber">
-      <div class="team-shade"></div>
-      <div class="team-num">03</div>
-      <div class="team-badge">
-        <div style="display:flex;align-items:baseline;justify-content:space-between;gap:8px;">
-          <h3 style="font-size:16px;">VLADIS</h3>
-          <div style="font-size:8px;letter-spacing:0.06em;text-transform:uppercase;color:var(--bronze);white-space:nowrap;">Barber · 4 roky</div>
-        </div>
-        <p style="margin:3px 0 0;font-size:10px;line-height:1.32;color:var(--cream-dim);">Zo začiatku je možno trochu tichší, ale keď sa rozbehne nálada, vie sa pridať.</p>
+    <div class="team-frame">
+      <div class="team-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"></div>
+      <div class="team-caption">
+        <h3>VLADIS</h3>
+        <div class="role">Barber · 4 roky</div>
       </div>
     </div>
   </div>
