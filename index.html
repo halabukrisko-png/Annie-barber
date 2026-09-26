@@ -14,13 +14,7 @@
     --bronze: #c9a06a;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background-color: var(--bg);
-    background-image: repeating-linear-gradient(135deg, rgba(201,160,106,0.16) 0px, rgba(201,160,106,0.16) 10px, transparent 10px, transparent 26px);
-    font-family: 'Work Sans', sans-serif;
-    color: var(--cream);
-  }
+  body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
   h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; }
   a { color: inherit; text-decoration: none; }
   .stars { color: var(--bronze); font-size: 12px; letter-spacing: 1px; }
@@ -125,11 +119,6 @@
   .price-list li:first-child { border-top: none; }
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
-
-  /* Pásikavé pozadie len pre mobilné zobrazenie */
-  @media (min-width: 641px) {
-    body { background-image: none; }
-  }
 </style>
 </head>
 <body>
