@@ -119,25 +119,6 @@
   .price-list li:first-child { border-top: none; }
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
-  .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 18px 16px 20px; margin-top: 16px; }
-  .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
-  .cal-head button { background: none; border: 1px solid rgba(244,237,225,0.18); color: var(--cream); width: 30px; height: 30px; border-radius: 2px; font-size: 15px; line-height: 1; cursor: pointer; }
-  .cal-head button:disabled { opacity: 0.3; cursor: default; }
-  .cal-head span { font-family: 'Fraunces', serif; font-size: 14.5px; text-transform: capitalize; }
-  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 10px; color: var(--cream-dim); letter-spacing: 0.03em; margin-bottom: 6px; }
-  .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 3px; }
-  .cal-day { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-family: inherit; border-radius: 50%; background: transparent; border: 1px solid transparent; color: var(--cream); cursor: pointer; padding: 0; }
-  .cal-day.empty { visibility: hidden; cursor: default; }
-  .cal-day.disabled { color: rgba(244,237,225,0.22); cursor: not-allowed; }
-  .cal-day.today { border-color: rgba(201,160,106,0.5); }
-  .cal-day.selected { background: var(--bronze); color: #141311; font-weight: 700; }
-  .cal-day:not(.disabled):not(.empty):not(.selected):hover { background: rgba(201,160,106,0.15); }
-  .slot-label { margin: 16px 0 8px; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--bronze); }
-  .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
-  .slot-btn { background: var(--bg); border: 1px solid rgba(244,237,225,0.12); color: var(--cream); padding: 9px 0; border-radius: 2px; font-size: 12px; font-family: inherit; cursor: pointer; }
-  .slot-btn.selected { background: var(--bronze); color: #141311; border-color: var(--bronze); font-weight: 700; }
-  .cal-summary { margin-top: 14px; font-size: 12px; color: var(--cream-dim); text-align: center; }
-  .cal-summary b { color: var(--cream); }
 </style>
 </head>
 <body>
@@ -508,22 +489,6 @@
         </div>
         <div style="text-align:center;padding:12px 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">alebo napíš na <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @barberis</a></div>
       </div>
-
-      <div class="booking-calendar" id="booking-calendar">
-        <div class="cal-head">
-          <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
-          <span id="cal-month-label"></span>
-          <button type="button" id="cal-next" aria-label="Nasledujúci mesiac">›</button>
-        </div>
-        <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
-        <div class="cal-grid" id="cal-grid"></div>
-        <div id="cal-slots-wrap" hidden>
-          <div class="slot-label">Vyber si čas — <span id="cal-selected-date"></span></div>
-          <div class="slot-grid" id="cal-slots"></div>
-        </div>
-        <div class="cal-summary" id="cal-summary" hidden></div>
-        <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="display:none;margin-top:14px;background:var(--bronze);color:#141311;text-align:center;padding:14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;">Zavolať a potvrdiť termín →</a>
-      </div>
     </div>
   </div>
 
@@ -734,123 +699,6 @@
     var open = hours[day] && h >= hours[day][0] && h < hours[day][1];
     el.textContent = open ? 'Práve otvorené' : 'Zatvorené';
     el.classList.add(open ? 'is-open' : 'is-closed');
-  })();
-  (function () {
-    var grid = document.getElementById('cal-grid');
-    if (!grid) return;
-    var monthLabel = document.getElementById('cal-month-label');
-    var prevBtn = document.getElementById('cal-prev');
-    var nextBtn = document.getElementById('cal-next');
-    var slotsWrap = document.getElementById('cal-slots-wrap');
-    var slotsGrid = document.getElementById('cal-slots');
-    var selectedDateLabel = document.getElementById('cal-selected-date');
-    var summary = document.getElementById('cal-summary');
-    var confirmBtn = document.getElementById('cal-confirm');
-    var hours = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
-    var months = ['Január', 'Február', 'Marec', 'Apríl', 'Máj', 'Jún', 'Júl', 'August', 'September', 'Október', 'November', 'December'];
-    var dayNames = ['Nedeľa', 'Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok', 'Sobota'];
-    var todayDate = new Date();
-    todayDate.setHours(0, 0, 0, 0);
-    var view = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-    var selectedDate = null;
-
-    function sameDay(a, b) {
-      return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-    }
-    function pad(n) { return n < 10 ? '0' + n : String(n); }
-
-    function resetSelection() {
-      selectedDate = null;
-      slotsWrap.hidden = true;
-      summary.hidden = true;
-      confirmBtn.style.display = 'none';
-    }
-
-    function render() {
-      grid.innerHTML = '';
-      monthLabel.textContent = months[view.getMonth()] + ' ' + view.getFullYear();
-      prevBtn.disabled = view.getFullYear() === todayDate.getFullYear() && view.getMonth() === todayDate.getMonth();
-      var first = new Date(view.getFullYear(), view.getMonth(), 1);
-      var startOffset = (first.getDay() + 6) % 7;
-      var daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
-      for (var i = 0; i < startOffset; i++) {
-        var empty = document.createElement('span');
-        empty.className = 'cal-day empty';
-        grid.appendChild(empty);
-      }
-      var _loop = function (d) {
-        var date = new Date(view.getFullYear(), view.getMonth(), d);
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'cal-day';
-        btn.textContent = d;
-        var isPast = date < todayDate;
-        var isClosed = !hours[date.getDay()];
-        if (isPast || isClosed) {
-          btn.classList.add('disabled');
-          btn.disabled = true;
-        } else {
-          btn.addEventListener('click', function () { selectDate(date, btn); });
-        }
-        if (sameDay(date, todayDate)) btn.classList.add('today');
-        if (selectedDate && sameDay(date, selectedDate)) btn.classList.add('selected');
-        grid.appendChild(btn);
-      };
-      for (var d = 1; d <= daysInMonth; d++) _loop(d);
-    }
-
-    function selectDate(date, btn) {
-      selectedDate = date;
-      summary.hidden = true;
-      confirmBtn.style.display = 'none';
-      Array.prototype.slice.call(grid.querySelectorAll('.cal-day')).forEach(function (el) { el.classList.remove('selected'); });
-      btn.classList.add('selected');
-      selectedDateLabel.textContent = dayNames[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
-      renderSlots(date);
-      slotsWrap.hidden = false;
-      slotsWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function renderSlots(date) {
-      slotsGrid.innerHTML = '';
-      var range = hours[date.getDay()];
-      if (!range) return;
-      var nowH = null;
-      if (sameDay(date, todayDate)) {
-        var now = new Date();
-        nowH = now.getHours() + now.getMinutes() / 60;
-      }
-      var any = false;
-      for (var h = range[0]; h < range[1]; h++) {
-        if (nowH !== null && h <= nowH) continue;
-        any = true;
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'slot-btn';
-        btn.textContent = pad(h) + ':00';
-        btn.addEventListener('click', function (hour) { return function () { selectSlot(hour, btn); }; }(h));
-        slotsGrid.appendChild(btn);
-      }
-      if (!any) {
-        var msg = document.createElement('div');
-        msg.style.cssText = 'grid-column:1/-1;font-size:12px;color:var(--cream-dim);';
-        msg.textContent = 'Na tento deň už nie sú voľné termíny.';
-        slotsGrid.appendChild(msg);
-      }
-    }
-
-    function selectSlot(hour, btn) {
-      Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).forEach(function (el) { el.classList.remove('selected'); });
-      btn.classList.add('selected');
-      summary.innerHTML = 'Vybraný termín: <b>' + dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. o ' + pad(hour) + ':00</b> — potvrď zavolaním.';
-      summary.hidden = false;
-      confirmBtn.style.display = 'block';
-    }
-
-    prevBtn.addEventListener('click', function () { view.setMonth(view.getMonth() - 1); resetSelection(); render(); });
-    nextBtn.addEventListener('click', function () { view.setMonth(view.getMonth() + 1); resetSelection(); render(); });
-
-    render();
   })();
 </script>
 </body>
