@@ -543,23 +543,28 @@
     var list = document.getElementById('svc-list');
     if (!list) return;
     var rows = Array.prototype.slice.call(list.querySelectorAll('.svc-hover-row'));
-    var defaultBadge = list.querySelector('[data-badge-default] .svc-badge');
-    function hideAll() {
+    var defaultRow = list.querySelector('[data-badge-default]');
+    var defaultBadge = defaultRow ? defaultRow.querySelector('.svc-badge') : null;
+    var ACTIVE_BORDER = 'rgba(201,160,106,0.35)';
+    var INACTIVE_BORDER = 'rgba(244,237,225,0.08)';
+    function clearAll() {
       rows.forEach(function (r) {
         var badge = document.getElementById(r.getAttribute('data-badge'));
         if (badge) badge.style.display = 'none';
+        r.style.borderColor = INACTIVE_BORDER;
       });
     }
+    function activate(row) {
+      clearAll();
+      var badge = document.getElementById(row.getAttribute('data-badge'));
+      if (badge) badge.style.display = 'inline-block';
+      row.style.borderColor = ACTIVE_BORDER;
+    }
     rows.forEach(function (row) {
-      row.addEventListener('mouseenter', function () {
-        hideAll();
-        var badge = document.getElementById(row.getAttribute('data-badge'));
-        if (badge) badge.style.display = 'inline-block';
-      });
+      row.addEventListener('mouseenter', function () { activate(row); });
     });
     list.addEventListener('mouseleave', function () {
-      hideAll();
-      if (defaultBadge) defaultBadge.style.display = 'inline-block';
+      if (defaultRow) activate(defaultRow); else clearAll();
     });
   })();
   (function () {
