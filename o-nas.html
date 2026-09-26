@@ -27,7 +27,8 @@
   .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .booking-frame { border: 1px dashed rgba(201,160,106,0.4); border-radius: 4px; padding: 24px 18px; text-align: center; background: rgba(201,160,106,0.04); }
-  .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.1); border-radius: 4px; padding: 22px 18px 24px; }
+  .booking-outer-frame { border: 1px solid rgba(201,160,106,0.22); border-radius: 16px; padding: 14px; background: linear-gradient(165deg, rgba(201,160,106,0.05), rgba(201,160,106,0.01)); }
+  .booking-calendar { max-width: 330px; margin: 0 auto; background: linear-gradient(165deg, var(--card), #201c17); border: 1px solid rgba(244,237,225,0.1); border-radius: 10px; padding: 24px 20px 26px; box-shadow: 0 24px 48px -24px rgba(0,0,0,0.7), inset 0 1px 0 rgba(244,237,225,0.05); }
   .step-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
   .step-note { font-size: 11px; letter-spacing: 0.02em; color: rgba(207,198,184,0.55); text-transform: none; font-weight: 400; }
   .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 26px; }
@@ -67,7 +68,7 @@
   .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
   .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .cal-footnote { margin-top: 14px; font-size: 11px; line-height: 1.6; color: rgba(207,198,184,0.55); }
-  .cancel-card { margin-top: 20px; background: var(--card); border: 1px solid rgba(244,237,225,0.1); border-radius: 4px; padding: 20px 18px; }
+  .cancel-card { max-width: 330px; margin: 0 auto; background: linear-gradient(165deg, var(--card), #201c17); border: 1px solid rgba(244,237,225,0.1); border-radius: 10px; padding: 22px 20px; box-shadow: 0 24px 48px -24px rgba(0,0,0,0.7); }
 </style>
 </head>
 <body>
@@ -108,6 +109,7 @@
       <h2 style="font-size:20px;">ZAREZERVUJ SI TERMÍN</h2>
     </div>
 
+    <div class="booking-outer-frame">
     <div class="booking-calendar" id="booking-calendar">
       <div class="step-label"><span>1 · Služba</span></div>
       <div class="svc-grid" id="svc-grid">
@@ -146,11 +148,14 @@
         <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
       </div>
     </div>
+    </div>
 
+    <div class="booking-outer-frame" style="margin-top:16px;">
     <div class="cancel-card">
       <div class="step-label"><span>Zrušiť alebo zmeniť termín</span></div>
       <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.</p>
       <a href="tel:+421910123456" class="btn-outline" style="margin-top:14px;">Zavolať kvôli zmene termínu</a>
+    </div>
     </div>
   </div>
 
