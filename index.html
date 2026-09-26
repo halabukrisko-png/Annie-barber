@@ -36,7 +36,11 @@
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
   .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
-  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); }
+  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); cursor: zoom-in; }
+  .svc-lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(10,9,8,0.95); display: none; align-items: center; justify-content: center; padding: 24px; }
+  .svc-lightbox.open { display: flex; }
+  .svc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7); }
+  .svc-lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid rgba(244,237,225,0.3); border-radius: 50%; width: 34px; height: 34px; color: var(--cream); font-size: 20px; line-height: 1; cursor: pointer; }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
@@ -544,6 +548,12 @@
 
 
 </div>
+
+<div class="svc-lightbox" id="svc-lightbox">
+  <button class="svc-lightbox-close" id="svc-lightbox-close" aria-label="Zavrieť">&times;</button>
+  <img id="svc-lightbox-img" src="" alt="">
+</div>
+
 <script>
   (function () {
     var list = document.getElementById('svc-list');
@@ -583,6 +593,32 @@
       if (e.pointerType !== 'mouse') return;
       if (defaultRow) activate(defaultRow); else clearAll();
     });
+
+    var lightbox = document.getElementById('svc-lightbox');
+    var lightboxImg = document.getElementById('svc-lightbox-img');
+    var lightboxClose = document.getElementById('svc-lightbox-close');
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      lightboxImg.src = '';
+    }
+    if (lightbox && lightboxImg) {
+      Array.prototype.slice.call(list.querySelectorAll('.svc-thumb')).forEach(function (thumb) {
+        thumb.addEventListener('click', function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          var bg = thumb.style.backgroundImage;
+          var match = bg.match(/url\((['"]?)(.*?)\1\)/);
+          if (match) {
+            lightboxImg.src = match[2];
+            lightbox.classList.add('open');
+          }
+        });
+      });
+      lightboxClose.addEventListener('click', closeLightbox);
+      lightbox.addEventListener('click', function (e) {
+        if (e.target === lightbox) closeLightbox();
+      });
+    }
   })();
   (function () {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.team-trigger'));
