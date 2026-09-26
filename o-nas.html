@@ -50,6 +50,8 @@
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
   .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
+  @keyframes marqueeIn { from { transform: translateX(-420px); } to { transform: translateX(0); } }
+  .drive-in { animation: marqueeIn 2.4s cubic-bezier(.16,.6,.2,1) 0.4s both; }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.1s cubic-bezier(.16,.6,.2,1), opacity 1.1s ease-out; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze)); }
@@ -155,6 +157,12 @@
       <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Naša kozmetika</div>
       <h2 style="font-size:18px;line-height:1.3;margin-bottom:10px;">KVALITA, NA KTOREJ<br>NÁM ZÁLEŽÍ</h2>
       <p style="margin:0;font-size:13px;line-height:1.6;color:var(--cream-dim);">V BARBERIS používame kvalitnú profesionálnu kozmetiku, ktorú starostlivo vyberáme s dôrazom na zdravie vlasov, pokožky a brady. Každému zákazníkovi chceme dopriať nielen perfektný strih, ale aj príjemný pocit a profesionálnu starostlivosť.</p>
+    </div>
+  </div>
+
+  <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:36px 0 0;">
+    <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
+      <span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span><span style="color:var(--bronze);">•</span><span>Strih</span>
     </div>
   </div>
 
