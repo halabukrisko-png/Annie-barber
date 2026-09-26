@@ -68,6 +68,10 @@
   .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .cal-footnote { margin-top: 14px; font-size: 11px; line-height: 1.6; color: rgba(207,198,184,0.55); }
   .cancel-card { margin-top: 16px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; }
+  .ig-strip { display: flex; align-items: center; justify-content: center; gap: 8px; margin-bottom: 24px; }
+  .ig-strip img { display: block; border-radius: 8px; object-fit: cover; }
+  .ig-strip .ig-side { width: 28%; height: 130px; opacity: 0.5; }
+  .ig-strip .ig-main { width: 40%; height: 180px; border: 1px solid rgba(201,160,106,0.5); box-shadow: 0 0 26px rgba(201,160,106,0.22); }
 </style>
 </head>
 <body>
@@ -152,6 +156,27 @@
       <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.</p>
       <a href="tel:+421910123456" class="btn-outline" style="margin-top:14px;">Zavolať kvôli zmene termínu</a>
     </div>
+  </div>
+
+  <!-- INSTAGRAM -->
+  <div style="padding:8px 24px 48px;text-align:center;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;margin-bottom:28px;">
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+      <span style="width:7px;height:7px;border:1px solid var(--bronze);transform:rotate(45deg);"></span>
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+    </div>
+    <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Instagram</div>
+    <h2 style="font-size:28px;letter-spacing:0.01em;margin-bottom:10px;color:var(--bronze);">@BARBERIS</h2>
+    <p style="margin:0 0 22px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Sleduj najnovšie strihy a atmosféru u nás.</p>
+    <div class="ig-strip">
+      <img class="ig-side" src="assets/gallery/gallery-1.jpg" alt="Ukážka strihu z Instagramu">
+      <img class="ig-main" src="assets/gallery/gallery-2.jpg" alt="Ukážka strihu z Instagramu">
+      <img class="ig-side" src="assets/gallery/gallery-3.jpg" alt="Ukážka strihu z Instagramu">
+    </div>
+    <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline" style="display:flex;align-items:center;justify-content:center;gap:10px;margin-top:0;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      Sledovať na Instagrame →
+    </a>
   </div>
 
 </div>
