@@ -23,6 +23,14 @@
   .topbar { position: sticky; top: 0; z-index: 20; height: 64px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(20,19,17,0.9); backdrop-filter: blur(4px); border-bottom: 1px solid rgba(244,237,225,0.08); }
   .back-link { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream-dim); transition: color 0.2s ease; }
   .back-link:hover { color: var(--bronze); }
+  .nav-overlay { position: fixed; inset: 0; z-index: 40; background: rgba(14,13,11,0.98); display: flex; flex-direction: column; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
+  .nav-overlay.open { opacity: 1; visibility: visible; }
+  .nav-overlay-top { flex: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
+  .nav-close { background: none; border: none; color: var(--cream); font-size: 26px; line-height: 1; cursor: pointer; padding: 4px; }
+  .nav-links { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 0 32px; }
+  .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
+  .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
+  .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
   .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
   .bio-card p:last-of-type { margin-bottom: 0; }
@@ -134,7 +142,27 @@
 
   <div class="topbar">
     <a href="index.html" class="back-link"><span>←</span> Späť domov</a>
-    <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;">BARBERIS</span>
+    <button id="nav-open" aria-label="Menu" style="background:none;border:none;padding:0;width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
+      <span style="display:block;height:2px;background:var(--cream);"></span>
+      <span style="display:block;height:2px;background:var(--cream);"></span>
+      <span style="display:block;height:2px;background:var(--cream);"></span>
+    </button>
+  </div>
+
+  <div id="nav-overlay" class="nav-overlay">
+    <div class="nav-overlay-top">
+      <span style="font-family:'Fraunces',serif;font-weight:600;font-size:19px;">BARBERIS</span>
+      <button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button>
+    </div>
+    <nav class="nav-links">
+      <a href="index.html#hero"><span>01</span>Úvod</a>
+      <a href="o-nas.html"><span>02</span>O nás</a>
+      <a href="galeria.html"><span>03</span>Galéria</a>
+      <a href="index.html#contact"><span>04</span>Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="index.html#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+    </div>
   </div>
 
   <div style="padding:36px 24px 0;text-align:center;">
@@ -397,6 +425,17 @@
 
 </div>
 <script>
+  (function () {
+    var openBtn = document.getElementById('nav-open');
+    var closeBtn = document.getElementById('nav-close');
+    var overlay = document.getElementById('nav-overlay');
+    if (!openBtn || !overlay) return;
+    function open() { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+    openBtn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+  })();
   (function () {
     var grid = document.getElementById('cal-grid');
     if (!grid) return;
