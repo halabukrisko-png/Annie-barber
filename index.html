@@ -253,6 +253,50 @@
       </div>
       <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Vždy dokonalý strih, super ľudia a príjemné prostredie. Odporúčam všetkými desiatimi!“</p>
     </div>
+
+    <div id="reviews-more" style="display:none;flex-direction:column;gap:10px;">
+      <div class="review-card">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:12.5px;font-weight:600;">Tomáš V.</div>
+            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 5 mesiacmi</div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Ornamentálny strih presne podľa predstáv, obrovská preciznosť. Chodím už len sem.“</p>
+      </div>
+      <div class="review-card">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:12.5px;font-weight:600;">Marek H.</div>
+            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 6 mesiacmi</div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Príjemná atmosféra, dobrá káva a strih na jednotku. Odporúčam každému.“</p>
+      </div>
+      <div class="review-card">
+        <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+          <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:12.5px;font-weight:600;">Dávid R.</div>
+            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+          </div>
+          <div class="stars">★★★★★</div>
+        </div>
+        <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Karvy má zlaté ruky, brada nikdy nevyzerala lepšie. Jednoznačne odporúčam.“</p>
+      </div>
+    </div>
+
+    <button id="reviews-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('reviews-more');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Zobraziť viac recenzií →':'Zobraziť menej ↑';" style="display:block;width:100%;background:transparent;border:1px solid rgba(244,237,225,0.3);color:var(--cream);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Zobraziť viac recenzií →</button>
   </div>
 
   <div style="height:28px;"></div>
