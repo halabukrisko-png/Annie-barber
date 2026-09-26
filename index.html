@@ -59,6 +59,20 @@
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
+  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
+  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
+  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
+  .btn-cta-arrow { display: inline-block; transition: transform 0.25s ease; }
+  .btn-cta:hover .btn-cta-arrow { transform: translateX(3px); }
+  .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(20,19,17,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(201,160,106,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
+  .booking-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #7cd68a; box-shadow: 0 0 6px #7cd68a; flex: 0 0 auto; }
+  .btn-outline { transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(.16,.6,.2,1); }
+  .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze) !important; transform: translateY(-2px); }
+  .btn-outline:active { transform: translateY(0); }
+  .row-link { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(244,237,225,0.08); transition: opacity 0.2s ease; }
+  .row-link:hover { opacity: 0.75; }
+  .row-link:hover .row-value { color: var(--bronze); }
+  .row-value { transition: color 0.2s ease; }
 </style>
 </head>
 <body>
@@ -326,11 +340,13 @@
       <div class="scroll-line-wrap"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
       <div style="position:relative;margin-top:54px;aspect-ratio:1468/2000;overflow:hidden;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.25);display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
         <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
-        <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.85) 85%,var(--bg) 100%);"></div>
+        <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
+        <div class="booking-badge"><span class="dot"></span>Voľné termíny tento týždeň</div>
         <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia</div>
-        <h2 style="position:relative;font-size:28px;line-height:1.1;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ LOOK?</h2>
-        <p style="position:relative;margin:0 0 18px;font-size:13.5px;line-height:1.5;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
-        <a href="#" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+        <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ LOOK?</h2>
+        <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
+        <a href="tel:+421910123456" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+        <div style="position:relative;text-align:center;margin-top:12px;font-size:10.5px;color:rgba(244,237,225,0.55);">alebo napíš na <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @barberis</a></div>
       </div>
     </div>
   </div>
