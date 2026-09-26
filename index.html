@@ -32,8 +32,12 @@
   .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); opacity: 0; transition: opacity 1.1s ease-out 0.3s; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
-  .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
-  .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
+  .svc-row { position: relative; display: flex; align-items: center; gap: 14px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease; }
+  .svc-row:hover { border-color: rgba(201,160,106,0.4); transform: translateY(-2px); background: #1e1b16; }
+  .svc-popular { border-color: rgba(201,160,106,0.35); }
+  .svc-icon { flex: 0 0 44px; width: 44px; height: 44px; border-radius: 2px; background: rgba(201,160,106,0.08); color: var(--bronze); display: flex; align-items: center; justify-content: center; }
+  .svc-icon svg { width: 21px; height: 21px; }
+  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
@@ -190,40 +194,41 @@
       <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
       <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho fade až po úpravu brady. Vyber si, čo ti sadne.</p>
       <div style="display:flex;flex-direction:column;gap:10px;">
-        <a href="#booking" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
-          <div style="flex:0 0 56px;height:56px;border-radius:2px;background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
+        <a href="#booking" class="svc-row">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="14.47" y1="14.48" x2="20" y2="20"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line></svg></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Pánsky strih</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Klasický aj moderný strih podľa tvojho štýlu.</div>
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">20 €</div>
         </a>
-        <a href="#booking" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
-          <div style="flex:0 0 56px;height:56px;border-radius:2px;background:linear-gradient(160deg,#332920,#1c1712);"></div>
+        <a href="#booking" class="svc-row svc-popular">
+          <span class="svc-badge">Obľúbené</span>
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10a8 8 0 0 1 16 0v10"></path><path d="M4 15h16"></path><path d="M8 20v-3"></path><path d="M16 20v-3"></path></svg></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Fade</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Precízny prechod a čisté línie.</div>
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">20 €</div>
         </a>
-        <a href="#booking" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
-          <div style="flex:0 0 56px;height:56px;border-radius:2px;background:linear-gradient(160deg,#2c231a,#1c1712);"></div>
+        <a href="#booking" class="svc-row">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="6" r="3"></circle><line x1="20" y1="4" x2="8.12" y2="15.88"></line><line x1="8.12" y1="8.12" x2="12" y2="12"></line><path d="M6 15c-3 2-3 5 0 6.5"></path><path d="M18 15c1.5 2 1.5 4.5-1 6"></path></svg></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Strih + brada</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Kompletná úprava vlasov a brady.</div>
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">30 €</div>
         </a>
-        <a href="#booking" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
-          <div style="flex:0 0 56px;height:56px;border-radius:2px;background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
+        <a href="#booking" class="svc-row">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c-2.5 1.5-2.5 5 0 6.5C3.5 12 3.5 15.5 6 17c1.5 1 4 1.5 6 1.5s4.5-.5 6-1.5c2.5-1.5 2.5-5 0-6.5 2.5-1.5 2.5-5 0-6.5"></path></svg></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Úprava brady</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Tvarovanie, kontúry a finálna úprava.</div>
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">15 €</div>
         </a>
-        <a href="#booking" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
-          <div style="flex:0 0 56px;height:56px;border-radius:2px;background:linear-gradient(160deg,#332920,#1c1712);"></div>
+        <a href="#booking" class="svc-row">
+          <div class="svc-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v4"></path><path d="M12 17v4"></path><path d="M3 12h4"></path><path d="M17 12h4"></path><path d="M5.6 5.6l2.8 2.8"></path><path d="M15.6 15.6l2.8 2.8"></path><path d="M18.4 5.6l-2.8 2.8"></path><path d="M8.4 15.6l-2.8 2.8"></path></svg></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Ornament</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Kreatívny detail vytvorený presne podľa tvojho želania.</div>
@@ -247,26 +252,6 @@
       <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:none;border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
     </div>
 
-    <div style="margin-top:8px;padding:0 26px;">
-      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás</div>
-      <div style="display:flex;gap:8px;">
-        <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Pánsky strih</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">20 €</div>
-        </a>
-        <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#332920,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Fade</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">20 €</div>
-        </a>
-        <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#2c231a,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Strih + brada</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">30 €</div>
-        </a>
-      </div>
-    </div>
 
   <!-- TÍM -->
   <div id="team" style="padding:44px 24px 0;text-align:center;">
