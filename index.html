@@ -18,8 +18,6 @@
   h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; }
   a { color: inherit; text-decoration: none; }
   .stars { color: var(--bronze); font-size: 12px; letter-spacing: 1px; }
-  .row { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(244,237,225,0.08); }
-  .ic { color: var(--bronze); font-size: 14px; width: 18px; flex: 0 0 18px; }
   @keyframes marqueeIn { from { transform: translateX(-420px); } to { transform: translateX(0); } }
   .drive-in { animation: marqueeIn 2.4s cubic-bezier(.16,.6,.2,1) 0.4s both; }
   @keyframes lineDraw { from { width: 0; } to { width: 64px; } }
@@ -42,6 +40,25 @@
   .team-caption h3 { font-size: 12.5px; }
   .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
   .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
+  .map-frame { position: relative; margin-top: 26px; height: 260px; overflow: hidden; border: 1px solid rgba(201,160,106,0.45); box-shadow: 0 0 10px rgba(201,160,106,0.2); background: #1a1815; }
+  .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.92) sepia(0.25) contrast(0.9) brightness(0.95); }
+  .map-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,19,17,0) 45%, rgba(20,19,17,0.92) 100%); pointer-events: none; }
+  .map-info { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 14px; }
+  .map-nav { flex: 0 0 auto; background: var(--bronze); color: #141311; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
+  .contact-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
+  .contact-action { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 16px 6px 14px; color: var(--bronze); text-align: center; transition: border-color .2s; }
+  .contact-action:hover { border-color: rgba(201,160,106,0.5); }
+  .contact-action .ca-label { font-size: 12px; font-weight: 600; color: var(--cream); }
+  .contact-action .ca-sub { font-size: 10px; color: var(--cream-dim); overflow-wrap: anywhere; }
+  .hours-card { margin-top: 10px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 18px 16px 14px; }
+  .hours-list { list-style: none; margin: 0; padding: 0; }
+  .hours-list li { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; font-size: 12.5px; color: var(--cream-dim); }
+  .hours-list li i { flex: 1; border-bottom: 1px dotted rgba(244,237,225,0.18); transform: translateY(-3px); }
+  .hours-list li.today { color: var(--cream); font-weight: 600; }
+  .hours-list li.today span:first-child::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--bronze); margin-right: 7px; transform: translateY(-2px); }
+  .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
+  .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
+  .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 </style>
 </head>
 <body>
@@ -319,38 +336,58 @@
   </div>
 
   <!-- KONTAKT -->
-  <div id="contact" style="padding:44px 24px 0;">
-    <h2 style="font-size:22px;">KONTAKT</h2>
-  </div>
-  <div style="height:220px;margin:14px 24px 0;position:relative;background:linear-gradient(160deg,#26221e,#171512);border-radius:3px;border:1px solid rgba(244,237,225,0.08);display:flex;align-items:flex-end;padding:12px;">
-    <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-60%);color:var(--bronze);font-size:20px;">📍</div>
-    <span style="font-size:9.5px;letter-spacing:0.05em;text-transform:uppercase;color:rgba(244,237,225,0.4);">Hurbana 4, Prievidza</span>
-  </div>
-  <div style="padding:6px 24px 0;">
-    <a href="https://maps.google.com/?q=Hurbana+4,+Prievidza" target="_blank" rel="noopener" style="display:block;text-align:center;border:1px solid rgba(244,237,225,0.3);padding:13px;border-radius:2px;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;">Otvoriť v Google Maps →</a>
-  </div>
-  <div style="padding:18px 24px 0;">
-    <div style="background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:4px 14px;">
-      <div class="row" style="border-top:none;">
-        <div class="ic">📍</div>
-        <div><div style="font-size:13.5px;font-weight:600;">BARBERIS</div><div style="font-size:12px;color:var(--cream-dim);">Hurbana 4, Prievidza</div></div>
+  <div id="contact" style="padding:56px 24px 0;">
+    <div class="scroll-line-wrap"><div class="scroll-line left"></div><span class="scroll-line-initial">K</span><div class="scroll-line right"></div></div>
+    <div style="text-align:center;margin-top:34px;">
+      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">Nájdeš nás</div>
+      <h2 style="font-size:22px;">KONTAKT</h2>
+      <p style="margin:10px auto 0;font-size:13px;line-height:1.5;color:var(--cream-dim);max-width:290px;">V centre Prievidze, pár krokov od námestia. Zastav sa, zavolaj alebo napíš.</p>
+    </div>
+
+    <div class="map-frame">
+      <iframe src="https://maps.google.com/maps?q=Hurbana%204,%20Prievidza&z=16&output=embed" title="Mapa — BARBERIS, Hurbana 4, Prievidza" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      <div class="map-fade"></div>
+      <div class="map-info">
+        <div>
+          <div style="font-family:'Fraunces',serif;font-size:16px;">BARBERIS</div>
+          <div style="font-size:11.5px;color:var(--cream-dim);margin-top:2px;">Hurbana 4, 971 01 Prievidza</div>
+        </div>
+        <a href="https://maps.google.com/?q=Hurbana+4,+Prievidza" target="_blank" rel="noopener" class="map-nav">Navigovať →</a>
       </div>
-      <div class="row">
-        <div class="ic">📞</div>
-        <div style="font-size:12.5px;color:var(--cream-dim);">+421 910 123 456</div>
+    </div>
+
+    <div class="contact-actions">
+      <a href="tel:+421910123456" class="contact-action">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"></path></svg>
+        <span class="ca-label">Zavolať</span>
+        <span class="ca-sub">0910 123 456</span>
+      </a>
+      <a href="https://instagram.com/barberis" target="_blank" rel="noopener" class="contact-action">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="currentColor" stroke="none"></circle></svg>
+        <span class="ca-label">Instagram</span>
+        <span class="ca-sub">@barberis</span>
+      </a>
+      <a href="https://facebook.com/barberisprievidza" target="_blank" rel="noopener" class="contact-action">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h-2c-1.1 0-2 .9-2 2v2H9v3h2v6h3v-6h2.2l.8-3H14v-1.5c0-.55.45-1 1-1H16V8z"></path></svg>
+        <span class="ca-label">Facebook</span>
+        <span class="ca-sub">Barberis</span>
+      </a>
+    </div>
+
+    <div class="hours-card">
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+        <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);">Otváracie hodiny</div>
+        <div id="open-status" class="open-status"></div>
       </div>
-      <div class="row">
-        <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="0.8" fill="#c9a06a" stroke="none"></circle></svg></div>
-        <div style="font-size:12.5px;color:var(--cream-dim);">@barberis</div>
-      </div>
-      <div class="row">
-        <div class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#c9a06a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M15 8h-2c-1.1 0-2 .9-2 2v2H9v3h2v6h3v-6h2.2l.8-3H14v-1.5c0-.55.45-1 1-1H16V8z"></path></svg></div>
-        <div style="font-size:12.5px;color:var(--cream-dim);">/barberisprievidza</div>
-      </div>
-      <div class="row" style="padding-bottom:16px;">
-        <div class="ic">🕐</div>
-        <div style="font-size:12.5px;color:var(--cream-dim);line-height:1.5;">Po – Pia: 9:00 – 19:00<br>So: 9:00 – 14:00</div>
-      </div>
+      <ul class="hours-list">
+        <li data-day="1"><span>Pondelok</span><i></i><span>9:00 – 19:00</span></li>
+        <li data-day="2"><span>Utorok</span><i></i><span>9:00 – 19:00</span></li>
+        <li data-day="3"><span>Streda</span><i></i><span>9:00 – 19:00</span></li>
+        <li data-day="4"><span>Štvrtok</span><i></i><span>9:00 – 19:00</span></li>
+        <li data-day="5"><span>Piatok</span><i></i><span>9:00 – 19:00</span></li>
+        <li data-day="6"><span>Sobota</span><i></i><span>9:00 – 14:00</span></li>
+        <li data-day="0"><span>Nedeľa</span><i></i><span style="color:rgba(244,237,225,0.4);">Zatvorené</span></li>
+      </ul>
     </div>
   </div>
 
@@ -386,6 +423,19 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     check();
+  })();
+  (function () {
+    var hours = { 1: [9, 19], 2: [9, 19], 3: [9, 19], 4: [9, 19], 5: [9, 19], 6: [9, 14] };
+    var now = new Date();
+    var day = now.getDay();
+    var h = now.getHours() + now.getMinutes() / 60;
+    var today = document.querySelector('.hours-list li[data-day="' + day + '"]');
+    if (today) today.classList.add('today');
+    var el = document.getElementById('open-status');
+    if (!el) return;
+    var open = hours[day] && h >= hours[day][0] && h < hours[day][1];
+    el.textContent = open ? 'Práve otvorené' : 'Zatvorené';
+    el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
 </body>
