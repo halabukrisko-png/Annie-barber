@@ -99,8 +99,8 @@
   .nav-overlay.open { opacity: 1; visibility: visible; }
   .nav-overlay-top { flex: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
   .nav-close { background: none; border: none; color: var(--cream); font-size: 26px; line-height: 1; cursor: pointer; padding: 4px; }
-  .nav-links { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 6px; padding: 0 32px; }
-  .nav-links a { font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
+  .nav-links { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 0 32px; }
+  .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
   .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
   .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -147,11 +147,10 @@
         <button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button>
       </div>
       <nav class="nav-links">
-        <a href="#hero"><span>01</span>Domov</a>
-        <a href="#services"><span>02</span>Služby</a>
-        <a href="#team"><span>03</span>O nás</a>
-        <a href="#reviews"><span>04</span>Recenzie</a>
-        <a href="#contact"><span>05</span>Kontakt</a>
+        <a href="#hero"><span>01</span>Úvod</a>
+        <a href="o-nas.html"><span>02</span>O nás</a>
+        <a href="galeria.html"><span>03</span>Galéria</a>
+        <a href="#contact"><span>04</span>Kontakt</a>
       </nav>
       <div class="nav-cta">
         <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
