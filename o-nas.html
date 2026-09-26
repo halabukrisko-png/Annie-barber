@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="sk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O nás — BARBERIS</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #141311;
+    --card: #1a1815;
+    --cream: #f4ede1;
+    --cream-dim: #cfc6b8;
+    --bronze: #c9a06a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
+  h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; }
+  a { color: inherit; text-decoration: none; }
+  .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
+  .topbar { position: sticky; top: 0; z-index: 20; height: 64px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(20,19,17,0.9); backdrop-filter: blur(4px); border-bottom: 1px solid rgba(244,237,225,0.08); }
+  .back-link { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream-dim); transition: color 0.2s ease; }
+  .back-link:hover { color: var(--bronze); }
+  .bio-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
+  .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
+  .bio-card p:last-of-type { margin-bottom: 0; }
+  .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
+  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
+  .booking-frame { border: 1px dashed rgba(201,160,106,0.4); border-radius: 4px; padding: 24px 18px; text-align: center; background: rgba(201,160,106,0.04); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="topbar">
+    <a href="index.html" class="back-link"><span>←</span> Späť domov</a>
+    <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;">BARBERIS</span>
+  </div>
+
+  <div style="padding:36px 24px 0;text-align:center;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+      <span>O nás</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+    </div>
+    <h1 style="font-size:24px;line-height:1.3;margin-bottom:8px;">DOBRÝ STRIH. DOBRÁ ATMOSFÉRA.<br>TVOJE TEMPO.</h1>
+  </div>
+
+  <div style="padding:20px 24px 0;display:flex;flex-direction:column;gap:14px;">
+    <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Nie každý prichádza do barberu na hodinový pokec. 😄 Niekto chce prebrať život, niekto sa chce zasmiať a niekto si len sadnúť, zavrieť oči a chvíľu vypnúť.</p>
+    <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">U nás je v poriadku všetko. Vieme byť poriadne zábavný, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.</p>
+    <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);font-weight:600;">My sa postaráme o strih. Ty si vyber, či chceš pokec, srandu alebo jednoducho pokoj.</p>
+  </div>
+
+  <div style="padding:36px 24px 0;">
+    <div class="bio-card" style="text-align:center;">
+      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Naša kozmetika</div>
+      <h2 style="font-size:18px;line-height:1.3;margin-bottom:10px;">KVALITA, NA KTOREJ<br>NÁM ZÁLEŽÍ</h2>
+      <p style="margin:0;font-size:13px;line-height:1.6;color:var(--cream-dim);">V BARBERIS používame kvalitnú profesionálnu kozmetiku, ktorú starostlivo vyberáme s dôrazom na zdravie vlasov, pokožky a brady. Každému zákazníkovi chceme dopriať nielen perfektný strih, ale aj príjemný pocit a profesionálnu starostlivosť.</p>
+    </div>
+  </div>
+
+  <!-- REZERVÁCIA -->
+  <div style="padding:36px 24px 48px;">
+    <div style="text-align:center;margin-bottom:16px;">
+      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">Rezervácia</div>
+      <h2 style="font-size:20px;">ZAREZERVUJ SI TERMÍN</h2>
+    </div>
+
+    <!-- TODO: sem príde vložený rezervačný systém (napr. Reservio / Bookio / Calendly embed) -->
+    <div class="booking-frame">
+      <p style="margin:0 0 14px;font-size:12.5px;line-height:1.6;color:var(--cream-dim);">Tu bude vložený rezervačný systém — pošli mi odkaz alebo embed kód (napr. z Reservio, Bookio alebo iného systému) a vložím ho priamo sem.</p>
+      <a href="tel:+421910123456" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Zavolať a dohodnúť termín →</a>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
