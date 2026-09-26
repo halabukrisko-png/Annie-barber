@@ -46,7 +46,8 @@
   .team-caption { padding: 9px 3px 3px; text-align: center; }
   .team-caption h3 { font-size: 12.5px; }
   .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
-  .tap-hint { position: absolute; right: 8px; bottom: 8px; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; font-size: 15px; background: rgba(20,19,17,0.6); backdrop-filter: blur(2px); border-radius: 50%; animation: tapPulse 1.8s ease-in-out infinite; pointer-events: none; }
+  .tap-hint { position: absolute; right: 8px; bottom: 8px; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(20,19,17,0.65); backdrop-filter: blur(2px); border: 1px solid rgba(201,160,106,0.55); border-radius: 50%; animation: tapPulse 1.8s ease-in-out infinite; pointer-events: none; }
+  .tap-hint svg { width: 15px; height: 15px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.85; } 50% { transform: scale(1.18); opacity: 1; } }
   .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(244,237,225,0.2); border-radius: 50%; color: var(--cream-dim); font-size: 15px; line-height: 1; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
@@ -296,7 +297,7 @@
 
   <div style="padding:18px 24px 0;" class="team-grid">
     <button type="button" class="team-frame team-trigger" data-bio="bio-anett" aria-expanded="false">
-      <div class="team-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"><span class="tap-hint">👆</span></div>
+      <div class="team-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="15" r="1.6" fill="currentColor" stroke="none"></circle><path d="M13 11.2c1.6 1.1 1.6 5 0 6.1"></path><path d="M16.2 8.2c3.1 2.3 3.1 10 0 12.3"></path></svg></span></div>
       <div class="team-caption">
         <h3>ANETT</h3>
         <div class="role">Zakladateľka</div>
@@ -305,7 +306,7 @@
     </button>
 
     <button type="button" class="team-frame team-trigger" data-bio="bio-karvy" aria-expanded="false">
-      <div class="team-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"><span class="tap-hint">👆</span></div>
+      <div class="team-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="15" r="1.6" fill="currentColor" stroke="none"></circle><path d="M13 11.2c1.6 1.1 1.6 5 0 6.1"></path><path d="M16.2 8.2c3.1 2.3 3.1 10 0 12.3"></path></svg></span></div>
       <div class="team-caption">
         <h3>KARVY</h3>
         <div class="role">Barber · 6 rokov skúseností</div>
@@ -314,7 +315,7 @@
     </button>
 
     <button type="button" class="team-frame team-trigger" data-bio="bio-vladis" aria-expanded="false">
-      <div class="team-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"><span class="tap-hint">👆</span></div>
+      <div class="team-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="15" r="1.6" fill="currentColor" stroke="none"></circle><path d="M13 11.2c1.6 1.1 1.6 5 0 6.1"></path><path d="M16.2 8.2c3.1 2.3 3.1 10 0 12.3"></path></svg></span></div>
       <div class="team-caption">
         <h3>VLADIS</h3>
         <div class="role">Barber · 4 roky skúseností</div>
