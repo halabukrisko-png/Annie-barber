@@ -59,6 +59,15 @@
   .slot-btn.selected { background: var(--bronze); color: #141311; border-color: var(--bronze); font-weight: 700; }
   .cal-summary { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: var(--cream-dim); text-align: center; background: rgba(201,160,106,0.06); border: 1px solid rgba(201,160,106,0.18); border-radius: 3px; padding: 10px 12px; }
   .cal-summary b { color: var(--cream); }
+  .cal-field { width: 100%; background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 12px; font-family: inherit; font-size: 12.5px; margin-bottom: 10px; }
+  .cal-field::placeholder { color: rgba(207,198,184,0.5); }
+  .cal-field:focus { outline: none; border-color: var(--bronze); }
+  .cal-confirm-box { margin: 4px 0 14px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(207,198,184,0.6); background: rgba(201,160,106,0.06); border: 1px solid rgba(201,160,106,0.18); border-radius: 3px; padding: 12px 14px; }
+  .cal-confirm-box div.cal-confirm-value { margin-top: 4px; font-size: 13.5px; letter-spacing: 0.01em; text-transform: none; color: var(--bronze); font-weight: 600; }
+  .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
+  .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
+  .cal-footnote { margin-top: 14px; font-size: 11px; line-height: 1.6; color: rgba(207,198,184,0.55); }
+  .cancel-card { margin-top: 20px; background: var(--card); border: 1px solid rgba(244,237,225,0.1); border-radius: 4px; padding: 20px 18px; }
 </style>
 </head>
 <body>
@@ -121,8 +130,27 @@
         <div class="step-label"><span>3 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
         <div class="slot-grid" id="cal-slots"></div>
       </div>
-      <div class="cal-summary" id="cal-summary" hidden></div>
-      <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="display:none;margin-top:16px;background:linear-gradient(155deg, #dcb27e, var(--bronze));color:#141311;text-align:center;padding:15px;border-radius:8px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Zavolať a potvrdiť termín →</a>
+
+      <div id="cal-step4-wrap" hidden>
+        <div class="step-label" style="margin-top:24px;"><span>4 · Potvrdenie</span></div>
+        <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
+        <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
+        <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
+        <div class="cal-confirm-box">
+          Tvoj termín
+          <div class="cal-confirm-value" id="cal-summary"></div>
+        </div>
+        <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="margin-top:0;background:linear-gradient(155deg, #dcb27e, var(--bronze));color:#141311;text-align:center;padding:15px;border-radius:3px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
+        <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
+        <a href="tel:+421910123456" class="btn-outline">Zavolať</a>
+        <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
+      </div>
+    </div>
+
+    <div class="cancel-card">
+      <div class="step-label"><span>Zrušiť alebo zmeniť termín</span></div>
+      <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.</p>
+      <a href="tel:+421910123456" class="btn-outline" style="margin-top:14px;">Zavolať kvôli zmene termínu</a>
     </div>
   </div>
 
@@ -139,6 +167,9 @@
     var selectedDateLabel = document.getElementById('cal-selected-date');
     var summary = document.getElementById('cal-summary');
     var confirmBtn = document.getElementById('cal-confirm');
+    var step4Wrap = document.getElementById('cal-step4-wrap');
+    var nameField = document.getElementById('cal-name');
+    var phoneField = document.getElementById('cal-phone');
     var svcGrid = document.getElementById('svc-grid');
     var selectedService = svcGrid.querySelector('.svc-btn.selected');
     Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (el) {
@@ -146,8 +177,11 @@
         Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (b) { b.classList.remove('selected'); });
         el.classList.add('selected');
         selectedService = el;
-        if (summary && !summary.hidden) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
+        if (currentHour !== null) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
       });
+    });
+    [nameField, phoneField].forEach(function (field) {
+      field.addEventListener('input', function () { if (currentHour !== null) updateSummary(); });
     });
     var currentHour = null;
     var hours = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
@@ -165,9 +199,9 @@
 
     function resetSelection() {
       selectedDate = null;
+      currentHour = null;
       slotsWrap.hidden = true;
-      summary.hidden = true;
-      confirmBtn.style.display = 'none';
+      step4Wrap.hidden = true;
     }
 
     function render() {
@@ -205,8 +239,8 @@
 
     function selectDate(date, btn) {
       selectedDate = date;
-      summary.hidden = true;
-      confirmBtn.style.display = 'none';
+      currentHour = null;
+      step4Wrap.hidden = true;
       Array.prototype.slice.call(grid.querySelectorAll('.cal-day')).forEach(function (el) { el.classList.remove('selected'); });
       btn.classList.add('selected');
       selectedDateLabel.textContent = dayNames[date.getDay()] + ' ' + date.getDate() + '. ' + (date.getMonth() + 1) + '.';
@@ -249,10 +283,20 @@
         Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).forEach(function (el) { el.classList.remove('selected'); });
         btn.classList.add('selected');
       }
+      step4Wrap.hidden = false;
+      updateSummary();
+      step4Wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function updateSummary() {
       var svcName = selectedService ? selectedService.querySelector('.svc-name').textContent : '';
-      summary.innerHTML = 'Vybraný termín: <b>' + svcName + ' — ' + dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. o ' + pad(hour) + ':00</b> — potvrď zavolaním.';
-      summary.hidden = false;
-      confirmBtn.style.display = 'block';
+      var dateStr = dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. ' + selectedDate.getFullYear();
+      var timeStr = pad(currentHour) + ':00';
+      summary.textContent = svcName + ' · ' + dateStr + ' o ' + timeStr;
+      var name = nameField.value.trim();
+      var phone = phoneField.value.trim();
+      var msg = 'Dobrý deň, chcel(a) by som si rezervovať termín: ' + svcName + ', ' + dateStr + ' o ' + timeStr + (name ? ('. Meno: ' + name) : '') + (phone ? (', tel.: ' + phone) : '') + '.';
+      confirmBtn.href = 'sms:+421910123456?body=' + encodeURIComponent(msg);
     }
 
     prevBtn.addEventListener('click', function () { view.setMonth(view.getMonth() - 1); resetSelection(); render(); });
