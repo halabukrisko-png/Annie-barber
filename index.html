@@ -565,24 +565,21 @@
       row.style.borderColor = ACTIVE_BORDER;
       activeRow = row;
     }
-    var isTouch = window.matchMedia && window.matchMedia('(hover: none)').matches;
-    if (isTouch) {
-      rows.forEach(function (row) {
-        row.addEventListener('click', function (e) {
-          if (activeRow !== row) {
-            e.preventDefault();
-            activate(row);
-          }
-        });
+    rows.forEach(function (row) {
+      row.addEventListener('pointerenter', function (e) {
+        if (e.pointerType === 'mouse') activate(row);
       });
-    } else {
-      rows.forEach(function (row) {
-        row.addEventListener('mouseenter', function () { activate(row); });
+      row.addEventListener('click', function (e) {
+        if (activeRow !== row) {
+          e.preventDefault();
+          activate(row);
+        }
       });
-      list.addEventListener('mouseleave', function () {
-        if (defaultRow) activate(defaultRow); else clearAll();
-      });
-    }
+    });
+    list.addEventListener('pointerleave', function (e) {
+      if (e.pointerType !== 'mouse') return;
+      if (defaultRow) activate(defaultRow); else clearAll();
+    });
   })();
   (function () {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.team-trigger'));
