@@ -34,13 +34,9 @@
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
-  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; }
+  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
   .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); }
-  .svc-preview { position: absolute; top: 50%; left: 50%; width: 220px; height: 220px; border-radius: 50%; background-size: cover; background-position: center; opacity: 0; pointer-events: none; transform: translate(-50%,-50%) scale(0.92); transition: opacity 0.25s ease, transform 0.25s ease; box-shadow: 0 24px 50px -10px rgba(0,0,0,0.75); border: 2px solid rgba(201,160,106,0.45); z-index: 30; }
-  @media (hover: hover) {
-    .svc-hover-row:hover .svc-preview { opacity: 1; transform: translate(-50%,-50%) scale(1); }
-  }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
@@ -196,20 +192,19 @@
       <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">Cenník</div>
       <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
       <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho fade až po úpravu brady. Vyber si, čo ti sadne.</p>
-      <div style="display:flex;flex-direction:column;gap:10px;">
-        <a href="#booking" class="svc-hover-row" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+      <div id="svc-list" style="display:flex;flex-direction:column;gap:10px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+          <span class="svc-badge" id="svc-badge-strih">Skvelá voľba</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-1.jpg');"></div>
-          <div class="svc-preview" style="background-image:url('assets/gallery/gallery-1.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Pánsky strih</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Klasický aj moderný strih podľa tvojho štýlu.</div>
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">20 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
-          <span class="svc-badge">Obľúbené</span>
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-fade" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
+          <span class="svc-badge" id="svc-badge-fade" style="display:inline-block;">Obľúbené</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-4.jpg');"></div>
-          <div class="svc-preview" style="background-image:url('assets/gallery/gallery-4.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Fade</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Precízny prechod a čisté línie.</div>
@@ -218,7 +213,6 @@
         </a>
         <a href="#booking" class="svc-hover-row" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-3.jpg');"></div>
-          <div class="svc-preview" style="background-image:url('assets/gallery/gallery-3.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Strih + brada</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Kompletná úprava vlasov a brady.</div>
@@ -227,7 +221,6 @@
         </a>
         <a href="#booking" class="svc-hover-row" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-2.jpg');"></div>
-          <div class="svc-preview" style="background-image:url('assets/gallery/gallery-2.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
             <div style="font-size:13.5px;font-weight:600;">Úprava brady</div>
             <div style="font-size:11px;color:var(--cream-dim);line-height:1.4;">Tvarovanie, kontúry a finálna úprava.</div>
@@ -546,6 +539,29 @@
 
 </div>
 <script>
+  (function () {
+    var list = document.getElementById('svc-list');
+    if (!list) return;
+    var rows = Array.prototype.slice.call(list.querySelectorAll('.svc-hover-row'));
+    var defaultBadge = list.querySelector('[data-badge-default] .svc-badge');
+    function hideAll() {
+      rows.forEach(function (r) {
+        var badge = document.getElementById(r.getAttribute('data-badge'));
+        if (badge) badge.style.display = 'none';
+      });
+    }
+    rows.forEach(function (row) {
+      row.addEventListener('mouseenter', function () {
+        hideAll();
+        var badge = document.getElementById(row.getAttribute('data-badge'));
+        if (badge) badge.style.display = 'inline-block';
+      });
+    });
+    list.addEventListener('mouseleave', function () {
+      hideAll();
+      if (defaultBadge) defaultBadge.style.display = 'inline-block';
+    });
+  })();
   (function () {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.team-trigger'));
     function closeAll() {
