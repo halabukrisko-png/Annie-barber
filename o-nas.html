@@ -21,9 +21,31 @@
   .topbar { position: sticky; top: 0; z-index: 20; height: 64px; flex: 0 0 auto; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; background: rgba(20,19,17,0.9); backdrop-filter: blur(4px); border-bottom: 1px solid rgba(244,237,225,0.08); }
   .back-link { display: flex; align-items: center; gap: 8px; font-size: 12px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream-dim); transition: color 0.2s ease; }
   .back-link:hover { color: var(--bronze); }
-  .bio-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
+  .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
   .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
   .bio-card p:last-of-type { margin-bottom: 0; }
+  .bio-card .bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
+  .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #0f0e0c; }
+  .bio-card .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .bio-tag { display: inline-block; margin-top: 12px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); }
+  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(244,237,225,0.2); border-radius: 50%; color: var(--cream-dim); font-size: 15px; line-height: 1; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
+  .bio-close:hover { border-color: var(--bronze); color: var(--bronze); }
+  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
+  .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
+  .team-trigger:hover { transform: translateY(-2px); }
+  .team-trigger[aria-expanded="true"] { border-color: var(--bronze); }
+  .team-hint { font-size: 8.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--bronze); margin-top: 5px; opacity: 0.85; }
+  .team-trigger[aria-expanded="true"] .team-hint { opacity: 1; }
+  .team-photo { position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 2px; overflow: hidden; background: #0f0e0c; display: flex; align-items: center; justify-content: center; }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .team-caption { padding: 9px 3px 3px; text-align: center; }
+  .team-caption h3 { font-size: 12.5px; }
+  .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
+  .tap-hint { position: absolute; right: 7px; bottom: 7px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(20,19,17,0.7); backdrop-filter: blur(2px); border: 1px solid rgba(201,160,106,0.4); border-radius: 50%; animation: tapPulse 2.2s ease-in-out infinite; pointer-events: none; }
+  .tap-hint svg { width: 10px; height: 10px; }
+  .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
+  @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
   .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
@@ -131,6 +153,92 @@
       <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">Naša kozmetika</div>
       <h2 style="font-size:18px;line-height:1.3;margin-bottom:10px;">KVALITA, NA KTOREJ<br>NÁM ZÁLEŽÍ</h2>
       <p style="margin:0;font-size:13px;line-height:1.6;color:var(--cream-dim);">V BARBERIS používame kvalitnú profesionálnu kozmetiku, ktorú starostlivo vyberáme s dôrazom na zdravie vlasov, pokožky a brady. Každému zákazníkovi chceme dopriať nielen perfektný strih, ale aj príjemný pocit a profesionálnu starostlivosť.</p>
+    </div>
+  </div>
+
+  <!-- TÍM -->
+  <div id="team" style="padding:36px 24px 0;text-align:center;">
+    <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+      <span>Náš tím</span>
+      <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
+    </div>
+    <h2 style="font-size:20px;margin-bottom:10px;">SPOZNAJ NÁŠ TÍM</h2>
+    <p style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Traja ľudia, jedna vášeň pre remeslo. Spoznaj tím, ktorý sa postará o tvoj nový look.</p>
+  </div>
+
+  <div style="padding:18px 24px 0;" class="team-grid">
+    <button type="button" class="team-frame team-trigger" data-bio="bio-anett" aria-expanded="false">
+      <div class="team-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"></path><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"></path><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"></path><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span></div>
+      <div class="team-caption">
+        <h3>ANETT</h3>
+        <div class="role">Zakladateľka</div>
+        <div class="team-hint">Zobraziť viac ↓</div>
+      </div>
+    </button>
+
+    <button type="button" class="team-frame team-trigger" data-bio="bio-karvy" aria-expanded="false">
+      <div class="team-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"></path><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"></path><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"></path><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span></div>
+      <div class="team-caption">
+        <h3>KARVY</h3>
+        <div class="role">Barber · 6 rokov skúseností</div>
+        <div class="team-hint">Zobraziť viac ↓</div>
+      </div>
+    </button>
+
+    <button type="button" class="team-frame team-trigger" data-bio="bio-vladis" aria-expanded="false">
+      <div class="team-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"></path><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"></path><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"></path><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span></div>
+      <div class="team-caption">
+        <h3>VLADIS</h3>
+        <div class="role">Barber · 4 roky skúseností</div>
+        <div class="team-hint">Zobraziť viac ↓</div>
+      </div>
+    </button>
+  </div>
+
+  <div style="padding:22px 24px 0;display:flex;flex-direction:column;gap:14px;">
+    <div class="bio-card" id="bio-anett" hidden>
+      <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
+      <div class="bio-head">
+        <div class="bio-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"></div>
+        <div>
+          <h3 style="font-size:15px;">ZA BARBERIS STOJÍM JA</h3>
+          <div class="role" style="font-size:10px;">Anett · Zakladateľka</div>
+        </div>
+      </div>
+      <p>Barberingu sa venujem už takmer 7 rokov. Vždy som chcela podnikať a práve v barberingu som sa našla. Od začiatku mi bola táto práca prirodzená a dodnes ma baví nielen samotné strihanie, ale hlavne práca s ľuďmi.</p>
+      <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
+      <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
+      <span class="bio-tag">Precíznosť • Osobný prístup • Dobrá nálada</span>
+    </div>
+
+    <div class="bio-card" id="bio-karvy" hidden>
+      <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
+      <div class="bio-head">
+        <div class="bio-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"></div>
+        <div>
+          <h3 style="font-size:15px;">KARVY</h3>
+          <div class="role" style="font-size:10px;">Barber · 6 rokov skúseností</div>
+        </div>
+      </div>
+      <p>Karvy sa barberingu venuje už 6 rokov a okrem precíznych strihov je jeho veľkou špecialitou ornamentálna tvorba.</p>
+      <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
+      <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový look.</p>
+      <span class="bio-tag">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
+    </div>
+
+    <div class="bio-card" id="bio-vladis" hidden>
+      <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
+      <div class="bio-head">
+        <div class="bio-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"></div>
+        <div>
+          <h3 style="font-size:15px;">VLADIS</h3>
+          <div class="role" style="font-size:10px;">Barber · 4 roky skúseností</div>
+        </div>
+      </div>
+      <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
+      <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
+      <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
     </div>
   </div>
 
@@ -472,6 +580,37 @@
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
     check();
+  })();
+
+  (function () {
+    var triggers = Array.prototype.slice.call(document.querySelectorAll('.team-trigger'));
+    if (!triggers.length) return;
+    function closeAll() {
+      triggers.forEach(function (b) {
+        b.setAttribute('aria-expanded', 'false');
+        var el = document.getElementById(b.getAttribute('data-bio'));
+        if (el) el.hidden = true;
+      });
+    }
+    triggers.forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var bio = document.getElementById(btn.getAttribute('data-bio'));
+        if (!bio) return;
+        var isOpen = btn.getAttribute('aria-expanded') === 'true';
+        closeAll();
+        if (!isOpen) {
+          btn.setAttribute('aria-expanded', 'true');
+          bio.hidden = false;
+          bio.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+      });
+    });
+    Array.prototype.slice.call(document.querySelectorAll('[data-close-bio]')).forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        closeAll();
+        document.getElementById('team').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
   })();
 </script>
 </body>
