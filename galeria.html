@@ -14,13 +14,7 @@
     --bronze: #c9a06a;
   }
   * { box-sizing: border-box; }
-  body {
-    margin: 0;
-    background-color: var(--bg);
-    background-image: repeating-linear-gradient(135deg, rgba(201,160,106,0.07) 0px, rgba(201,160,106,0.07) 3px, transparent 3px, transparent 26px);
-    font-family: 'Work Sans', sans-serif;
-    color: var(--cream);
-  }
+  body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
   h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; }
   a { color: inherit; text-decoration: none; }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
@@ -80,9 +74,8 @@
   .lightbox img { max-width: 100%; max-height: 100%; border-radius: 3px; }
   .lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--cream); font-size: 30px; line-height: 1; cursor: pointer; padding: 6px; }
 
-  /* Rámčeky, číslovanie, pásikavé pozadie a Instagram box sú len pre mobilné zobrazenie */
+  /* Rámčeky, číslovanie a Instagram box sú len pre mobilné zobrazenie */
   @media (min-width: 641px) {
-    body { background-image: none; }
     .full-grid { gap: 8px; }
     .photo-frame { background: none; padding: 0; border: none; border-radius: 0; box-shadow: none; }
     .photo-frame img { border-radius: 2px; }
@@ -98,6 +91,12 @@
     <a href="index.html" class="back-link"><span>←</span> Späť domov</a>
     <span style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;">BARBERIS</span>
   </div>
+
+  <!-- pásikavé pozadie rovnaké ako v sekcii TÍM -> REZERVÁCIA na o-nas.html -->
+  <div style="position:relative;background:#141311;">
+    <div style="position:absolute;inset:0;background:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cline x1='0' y1='26' x2='26' y2='0' stroke='%23c9a06a' stroke-width='1' opacity='0.16'/%3E%3C/svg%3E&quot;) repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0%,black 12%,black 88%,transparent 100%);mask-image:linear-gradient(180deg,transparent 0%,black 12%,black 88%,transparent 100%);pointer-events:none;"></div>
+    <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.55) 100%);pointer-events:none;"></div>
+    <div style="position:relative;">
 
   <div style="padding:36px 24px 0;text-align:center;">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:10.5px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
@@ -129,6 +128,9 @@
     </div>
     <span class="gi-arrow">→</span>
   </a>
+
+    </div>
+  </div>
 
   <div style="padding:32px 24px 48px;">
     <a href="index.html#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
