@@ -27,28 +27,37 @@
   .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .booking-frame { border: 1px dashed rgba(201,160,106,0.4); border-radius: 4px; padding: 24px 18px; text-align: center; background: rgba(201,160,106,0.04); }
-  .booking-calendar { background: linear-gradient(165deg, var(--card), #1f1c17); border: 1px solid rgba(201,160,106,0.16); border-radius: 14px; padding: 22px 18px 24px; box-shadow: 0 20px 40px -20px rgba(0,0,0,0.6), inset 0 1px 0 rgba(244,237,225,0.04); }
+  .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.1); border-radius: 4px; padding: 22px 18px 24px; }
+  .step-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
+  .step-note { font-size: 11px; letter-spacing: 0.02em; color: rgba(207,198,184,0.55); text-transform: none; font-weight: 400; }
+  .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 26px; }
+  .svc-btn { grid-column: span 1; background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 10px; text-align: left; font-family: inherit; cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease; }
+  .svc-btn:first-child { grid-column: 1 / -1; }
+  .svc-btn .svc-name { display: block; font-size: 12.5px; font-weight: 700; letter-spacing: 0.01em; }
+  .svc-btn .svc-dur { display: block; font-size: 10.5px; color: var(--cream-dim); margin-top: 2px; letter-spacing: 0.03em; }
+  .svc-btn:hover { border-color: rgba(201,160,106,0.5); }
+  .svc-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); }
+  .svc-btn.selected .svc-name { color: var(--bronze); }
   .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
-  .cal-head button { background: rgba(244,237,225,0.03); border: 1px solid rgba(201,160,106,0.25); color: var(--bronze); width: 32px; height: 32px; border-radius: 50%; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease, transform 0.15s ease; }
-  .cal-head button:hover:not(:disabled) { background: rgba(201,160,106,0.15); border-color: var(--bronze); transform: scale(1.06); }
+  .cal-head button { background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 32px; height: 32px; border-radius: 3px; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .cal-head button:hover:not(:disabled) { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
   .cal-head button:disabled { opacity: 0.25; cursor: default; }
-  .cal-head span { font-family: 'Fraunces', serif; font-size: 15.5px; letter-spacing: 0.02em; text-transform: capitalize; }
-  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(207,198,184,0.65); margin-bottom: 10px; }
+  .cal-head span { font-family: 'Fraunces', serif; font-size: 15.5px; letter-spacing: 0.03em; text-transform: uppercase; }
+  .cal-weekdays { display: grid; grid-template-columns: repeat(7, 1fr); text-align: center; font-size: 10px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(207,198,184,0.6); margin-bottom: 10px; }
   .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
-  .cal-day { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 500; font-family: inherit; border-radius: 50%; background: transparent; border: 1px solid transparent; color: var(--cream); cursor: pointer; padding: 0; transition: background 0.18s ease, color 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease; }
-  .cal-day.empty { visibility: hidden; cursor: default; }
-  .cal-day.disabled { color: rgba(244,237,225,0.18); cursor: not-allowed; }
-  .cal-day.today:not(.selected) { border-color: rgba(201,160,106,0.55); color: var(--bronze); font-weight: 700; }
-  .cal-day.selected { background: linear-gradient(155deg, #dcb27e, var(--bronze)); color: #141311; font-weight: 700; box-shadow: 0 6px 16px -4px rgba(201,160,106,0.65); transform: scale(1.05); }
-  .cal-day:not(.disabled):not(.empty):not(.selected):hover { background: rgba(201,160,106,0.16); transform: scale(1.08); }
-  .slot-label { margin: 20px 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); display: flex; align-items: center; gap: 8px; }
-  .slot-label::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: var(--bronze); flex: none; }
-  .slot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 9px; }
-  .slot-btn { background: rgba(244,237,225,0.03); border: 1px solid rgba(244,237,225,0.14); color: var(--cream); padding: 10px 0; border-radius: 8px; font-size: 12.5px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.18s ease, border-color 0.18s ease, transform 0.15s ease, box-shadow 0.18s ease; }
-  .slot-btn:hover { background: rgba(201,160,106,0.14); border-color: rgba(201,160,106,0.4); transform: translateY(-1px); }
-  .slot-btn.selected { background: linear-gradient(155deg, #dcb27e, var(--bronze)); color: #141311; border-color: var(--bronze); font-weight: 700; box-shadow: 0 6px 16px -4px rgba(201,160,106,0.6); transform: translateY(-1px); }
-  .cal-summary { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: var(--cream-dim); text-align: center; background: rgba(201,160,106,0.06); border: 1px solid rgba(201,160,106,0.18); border-radius: 8px; padding: 10px 12px; }
-  .cal-summary b { color: var(--bronze); }
+  .cal-day { aspect-ratio: 1/1; display: flex; align-items: center; justify-content: center; font-size: 12.5px; font-weight: 500; font-family: inherit; border-radius: 3px; background: transparent; border: 1px solid rgba(244,237,225,0.08); color: var(--cream); cursor: pointer; padding: 0; transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease; }
+  .cal-day.empty { visibility: hidden; cursor: default; border-color: transparent; }
+  .cal-day.disabled { color: rgba(244,237,225,0.2); border-color: transparent; cursor: not-allowed; }
+  .cal-day.today:not(.selected) { border-color: var(--bronze); color: var(--bronze); font-weight: 700; }
+  .cal-day.selected { background: var(--bronze); border-color: var(--bronze); color: #141311; font-weight: 700; }
+  .cal-day:not(.disabled):not(.empty):not(.selected):hover { border-color: rgba(201,160,106,0.5); }
+  .cal-hours-note { margin-top: 12px; font-size: 11.5px; color: rgba(207,198,184,0.65); }
+  .slot-label { margin: 24px 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); display: flex; align-items: center; justify-content: space-between; }
+  .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .slot-btn { background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); padding: 11px 0; border-radius: 3px; font-size: 12.5px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.18s ease, border-color 0.18s ease; }
+  .slot-btn:hover { border-color: rgba(201,160,106,0.5); }
+  .slot-btn.selected { background: var(--bronze); color: #141311; border-color: var(--bronze); font-weight: 700; }
+  .cal-summary { margin-top: 16px; font-size: 12.5px; line-height: 1.5; color: var(--cream-dim); text-align: center; background: rgba(201,160,106,0.06); border: 1px solid rgba(201,160,106,0.18); border-radius: 3px; padding: 10px 12px; }
   .cal-summary b { color: var(--cream); }
 </style>
 </head>
@@ -91,6 +100,14 @@
     </div>
 
     <div class="booking-calendar" id="booking-calendar">
+      <div class="step-label"><span>1 · Služba</span></div>
+      <div class="svc-grid" id="svc-grid">
+        <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
+        <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
+        <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
+      </div>
+
+      <div class="step-label"><span>2 · Dátum</span></div>
       <div class="cal-head">
         <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
         <span id="cal-month-label"></span>
@@ -98,8 +115,10 @@
       </div>
       <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
       <div class="cal-grid" id="cal-grid"></div>
+      <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
+
       <div id="cal-slots-wrap" hidden>
-        <div class="slot-label">Vyber si čas — <span id="cal-selected-date"></span></div>
+        <div class="step-label"><span>3 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
         <div class="slot-grid" id="cal-slots"></div>
       </div>
       <div class="cal-summary" id="cal-summary" hidden></div>
@@ -120,6 +139,17 @@
     var selectedDateLabel = document.getElementById('cal-selected-date');
     var summary = document.getElementById('cal-summary');
     var confirmBtn = document.getElementById('cal-confirm');
+    var svcGrid = document.getElementById('svc-grid');
+    var selectedService = svcGrid.querySelector('.svc-btn.selected');
+    Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (el) {
+      el.addEventListener('click', function () {
+        Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (b) { b.classList.remove('selected'); });
+        el.classList.add('selected');
+        selectedService = el;
+        if (summary && !summary.hidden) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
+      });
+    });
+    var currentHour = null;
     var hours = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
     var months = ['Január', 'Február', 'Marec', 'Apríl', 'Máj', 'Jún', 'Júl', 'August', 'September', 'Október', 'November', 'December'];
     var dayNames = ['Nedeľa', 'Pondelok', 'Utorok', 'Streda', 'Štvrtok', 'Piatok', 'Sobota'];
@@ -214,9 +244,13 @@
     }
 
     function selectSlot(hour, btn) {
-      Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).forEach(function (el) { el.classList.remove('selected'); });
-      btn.classList.add('selected');
-      summary.innerHTML = 'Vybraný termín: <b>' + dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. o ' + pad(hour) + ':00</b> — potvrď zavolaním.';
+      currentHour = hour;
+      if (btn) {
+        Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).forEach(function (el) { el.classList.remove('selected'); });
+        btn.classList.add('selected');
+      }
+      var svcName = selectedService ? selectedService.querySelector('.svc-name').textContent : '';
+      summary.innerHTML = 'Vybraný termín: <b>' + svcName + ' — ' + dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. o ' + pad(hour) + ':00</b> — potvrď zavolaním.';
       summary.hidden = false;
       confirmBtn.style.display = 'block';
     }
