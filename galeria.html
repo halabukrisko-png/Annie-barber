@@ -79,6 +79,16 @@
   .lightbox.open { display: flex; }
   .lightbox img { max-width: 100%; max-height: 100%; border-radius: 3px; }
   .lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: none; color: var(--cream); font-size: 30px; line-height: 1; cursor: pointer; padding: 6px; }
+
+  /* Rámčeky, číslovanie, pásikavé pozadie a Instagram box sú len pre mobilné zobrazenie */
+  @media (min-width: 641px) {
+    body { background-image: none; }
+    .full-grid { gap: 8px; }
+    .photo-frame { background: none; padding: 0; border: none; border-radius: 0; box-shadow: none; }
+    .photo-frame img { border-radius: 2px; }
+    .photo-number { display: none; }
+    .gallery-instagram { display: none; }
+  }
 </style>
 </head>
 <body>
