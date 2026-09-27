@@ -314,59 +314,61 @@
     <div class="booking-calendar" id="booking-calendar">
       <div class="step-label"><span>1 · Barber</span></div>
       <div class="barber-grid" id="barber-grid">
-        <button type="button" class="barber-btn selected" data-barber="">
-          <span class="barber-avatar barber-avatar-any"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
-          <span>Nezáleží</span>
-        </button>
         <button type="button" class="barber-btn" data-barber="Anett">
-          <img class="barber-avatar" src="assets/anett.jpg" alt="Anett">
+          <img class="barber-avatar" src="assets/anett.jpg" alt="Anett" style="object-position:50% 20%;">
           <span>Anett</span>
         </button>
         <button type="button" class="barber-btn" data-barber="Karvy">
-          <img class="barber-avatar" src="assets/karvy.jpg" alt="Karvy">
+          <img class="barber-avatar" src="assets/karvy.jpg" alt="Karvy" style="object-position:50% 22%;">
           <span>Karvy</span>
         </button>
         <button type="button" class="barber-btn" data-barber="Vladis">
-          <img class="barber-avatar" src="assets/vladis.jpg" alt="Vladis">
+          <img class="barber-avatar" src="assets/vladis.jpg" alt="Vladis" style="object-position:50% 10%;">
           <span>Vladis</span>
+        </button>
+        <button type="button" class="barber-btn" data-barber="">
+          <span class="barber-avatar barber-avatar-any"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+          <span>Nezáleží</span>
         </button>
       </div>
 
-      <div class="step-label"><span>2 · Služba</span></div>
-      <div class="svc-grid" id="svc-grid">
-        <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
-        <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
-        <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
-      </div>
-
-      <div class="step-label"><span>3 · Dátum</span></div>
-      <div class="cal-head">
-        <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
-        <span id="cal-month-label"></span>
-        <button type="button" id="cal-next" aria-label="Nasledujúci mesiac">›</button>
-      </div>
-      <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
-      <div class="cal-grid" id="cal-grid"></div>
-      <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
-
-      <div id="cal-slots-wrap" hidden>
-        <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
-        <div class="slot-grid" id="cal-slots"></div>
-      </div>
-
-      <div id="cal-step4-wrap" hidden>
-        <div class="step-label" style="margin-top:24px;"><span>5 · Potvrdenie</span></div>
-        <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
-        <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
-        <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
-        <div class="cal-confirm-box">
-          Tvoj termín
-          <div class="cal-confirm-value" id="cal-summary"></div>
+      <div id="cal-after-barber-wrap" hidden>
+        <div class="step-label"><span>2 · Služba</span></div>
+        <div class="svc-grid" id="svc-grid">
+          <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
+          <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
+          <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
         </div>
-        <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
-        <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
-        <a href="tel:+421910123456" class="btn-outline">Zavolať</a>
-        <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
+
+        <div class="step-label"><span>3 · Dátum</span></div>
+        <div class="cal-head">
+          <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
+          <span id="cal-month-label"></span>
+          <button type="button" id="cal-next" aria-label="Nasledujúci mesiac">›</button>
+        </div>
+        <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
+
+        <div id="cal-slots-wrap" hidden>
+          <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
+          <div class="slot-grid" id="cal-slots"></div>
+        </div>
+
+        <div id="cal-step4-wrap" hidden>
+          <div class="step-label" style="margin-top:24px;"><span>5 · Potvrdenie</span></div>
+          <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
+          <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
+          <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
+          <div class="cal-confirm-box">
+            Tvoj termín
+            <div class="cal-confirm-value" id="cal-summary"></div>
+          </div>
+          <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
+          <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
+          <a href="tel:+421910123456" class="btn-outline">Zavolať</a>
+          <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
+        </div>
       </div>
     </div>
 
@@ -505,12 +507,17 @@
       });
     });
     var barberGrid = document.getElementById('barber-grid');
+    var afterBarberWrap = document.getElementById('cal-after-barber-wrap');
     var selectedBarber = barberGrid.querySelector('.barber-btn.selected');
     Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (el) {
       el.addEventListener('click', function () {
         Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (b) { b.classList.remove('selected'); });
         el.classList.add('selected');
         selectedBarber = el;
+        if (afterBarberWrap.hidden) {
+          afterBarberWrap.hidden = false;
+          afterBarberWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
         if (currentHour !== null) updateSummary();
       });
     });
