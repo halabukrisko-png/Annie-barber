@@ -80,6 +80,10 @@
   .svc-btn:hover { border-color: rgba(201,160,106,0.5); }
   .svc-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); }
   .svc-btn.selected .svc-name { color: var(--bronze); }
+  .barber-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin-bottom: 26px; }
+  .barber-btn { background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 6px; text-align: center; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease; }
+  .barber-btn:hover { border-color: rgba(201,160,106,0.5); }
+  .barber-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); color: var(--bronze); }
   .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
   .cal-head button { background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 32px; height: 32px; border-radius: 3px; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
   .cal-head button:hover:not(:disabled) { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
@@ -306,14 +310,21 @@
     </div>
 
     <div class="booking-calendar" id="booking-calendar">
-      <div class="step-label"><span>1 · Služba</span></div>
+      <div class="step-label"><span>1 · Barber</span></div>
+      <div class="barber-grid" id="barber-grid">
+        <button type="button" class="barber-btn selected" data-barber="Anett">Anett</button>
+        <button type="button" class="barber-btn" data-barber="Karvy">Karvy</button>
+        <button type="button" class="barber-btn" data-barber="Vladis">Vladis</button>
+      </div>
+
+      <div class="step-label"><span>2 · Služba</span></div>
       <div class="svc-grid" id="svc-grid">
         <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
         <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
         <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
       </div>
 
-      <div class="step-label"><span>2 · Dátum</span></div>
+      <div class="step-label"><span>3 · Dátum</span></div>
       <div class="cal-head">
         <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
         <span id="cal-month-label"></span>
@@ -324,12 +335,12 @@
       <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
 
       <div id="cal-slots-wrap" hidden>
-        <div class="step-label"><span>3 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
+        <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
         <div class="slot-grid" id="cal-slots"></div>
       </div>
 
       <div id="cal-step4-wrap" hidden>
-        <div class="step-label" style="margin-top:24px;"><span>4 · Potvrdenie</span></div>
+        <div class="step-label" style="margin-top:24px;"><span>5 · Potvrdenie</span></div>
         <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
         <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
         <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
@@ -478,6 +489,16 @@
         if (currentHour !== null) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
       });
     });
+    var barberGrid = document.getElementById('barber-grid');
+    var selectedBarber = barberGrid.querySelector('.barber-btn.selected');
+    Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (el) {
+      el.addEventListener('click', function () {
+        Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (b) { b.classList.remove('selected'); });
+        el.classList.add('selected');
+        selectedBarber = el;
+        if (currentHour !== null) updateSummary();
+      });
+    });
     [nameField, phoneField].forEach(function (field) {
       field.addEventListener('input', function () { if (currentHour !== null) updateSummary(); });
     });
@@ -587,13 +608,14 @@
     }
 
     function updateSummary() {
+      var barberName = selectedBarber ? selectedBarber.getAttribute('data-barber') : '';
       var svcName = selectedService ? selectedService.querySelector('.svc-name').textContent : '';
       var dateStr = dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. ' + selectedDate.getFullYear();
       var timeStr = pad(currentHour) + ':00';
-      summary.textContent = svcName + ' · ' + dateStr + ' o ' + timeStr;
+      summary.textContent = svcName + ' u ' + barberName + ' · ' + dateStr + ' o ' + timeStr;
       var name = nameField.value.trim();
       var phone = phoneField.value.trim();
-      var msg = 'Dobrý deň, chcel(a) by som si rezervovať termín: ' + svcName + ', ' + dateStr + ' o ' + timeStr + (name ? ('. Meno: ' + name) : '') + (phone ? (', tel.: ' + phone) : '') + '.';
+      var msg = 'Dobrý deň, chcel(a) by som si rezervovať termín: ' + svcName + ' u ' + barberName + ', ' + dateStr + ' o ' + timeStr + (name ? ('. Meno: ' + name) : '') + (phone ? (', tel.: ' + phone) : '') + '.';
       confirmBtn.href = 'sms:+421910123456?body=' + encodeURIComponent(msg);
     }
 
