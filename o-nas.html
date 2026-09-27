@@ -38,8 +38,9 @@
   .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #0f0e0c; }
   .bio-card .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
   .bio-tag { display: inline-block; margin-top: 12px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); }
-  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(244,237,225,0.2); border-radius: 50%; color: var(--cream-dim); font-size: 15px; line-height: 1; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
-  .bio-close:hover { border-color: var(--bronze); color: var(--bronze); }
+  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(201,160,106,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .bio-close:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
+  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color: #141311; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
   .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
@@ -62,10 +63,10 @@
   .drive-in { animation: marqueeIn 2.4s cubic-bezier(.16,.6,.2,1) 0.4s both; }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.1s cubic-bezier(.16,.6,.2,1), opacity 1.1s ease-out; }
-  .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze)); }
-  .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, var(--bronze), transparent); }
+  .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
+  .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, transparent, var(--bronze) 45%, transparent); }
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
-  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); opacity: 0; transition: opacity 1.1s ease-out 0.3s; }
+  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 1.1s ease-out 0.3s; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
   .booking-frame { border: 1px dashed rgba(201,160,106,0.4); border-radius: 4px; padding: 24px 18px; text-align: center; background: rgba(201,160,106,0.04); }
   .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px 22px; }
@@ -79,6 +80,12 @@
   .svc-btn:hover { border-color: rgba(201,160,106,0.5); }
   .svc-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); }
   .svc-btn.selected .svc-name { color: var(--bronze); }
+  .barber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 26px; }
+  .barber-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 6px; text-align: center; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease; }
+  .barber-btn:hover { border-color: rgba(201,160,106,0.5); }
+  .barber-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); color: var(--bronze); }
+  .barber-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: #0f0e0c; border: 1px solid rgba(244,237,225,0.15); }
+  .barber-avatar-any { display: flex; align-items: center; justify-content: center; color: var(--bronze); }
   .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
   .cal-head button { background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 32px; height: 32px; border-radius: 3px; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
   .cal-head button:hover:not(:disabled) { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
@@ -108,9 +115,9 @@
   .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
   .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .cal-footnote { margin-top: 14px; font-size: 11px; line-height: 1.6; color: rgba(207,198,184,0.55); }
-  .cancel-card { margin-top: 16px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; }
-  .ig-strip { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 24px; }
-  .ig-strip img { display: block; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
+  .cancel-card { margin-top: 16px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px; }
+  .ig-strip { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+  .ig-strip img { display: block; min-width: 0; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
   .ig-strip .ig-side { width: 26%; height: 130px; opacity: 0.5; }
   .ig-strip .ig-main { width: 38%; height: 180px; border: 1px solid rgba(201,160,106,0.5); box-shadow: 0 0 26px rgba(201,160,106,0.22); }
   .ig-arrow { flex: none; background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
@@ -205,10 +212,7 @@
     <div style="position:relative;">
 
   <!-- TÍM -->
-  <div style="padding:36px 24px 0;">
-    <div class="scroll-line-wrap"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-  </div>
-  <div id="team" style="padding:20px 24px 0;text-align:center;">
+  <div id="team" style="padding:36px 24px 0;text-align:center;">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
       <span>Náš tím</span>
@@ -261,6 +265,7 @@
       <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
       <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
       <span class="bio-tag">Precíznosť • Osobný prístup • Dobrá nálada</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Anett →</a>
     </div>
 
     <div class="bio-card" id="bio-karvy" hidden>
@@ -276,6 +281,7 @@
       <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
       <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový look.</p>
       <span class="bio-tag">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Karvyho →</a>
     </div>
 
     <div class="bio-card" id="bio-vladis" hidden>
@@ -290,11 +296,12 @@
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Vladisa →</a>
     </div>
   </div>
 
   <!-- REZERVÁCIA -->
-  <div style="padding:36px 24px 48px;">
+  <div id="booking" style="padding:36px 24px 48px;">
     <div style="text-align:center;margin-bottom:16px;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -305,41 +312,63 @@
     </div>
 
     <div class="booking-calendar" id="booking-calendar">
-      <div class="step-label"><span>1 · Služba</span></div>
-      <div class="svc-grid" id="svc-grid">
-        <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
-        <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
-        <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
+      <div class="step-label"><span>1 · Barber</span></div>
+      <div class="barber-grid" id="barber-grid">
+        <button type="button" class="barber-btn" data-barber="Anett">
+          <img class="barber-avatar" src="assets/anett.jpg" alt="Anett" style="object-position:50% 20%;">
+          <span>Anett</span>
+        </button>
+        <button type="button" class="barber-btn" data-barber="Karvy">
+          <img class="barber-avatar" src="assets/karvy.jpg" alt="Karvy" style="object-position:50% 22%;">
+          <span>Karvy</span>
+        </button>
+        <button type="button" class="barber-btn" data-barber="Vladis">
+          <img class="barber-avatar" src="assets/vladis.jpg" alt="Vladis" style="object-position:50% 10%;">
+          <span>Vladis</span>
+        </button>
+        <button type="button" class="barber-btn" data-barber="">
+          <span class="barber-avatar barber-avatar-any"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"></path><circle cx="10" cy="7" r="4"></circle><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg></span>
+          <span>Nezáleží</span>
+        </button>
       </div>
 
-      <div class="step-label"><span>2 · Dátum</span></div>
-      <div class="cal-head">
-        <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
-        <span id="cal-month-label"></span>
-        <button type="button" id="cal-next" aria-label="Nasledujúci mesiac">›</button>
-      </div>
-      <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
-      <div class="cal-grid" id="cal-grid"></div>
-      <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
-
-      <div id="cal-slots-wrap" hidden>
-        <div class="step-label"><span>3 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
-        <div class="slot-grid" id="cal-slots"></div>
-      </div>
-
-      <div id="cal-step4-wrap" hidden>
-        <div class="step-label" style="margin-top:24px;"><span>4 · Potvrdenie</span></div>
-        <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
-        <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
-        <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
-        <div class="cal-confirm-box">
-          Tvoj termín
-          <div class="cal-confirm-value" id="cal-summary"></div>
+      <div id="cal-after-barber-wrap" hidden>
+        <div class="step-label"><span>2 · Služba</span></div>
+        <div class="svc-grid" id="svc-grid">
+          <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
+          <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
+          <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
         </div>
-        <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
-        <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
-        <a href="tel:+421910123456" class="btn-outline">Zavolať</a>
-        <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
+
+        <div class="step-label"><span>3 · Dátum</span></div>
+        <div class="cal-head">
+          <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
+          <span id="cal-month-label"></span>
+          <button type="button" id="cal-next" aria-label="Nasledujúci mesiac">›</button>
+        </div>
+        <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
+        <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 13:00</div>
+
+        <div id="cal-slots-wrap" hidden>
+          <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
+          <div class="slot-grid" id="cal-slots"></div>
+        </div>
+
+        <div id="cal-step4-wrap" hidden>
+          <div class="step-label" style="margin-top:24px;"><span>5 · Potvrdenie</span></div>
+          <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
+          <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
+          <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)">
+          <div class="cal-confirm-box">
+            Tvoj termín
+            <div class="cal-confirm-value" id="cal-summary"></div>
+          </div>
+          <a href="tel:+421910123456" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
+          <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
+          <a href="tel:+421910123456" class="btn-outline">Zavolať</a>
+          <div class="cal-footnote">Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.</div>
+        </div>
       </div>
     </div>
 
@@ -352,7 +381,7 @@
 
   <!-- INSTAGRAM -->
   <div style="padding:0 24px;">
-    <div class="scroll-line-wrap" style="position:relative;z-index:1;justify-content:center;"><span class="scroll-line-initial" style="position:static;transform:none;opacity:1;">B</span></div>
+    <div class="scroll-line-wrap" style="position:relative;z-index:1;margin-bottom:0;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="margin-top:0;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -477,6 +506,21 @@
         if (currentHour !== null) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
       });
     });
+    var barberGrid = document.getElementById('barber-grid');
+    var afterBarberWrap = document.getElementById('cal-after-barber-wrap');
+    var selectedBarber = barberGrid.querySelector('.barber-btn.selected');
+    Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (el) {
+      el.addEventListener('click', function () {
+        Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (b) { b.classList.remove('selected'); });
+        el.classList.add('selected');
+        selectedBarber = el;
+        if (afterBarberWrap.hidden) {
+          afterBarberWrap.hidden = false;
+          afterBarberWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        if (currentHour !== null) updateSummary();
+      });
+    });
     [nameField, phoneField].forEach(function (field) {
       field.addEventListener('input', function () { if (currentHour !== null) updateSummary(); });
     });
@@ -586,13 +630,15 @@
     }
 
     function updateSummary() {
+      var barberName = selectedBarber ? selectedBarber.getAttribute('data-barber') : '';
+      var barberPart = barberName ? (' u ' + barberName) : '';
       var svcName = selectedService ? selectedService.querySelector('.svc-name').textContent : '';
       var dateStr = dayNames[selectedDate.getDay()] + ' ' + selectedDate.getDate() + '. ' + (selectedDate.getMonth() + 1) + '. ' + selectedDate.getFullYear();
       var timeStr = pad(currentHour) + ':00';
-      summary.textContent = svcName + ' · ' + dateStr + ' o ' + timeStr;
+      summary.textContent = svcName + barberPart + ' · ' + dateStr + ' o ' + timeStr;
       var name = nameField.value.trim();
       var phone = phoneField.value.trim();
-      var msg = 'Dobrý deň, chcel(a) by som si rezervovať termín: ' + svcName + ', ' + dateStr + ' o ' + timeStr + (name ? ('. Meno: ' + name) : '') + (phone ? (', tel.: ' + phone) : '') + '.';
+      var msg = 'Dobrý deň, chcel(a) by som si rezervovať termín: ' + svcName + barberPart + ', ' + dateStr + ' o ' + timeStr + (name ? ('. Meno: ' + name) : '') + (phone ? (', tel.: ' + phone) : '') + '.';
       confirmBtn.href = 'sms:+421910123456?body=' + encodeURIComponent(msg);
     }
 

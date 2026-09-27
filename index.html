@@ -57,8 +57,9 @@
   .tap-hint svg { width: 10px; height: 10px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
-  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(244,237,225,0.2); border-radius: 50%; color: var(--cream-dim); font-size: 15px; line-height: 1; cursor: pointer; transition: border-color 0.2s ease, color 0.2s ease; }
-  .bio-close:hover { border-color: var(--bronze); color: var(--bronze); }
+  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(201,160,106,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .bio-close:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
+  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color: #141311; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
   .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
   .contact-frame { margin-top: 0; border: 1px solid rgba(201,160,106,0.45); box-shadow: 0 0 10px rgba(201,160,106,0.2); border-radius: 4px; padding: 0 14px 14px; background: var(--bg); overflow: hidden; }
   .contact-frame .scroll-line-wrap { margin-top: 0; }
@@ -176,11 +177,11 @@
   <!-- INTRO -->
   <div id="intro" style="position:relative;padding:14px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
     <img src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.88) 5%,rgba(20,19,17,0.88) 86%,var(--bg) 100%);"></div>
-    <div class="scroll-line-wrap" style="position:relative;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.88) 14%,rgba(20,19,17,0.88) 86%,var(--bg) 100%);"></div>
     <h2 style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
     <p style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">BARBERIS je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
     <p style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
+    <div class="scroll-line-wrap" style="position:relative;margin-bottom:6px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
       <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
         <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -343,6 +344,7 @@
       <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
       <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
       <span class="bio-tag">Precíznosť • Osobný prístup • Dobrá nálada</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Anett →</a>
     </div>
 
     <div class="bio-card" id="bio-karvy" hidden>
@@ -358,6 +360,7 @@
       <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
       <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový look.</p>
       <span class="bio-tag">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Karvyho →</a>
     </div>
 
     <div class="bio-card" id="bio-vladis" hidden>
@@ -372,6 +375,7 @@
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
+      <a href="#booking" class="bio-book">Objednaj si strih u Vladisa →</a>
     </div>
   </div>
 
@@ -679,7 +683,7 @@
       lines.forEach(function (el) {
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
-        if (rect.top < vh * 0.9 && rect.bottom > 0) {
+        if (rect.top < vh && rect.bottom > 0) {
           el.classList.add('in-view');
         }
       });
