@@ -679,7 +679,7 @@
       lines.forEach(function (el) {
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
-        if (rect.top < vh * 0.9 && rect.bottom > 0) {
+        if (rect.top < vh && rect.bottom > 0) {
           el.classList.add('in-view');
         }
       });
