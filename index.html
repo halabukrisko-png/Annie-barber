@@ -181,8 +181,8 @@
       </div>
     </div>
     <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:0 24px 20px;">
-      <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
-      <p style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;"><span id="tw-l3"></span><span class="tw-cursor" id="tw-cursor-2" style="display:none;"></span></p>
+      <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor-1"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="tw-cursor" id="tw-cursor-2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
+      <p style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;"><span id="tw-l3"></span><span class="tw-cursor" id="tw-cursor-3"></span></p>
       <div class="hero-fade-in" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
         <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
@@ -604,8 +604,9 @@
     var l1 = document.getElementById('tw-l1');
     var l2 = document.getElementById('tw-l2');
     var l3 = document.getElementById('tw-l3');
-    var cursor = document.getElementById('tw-cursor');
+    var cursor1 = document.getElementById('tw-cursor-1');
     var cursor2 = document.getElementById('tw-cursor-2');
+    var cursor3 = document.getElementById('tw-cursor-3');
     var line = document.getElementById('hero-line-draw');
     if (!l1 || !l2) return;
     var text1 = 'TVOJ ŠTÝL.';
@@ -619,9 +620,8 @@
         l1.textContent = text1.slice(0, i);
         i++;
         setTimeout(typeLine1, speed);
-      } else {
-        if (cursor && line) line.parentNode.insertBefore(cursor, line);
-        setTimeout(typeLine2, 260);
+      } else if (cursor1) {
+        setTimeout(function () { cursor1.style.opacity = '0'; }, 400);
       }
     }
     function typeLine2() {
@@ -631,19 +631,16 @@
         setTimeout(typeLine2, speed);
       } else {
         if (line) line.classList.add('draw');
-        if (cursor) setTimeout(function () { cursor.style.opacity = '0'; }, 550);
-        setTimeout(typeLine3, 500);
+        if (cursor2) setTimeout(function () { cursor2.style.opacity = '0'; }, 400);
       }
     }
     function typeLine3() {
-      if (!l3) return;
-      if (cursor2) cursor2.style.display = 'inline-block';
       if (k <= text3.length) {
         l3.textContent = text3.slice(0, k);
         k++;
         setTimeout(typeLine3, speed3);
-      } else if (cursor2) {
-        setTimeout(function () { cursor2.style.opacity = '0'; }, 400);
+      } else if (cursor3) {
+        setTimeout(function () { cursor3.style.opacity = '0'; }, 400);
       }
     }
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -651,10 +648,13 @@
       l2.textContent = text2;
       if (l3) l3.textContent = text3;
       if (line) line.classList.add('draw');
-      if (cursor) cursor.style.display = 'none';
+      if (cursor1) cursor1.style.display = 'none';
       if (cursor2) cursor2.style.display = 'none';
+      if (cursor3) cursor3.style.display = 'none';
     } else {
       setTimeout(typeLine1, 750);
+      setTimeout(typeLine2, 750);
+      if (l3) setTimeout(typeLine3, 750);
     }
   })();
   (function () {
