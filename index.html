@@ -44,6 +44,8 @@
   .reveal-stagger-x > *:nth-child(odd) { transform: translateX(-38px); }
   .reveal-stagger-x > *:nth-child(even) { transform: translateX(38px); }
   .reveal-stagger-x > *.in-view { transform: translateX(0); }
+  .toggle-fade { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+  .toggle-fade.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > *, .reveal-stagger-x > * { opacity: 1; transform: none; transition: none; }
   }
@@ -454,8 +456,10 @@
       </div>
       <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Vždy dokonalý strih, super ľudia a príjemné prostredie. Odporúčam všetkými desiatimi!“</p>
     </div>
+  </div>
 
-    <div id="reviews-more" style="display:none;flex-direction:column;gap:10px;">
+  <div style="padding:0 24px;display:flex;flex-direction:column;gap:10px;">
+    <div id="reviews-more" class="toggle-fade" style="display:none;flex-direction:column;gap:10px;">
       <div class="review-card">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
           <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
@@ -497,7 +501,7 @@
       </div>
     </div>
 
-    <button id="reviews-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('reviews-more');var open=m.style.display==='flex';m.style.display=open?'none':'flex';m.classList.add('in-view');this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Zobraziť viac recenzií ↓':'Zobraziť menej ↑';" style="display:block;width:100%;background:none;border:none;color:var(--bronze);padding:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Zobraziť viac recenzií ↓</button>
+    <button id="reviews-toggle" type="button" aria-expanded="false" style="display:block;width:100%;background:none;border:none;color:var(--bronze);padding:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Zobraziť viac recenzií ↓</button>
   </div>
 
   <div style="height:28px;"></div>
@@ -687,6 +691,31 @@
       if (logo) setTimeout(typeLogo, 350);
       setTimeout(typeLine1, 750);
     }
+  })();
+  (function () {
+    var toggle = document.getElementById('reviews-toggle');
+    var more = document.getElementById('reviews-more');
+    if (!toggle || !more) return;
+    toggle.addEventListener('click', function () {
+      var isOpen = more.classList.contains('in-view');
+      if (!isOpen) {
+        more.style.display = 'flex';
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            more.classList.add('in-view');
+          });
+        });
+        toggle.setAttribute('aria-expanded', 'true');
+        toggle.textContent = 'Zobraziť menej ↑';
+      } else {
+        more.classList.remove('in-view');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.textContent = 'Zobraziť viac recenzií ↓';
+        setTimeout(function () {
+          if (!more.classList.contains('in-view')) more.style.display = 'none';
+        }, 520);
+      }
+    });
   })();
   (function () {
     var list = document.getElementById('svc-list');
