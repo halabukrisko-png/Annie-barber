@@ -716,7 +716,9 @@
     }
     window.addEventListener('scroll', onScroll, { passive: true });
     window.addEventListener('resize', onScroll);
-    check();
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(check);
+    });
   })();
 
   (function () {

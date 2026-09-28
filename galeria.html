@@ -360,7 +360,9 @@
         window.requestAnimationFrame(check);
       }
     }
-    check();
+    window.requestAnimationFrame(function () {
+      window.requestAnimationFrame(check);
+    });
     window.addEventListener('scroll', onScroll, { passive: true });
   })();
 </script>
