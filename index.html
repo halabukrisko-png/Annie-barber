@@ -129,7 +129,8 @@
   .gallery-grid a:first-child { grid-column: span 2; }
   .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 2px; aspect-ratio: 1/1; }
   .gallery-grid a:first-child img { aspect-ratio: 16/10; }
-  .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; margin-top: 14px; text-align: left; }
+  .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; margin-top: 14px; text-align: left; opacity: 0; transform: translateY(10px); transition: opacity 0.28s ease-out, transform 0.28s ease-out; }
+  .bio-card.bio-open { opacity: 1; transform: translateY(0); }
   .bio-card .bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #0f0e0c; }
   .bio-card .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
@@ -754,11 +755,25 @@
   })();
   (function () {
     var triggers = Array.prototype.slice.call(document.querySelectorAll('.team-trigger'));
+    function fastScrollTo(el, duration) {
+      duration = duration || 320;
+      var startY = window.scrollY || window.pageYOffset;
+      var targetY = startY + el.getBoundingClientRect().top - 80;
+      var startTime = null;
+      function step(ts) {
+        if (!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / duration, 1);
+        var ease = 1 - Math.pow(1 - progress, 3);
+        window.scrollTo(0, startY + (targetY - startY) * ease);
+        if (progress < 1) window.requestAnimationFrame(step);
+      }
+      window.requestAnimationFrame(step);
+    }
     function closeAll() {
       triggers.forEach(function (b) {
         b.setAttribute('aria-expanded', 'false');
         var el = document.getElementById(b.getAttribute('data-bio'));
-        if (el) el.hidden = true;
+        if (el) { el.hidden = true; el.classList.remove('bio-open'); }
       });
     }
     triggers.forEach(function (btn) {
@@ -770,14 +785,19 @@
         if (!isOpen) {
           btn.setAttribute('aria-expanded', 'true');
           bio.hidden = false;
-          bio.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          fastScrollTo(bio, 320);
+          window.requestAnimationFrame(function () {
+            window.requestAnimationFrame(function () {
+              bio.classList.add('bio-open');
+            });
+          });
         }
       });
     });
     Array.prototype.slice.call(document.querySelectorAll('[data-close-bio]')).forEach(function (btn) {
       btn.addEventListener('click', function () {
         closeAll();
-        document.getElementById('team').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        fastScrollTo(document.getElementById('team'), 320);
       });
     });
   })();
