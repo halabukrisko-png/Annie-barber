@@ -625,6 +625,7 @@
       } else {
         if (cursor1) setTimeout(function () { cursor1.style.opacity = '0'; }, 400);
         onTyperDone();
+        setTimeout(typeLine2, 300);
       }
     }
     function typeLine2() {
@@ -647,7 +648,6 @@
       if (cursor2) cursor2.style.display = 'none';
     } else {
       setTimeout(typeLine1, 750);
-      setTimeout(typeLine2, 750);
     }
   })();
   (function () {
