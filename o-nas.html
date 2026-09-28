@@ -77,8 +77,11 @@
   }
   #page-veil { position: fixed; inset: 0; z-index: 999; background: var(--bg); opacity: 1; pointer-events: none; transition: opacity 1.1s cubic-bezier(.22,1,.36,1); }
   #page-veil.hide { opacity: 0; }
+  .tw-cursor { display: inline-block; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
+  @keyframes twBlink { 50% { opacity: 0; } }
   @media (prefers-reduced-motion: reduce) {
     #page-veil { display: none; }
+    .tw-cursor { display: none; }
   }
   .booking-frame { border: 1px dashed rgba(201,160,106,0.4); border-radius: 4px; padding: 24px 18px; text-align: center; background: rgba(201,160,106,0.04); }
   .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px 22px; }
@@ -191,7 +194,7 @@
       <span>O nás</span>
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
     </div>
-    <h1 class="reveal" style="font-size:24px;line-height:1.3;margin-bottom:8px;">DOBRÝ STRIH. DOBRÁ ATMOSFÉRA.<br>TVOJE TEMPO.</h1>
+    <h1 style="font-size:24px;line-height:1.3;margin-bottom:8px;"><span id="tw-onas"></span><span class="tw-cursor" id="tw-onas-cursor"></span></h1>
   </div>
 
   <div style="padding:20px 24px 0;display:flex;flex-direction:column;gap:14px;" class="reveal-stagger">
@@ -495,6 +498,66 @@
     veil.addEventListener('transitionend', function () {
       veil.style.display = 'none';
     });
+  })();
+  (function () {
+    var target = document.getElementById('tw-onas');
+    var cursor = document.getElementById('tw-onas-cursor');
+    if (!target) return;
+    var parts = ['DOBRÝ STRIH. DOBRÁ ATMOSFÉRA.', 'TVOJE TEMPO.'];
+    var speed = 45;
+    var p = 0, c = 0;
+    var wordSpan = null;
+    function appendChar(ch) {
+      if (ch === ' ') {
+        wordSpan = null;
+        target.appendChild(document.createTextNode(' '));
+        return;
+      }
+      if (!wordSpan) {
+        wordSpan = document.createElement('span');
+        wordSpan.style.display = 'inline-block';
+        target.appendChild(wordSpan);
+      }
+      var span = document.createElement('span');
+      span.textContent = ch;
+      span.style.display = 'inline-block';
+      span.style.opacity = '0';
+      span.style.transform = 'translateY(3px)';
+      span.style.transition = 'opacity 0.32s ease-out, transform 0.32s ease-out';
+      wordSpan.appendChild(span);
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        });
+      });
+    }
+    function type() {
+      if (p >= parts.length) {
+        if (cursor) setTimeout(function () { cursor.style.opacity = '0'; }, 400);
+        return;
+      }
+      if (c < parts[p].length) {
+        appendChar(parts[p][c]);
+        c++;
+        setTimeout(type, speed);
+      } else {
+        p++;
+        c = 0;
+        wordSpan = null;
+        if (p < parts.length) target.appendChild(document.createElement('br'));
+        setTimeout(type, 260);
+      }
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      target.textContent = '';
+      target.appendChild(document.createTextNode(parts[0]));
+      target.appendChild(document.createElement('br'));
+      target.appendChild(document.createTextNode(parts[1]));
+      if (cursor) cursor.style.display = 'none';
+    } else {
+      setTimeout(type, 400);
+    }
   })();
   (function () {
     var openBtn = document.getElementById('nav-open');
