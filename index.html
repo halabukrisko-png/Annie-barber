@@ -26,8 +26,8 @@
   .hero-fade-in { animation: heroFadeIn 1.3s cubic-bezier(.22,1,.36,1) 0.5s both; }
   .tw-cursor { display: inline-block; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
   @keyframes twBlink { 50% { opacity: 0; } }
-  @keyframes badgeUnfold { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
-  .badge-reveal { clip-path: inset(0 100% 0 0); animation: badgeUnfold 1.3s cubic-bezier(.22,1,.36,1) 0.25s both; }
+  .badge-reveal { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.22,1,.36,1); }
+  .badge-reveal.draw { clip-path: inset(0 0 0 0); }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1), opacity 1.6s ease-out; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
@@ -175,7 +175,7 @@
     </div>
 
     <div style="position:relative;padding:12px 20px 0;">
-      <div class="badge-reveal" style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,19,17,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
+      <div class="badge-reveal" id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,19,17,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
         <span style="color:var(--bronze);font-size:13px;">📍</span>
         <span style="font-size:11.5px;letter-spacing:0.02em;white-space:nowrap;">Pánsky barbershop v Prievidzi · Hurbana 4</span>
       </div>
@@ -608,6 +608,7 @@
     var cursor2 = document.getElementById('tw-cursor-2');
     var cursor3 = document.getElementById('tw-cursor-3');
     var line = document.getElementById('hero-line-draw');
+    var badge = document.getElementById('hero-badge');
     if (!l1 || !l2) return;
     var text1 = 'TVOJ ŠTÝL.';
     var text2 = 'TVOJ BARBER.';
@@ -615,13 +616,20 @@
     var speed = 65;
     var speed3 = 26;
     var i = 0, j = 0, k = 0;
+    var done = 0;
+    var total = l3 ? 3 : 2;
+    function onTyperDone() {
+      done++;
+      if (done >= total && badge) badge.classList.add('draw');
+    }
     function typeLine1() {
       if (i <= text1.length) {
         l1.textContent = text1.slice(0, i);
         i++;
         setTimeout(typeLine1, speed);
-      } else if (cursor1) {
-        setTimeout(function () { cursor1.style.opacity = '0'; }, 400);
+      } else {
+        if (cursor1) setTimeout(function () { cursor1.style.opacity = '0'; }, 400);
+        onTyperDone();
       }
     }
     function typeLine2() {
@@ -632,6 +640,7 @@
       } else {
         if (line) line.classList.add('draw');
         if (cursor2) setTimeout(function () { cursor2.style.opacity = '0'; }, 400);
+        onTyperDone();
       }
     }
     function typeLine3() {
@@ -639,8 +648,9 @@
         l3.textContent = text3.slice(0, k);
         k++;
         setTimeout(typeLine3, speed3);
-      } else if (cursor3) {
-        setTimeout(function () { cursor3.style.opacity = '0'; }, 400);
+      } else {
+        if (cursor3) setTimeout(function () { cursor3.style.opacity = '0'; }, 400);
+        onTyperDone();
       }
     }
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
@@ -648,6 +658,7 @@
       l2.textContent = text2;
       if (l3) l3.textContent = text3;
       if (line) line.classList.add('draw');
+      if (badge) badge.classList.add('draw');
       if (cursor1) cursor1.style.display = 'none';
       if (cursor2) cursor2.style.display = 'none';
       if (cursor3) cursor3.style.display = 'none';
