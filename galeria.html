@@ -78,8 +78,11 @@
   .reveal.in-view { opacity: 1; transform: translateY(0); }
   .reveal-stagger > * { opacity: 0; transform: translateY(26px); transition: opacity 1.1s cubic-bezier(.22,1,.36,1), transform 1.1s cubic-bezier(.22,1,.36,1); }
   .reveal-stagger > *.in-view { opacity: 1; transform: translateY(0); }
+  .gallery-anim > * { opacity: 0; transform: scale(0.8) translateY(32px) rotate(-3deg); transition: opacity 0.8s cubic-bezier(.34,1.56,.64,1), transform 0.8s cubic-bezier(.34,1.56,.64,1); }
+  .gallery-anim > *:nth-child(even) { transform: scale(0.8) translateY(32px) rotate(3deg); }
+  .gallery-anim > *.in-view { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
   @media (prefers-reduced-motion: reduce) {
-    .reveal, .reveal-stagger > * { opacity: 1; transform: none; transition: none; }
+    .reveal, .reveal-stagger > *, .gallery-anim > * { opacity: 1; transform: none; transition: none; }
   }
   #page-veil { position: fixed; inset: 0; z-index: 999; background: var(--bg); opacity: 1; pointer-events: none; transition: opacity 1.1s cubic-bezier(.22,1,.36,1); }
   #page-veil.hide { opacity: 0; }
@@ -169,7 +172,7 @@
     <p class="reveal" style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Priestor, atmosféra a naša práca — presne taká, akú u nás nájdeš.</p>
   </div>
 
-  <div class="full-grid reveal-stagger" id="grid">
+  <div class="full-grid reveal-stagger gallery-anim" id="grid">
     <div class="photo-frame"><span class="photo-number">01</span><div class="frame-inner"><img src="assets/gallery/gallery-1.jpg" alt="Priestor BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">02</span><div class="frame-inner"><img src="assets/gallery/gallery-2.jpg" alt="Práca v BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">03</span><div class="frame-inner"><img src="assets/gallery/gallery-3.jpg" alt="Práca v BARBERIS"></div></div>
