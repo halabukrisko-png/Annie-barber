@@ -70,14 +70,8 @@
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
   .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s cubic-bezier(.16,.6,.2,1), transform 0.8s cubic-bezier(.16,.6,.2,1); }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
-  .reveal-stagger > * { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(.16,.6,.2,1), transform 0.7s cubic-bezier(.16,.6,.2,1); }
-  .reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
-  .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0s; }
-  .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.08s; }
-  .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.16s; }
-  .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.24s; }
-  .reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.32s; }
-  .reveal-stagger.in-view > *:nth-child(n+6) { transition-delay: 0.4s; }
+  .reveal-stagger > * { opacity: 0; transform: translateY(24px); transition: opacity 0.6s cubic-bezier(.16,.6,.2,1), transform 0.6s cubic-bezier(.16,.6,.2,1); }
+  .reveal-stagger > *.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > * { opacity: 1; transform: none; transition: none; }
   }
@@ -695,7 +689,13 @@
   })();
 
   (function () {
-    var lines = Array.prototype.slice.call(document.querySelectorAll('.scroll-line-wrap, .reveal, .reveal-stagger, .drive-in'));
+    var lines = Array.prototype.slice.call(document.querySelectorAll('.scroll-line-wrap, .reveal, .drive-in'));
+    Array.prototype.slice.call(document.querySelectorAll('.reveal-stagger')).forEach(function (group) {
+      Array.prototype.forEach.call(group.children, function (child, i) {
+        child.style.transitionDelay = (Math.min(i, 5) * 0.09) + 's';
+        lines.push(child);
+      });
+    });
     var ticking = false;
     function check() {
       var vh = window.innerHeight || document.documentElement.clientHeight;
