@@ -617,9 +617,25 @@
       done++;
       if (done >= 2 && badge) badge.classList.add('draw');
     }
+    function appendChar(el, ch) {
+      var span = document.createElement('span');
+      span.textContent = ch;
+      span.style.display = 'inline-block';
+      span.style.whiteSpace = 'pre';
+      span.style.opacity = '0';
+      span.style.transform = 'translateY(3px)';
+      span.style.transition = 'opacity 0.32s ease-out, transform 0.32s ease-out';
+      el.appendChild(span);
+      window.requestAnimationFrame(function () {
+        window.requestAnimationFrame(function () {
+          span.style.opacity = '1';
+          span.style.transform = 'translateY(0)';
+        });
+      });
+    }
     function typeLine1() {
-      if (i <= text1.length) {
-        l1.textContent = text1.slice(0, i);
+      if (i < text1.length) {
+        appendChar(l1, text1[i]);
         i++;
         setTimeout(typeLine1, speed);
       } else {
@@ -629,8 +645,8 @@
       }
     }
     function typeLine2() {
-      if (j <= text2.length) {
-        l2.textContent = text2.slice(0, j);
+      if (j < text2.length) {
+        appendChar(l2, text2[j]);
         j++;
         setTimeout(typeLine2, speed);
       } else {
