@@ -150,7 +150,7 @@
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 24%,rgba(20,19,17,0.4) 55%,rgba(20,19,17,0.97) 92%,#141311 100%);"></div>
 
     <div style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 100%);backdrop-filter:blur(4px);">
-      <a href="#hero" style="font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:0.02em;">BARBERIS</a>
+      <a href="#hero" style="font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:0.02em;"><span id="tw-logo"></span><span class="tw-cursor" id="tw-cursor-logo"></span></a>
       <div style="display:flex;align-items:center;gap:10px;">
         <button id="nav-open" aria-label="Menu" style="background:none;border:none;padding:0;width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
           <span style="display:block;height:2px;background:var(--cream);"></span>
@@ -603,6 +603,8 @@
     });
   })();
   (function () {
+    var logo = document.getElementById('tw-logo');
+    var cursorLogo = document.getElementById('tw-cursor-logo');
     var l1 = document.getElementById('tw-l1');
     var l2 = document.getElementById('tw-l2');
     var cursor1 = document.getElementById('tw-cursor-1');
@@ -610,10 +612,12 @@
     var line = document.getElementById('hero-line-draw');
     var badge = document.getElementById('hero-badge');
     if (!l1 || !l2) return;
+    var textLogo = 'BARBERIS';
     var text1 = 'TVOJ ŠTÝL.';
     var text2 = 'TVOJ BARBER.';
     var speed = 95;
-    var i = 0, j = 0;
+    var speedLogo = 70;
+    var l = 0, i = 0, j = 0;
     var done = 0;
     function onTyperDone() {
       done++;
@@ -634,6 +638,15 @@
           span.style.transform = 'translateY(0)';
         });
       });
+    }
+    function typeLogo() {
+      if (l < textLogo.length) {
+        appendChar(logo, textLogo[l]);
+        l++;
+        setTimeout(typeLogo, speedLogo);
+      } else if (cursorLogo) {
+        setTimeout(function () { cursorLogo.style.opacity = '0'; }, 400);
+      }
     }
     function typeLine1() {
       if (i < text1.length) {
@@ -658,13 +671,16 @@
       }
     }
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      if (logo) logo.textContent = textLogo;
       l1.textContent = text1;
       l2.textContent = text2;
       if (line) line.classList.add('draw');
       if (badge) badge.classList.add('draw');
+      if (cursorLogo) cursorLogo.style.display = 'none';
       if (cursor1) cursor1.style.display = 'none';
       if (cursor2) cursor2.style.display = 'none';
     } else {
+      if (logo) setTimeout(typeLogo, 350);
       setTimeout(typeLine1, 750);
     }
   })();
