@@ -26,6 +26,8 @@
   .hero-fade-in { animation: heroFadeIn 1.3s cubic-bezier(.22,1,.36,1) 0.5s both; }
   .tw-cursor { display: inline-block; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
   @keyframes twBlink { 50% { opacity: 0; } }
+  @keyframes badgeUnfold { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
+  .badge-reveal { clip-path: inset(0 100% 0 0); animation: badgeUnfold 1.3s cubic-bezier(.22,1,.36,1) 0.25s both; }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1), opacity 1.6s ease-out; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
@@ -173,9 +175,9 @@
     </div>
 
     <div style="position:relative;padding:12px 20px 0;">
-      <div style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,19,17,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
+      <div class="badge-reveal" style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,19,17,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
         <span style="color:var(--bronze);font-size:13px;">📍</span>
-        <span style="font-size:11.5px;letter-spacing:0.02em;">Pánsky barbershop v Prievidzi · Hurbana 4</span>
+        <span style="font-size:11.5px;letter-spacing:0.02em;white-space:nowrap;">Pánsky barbershop v Prievidzi · Hurbana 4</span>
       </div>
     </div>
     <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:0 24px 20px;">
