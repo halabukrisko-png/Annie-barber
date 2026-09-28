@@ -20,10 +20,12 @@
   .stars { color: var(--bronze); font-size: 12px; letter-spacing: 1px; }
   .drive-in { transform: translateX(-420px); transition: transform 2s cubic-bezier(.22,1,.36,1); }
   .drive-in.in-view { transform: translateX(0); }
-  @keyframes lineDraw { from { width: 0; } to { width: 100%; } }
-  .line-draw { animation: lineDraw 1.7s cubic-bezier(.22,1,.36,1) 0.5s both; }
+  .line-draw { position: absolute; left: 0; bottom: -10px; width: 0; height: 2px; background: var(--bronze); transition: width 1s cubic-bezier(.22,1,.36,1); }
+  .line-draw.draw { width: 100%; }
   @keyframes heroFadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
   .hero-fade-in { animation: heroFadeIn 1.3s cubic-bezier(.22,1,.36,1) 0.5s both; }
+  .tw-cursor { display: inline-block; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
+  @keyframes twBlink { 50% { opacity: 0; } }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1), opacity 1.6s ease-out; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
@@ -177,7 +179,7 @@
       </div>
     </div>
     <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:0 24px 20px;">
-      <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);">TVOJ ŠTÝL.<br><span style="position:relative;display:inline-block;">TVOJ BARBER.<span class="line-draw" style="position:absolute;left:0;bottom:-10px;height:2px;background:var(--bronze);"></span></span></h1>
+      <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
       <p class="hero-fade-in" style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;animation-delay:0.65s;">Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.</p>
       <div class="hero-fade-in" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
         <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
@@ -595,6 +597,45 @@
     veil.addEventListener('transitionend', function () {
       veil.style.display = 'none';
     });
+  })();
+  (function () {
+    var l1 = document.getElementById('tw-l1');
+    var l2 = document.getElementById('tw-l2');
+    var cursor = document.getElementById('tw-cursor');
+    var line = document.getElementById('hero-line-draw');
+    if (!l1 || !l2) return;
+    var text1 = 'TVOJ ŠTÝL.';
+    var text2 = 'TVOJ BARBER.';
+    var speed = 65;
+    var i = 0, j = 0;
+    function typeLine1() {
+      if (i <= text1.length) {
+        l1.textContent = text1.slice(0, i);
+        i++;
+        setTimeout(typeLine1, speed);
+      } else {
+        if (cursor && line) line.parentNode.insertBefore(cursor, line);
+        setTimeout(typeLine2, 260);
+      }
+    }
+    function typeLine2() {
+      if (j <= text2.length) {
+        l2.textContent = text2.slice(0, j);
+        j++;
+        setTimeout(typeLine2, speed);
+      } else {
+        if (line) line.classList.add('draw');
+        if (cursor) setTimeout(function () { cursor.style.opacity = '0'; }, 550);
+      }
+    }
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      l1.textContent = text1;
+      l2.textContent = text2;
+      if (line) line.classList.add('draw');
+      if (cursor) cursor.style.display = 'none';
+    } else {
+      setTimeout(typeLine1, 750);
+    }
   })();
   (function () {
     var list = document.getElementById('svc-list');
