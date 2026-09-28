@@ -31,6 +31,19 @@
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
   .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 1.1s ease-out 0.3s; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.8s cubic-bezier(.16,.6,.2,1), transform 0.8s cubic-bezier(.16,.6,.2,1); }
+  .reveal.in-view { opacity: 1; transform: translateY(0); }
+  .reveal-stagger > * { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(.16,.6,.2,1), transform 0.7s cubic-bezier(.16,.6,.2,1); }
+  .reveal-stagger.in-view > * { opacity: 1; transform: translateY(0); }
+  .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0s; }
+  .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.08s; }
+  .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.16s; }
+  .reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.24s; }
+  .reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.32s; }
+  .reveal-stagger.in-view > *:nth-child(n+6) { transition-delay: 0.4s; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal, .reveal-stagger > * { opacity: 1; transform: none; transition: none; }
+  }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
@@ -180,9 +193,9 @@
     <div style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.9) 0%,rgba(20,19,17,0.98) 35%,rgba(20,19,17,0.98) 85%,var(--bg) 100%);"></div>
-      <h2 style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
-      <p style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">BARBERIS je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
-      <p style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
+      <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">BARBERIS je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
       <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -203,9 +216,9 @@
         <span>Cenník</span>
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
       </div>
-      <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
-      <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho fade až po úpravu brady. Vyber si, čo ti sadne.</p>
-      <div id="svc-list" style="display:flex;flex-direction:column;gap:10px;">
+      <h2 class="reveal" style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
+      <p class="reveal" style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho fade až po úpravu brady. Vyber si, čo ti sadne.</p>
+      <div id="svc-list" class="reveal-stagger" style="display:flex;flex-direction:column;gap:10px;">
         <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-strih" style="display:inline-block;">Obľúbené</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-1.jpg');"></div>
@@ -272,8 +285,8 @@
     </div>
 
     <div style="margin-top:8px;padding:0 26px;">
-      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
-      <div style="display:flex;gap:8px;">
+      <div class="reveal" style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
+      <div class="reveal-stagger" style="display:flex;gap:8px;">
         <a href="#booking" class="service-card">
           <div class="service-swatch" style="background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
           <div style="font-size:11px;font-weight:600;line-height:1.25;">Pánsky strih</div>
@@ -299,11 +312,11 @@
       <span>O Barberis · náš tím</span>
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
     </div>
-    <h2 style="font-size:22px;margin-bottom:14px;">O BARBERIS<br>NÁŠ TÍM</h2>
-    <p style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Traja ľudia, jedna vášeň pre remeslo. Spoznaj tím, ktorý sa postará o tvoj nový look.</p>
+    <h2 class="reveal" style="font-size:22px;margin-bottom:14px;">O BARBERIS<br>NÁŠ TÍM</h2>
+    <p class="reveal" style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Traja ľudia, jedna vášeň pre remeslo. Spoznaj tím, ktorý sa postará o tvoj nový look.</p>
   </div>
 
-  <div style="padding:18px 24px 0;" class="team-grid">
+  <div style="padding:18px 24px 0;" class="team-grid reveal-stagger">
     <button type="button" class="team-frame team-trigger" data-bio="bio-anett" aria-expanded="false">
       <div class="team-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"></path><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"></path><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"></path><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span></div>
       <div class="team-caption">
@@ -388,11 +401,11 @@
       <span>Naši spokojní zákazníci</span>
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
     </div>
-    <h2 style="font-size:20px;line-height:1.2;margin-bottom:14px;">ČO HOVORIA NAŠI<br>ZÁKAZNÍCI</h2>
-    <p style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Najlepšia vizitka nie sú naše slová, ale skúsenosti tých, ktorí u nás už sedeli v kresle.</p>
+    <h2 class="reveal" style="font-size:20px;line-height:1.2;margin-bottom:14px;">ČO HOVORIA NAŠI<br>ZÁKAZNÍCI</h2>
+    <p class="reveal" style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Najlepšia vizitka nie sú naše slová, ale skúsenosti tých, ktorí u nás už sedeli v kresle.</p>
   </div>
 
-  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;">
+  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;" class="reveal-stagger">
     <div class="review-card">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
         <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
@@ -490,8 +503,8 @@
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
           <div class="booking-badge"><span class="dot"></span>Voľné termíny tento týždeň</div>
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
-          <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ LOOK?</h2>
-          <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
+          <h2 class="reveal" style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ LOOK?</h2>
+          <p class="reveal" style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
           <a href="tel:+421910123456" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         </div>
         <div style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://instagram.com/barberisprievidza" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @barberis</a></div>
@@ -508,11 +521,11 @@
           <span>Nájdeš nás</span>
           <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
         </div>
-        <h2 style="font-size:22px;">KONTAKT</h2>
-        <p style="margin:10px auto 0;font-size:13px;line-height:1.5;color:var(--cream-dim);max-width:290px;">V centre Prievidze, pár krokov od námestia. Zastav sa, zavolaj alebo napíš.</p>
+        <h2 class="reveal" style="font-size:22px;">KONTAKT</h2>
+        <p class="reveal" style="margin:10px auto 0;font-size:13px;line-height:1.5;color:var(--cream-dim);max-width:290px;">V centre Prievidze, pár krokov od námestia. Zastav sa, zavolaj alebo napíš.</p>
       </div>
 
-      <div class="map-frame">
+      <div class="map-frame reveal">
         <iframe src="https://maps.google.com/maps?q=Hurbana%204,%20Prievidza&z=16&output=embed" title="Mapa — BARBERIS, Hurbana 4, Prievidza" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         <div class="map-fade"></div>
         <div class="map-info">
@@ -678,14 +691,14 @@
     overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
   })();
   (function () {
-    var lines = Array.prototype.slice.call(document.querySelectorAll('.scroll-line-wrap'));
+    var lines = Array.prototype.slice.call(document.querySelectorAll('.scroll-line-wrap, .reveal, .reveal-stagger'));
     var ticking = false;
     function check() {
       var vh = window.innerHeight || document.documentElement.clientHeight;
       lines.forEach(function (el) {
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
-        if (rect.top < vh && rect.bottom > 0) {
+        if (rect.top < vh * 0.92 && rect.bottom > 0) {
           el.classList.add('in-view');
         }
       });
