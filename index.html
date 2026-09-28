@@ -44,7 +44,7 @@
   .reveal-stagger-x > *:nth-child(odd) { transform: translateX(-38px); }
   .reveal-stagger-x > *:nth-child(even) { transform: translateX(38px); }
   .reveal-stagger-x > *.in-view { transform: translateX(0); }
-  .toggle-fade { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease-out, transform 0.5s ease-out; }
+  .toggle-fade { opacity: 0; transform: translateY(18px); overflow: hidden; max-height: 0; transition: opacity 0.55s ease-out, transform 0.55s ease-out, max-height 0.55s cubic-bezier(.22,1,.36,1); }
   .toggle-fade.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > *, .reveal-stagger-x > * { opacity: 1; transform: none; transition: none; }
@@ -700,20 +700,30 @@
       var isOpen = more.classList.contains('in-view');
       if (!isOpen) {
         more.style.display = 'flex';
+        var fullHeight = more.scrollHeight;
+        more.style.maxHeight = '0px';
         window.requestAnimationFrame(function () {
           window.requestAnimationFrame(function () {
+            more.style.maxHeight = fullHeight + 'px';
             more.classList.add('in-view');
           });
         });
         toggle.setAttribute('aria-expanded', 'true');
         toggle.textContent = 'Zobraziť menej ↑';
+        setTimeout(function () { more.style.maxHeight = 'none'; }, 600);
       } else {
-        more.classList.remove('in-view');
+        more.style.maxHeight = more.scrollHeight + 'px';
+        window.requestAnimationFrame(function () {
+          window.requestAnimationFrame(function () {
+            more.style.maxHeight = '0px';
+            more.classList.remove('in-view');
+          });
+        });
         toggle.setAttribute('aria-expanded', 'false');
         toggle.textContent = 'Zobraziť viac recenzií ↓';
         setTimeout(function () {
           if (!more.classList.contains('in-view')) more.style.display = 'none';
-        }, 520);
+        }, 600);
       }
     });
   })();
