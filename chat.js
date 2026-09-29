@@ -143,24 +143,24 @@
   }
 
   var css =
-    '#bb-chat-btn{position:fixed;right:16px;bottom:16px;z-index:30;width:52px;height:52px;border-radius:50%;border:none;background:#c9a06a;color:#141311;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.45);}' +
-    '#bb-chat-btn svg{width:24px;height:24px;}' +
-    '#bb-chat{position:fixed;right:16px;bottom:80px;z-index:30;width:min(360px,calc(100vw - 32px));height:min(480px,calc(100vh - 110px));display:flex;flex-direction:column;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(14px) scale(.94);transform-origin:bottom right;transition:opacity .28s ease,transform .38s cubic-bezier(.22,1,.36,1),visibility 0s linear .38s;background:#1a1815;color:#f4ede1;border:1px solid rgba(244,237,225,0.12);border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.55);overflow:hidden;font-family:"Work Sans",sans-serif;}' +
+    '#bb-chat-btn{position:fixed;right:14px;bottom:14px;z-index:30;width:44px;height:44px;border-radius:50%;border:none;background:linear-gradient(145deg,#dcb883,#b98d55);color:#141311;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(0,0,0,0.45),inset 0 1px 0 rgba(255,255,255,0.35);}' +
+    '#bb-chat-btn svg{width:20px;height:20px;}' +
+    '#bb-chat{position:fixed;right:14px;bottom:68px;z-index:30;width:min(290px,calc(100vw - 28px));height:min(380px,calc(100vh - 96px));display:flex;flex-direction:column;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(14px) scale(.94);transform-origin:bottom right;transition:opacity .28s ease,transform .38s cubic-bezier(.22,1,.36,1),visibility 0s linear .38s;background:rgba(26,24,21,0.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);color:#f4ede1;border:1px solid rgba(201,160,106,0.22);border-radius:16px;box-shadow:0 16px 44px rgba(0,0,0,0.6);overflow:hidden;font-family:"Work Sans",sans-serif;}' +
     '#bb-chat.open{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition:opacity .28s ease,transform .38s cubic-bezier(.22,1,.36,1),visibility 0s;}' +
-    '#bb-chat header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(244,237,225,0.08);background:#141311;}' +
-    '#bb-chat header b{display:block;font-family:"Fraunces",serif;font-size:14px;letter-spacing:0.02em;}' +
-    '#bb-chat header span{font-size:10.5px;color:rgba(244,237,225,0.55);}' +
-    '#bb-chat header button{background:none;border:none;color:#f4ede1;font-size:22px;line-height:1;cursor:pointer;padding:0 4px;}' +
-    '#bb-msgs{flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:8px;}' +
-    '.bb-m{max-width:86%;padding:9px 12px;border-radius:10px;font-size:13px;line-height:1.5;}' +
+    '#bb-chat header{display:flex;align-items:center;justify-content:space-between;padding:10px 12px 10px 14px;border-bottom:1px solid rgba(244,237,225,0.07);background:linear-gradient(180deg,rgba(201,160,106,0.14),rgba(201,160,106,0));}' +
+    '#bb-chat header b{display:block;font-family:"Fraunces",serif;font-size:13px;letter-spacing:0.03em;}' +
+    '#bb-chat header span{display:flex;align-items:center;gap:5px;font-size:10px;color:rgba(244,237,225,0.55);}#bb-chat header span::before{content:"";width:6px;height:6px;border-radius:50%;background:#6fbf73;}' +
+    '#bb-chat header button{background:none;border:none;color:rgba(244,237,225,0.7);font-size:20px;line-height:1;cursor:pointer;width:26px;height:26px;border-radius:50%;padding:0;transition:background .2s ease;}#bb-chat header button:hover{background:rgba(244,237,225,0.1);}' +
+    '#bb-msgs{flex:1;overflow-y:auto;padding:12px;display:flex;flex-direction:column;gap:6px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
+    '.bb-m{max-width:88%;padding:7px 11px;border-radius:14px;font-size:12px;line-height:1.5;}' +
     '.bb-m a{color:#c9a06a;text-decoration:underline;}' +
-    '.bb-m.bot{background:#241f1a;color:#cfc6b8;align-self:flex-start;border-bottom-left-radius:2px;}' +
-    '.bb-m.me{background:#c9a06a;color:#141311;align-self:flex-end;border-bottom-right-radius:2px;}' +
-    '#bb-chips{display:flex;flex-wrap:wrap;gap:6px;padding:0 14px 10px;}' +
-    '#bb-chips button{background:none;border:1px solid rgba(201,160,106,0.55);color:#c9a06a;border-radius:999px;padding:5px 10px;font:inherit;font-size:11.5px;cursor:pointer;}' +
-    '#bb-form{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(244,237,225,0.08);background:#141311;}' +
-    '#bb-form input{flex:1;min-width:0;background:#1a1815;border:1px solid rgba(244,237,225,0.14);border-radius:3px;color:#f4ede1;padding:9px 10px;font:inherit;font-size:16px;}' +
-    '#bb-form button{background:#c9a06a;color:#141311;border:none;border-radius:3px;padding:0 14px;font:inherit;font-size:12px;font-weight:700;letter-spacing:0.05em;cursor:pointer;}' +
+    '.bb-m.bot{background:#241f1a;color:#cfc6b8;align-self:flex-start;border-bottom-left-radius:4px;}' +
+    '.bb-m.me{background:linear-gradient(145deg,#dcb883,#c9a06a);color:#141311;align-self:flex-end;border-bottom-right-radius:4px;}' +
+    '#bb-chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 12px 9px;}' +
+    '#bb-chips button{background:none;border:1px solid rgba(201,160,106,0.55);color:#c9a06a;border-radius:999px;padding:4px 9px;font:inherit;font-size:10.5px;cursor:pointer;}' +
+    '#bb-form{display:flex;gap:6px;padding:8px;border-top:1px solid rgba(244,237,225,0.07);}' +
+    '#bb-form input{flex:1;min-width:0;background:rgba(244,237,225,0.05);border:1px solid rgba(244,237,225,0.1);border-radius:999px;color:#f4ede1;padding:7px 12px;font:inherit;font-size:16px;outline:none;transition:border-color .2s ease;}#bb-form input:focus{border-color:rgba(201,160,106,0.6);}' +
+    '#bb-form button{flex:0 0 auto;width:34px;height:34px;align-self:center;background:linear-gradient(145deg,#dcb883,#c9a06a);color:#141311;border:none;border-radius:50%;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .2s ease;}#bb-form button:hover{transform:scale(1.08);}#bb-form button svg{width:16px;height:16px;}' +
     '#bb-chat-btn{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease;}' +
     '#bb-chat-btn:hover{transform:scale(1.07);box-shadow:0 8px 26px rgba(0,0,0,0.5);}' +
     '#bb-chat-btn:active{transform:scale(.94);}' +
@@ -169,8 +169,8 @@
     '#bb-chat-btn.open .ic-chat{opacity:0;transform:rotate(90deg) scale(.5);}' +
     '#bb-chat-btn.open .ic-x{opacity:1;transform:none;}' +
     '#bb-chat-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #c9a06a;opacity:0;pointer-events:none;}' +
-    '.bb-m.bot.typing{display:flex;gap:4px;align-items:center;padding:12px 14px;}' +
-    '.bb-m.typing i{width:6px;height:6px;border-radius:50%;background:#c9a06a;opacity:.45;}' +
+    '.bb-m.bot.typing{display:flex;gap:4px;align-items:center;padding:10px 12px;}' +
+    '.bb-m.typing i{width:5px;height:5px;border-radius:50%;background:#c9a06a;opacity:.45;}' +
     '@media (prefers-reduced-motion:no-preference){' +
       '#bb-chat-btn{animation:bbPop .6s cubic-bezier(.34,1.56,.64,1) 1.2s both;}' +
       '#bb-chat-btn.attn::after{animation:bbRing 2.6s ease-out 2.2s infinite;}' +
@@ -204,7 +204,7 @@
     box.innerHTML =
       '<header><div><b id="bb-title"></b><span id="bb-sub"></span></div><button type="button" id="bb-x">&times;</button></header>' +
       '<div id="bb-msgs" aria-live="polite"></div><div id="bb-chips"></div>' +
-      '<form id="bb-form" autocomplete="off"><input id="bb-input" type="text" maxlength="200"><button type="submit" id="bb-send"></button></form>';
+      '<form id="bb-form" autocomplete="off"><input id="bb-input" type="text" maxlength="200"><button type="submit" id="bb-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>';
     document.body.appendChild(box);
     document.body.appendChild(btn);
 
@@ -242,7 +242,7 @@
       btn.setAttribute('aria-label', UI[l].open);
       box.querySelector('#bb-x').setAttribute('aria-label', UI[l].close);
       input.placeholder = UI[l].placeholder;
-      box.querySelector('#bb-send').textContent = UI[l].send;
+      box.querySelector('#bb-send').setAttribute('aria-label', UI[l].send);
       chips.innerHTML = '';
       CHIPS.forEach(function (id) {
         var c = document.createElement('button');
