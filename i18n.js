@@ -163,7 +163,7 @@
     'Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.': 'No appointments are available on this day. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
     'Nedeľa zatvorené · Sobota do 14:00': 'Closed on Sunday · Saturday until 2:00 PM',
-    'Po odoslaní ti termín potvrdíme e-mailom na zadanú adresu. Ak by niečo, ozveme sa ti.': 'After you submit, we will confirm your appointment by e-mail to the address you provided. If anything comes up, we will get in touch.',
+    'Termín ti potvrdíme e-mailom.': 'We will confirm your appointment by e-mail.',
     'Zrušiť alebo zmeniť termín': 'Cancel or change appointment',
     'Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.': 'Need to change or cancel your appointment? Call us directly — we will gladly find you a new time.',
     'Zavolať kvôli zmene termínu': 'Call to change your appointment',
