@@ -38,7 +38,7 @@
     },
     booking: {
       keys: ['rezerv', 'objedn', 'termin', 'book', 'appointment', 'reserv', 'order', 'volny', 'available'],
-      chip: { sk: 'Rezervácia', en: 'Book a time' },
+      chip: { sk: 'Rezervovať termín', en: 'Book an appointment' },
       sk: function () {
         return 'Termín si môžeš zarezervovať online – vyberieš barbera, službu, dátum a čas a termín ti potvrdíme e-mailom.<br><a href="' + BOOK + '">Zarezervovať termín →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>, prípadne nám napíš na <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
       },
@@ -171,7 +171,7 @@
     }
   };
   var ORDER = ['change', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
-  var CHIPS = ['prices', 'hours', 'booking', 'location', 'kids', 'beard', 'fade', 'ornament', 'skin', 'includes', 'team', 'atmosphere', 'cosmetics', 'contact', 'change'];
+  var CHIPS = ['booking', 'prices', 'hours', 'location', 'kids', 'beard', 'fade', 'ornament', 'skin', 'includes', 'team', 'atmosphere', 'cosmetics', 'contact'];
 
   var UI = {
     sk: {
