@@ -126,7 +126,6 @@
     // booking strip
     'Voľné termíny tento týždeň': 'Available appointments this week',
     'Rezervácia:': 'Booking:',
-    'Termín si môžeš zarezervovať online': 'You can book your appointment online',
     'PRIPRAVENÝ': 'READY FOR',
     'NA NOVÝ LOOK?': 'A NEW LOOK?',
     'Vyber si termín, sadni do kresla a zvyšok nechaj na nás.': 'Pick a time, sit in the chair and leave the rest to us.',
