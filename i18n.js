@@ -183,7 +183,7 @@
     // gallery
     'Naša práca': 'Our work',
     'GALÉRIA': 'GALLERY',
-    'Pozri si našu prácu a priestor.': 'Take a look at our work and our space.',
+    'Každý strih je originál.': 'Every cut is one of a kind.',
     'Priestor BARBERIS': 'BARBERIS space',
     'Práca v BARBERIS': 'Work at BARBERIS',
 
