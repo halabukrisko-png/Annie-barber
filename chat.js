@@ -14,6 +14,71 @@
     return !!(r && h >= r[0] && h < r[1]);
   }
 
+  function img(src, alt) {
+    return '<img class="bb-img" src="' + src + '" alt="' + alt + '" loading="lazy">';
+  }
+  function gallery(n) {
+    var h = '<div class="bb-grid">';
+    for (var i = 1; i <= n; i++) h += img('assets/gallery/gallery-' + i + '.jpg', 'BARBERIS');
+    return h + '</div>';
+  }
+
+  // Mini booking calendar shown inside the chat. Picking a day + time opens the
+  // real booking form (o-nas.html) with that slot pre-selected.
+  function buildCalendar() {
+    var wrap = document.createElement('div');
+    wrap.className = 'bb-cal';
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var view = new Date(today.getFullYear(), today.getMonth(), 1);
+    var picked = null;
+    function pad(n) { return n < 10 ? '0' + n : String(n); }
+    function draw() {
+      var en = lang() === 'en';
+      var wd = en ? ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'] : ['Po', 'Ut', 'St', 'Št', 'Pi', 'So', 'Ne'];
+      var html = '<div class="bb-cal-head"><button type="button" data-a="prev" aria-label="' + (en ? 'Previous month' : 'Predchádzajúci mesiac') + '">‹</button><b>' +
+        I18N.months()[view.getMonth()] + ' ' + view.getFullYear() + '</b><button type="button" data-a="next" aria-label="' + (en ? 'Next month' : 'Nasledujúci mesiac') + '">›</button></div><div class="bb-cal-grid">';
+      wd.forEach(function (d) { html += '<i>' + d + '</i>'; });
+      var off = (new Date(view.getFullYear(), view.getMonth(), 1).getDay() + 6) % 7;
+      for (var e = 0; e < off; e++) html += '<span></span>';
+      var dim = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
+      for (var d = 1; d <= dim; d++) {
+        var dt = new Date(view.getFullYear(), view.getMonth(), d);
+        var off2 = dt < today || !HOURS[dt.getDay()];
+        var sel = picked && picked.getTime() === dt.getTime();
+        html += '<button type="button" data-d="' + d + '"' + (off2 ? ' disabled' : '') + ' class="' + (sel ? 'sel ' : '') + (dt.getTime() === today.getTime() ? 'today' : '') + '">' + d + '</button>';
+      }
+      html += '</div>';
+      if (picked) {
+        var r = HOURS[picked.getDay()], now = new Date(), nowH = now.getHours() + now.getMinutes() / 60;
+        var isToday = picked.getTime() === today.getTime(), slots = '', any = false;
+        for (var h = r[0]; h < r[1]; h++) {
+          if (isToday && h <= nowH) continue;
+          any = true;
+          slots += '<a href="o-nas.html?d=' + picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate()) + '&t=' + h + '#booking">' + pad(h) + ':00</a>';
+        }
+        html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
+          (any ? '<div class="bb-slots">' + slots + '</div><div class="bb-cal-note">' + (en ? 'Pick a time to continue with the booking.' : 'Vyber čas a pokračuj v rezervácii.') + '</div>'
+               : '<div class="bb-cal-note">' + (en ? 'No appointments are available for this day anymore.' : 'Na tento deň už nie sú voľné termíny.') + '</div>');
+      }
+      wrap.innerHTML = html;
+    }
+    wrap.addEventListener('click', function (e) {
+      var b = e.target.closest('button');
+      if (!b || b.disabled) return;
+      if (b.dataset.a) {
+        view.setMonth(view.getMonth() + (b.dataset.a === 'next' ? 1 : -1));
+        if (view < new Date(today.getFullYear(), today.getMonth(), 1)) view = new Date(today.getFullYear(), today.getMonth(), 1);
+        picked = null;
+      } else if (b.dataset.d) {
+        picked = new Date(view.getFullYear(), view.getMonth(), +b.dataset.d);
+      }
+      draw();
+      var m = wrap.closest('#bb-msgs'); if (m) m.scrollTop = m.scrollHeight;
+    });
+    draw();
+    return wrap;
+  }
+
   // Each topic: keywords (Slovak + English, diacritics stripped), and per-language answers (HTML).
   var TOPICS = {
     prices: {
@@ -70,10 +135,10 @@
       keys: ['tim', 'barber', 'anett', 'karvy', 'vladis', 'team', 'who', 'kto', 'zakladat', 'founder'],
       chip: { sk: 'Náš tím', en: 'Our team' },
       sk: function () {
-        return '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><a href="index.html#team">Spoznať tím →</a>';
+        return img('assets/hero-team.jpg', 'Anett, Karvy, Vladis') + '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><a href="index.html#team">Spoznať tím →</a>';
       },
       en: function () {
-        return '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><a href="index.html#team">Meet the team →</a>';
+        return img('assets/hero-team.jpg', 'Anett, Karvy, Vladis') + '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><a href="index.html#team">Meet the team →</a>';
       }
     },
     change: {
@@ -117,8 +182,8 @@
     ornament: {
       keys: ['ornament', 'kreativ', 'creative', 'design', 'vzor'],
       chip: { sk: 'Ornament', en: 'Ornament' },
-      sk: function () { return '<b>Ornament</b> – kreatívny detail vytvorený presne podľa tvojho želania, cena dohodou. Ornamentálne strihy sú špecialitou Karvyho.'; },
-      en: function () { return '<b>Ornament</b> – a creative detail made exactly to your wishes, price by agreement. Ornamental cuts are Karvy’s specialty.'; }
+      sk: function () { return img('assets/gallery/gallery-2.jpg', 'Ornament') + '<b>Ornament</b> – kreatívny detail vytvorený presne podľa tvojho želania, cena dohodou. Ornamentálne strihy sú špecialitou Karvyho.'; },
+      en: function () { return img('assets/gallery/gallery-2.jpg', 'Ornament') + '<b>Ornament</b> – a creative detail made exactly to your wishes, price by agreement. Ornamental cuts are Karvy’s specialty.'; }
     },
     skin: {
       keys: ['plet', 'facial', 'skin', 'pokozk'],
@@ -134,18 +199,18 @@
     },
     anett: {
       keys: ['anett', 'annet', 'zakladat', 'founder'],
-      sk: function () { return '<b>Anett</b> – zakladateľka BARBERIS. Barberingu sa venuje takmer 7 rokov a najviac ju baví práca s ľuďmi.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return '<b>Anett</b> – founder of BARBERIS. She has been barbering for almost 7 years and enjoys working with people the most.<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/anett.jpg', 'Anett') + '<b>Anett</b> – zakladateľka BARBERIS. Barberingu sa venuje takmer 7 rokov a najviac ju baví práca s ľuďmi.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/anett.jpg', 'Anett') + '<b>Anett</b> – founder of BARBERIS. She has been barbering for almost 7 years and enjoys working with people the most.<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     karvy: {
       keys: ['karvy', 'karvi'],
-      sk: function () { return '<b>Karvy</b> – barber s 6 rokmi skúseností, špecialista na ornamentálnu tvorbu a jeden z našich showmanov. Vie postarať o dobrú náladu v kresle. 😄<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return '<b>Karvy</b> – a barber with 6 years of experience, an ornamental work specialist and one of our showmen. He knows how to keep the mood good in the chair. 😄<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/karvy.jpg', 'Karvy') + '<b>Karvy</b> – barber s 6 rokmi skúseností, špecialista na ornamentálnu tvorbu a jeden z našich showmanov. Vie postarať o dobrú náladu v kresle. 😄<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/karvy.jpg', 'Karvy') + '<b>Karvy</b> – a barber with 6 years of experience, an ornamental work specialist and one of our showmen. He knows how to keep the mood good in the chair. 😄<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     vladis: {
       keys: ['vladis'],
-      sk: function () { return '<b>Vladis</b> – barber so 4 rokmi skúseností. Dbá na kvalitnú, precíznu prácu a spokojného zákazníka.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return '<b>Vladis</b> – a barber with 4 years of experience. He cares about quality, precise work and a satisfied customer.<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/vladis.jpg', 'Vladis') + '<b>Vladis</b> – barber so 4 rokmi skúseností. Dbá na kvalitnú, precíznu prácu a spokojného zákazníka.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/vladis.jpg', 'Vladis') + '<b>Vladis</b> – a barber with 4 years of experience. He cares about quality, precise work and a satisfied customer.<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     cosmetics: {
       keys: ['kozmet', 'cosmetic', 'produkt', 'product', 'vosk', 'wax'],
@@ -165,11 +230,23 @@
       sk: function () { return TOPICS.booking.sk(); },
       en: function () { return TOPICS.booking.en(); }
     },
+    gallery: {
+      keys: ['galeri', 'gallery', 'foto', 'photo', 'obrazk', 'picture', 'ukazk'],
+      chip: { sk: 'Galéria', en: 'Gallery' },
+      sk: function () { return gallery(4) + 'Pár ukážok z našej práce a priestoru.<br><a href="galeria.html">Celá galéria →</a>'; },
+      en: function () { return gallery(4) + 'A few samples of our work and space.<br><a href="galeria.html">Full gallery →</a>'; }
+    },
+    calendar: {
+      keys: ['kalendar', 'calendar', 'volne terminy', 'available'],
+      chip: { sk: 'Vybrať dátum', en: 'Pick a date' },
+      sk: function () { return buildCalendar(); },
+      en: function () { return buildCalendar(); }
+    },
     about: {
       keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
       chip: { sk: 'O nás', en: 'About us' },
-      sk: function () { return '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br><a href="o-nas.html">O nás →</a>'; },
-      en: function () { return '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br><a href="o-nas.html">About us →</a>'; }
+      sk: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br><a href="o-nas.html">O nás →</a>'; },
+      en: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br><a href="o-nas.html">About us →</a>'; }
     },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],
@@ -182,19 +259,19 @@
       en: function () { return 'You are welcome! We look forward to seeing you in the chair. 💈'; }
     }
   };
-  var ORDER = ['change', 'about', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
+  var ORDER = ['change', 'calendar', 'gallery', 'about', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
   // Hierarchical quick-reply menus: 'about' and 'services' open a submenu with a Back button.
   var MENUS = {
     main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],
-    booking: ['change', '_back'],
+    booking: ['calendar', 'change', '_back'],
     change: ['booknew', '_back'],
     hours: ['booking', 'location', '_back'],
     location: ['hours', 'contact', '_back'],
     contact: ['booking', 'location', '_back'],
-    about: ['team', '_back'],
+    about: ['team', 'gallery', '_back'],
     services: ['prices', '_back']
   };
-  var SUBMENU = { hours: 'hours', location: 'location', contact: 'contact', booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
+  var SUBMENU = { calendar: 'booking', gallery: 'about', hours: 'hours', location: 'location', contact: 'contact', booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
   var BACK = { sk: '← Späť', en: '← Back' };
   var BACK_MSG = { sk: 'Hlavné menu – s čím ti môžem pomôcť?', en: 'Main menu — how can I help you?' };
 
@@ -239,6 +316,22 @@
     '#bb-chat header b{display:block;font-family:"Fraunces",serif;font-size:12px;letter-spacing:0.03em;}' +
     '#bb-chat header span{display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(244,237,225,0.55);}#bb-chat header span::before{content:"";width:5px;height:5px;border-radius:50%;background:#6fbf73;}' +
     '#bb-chat header>button{background:none;border:none;color:rgba(244,237,225,0.7);font-size:18px;line-height:1;cursor:pointer;width:22px;height:22px;border-radius:50%;padding:0;transition:background .2s ease;}#bb-chat header>button:hover{background:rgba(244,237,225,0.1);}' +
+    '.bb-m.cal{width:100%;max-width:100%;padding:8px;}' +
+    '.bb-img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:8px;margin-bottom:6px;}' +
+    '.bb-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:6px;}.bb-grid .bb-img{margin:0;aspect-ratio:1;border-radius:6px;}' +
+    '.bb-cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:6px;font-size:11.5px;color:#f4ede1;}' +
+    '.bb-cal-head button{background:none;border:none;color:#c9a06a;font-size:16px;line-height:1;cursor:pointer;width:22px;height:22px;border-radius:50%;padding:0;}.bb-cal-head button:hover{background:rgba(244,237,225,0.1);}' +
+    '.bb-cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;text-align:center;}' +
+    '.bb-cal-grid i{font-style:normal;font-size:9px;color:rgba(244,237,225,0.45);padding-bottom:2px;}' +
+    '.bb-cal-grid button{background:none;border:1px solid transparent;color:#f4ede1;font:inherit;font-size:11px;height:24px;border-radius:6px;cursor:pointer;padding:0;}' +
+    '.bb-cal-grid button:hover:not(:disabled){background:rgba(201,160,106,0.2);}' +
+    '.bb-cal-grid button:disabled{color:rgba(244,237,225,0.22);cursor:default;}' +
+    '.bb-cal-grid button.today{border-color:rgba(201,160,106,0.55);}' +
+    '.bb-cal-grid button.sel{background:#c9a06a;color:#141311;font-weight:700;}' +
+    '.bb-cal-sub{margin:8px 0 4px;font-size:11px;color:#f4ede1;font-weight:600;}' +
+    '.bb-slots{display:flex;flex-wrap:wrap;gap:4px;}' +
+    '.bb-slots a{border:1px solid rgba(201,160,106,0.55);color:#c9a06a;border-radius:999px;padding:3px 8px;font-size:10.5px;text-decoration:none;}.bb-slots a:hover{background:#c9a06a;color:#141311;}' +
+    '.bb-cal-note{margin-top:6px;font-size:10px;color:rgba(244,237,225,0.55);}' +
     '#bb-lang{margin-left:auto;margin-right:6px;}#bb-lang .lang-switch button{padding:2px 5px;font-size:10px;}#bb-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
     '.bb-m{max-width:90%;padding:6px 10px;border-radius:12px;font-size:11.5px;line-height:1.45;}' +
     '.bb-m a{color:#c9a06a;text-decoration:underline;}' +
@@ -298,6 +391,7 @@
 
     if (window.I18N && I18N.makeSwitch) box.querySelector('#bb-lang').appendChild(I18N.makeSwitch('margin-left:auto;'));
     var msgs = box.querySelector('#bb-msgs');
+    msgs.addEventListener('load', function () { msgs.scrollTop = msgs.scrollHeight; }, true);
     var chips = box.querySelector('#bb-chips');
     var input = box.querySelector('#bb-input');
     var started = false;
@@ -306,19 +400,22 @@
     function add(html, who) {
       var d = document.createElement('div');
       d.className = 'bb-m ' + who;
-      if (who === 'me') d.textContent = html; else d.innerHTML = html;
+      if (who === 'me') d.textContent = html;
+      else if (typeof html === 'string') d.innerHTML = html;
+      else { d.classList.add('cal'); d.appendChild(html); }
       msgs.appendChild(d);
       msgs.scrollTop = msgs.scrollHeight;
     }
     function reply(id) {
       var l = lang();
       var html = id ? TOPICS[id][l]() : UI[l].fallback;
+      var size = typeof html === 'string' ? html.length : 200;
       var dots = document.createElement('div');
       dots.className = 'bb-m bot typing';
       dots.innerHTML = '<i></i><i></i><i></i>';
       msgs.appendChild(dots);
       msgs.scrollTop = msgs.scrollHeight;
-      var wait = Math.min(1100, 450 + html.length * 1.2);
+      var wait = Math.min(1100, 450 + size * 1.2);
       setTimeout(function () {
         if (dots.parentNode) dots.parentNode.removeChild(dots);
         add(html, 'bot');

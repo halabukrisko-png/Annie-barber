@@ -758,6 +758,27 @@
     });
 
     render();
+
+    // Pre-select a slot picked in the chat assistant (?d=YYYY-MM-DD&t=HH)
+    (function () {
+      var q = new URLSearchParams(location.search);
+      var d = q.get('d'), tt = q.get('t');
+      if (!d) return;
+      var p = d.split('-');
+      var date = new Date(+p[0], +p[1] - 1, +p[2]);
+      if (isNaN(date.getTime()) || date < todayDate || !hours[date.getDay()]) return;
+      afterBarberWrap.hidden = false;
+      view = new Date(date.getFullYear(), date.getMonth(), 1);
+      render();
+      var dayBtn = Array.prototype.slice.call(grid.querySelectorAll('.cal-day:not(.empty)')).filter(function (b) { return +b.textContent === date.getDate(); })[0];
+      if (!dayBtn || dayBtn.disabled) return;
+      selectDate(date, dayBtn);
+      if (tt) {
+        var h = +tt;
+        var slot = Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).filter(function (b) { return b.textContent === pad(h) + ':00'; })[0];
+        if (slot) selectSlot(h, slot);
+      }
+    })();
   })();
 
   (function () {
