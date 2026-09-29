@@ -190,7 +190,7 @@
     // contact
     'Nájdeš nás': 'Find us',
     'KONTAKT': 'CONTACT',
-    'V centre Prievidze, pár krokov od námestia. Zastav sa, zavolaj alebo napíš.': 'In the center of Prievidza, a few steps from the square. Drop by, call or write.',
+    'V centre Prievidze, pár krokov od námestia. Objednaj sa a príď v dohodnutý čas.': 'In the center of Prievidza, a few steps from the square. Book your slot and come at the agreed time.',
     'Hurbana 4, 971 01 Prievidza': 'Hurbana 4, 971 01 Prievidza',
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
