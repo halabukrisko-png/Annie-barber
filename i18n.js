@@ -34,6 +34,7 @@
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',
     'Strih': 'Haircut',
+    'Káva a drevený stolík v oddychovej zóne BARBERIS': 'Coffee and a wooden table in the BARBERIS lounge',
     'Oddychová zóna BARBERIS': 'BARBERIS relaxation zone',
 
     // services
