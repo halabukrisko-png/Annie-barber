@@ -159,6 +159,12 @@
       sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="o-nas.html">O nás →</a>'; },
       en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="o-nas.html">About us →</a>'; }
     },
+    about: {
+      keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
+      chip: { sk: 'O nás', en: 'About us' },
+      sk: function () { return '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br><a href="o-nas.html">O nás →</a>'; },
+      en: function () { return '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br><a href="o-nas.html">About us →</a>'; }
+    },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],
       sk: function () { return 'Ahoj! 👋 S čím ti môžem pomôcť?'; },
@@ -170,8 +176,16 @@
       en: function () { return 'You are welcome! We look forward to seeing you in the chair. 💈'; }
     }
   };
-  var ORDER = ['change', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
-  var CHIPS = ['booking', 'prices', 'hours', 'location', 'team', 'contact', 'change'];
+  var ORDER = ['change', 'about', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
+  // Hierarchical quick-reply menus: 'about' and 'services' open a submenu with a Back button.
+  var MENUS = {
+    main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],
+    about: ['team', '_back'],
+    services: ['prices', '_back']
+  };
+  var SUBMENU = { about: 'about', services: 'services' };
+  var BACK = { sk: '← Späť', en: '← Back' };
+  var BACK_MSG = { sk: 'Hlavné menu – s čím ti môžem pomôcť?', en: 'Main menu — how can I help you?' };
 
   var UI = {
     sk: {
@@ -276,6 +290,7 @@
     var chips = box.querySelector('#bb-chips');
     var input = box.querySelector('#bb-input');
     var started = false;
+    var menu = 'main';
 
     function add(html, who) {
       var d = document.createElement('div');
@@ -308,12 +323,27 @@
       input.placeholder = UI[l].placeholder;
       box.querySelector('#bb-send').setAttribute('aria-label', UI[l].send);
       chips.innerHTML = '';
-      CHIPS.forEach(function (id) {
+      MENUS[menu].forEach(function (id) {
         var c = document.createElement('button');
         c.type = 'button';
-        c.textContent = TOPICS[id].chip[l];
-        c.addEventListener('click', function () { add(TOPICS[id].chip[l], 'me'); reply(id); });
-        c.style.animationDelay = (0.25 + chips.children.length * 0.06) + 's';
+        if (id === '_back') {
+          c.textContent = BACK[l];
+          c.addEventListener('click', function () {
+            menu = 'main';
+            var lg = lang();
+            add(BACK[lg].replace('← ', ''), 'me');
+            setTimeout(function () { add(BACK_MSG[lg], 'bot'); }, 250);
+            renderChrome();
+          });
+        } else {
+          c.textContent = TOPICS[id].chip[l];
+          c.addEventListener('click', function () {
+            add(TOPICS[id].chip[lang()], 'me');
+            reply(id);
+            if (SUBMENU[id]) { menu = SUBMENU[id]; renderChrome(); }
+          });
+        }
+        c.style.animationDelay = (0.2 + chips.children.length * 0.06) + 's';
         chips.appendChild(c);
       });
     }
