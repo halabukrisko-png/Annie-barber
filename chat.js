@@ -78,7 +78,7 @@
     },
     change: {
       keys: ['zrus', 'zmen', 'presun', 'cancel', 'change', 'reschedul', 'move'],
-      chip: { sk: 'Zrušiť / zmeniť termín', en: 'Cancel / change' },
+      chip: { sk: 'Zrušiť termín', en: 'Cancel appointment' },
       sk: function () {
         return 'Termín zmeníš alebo zrušíš najjednoduchšie telefonicky – radi ti nájdeme nový čas.<br><a href="' + TEL + '">Zavolať ' + PHONE + '</a>';
       },
@@ -159,6 +159,12 @@
       sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="o-nas.html">O nás →</a>'; },
       en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="o-nas.html">About us →</a>'; }
     },
+    booknew: {
+      keys: [],
+      chip: { sk: 'Rezervovať nový termín', en: 'Book a new appointment' },
+      sk: function () { return TOPICS.booking.sk(); },
+      en: function () { return TOPICS.booking.en(); }
+    },
     about: {
       keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
       chip: { sk: 'O nás', en: 'About us' },
@@ -180,10 +186,12 @@
   // Hierarchical quick-reply menus: 'about' and 'services' open a submenu with a Back button.
   var MENUS = {
     main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],
+    booking: ['change', '_back'],
+    change: ['booknew', '_back'],
     about: ['team', '_back'],
     services: ['prices', '_back']
   };
-  var SUBMENU = { about: 'about', services: 'services' };
+  var SUBMENU = { booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
   var BACK = { sk: '← Späť', en: '← Back' };
   var BACK_MSG = { sk: 'Hlavné menu – s čím ti môžem pomôcť?', en: 'Main menu — how can I help you?' };
 
