@@ -767,7 +767,9 @@
       var p = d.split('-');
       var date = new Date(+p[0], +p[1] - 1, +p[2]);
       if (isNaN(date.getTime()) || date < todayDate || !hours[date.getDay()]) return;
-      afterBarberWrap.hidden = false;
+      // barber defaults to "Nezáleží" (no preference) when coming from the chat calendar
+      var anyBarber = barberGrid.querySelector('.barber-btn[data-barber=""]');
+      if (anyBarber) anyBarber.click(); else afterBarberWrap.hidden = false;
       view = new Date(date.getFullYear(), date.getMonth(), 1);
       render();
       var dayBtn = Array.prototype.slice.call(grid.querySelectorAll('.cal-day:not(.empty)')).filter(function (b) { return +b.textContent === date.getDate(); })[0];
