@@ -123,7 +123,7 @@
     'Zobraziť menej ↑': 'Show less ↑',
 
     // booking strip
-    'Voľné termíny tento týždeň': 'Available appointments this week',
+    'Voľné termíny': 'Available appointments',
     'Rezervácia:': 'Booking:',
     'PRIPRAVENÝ': 'READY FOR',
     'NA NOVÝ VZHĽAD?': 'A NEW LOOK?',
