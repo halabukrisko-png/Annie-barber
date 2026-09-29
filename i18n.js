@@ -183,7 +183,7 @@
     // gallery
     'Naša práca': 'Our work',
     'GALÉRIA': 'GALLERY',
-    'Každý strih je originál.': 'Every cut is one of a kind.',
+    'Každý strih je originál — pozri si naše strihy.': 'Every cut is one of a kind — take a look at our cuts.',
     'Priestor BARBERIS': 'BARBERIS space',
     'Práca v BARBERIS': 'Work at BARBERIS',
 
