@@ -19,7 +19,7 @@
     'Zavrieť': 'Close',
 
     // hero
-    'Pánsky barbershop v Prievidzi · Hurbana 4': 'Men’s barbershop in Prievidza · Hurbana 4',
+    'Pánsky barbershop v Prievidzi · Hurbana 858/4': 'Men’s barbershop in Prievidza · Hurbana 858/4',
     'Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.': 'A precise haircut, a well-groomed beard and an atmosphere where you will feel good.',
     'Pozrieť služby →': 'See services →',
     'TVOJ ŠTÝL.': 'YOUR STYLE.',
@@ -163,7 +163,7 @@
     'Zavolať': 'Call',
     'Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.': 'No appointments are available on this day. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
-    'Nedeľa zatvorené · Sobota do 13:00': 'Closed on Sunday · Saturday until 1:00 PM',
+    'Nedeľa zatvorené · Sobota do 14:00': 'Closed on Sunday · Saturday until 2:00 PM',
     'Po odoslaní ti termín potvrdíme e-mailom na zadanú adresu. Ak by niečo, ozveme sa ti.': 'After you submit, we will confirm your appointment by e-mail to the address you provided. If anything comes up, we will get in touch.',
     'Zrušiť alebo zmeniť termín': 'Cancel or change appointment',
     'Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.': 'Need to change or cancel your appointment? Call us directly — we will gladly find you a new time.',
@@ -192,7 +192,7 @@
     'Nájdeš nás': 'Find us',
     'KONTAKT': 'CONTACT',
     'V centre Prievidze, pár krokov od námestia. Zastav sa, zavolaj alebo napíš.': 'In the center of Prievidza, a few steps from the square. Drop by, call or write.',
-    'Hurbana 4, 971 01 Prievidza': 'Hurbana 4, 971 01 Prievidza',
+    'Jozefa Miloslava Hurbana 858/4, 971 01 Prievidza': 'Jozefa Miloslava Hurbana 858/4, 971 01 Prievidza',
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
     'Pondelok': 'Monday',
@@ -204,10 +204,9 @@
     'Nedeľa': 'Sunday',
     'Zatvorené': 'Closed',
     'Práve otvorené': 'Open now',
-    '9:00 – 18:00': '9:00 AM – 6:00 PM',
     '8:00 – 18:00': '8:00 AM – 6:00 PM',
-    '9:00 – 13:00': '9:00 AM – 1:00 PM',
-    'Mapa — BARBERIS, Hurbana 4, Prievidza': 'Map — BARBERIS, Hurbana 4, Prievidza'
+    '8:00 – 14:00': '8:00 AM – 2:00 PM',
+    'Mapa — BARBERIS, Jozefa Miloslava Hurbana 858/4, Prievidza': 'Map — BARBERIS, Jozefa Miloslava Hurbana 858/4, Prievidza'
   };
 
   var MONTHS = {

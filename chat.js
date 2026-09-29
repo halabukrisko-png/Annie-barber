@@ -2,13 +2,13 @@
    Answers only from information that is on the website; anything else is
    handed over to a phone call. Works in SK and EN (follows the site language). */
 (function () {
-  var PHONE = '0910 123 456';
-  var TEL = 'tel:+421910123456';
-  var MAPS = 'https://maps.google.com/?q=Hurbana+4,+Prievidza';
+  var PHONE = '0951 833 488';
+  var TEL = 'tel:+421951833488';
+  var MAPS = 'https://maps.google.com/?q=Jozefa+Miloslava+Hurbana+858/4,+Prievidza';
   var IG = 'https://instagram.com/barberis';
   var BOOK = 'o-nas.html#booking';
 
-  var HOURS = { 1: [8, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
+  var HOURS = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
   function isOpenNow() {
     var n = new Date(), r = HOURS[n.getDay()], h = n.getHours() + n.getMinutes() / 60;
     return !!(r && h >= r[0] && h < r[1]);
@@ -96,10 +96,10 @@
       keys: ['otvor', 'hodin', 'kedy', 'zatvor', 'open', 'close', 'hours', 'when', 'sobot', 'nedel', 'saturday', 'sunday', 'today', 'dnes', 'time'],
       chip: { sk: 'Otváracie hodiny', en: 'Opening hours' },
       sk: function () {
-        return '<b>Otváracie hodiny</b><br>Pondelok – 8:00 – 18:00<br>Utorok – Piatok – 9:00 – 18:00<br>Sobota – 9:00 – 13:00<br>Nedeľa – zatvorené<br><br>' + (isOpenNow() ? 'Práve máme otvorené.' : 'Práve máme zatvorené.');
+        return '<b>Otváracie hodiny</b><br>Pondelok – Piatok – 8:00 – 18:00<br>Sobota – 8:00 – 14:00<br>Nedeľa – zatvorené<br><br>' + (isOpenNow() ? 'Práve máme otvorené.' : 'Práve máme zatvorené.');
       },
       en: function () {
-        return '<b>Opening hours</b><br>Monday – 8:00 AM – 6:00 PM<br>Tuesday – Friday – 9:00 AM – 6:00 PM<br>Saturday – 9:00 AM – 1:00 PM<br>Sunday – closed<br><br>' + (isOpenNow() ? 'We are open right now.' : 'We are closed right now.');
+        return '<b>Opening hours</b><br>Monday – Friday – 8:00 AM – 6:00 PM<br>Saturday – 8:00 AM – 2:00 PM<br>Sunday – closed<br><br>' + (isOpenNow() ? 'We are open right now.' : 'We are closed right now.');
       }
     },
     booking: {
@@ -116,10 +116,10 @@
       keys: ['kde', 'adres', 'ulic', 'prievidz', 'hurban', 'mapa', 'navig', 'where', 'address', 'location', 'map', 'find', 'directions', 'parking', 'parkov'],
       chip: { sk: 'Kde nás nájdeš', en: 'Where to find us' },
       sk: function () {
-        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
+        return img('assets/storefront.jpg', 'BARBERIS, Jozefa Miloslava Hurbana 858/4') + '<b>BARBERIS</b><br>Jozefa Miloslava Hurbana 858/4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
       },
       en: function () {
-        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
+        return img('assets/storefront.jpg', 'BARBERIS, Jozefa Miloslava Hurbana 858/4') + '<b>BARBERIS</b><br>Jozefa Miloslava Hurbana 858/4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
       }
     },
     services: {
