@@ -126,10 +126,10 @@
       keys: ['sluzb', 'strih', 'fade', 'brad', 'ornament', 'holen', 'farb', 'plet', 'service', 'haircut', 'beard', 'shave', 'kids', 'child', 'detsk', 'offer', 'ponuk'],
       chip: { sk: 'Služby', en: 'Services' },
       sk: function () {
-        return 'Ponúkame pánsky strih, fade, úpravu brady, kompletný balík strih + brada, ornamentálne strihy, detský strih do 12 rokov, holenie hlavy, farbenie brady a čistenie pleti.<br><a href="index.html#services">Pozrieť služby →</a>';
+        return '<b>Ponúkame</b> pánsky strih, fade, úpravu brady, kompletný balík strih + brada, ornamentálne strihy, detský strih do 12 rokov, holenie hlavy, farbenie brady a čistenie pleti.<br><a href="index.html#services">Pozrieť služby →</a>';
       },
       en: function () {
-        return 'We offer men’s haircuts, fades, beard trims, the complete haircut + beard package, ornamental cuts, kids’ haircuts up to 12 years, head shaves, beard coloring and facial cleansing.<br><a href="index.html#services">See services →</a>';
+        return 'We <b>offer</b> men’s haircuts, fades, beard trims, the complete haircut + beard package, ornamental cuts, kids’ haircuts up to 12 years, head shaves, beard coloring and facial cleansing.<br><a href="index.html#services">See services →</a>';
       }
     },
     team: {
