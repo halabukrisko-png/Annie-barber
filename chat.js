@@ -240,8 +240,8 @@
     about: {
       keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
       chip: { sk: 'O nás', en: 'About us' },
-      sk: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br><a href="o-nas.html">O nás →</a>'; },
-      en: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br><a href="o-nas.html">About us →</a>'; }
+      sk: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br>Nájdeš nás v centre Prievidze na adrese <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="o-nas.html">O nás →</a>'; },
+      en: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br>You will find us in the center of Prievidza at <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="o-nas.html">About us →</a>'; }
     },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],
