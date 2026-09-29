@@ -81,6 +81,7 @@
   .gallery-anim > * { opacity: 0; transform: scale(0.8) translateY(32px) rotate(-3deg); transition: opacity 0.8s cubic-bezier(.34,1.56,.64,1), transform 0.8s cubic-bezier(.34,1.56,.64,1); }
   .gallery-anim > *:nth-child(even) { transform: scale(0.8) translateY(32px) rotate(3deg); }
   .gallery-anim > *.in-view { opacity: 1; transform: scale(1) translateY(0) rotate(0deg); }
+  .gallery-anim > *.no-anim { opacity: 1 !important; transform: none !important; transition: none !important; }
   @media (prefers-reduced-motion: reduce) {
     .reveal, .reveal-stagger > *, .gallery-anim > * { opacity: 1; transform: none; transition: none; }
   }
@@ -179,9 +180,9 @@
     <div class="photo-frame"><span class="photo-number">04</span><div class="frame-inner"><img src="assets/gallery/gallery-4.jpg" alt="Práca v BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">05</span><div class="frame-inner"><img src="assets/gallery/gallery-5.jpg" alt="Práca v BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">06</span><div class="frame-inner"><img src="assets/gallery/gallery-6.jpg" alt="Práca v BARBERIS"></div></div>
-    <div class="photo-frame"><span class="photo-number">07</span><div class="frame-inner"><img src="assets/gallery/gallery-7.jpg" alt="Práca v BARBERIS"></div></div>
-    <div class="photo-frame"><span class="photo-number">08</span><div class="frame-inner"><img src="assets/gallery/gallery-8.jpg" alt="Práca v BARBERIS"></div></div>
-    <div class="photo-frame"><span class="photo-number">09</span><div class="frame-inner"><img src="assets/gallery/gallery-9.jpg" alt="Práca v BARBERIS"></div></div>
+    <div class="photo-frame no-anim"><span class="photo-number">07</span><div class="frame-inner"><img src="assets/gallery/gallery-7.jpg" alt="Práca v BARBERIS"></div></div>
+    <div class="photo-frame no-anim"><span class="photo-number">08</span><div class="frame-inner"><img src="assets/gallery/gallery-8.jpg" alt="Práca v BARBERIS"></div></div>
+    <div class="photo-frame no-anim"><span class="photo-number">09</span><div class="frame-inner"><img src="assets/gallery/gallery-9.jpg" alt="Práca v BARBERIS"></div></div>
   </div>
 
   <!-- INSTAGRAM -->
