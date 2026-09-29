@@ -86,10 +86,10 @@
       keys: ['cena', 'ceny', 'cenn', 'cenu', 'kolko', 'stoj', 'eur', 'price', 'cost', 'how much', 'fee', 'platb', 'pay'],
       chip: { sk: 'Cenník', en: 'Prices' },
       sk: function () {
-        return '<b>Cenník</b><br>Strih – 20 €<br>Strih + brada – 30 €<br>Úprava brady – 15 €<br>Detský strih do 12 r. – 15 €<br>Holenie hlavy + úprava brady – 25 €<br>Farbenie brady – 5 – 10 €<br>Čistenie pleti – od 10 €<br>Ornament – dohodou<br><br>Každý strih zahŕňa umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling.';
+        return '<b>Cenník</b><br>Strih – 20 €<br>Strih + brada – 30 €<br>Úprava brady – 15 €<br>Detský strih do 12 r. – 15 €<br>Holenie hlavy + úprava brady – 25 €<br>Farbenie brady – 5 – 10 €<br>Čistenie pleti – od 10 €<br>Ornament – dohodou<br><br>Rezervujte si termín vopred a vyhnite sa čakaniu.';
       },
       en: function () {
-        return '<b>Price list</b><br>Haircut – €20<br>Haircut + beard – €30<br>Beard trim – €15<br>Kids’ haircut up to 12 y. – €15<br>Head shave + beard trim – €25<br>Beard coloring – €5 – 10<br>Facial cleansing – from €10<br>Ornament – by agreement<br><br>Every haircut includes hair wash, eyebrow shaping, nose and ear hair removal and final styling.';
+        return '<b>Price list</b><br>Haircut – €20<br>Haircut + beard – €30<br>Beard trim – €15<br>Kids’ haircut up to 12 y. – €15<br>Head shave + beard trim – €25<br>Beard coloring – €5 – 10<br>Facial cleansing – from €10<br>Ornament – by agreement<br><br>Book your appointment in advance and skip the wait.';
       }
     },
     hours: {
@@ -189,8 +189,8 @@
     includes: {
       keys: ['zahrn', 'obsahuj', 'include', 'styling', 'wash', 'umyt', 'oboc', 'eyebrow'],
       chip: { sk: 'Čo zahŕňa strih', en: 'What’s included' },
-      sk: function () { return 'Každý strih zahŕňa umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling. 💈'; },
-      en: function () { return 'Every haircut includes a hair wash, eyebrow shaping, nose and ear hair removal and final styling. 💈'; }
+      sk: function () { return 'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️'; },
+      en: function () { return 'Book your appointment in advance and skip the wait. ✂️'; }
     },
     anett: {
       keys: ['anett', 'annet', 'zakladat', 'founder'],

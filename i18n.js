@@ -66,7 +66,7 @@
     '15 €': '€15',
     '25 €': '€25',
     '5 – 10 €': '€5 – 10',
-    'Každý strih zahŕňa: umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling. 💈': 'Every haircut includes: hair wash, eyebrow shaping, nose and ear hair removal and final styling. 💈',
+    'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️': 'Book your appointment in advance and skip the wait. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Čo si môžeš dať u nás:': 'What you can get with us:',
 
