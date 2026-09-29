@@ -157,6 +157,31 @@
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
+
+  /* ===== DESKTOP (>=1024px) ===== */
+  @media (min-width: 1024px) {
+    .wrap { max-width: 1240px; }
+    .topbar { padding-left: 48px !important; padding-right: 48px !important; height: 76px !important; }
+    #contact-wrap, .contact-outer { padding: 0 48px !important; }
+    .contact-frame { padding-left: 48px; padding-right: 48px; padding-bottom: 40px; }
+    .contact-frame .hours-card, .contact-frame .map-frame { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .ig-strip { gap: 20px; }
+    .ig-strip .ig-side { width: 24%; height: 260px; }
+    .ig-strip .ig-main { width: 34%; height: 340px; }
+    .ig-arrow { width: 40px; height: 40px; }
+    .ig-outer { padding-left: 48px !important; padding-right: 48px !important; }
+    h1 { font-size: 44px !important; }
+    h2 { font-size: 30px !important; }
+    #team, #booking { padding-left: 48px !important; padding-right: 48px !important; }
+    .team-grid { padding: 28px 48px 0 !important; max-width: 1100px; margin: 0 auto; width: 100%; gap: 20px; }
+    .about-text { max-width: 820px; margin: 0 auto; padding: 0 48px !important; }
+    .about-text p { font-size: 18px !important; line-height: 1.7 !important; text-align: center; }
+    .booking-calendar { max-width: 860px; margin: 0 auto; padding: 32px 36px 36px; }
+    .slot-grid { grid-template-columns: repeat(6, 1fr); }
+    .svc-grid, .barber-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .quality-wrap { max-width: 820px; margin: 0 auto; width: 100%; }
+    .quality-wrap p { font-size: 16px !important; }
+  }
 </style>
 <script src="i18n.js"></script>
 </head>
@@ -203,7 +228,7 @@
       <div aria-hidden="true" style="position:absolute;left:0;right:0;top:-40px;bottom:-40px;background:url('assets/lounge-detail.jpg') center/cover no-repeat;-webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);mask-image:linear-gradient(to bottom,transparent 0,#000 40px,#000 calc(100% - 40px),transparent 100%);pointer-events:none;">
         <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.88) 0%,rgba(20,19,17,0.93) 100%);"></div>
       </div>
-      <div style="position:relative;padding:0 24px;display:flex;flex-direction:column;gap:14px;text-shadow:0 1px 8px rgba(0,0,0,0.6);">
+      <div class="about-text" style="position:relative;padding:0 24px;display:flex;flex-direction:column;gap:14px;text-shadow:0 1px 8px rgba(0,0,0,0.6);">
         <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Nie každý prichádza do barberu na hodinový pokec. Niekto chce prebrať život, <strong style="color:var(--cream);font-weight:600;">niekto sa chce zasmiať</strong> a <strong style="color:var(--cream);font-weight:600;">niekto si len sadnúť</strong>, zavrieť oči a chvíľu vypnúť.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">U nás je v poriadku všetko. Vieme byť poriadne zábavný, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);font-weight:600;">My sa postaráme o strih. Ty si vyber, či chceš pokec, srandu alebo jednoducho pokoj.</p>
@@ -211,7 +236,7 @@
     </div>
   </div>
 
-  <div style="padding:36px 24px 0;">
+  <div class="quality-wrap" style="padding:36px 24px 0;">
     <div class="bio-card reveal" style="text-align:center;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:8px;">
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -404,7 +429,7 @@
   </div>
 
   <!-- INSTAGRAM -->
-  <div style="padding:0 24px;">
+  <div class="ig-outer" style="padding:0 24px;">
     <div class="scroll-line-wrap in-view" style="position:relative;z-index:1;margin-bottom:0;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="margin-top:0;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">
@@ -429,7 +454,7 @@
   </div>
 
   <!-- KONTAKT -->
-  <div style="padding:0 24px 0;">
+  <div class="contact-outer" style="padding:0 24px 0;">
     <div class="contact-frame" style="border-top:none;border-radius:0 0 4px 4px;">
       <div style="text-align:center;">
         <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">

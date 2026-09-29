@@ -131,6 +131,22 @@
     .photo-frame img { border-radius: 2px; }
     .photo-number { display: none; }
   }
+
+  /* ===== DESKTOP (>=1024px) ===== */
+  @media (min-width: 1024px) {
+    .wrap { max-width: 1240px; }
+    .topbar { padding-left: 48px !important; padding-right: 48px !important; height: 76px !important; }
+    #contact-wrap, .contact-outer { padding: 0 48px !important; }
+    .contact-frame { padding-left: 48px; padding-right: 48px; padding-bottom: 40px; }
+    .contact-frame .hours-card, .contact-frame .map-frame { max-width: 720px; margin-left: auto; margin-right: auto; }
+    .ig-strip { gap: 20px; }
+    .ig-strip .ig-side { width: 24%; height: 260px; }
+    .ig-strip .ig-main { width: 34%; height: 340px; }
+    .ig-arrow { width: 40px; height: 40px; }
+    .ig-outer { padding-left: 48px !important; padding-right: 48px !important; }
+    h1 { font-size: 48px !important; }
+    .full-grid { grid-template-columns: repeat(3, 1fr); gap: 24px; padding: 36px 48px 0; }
+  }
 </style>
 <script src="i18n.js"></script>
 </head>
@@ -192,7 +208,7 @@
   </div>
 
   <!-- INSTAGRAM -->
-  <div style="padding:32px 24px 0;">
+  <div class="ig-outer" style="padding:32px 24px 0;">
     <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="margin-top:0;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">
@@ -217,7 +233,7 @@
   </div>
 
   <!-- KONTAKT -->
-  <div style="padding:0 24px 0;">
+  <div class="contact-outer" style="padding:0 24px 0;">
     <div class="contact-frame" style="border-top:none;border-radius:0 0 4px 4px;">
       <div style="text-align:center;">
         <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
