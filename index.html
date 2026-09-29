@@ -416,7 +416,7 @@
     <p class="reveal" style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Najlepšia vizitka nie sú naše slová, ale skúsenosti tých, ktorí u nás už sedeli v kresle.</p>
   </div>
 
-  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;" class="reveal-stagger">
+  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;" class="reveal-stagger" data-reveal-together>
     <div class="review-card">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
         <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
@@ -856,8 +856,9 @@
     Array.prototype.slice.call(document.querySelectorAll('.reveal-stagger')).forEach(function (group) {
       Array.prototype.forEach.call(group.children, function (child, i) {
         child.style.transitionDelay = (Math.min(i, 5) * 0.14) + 's';
-        lines.push(child);
+        if (!group.hasAttribute('data-reveal-together')) lines.push(child);
       });
+      if (group.hasAttribute('data-reveal-together')) lines.push(group);
     });
     var ticking = false;
     function check() {
@@ -867,6 +868,9 @@
         var rect = el.getBoundingClientRect();
         if (rect.top < vh * 0.92 && rect.bottom > 0) {
           el.classList.add('in-view');
+          if (el.hasAttribute('data-reveal-together')) {
+            Array.prototype.forEach.call(el.children, function (c) { c.classList.add('in-view'); });
+          }
         }
       });
       ticking = false;
