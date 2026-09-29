@@ -30,7 +30,8 @@
     wrap.className = 'bb-cal';
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var view = new Date(today.getFullYear(), today.getMonth(), 1);
-    var picked = null;
+    // today is preselected (when open), so it is immediately clear whether anything is left for it
+    var picked = HOURS[today.getDay()] ? new Date(today.getTime()) : null;
     function pad(n) { return n < 10 ? '0' + n : String(n); }
     function draw() {
       var en = lang() === 'en';
