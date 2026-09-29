@@ -273,7 +273,7 @@
   };
   var SUBMENU = { calendar: 'booking', gallery: 'about', hours: 'hours', location: 'location', contact: 'contact', booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
   var BACK = { sk: '← Späť', en: '← Back' };
-  var BACK_MSG = { sk: 'Hlavné menu – s čím ti môžem pomôcť?', en: 'Main menu — how can I help you?' };
+  var BACK_MSG = { sk: 'Ahoj! 👋 S čím ti môžem pomôcť?', en: 'Hi! 👋 How can I help you?' };
 
   var UI = {
     sk: {
