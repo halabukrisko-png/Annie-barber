@@ -73,7 +73,7 @@
         picked = new Date(view.getFullYear(), view.getMonth(), +b.dataset.d);
       }
       draw();
-      var m = wrap.closest('#bb-msgs'); if (m) m.scrollTop = m.scrollHeight;
+      var sub = wrap.querySelector('.bb-slots, .bb-cal-note'); if (sub && sub.scrollIntoView) sub.scrollIntoView({ block: 'nearest' });
     });
     draw();
     return wrap;
@@ -391,7 +391,17 @@
 
     if (window.I18N && I18N.makeSwitch) box.querySelector('#bb-lang').appendChild(I18N.makeSwitch('margin-left:auto;'));
     var msgs = box.querySelector('#bb-msgs');
-    msgs.addEventListener('load', function () { msgs.scrollTop = msgs.scrollHeight; }, true);
+    // Scrolling: a new message is scrolled into view (its top, if it is long) only until the
+    // user scrolls by hand — after that the view stays exactly where they left it.
+    var follow = true, last = null;
+    function reveal() {
+      if (!follow || !last) return;
+      msgs.scrollTop = Math.min(msgs.scrollHeight - msgs.clientHeight, last.offsetTop - msgs.offsetTop - 8);
+    }
+    ['wheel', 'touchmove', 'mousedown'].forEach(function (ev) {
+      msgs.addEventListener(ev, function () { follow = false; }, { passive: true });
+    });
+    msgs.addEventListener('load', reveal, true);
     var chips = box.querySelector('#bb-chips');
     var input = box.querySelector('#bb-input');
     var started = false;
@@ -404,7 +414,9 @@
       else if (typeof html === 'string') d.innerHTML = html;
       else { d.classList.add('cal'); d.appendChild(html); }
       msgs.appendChild(d);
-      msgs.scrollTop = msgs.scrollHeight;
+      follow = true;
+      last = d;
+      reveal();
     }
     function reply(id) {
       var l = lang();
@@ -414,7 +426,9 @@
       dots.className = 'bb-m bot typing';
       dots.innerHTML = '<i></i><i></i><i></i>';
       msgs.appendChild(dots);
-      msgs.scrollTop = msgs.scrollHeight;
+      follow = true;
+      last = dots;
+      reveal();
       var wait = Math.min(1100, 450 + size * 1.2);
       setTimeout(function () {
         if (dots.parentNode) dots.parentNode.removeChild(dots);
