@@ -145,6 +145,7 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
+<script src="i18n.js"></script>
 </head>
 <body>
 <div id="page-veil"></div>
@@ -621,8 +622,8 @@
     var badge = document.getElementById('hero-badge');
     if (!l1 || !l2) return;
     var textLogo = 'BARBERIS';
-    var text1 = 'TVOJ ŠTÝL.';
-    var text2 = 'TVOJ BARBER.';
+    var text1 = T('TVOJ ŠTÝL.');
+    var text2 = T('TVOJ BARBER.');
     var speed = 95;
     var speedLogo = 70;
     var l = 0, i = 0, j = 0;
@@ -678,6 +679,14 @@
         onTyperDone();
       }
     }
+    window.addEventListener('langchange', function () {
+      text1 = T('TVOJ ŠTÝL.');
+      text2 = T('TVOJ BARBER.');
+      i = text1.length;
+      j = text2.length;
+      l1.textContent = text1;
+      l2.textContent = text2;
+    });
     if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
       if (logo) logo.textContent = textLogo;
       l1.textContent = text1;
@@ -709,7 +718,7 @@
           });
         });
         toggle.setAttribute('aria-expanded', 'true');
-        toggle.textContent = 'Zobraziť menej ↑';
+        toggle.textContent = T('Zobraziť menej ↑');
         setTimeout(function () { more.style.maxHeight = 'none'; }, 600);
       } else {
         more.style.maxHeight = more.scrollHeight + 'px';
@@ -720,7 +729,7 @@
           });
         });
         toggle.setAttribute('aria-expanded', 'false');
-        toggle.textContent = 'Zobraziť viac recenzií ↓';
+        toggle.textContent = T('Zobraziť viac recenzií ↓');
         setTimeout(function () {
           if (!more.classList.contains('in-view')) more.style.display = 'none';
         }, 600);
