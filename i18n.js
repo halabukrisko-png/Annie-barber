@@ -163,7 +163,7 @@
     'Na tento deň už nie sú voľné termíny.': 'No appointments are available for this day anymore.',
     'Zobrazené len voľné časy': 'Only available times are shown',
     'Nedeľa zatvorené · Sobota do 13:00': 'Closed on Sunday · Saturday until 1:00 PM',
-    'Po odoslaní ťa telefonicky alebo SMS správou potvrdíme na zadané číslo. Ak by niečo, ozveme sa ti.': 'After you submit, we will confirm by phone or SMS to the number you provided. If anything comes up, we will get in touch.',
+    'Po odoslaní ti termín potvrdíme e-mailom na zadanú adresu. Ak by niečo, ozveme sa ti.': 'After you submit, we will confirm your appointment by e-mail to the address you provided. If anything comes up, we will get in touch.',
     'Zrušiť alebo zmeniť termín': 'Cancel or change appointment',
     'Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.': 'Need to change or cancel your appointment? Call us directly — we will gladly find you a new time.',
     'Zavolať kvôli zmene termínu': 'Call to change your appointment',
@@ -172,7 +172,6 @@
     'Nasledujúci mesiac': 'Next month',
     'Tvoje meno': 'Your name',
     'Telefón': 'Phone',
-    'E-mail (nepovinné)': 'E-mail (optional)',
 
     // instagram
     'Sleduj najnovšie strihy a atmosféru u nás.': 'Follow our latest cuts and atmosphere.',

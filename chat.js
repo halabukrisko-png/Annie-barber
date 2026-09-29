@@ -40,10 +40,10 @@
       keys: ['rezerv', 'objedn', 'termin', 'book', 'appointment', 'reserv', 'order', 'volny', 'available'],
       chip: { sk: 'Rezervácia', en: 'Book a time' },
       sk: function () {
-        return 'Termín si môžeš zarezervovať online – vyberieš barbera, službu, dátum a čas a potvrdíme ti ho telefonicky alebo SMS.<br><a href="' + BOOK + '">Zarezervovať termín →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>, prípadne nám napíš na <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
+        return 'Termín si môžeš zarezervovať online – vyberieš barbera, službu, dátum a čas a termín ti potvrdíme e-mailom.<br><a href="' + BOOK + '">Zarezervovať termín →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>, prípadne nám napíš na <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
       },
       en: function () {
-        return 'You can book online — choose a barber, a service, a date and a time, and we will confirm it by phone or SMS.<br><a href="' + BOOK + '">Book an appointment →</a><br><br>Or call <a href="' + TEL + '">' + PHONE + '</a>, or message us on <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
+        return 'You can book online — choose a barber, a service, a date and a time, and we will confirm it by e-mail.<br><a href="' + BOOK + '">Book an appointment →</a><br><br>Or call <a href="' + TEL + '">' + PHONE + '</a>, or message us on <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
       }
     },
     location: {
