@@ -230,6 +230,7 @@
   window.LANG = function () { return lang; };
   window.T = T;
   window.I18N = {
+    makeSwitch: function (s) { var w = makeSwitch(s); setTimeout(updateSwitchers, 0); return w; },
     months: function () { return MONTHS[lang]; },
     days: function () { return DAYS[lang]; },
     // "Monday 5. 10." / "Monday, Oct 5"

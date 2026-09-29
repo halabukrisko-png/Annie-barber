@@ -96,6 +96,69 @@
         return 'Call: <a href="' + TEL + '">' + PHONE + '</a><br>Instagram: <a href="' + IG + '" target="_blank" rel="noopener">@barberis</a><br>Facebook: <a href="https://facebook.com/barberisprievidza" target="_blank" rel="noopener">Barberis</a>';
       }
     },
+    kids: {
+      keys: ['detsk', 'kids', 'child', 'dieta', 'deti'],
+      chip: { sk: 'Detský strih', en: 'Kids’ haircut' },
+      sk: function () { return '<b>Detský strih do 12 rokov</b> – 15 €.<br><a href="' + BOOK + '">Zarezervovať termín →</a>'; },
+      en: function () { return '<b>Kids’ haircut up to 12 years</b> – €15.<br><a href="' + BOOK + '">Book an appointment →</a>'; }
+    },
+    fade: {
+      keys: ['fade', 'prechod'],
+      chip: { sk: 'Fade', en: 'Fade' },
+      sk: function () { return '<b>Fade</b> – 20 €. Precízny prechod a čisté línie.<br><a href="' + BOOK + '">Zarezervovať termín →</a>'; },
+      en: function () { return '<b>Fade</b> – €20. A precise blend and clean lines.<br><a href="' + BOOK + '">Book an appointment →</a>'; }
+    },
+    beard: {
+      keys: ['brad', 'beard', 'holen', 'shave', 'farben', 'coloring', 'colouring'],
+      chip: { sk: 'Brada', en: 'Beard' },
+      sk: function () { return '<b>Úprava brady</b> – 15 € (tvarovanie, kontúry a finálna úprava)<br><b>Strih + brada</b> – 30 €<br><b>Holenie hlavy + úprava brady</b> – 25 €<br><b>Farbenie brady</b> – 5 – 10 €'; },
+      en: function () { return '<b>Beard trim</b> – €15 (shaping, contours and final finish)<br><b>Haircut + beard</b> – €30<br><b>Head shave + beard trim</b> – €25<br><b>Beard coloring</b> – €5 – 10'; }
+    },
+    ornament: {
+      keys: ['ornament', 'kreativ', 'creative', 'design', 'vzor'],
+      chip: { sk: 'Ornament', en: 'Ornament' },
+      sk: function () { return '<b>Ornament</b> – kreatívny detail vytvorený presne podľa tvojho želania, cena dohodou. Ornamentálne strihy sú špecialitou Karvyho.'; },
+      en: function () { return '<b>Ornament</b> – a creative detail made exactly to your wishes, price by agreement. Ornamental cuts are Karvy’s specialty.'; }
+    },
+    skin: {
+      keys: ['plet', 'facial', 'skin', 'pokozk'],
+      chip: { sk: 'Čistenie pleti', en: 'Facial cleansing' },
+      sk: function () { return '<b>Čistenie pleti</b> – od 10 €.'; },
+      en: function () { return '<b>Facial cleansing</b> – from €10.'; }
+    },
+    includes: {
+      keys: ['zahrn', 'obsahuj', 'include', 'styling', 'wash', 'umyt', 'oboc', 'eyebrow'],
+      chip: { sk: 'Čo zahŕňa strih', en: 'What’s included' },
+      sk: function () { return 'Každý strih zahŕňa umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling. 💈'; },
+      en: function () { return 'Every haircut includes a hair wash, eyebrow shaping, nose and ear hair removal and final styling. 💈'; }
+    },
+    anett: {
+      keys: ['anett', 'annet', 'zakladat', 'founder'],
+      sk: function () { return '<b>Anett</b> – zakladateľka BARBERIS. Barberingu sa venuje takmer 7 rokov a najviac ju baví práca s ľuďmi.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return '<b>Anett</b> – founder of BARBERIS. She has been barbering for almost 7 years and enjoys working with people the most.<br><a href="' + BOOK + '">Book now →</a>'; }
+    },
+    karvy: {
+      keys: ['karvy', 'karvi'],
+      sk: function () { return '<b>Karvy</b> – barber s 6 rokmi skúseností, špecialista na ornamentálnu tvorbu a jeden z našich showmanov. Vie postarať o dobrú náladu v kresle. 😄<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return '<b>Karvy</b> – a barber with 6 years of experience, an ornamental work specialist and one of our showmen. He knows how to keep the mood good in the chair. 😄<br><a href="' + BOOK + '">Book now →</a>'; }
+    },
+    vladis: {
+      keys: ['vladis'],
+      sk: function () { return '<b>Vladis</b> – barber so 4 rokmi skúseností. Dbá na kvalitnú, precíznu prácu a spokojného zákazníka.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return '<b>Vladis</b> – a barber with 4 years of experience. He cares about quality, precise work and a satisfied customer.<br><a href="' + BOOK + '">Book now →</a>'; }
+    },
+    cosmetics: {
+      keys: ['kozmet', 'cosmetic', 'produkt', 'product', 'vosk', 'wax'],
+      chip: { sk: 'Kozmetika', en: 'Cosmetics' },
+      sk: function () { return 'Používame kvalitnú profesionálnu kozmetiku, ktorú starostlivo vyberáme s dôrazom na zdravie vlasov, pokožky a brady.'; },
+      en: function () { return 'We use quality professional cosmetics, carefully chosen with an emphasis on the health of hair, skin and beard.'; }
+    },
+    atmosphere: {
+      keys: ['atmosfer', 'atmosphere', 'vibe', 'kava', 'coffee', 'pokec'],
+      chip: { sk: 'Atmosféra', en: 'Atmosphere' },
+      sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="o-nas.html">O nás →</a>'; },
+      en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="o-nas.html">About us →</a>'; }
+    },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],
       sk: function () { return 'Ahoj! 👋 S čím ti môžem pomôcť?'; },
@@ -107,8 +170,8 @@
       en: function () { return 'You are welcome! We look forward to seeing you in the chair. 💈'; }
     }
   };
-  var ORDER = ['change', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
-  var CHIPS = ['prices', 'hours', 'booking', 'location', 'team', 'contact'];
+  var ORDER = ['change', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
+  var CHIPS = ['prices', 'hours', 'booking', 'location', 'kids', 'beard', 'fade', 'ornament', 'skin', 'includes', 'team', 'atmosphere', 'cosmetics', 'contact', 'change'];
 
   var UI = {
     sk: {
@@ -150,13 +213,13 @@
     '#bb-chat header{display:flex;align-items:center;justify-content:space-between;padding:8px 10px 8px 12px;border-bottom:1px solid rgba(244,237,225,0.07);background:linear-gradient(180deg,rgba(201,160,106,0.14),rgba(201,160,106,0));}' +
     '#bb-chat header b{display:block;font-family:"Fraunces",serif;font-size:12px;letter-spacing:0.03em;}' +
     '#bb-chat header span{display:flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(244,237,225,0.55);}#bb-chat header span::before{content:"";width:5px;height:5px;border-radius:50%;background:#6fbf73;}' +
-    '#bb-chat header button{background:none;border:none;color:rgba(244,237,225,0.7);font-size:18px;line-height:1;cursor:pointer;width:22px;height:22px;border-radius:50%;padding:0;transition:background .2s ease;}#bb-chat header button:hover{background:rgba(244,237,225,0.1);}' +
-    '#bb-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
+    '#bb-chat header>button{background:none;border:none;color:rgba(244,237,225,0.7);font-size:18px;line-height:1;cursor:pointer;width:22px;height:22px;border-radius:50%;padding:0;transition:background .2s ease;}#bb-chat header>button:hover{background:rgba(244,237,225,0.1);}' +
+    '#bb-lang{margin-left:auto;margin-right:6px;}#bb-lang .lang-switch button{padding:2px 5px;font-size:10px;}#bb-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
     '.bb-m{max-width:90%;padding:6px 10px;border-radius:12px;font-size:11.5px;line-height:1.45;}' +
     '.bb-m a{color:#c9a06a;text-decoration:underline;}' +
     '.bb-m.bot{background:#241f1a;color:#cfc6b8;align-self:flex-start;border-bottom-left-radius:4px;}' +
     '.bb-m.me{background:linear-gradient(145deg,#dcb883,#c9a06a);color:#141311;align-self:flex-end;border-bottom-right-radius:4px;}' +
-    '#bb-chips{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px 8px;}' +
+    '#bb-chips{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px 8px;max-height:64px;overflow-y:auto;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
     '#bb-chips button{background:none;border:1px solid rgba(201,160,106,0.55);color:#c9a06a;border-radius:999px;padding:3px 8px;font:inherit;font-size:10px;cursor:pointer;}' +
     '#bb-form{display:flex;gap:5px;padding:7px;border-top:1px solid rgba(244,237,225,0.07);}' +
     '#bb-form input{flex:1;min-width:0;background:rgba(244,237,225,0.05);border:1px solid rgba(244,237,225,0.1);border-radius:999px;color:#f4ede1;padding:6px 11px;font:inherit;font-size:16px;outline:none;transition:border-color .2s ease;}#bb-form input:focus{border-color:rgba(201,160,106,0.6);}' +
@@ -202,12 +265,13 @@
     box.id = 'bb-chat';
     box.setAttribute('role', 'dialog');
     box.innerHTML =
-      '<header><div><b id="bb-title"></b><span id="bb-sub"></span></div><button type="button" id="bb-x">&times;</button></header>' +
+      '<header><div><b id="bb-title"></b><span id="bb-sub"></span></div><div id="bb-lang"></div><button type="button" id="bb-x">&times;</button></header>' +
       '<div id="bb-msgs" aria-live="polite"></div><div id="bb-chips"></div>' +
       '<form id="bb-form" autocomplete="off"><input id="bb-input" type="text" maxlength="200"><button type="submit" id="bb-send"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button></form>';
     document.body.appendChild(box);
     document.body.appendChild(btn);
 
+    if (window.I18N && I18N.makeSwitch) box.querySelector('#bb-lang').appendChild(I18N.makeSwitch('margin-left:auto;'));
     var msgs = box.querySelector('#bb-msgs');
     var chips = box.querySelector('#bb-chips');
     var input = box.querySelector('#bb-input');
