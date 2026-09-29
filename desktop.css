@@ -4,11 +4,11 @@
 .dnav { display: none; }
 
 @media (min-width: 900px) {
-  :root { --gutter: max(48px, calc((100vw - 1200px) / 2)); }
+  :root { --gutter: max(48px, calc((100vw - 1400px) / 2)); }
 
   /* ---------- container: full-bleed backgrounds, 1200px content ---------- */
   .wrap { max-width: none; }
-  .wrap > div { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .wrap > div { width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto; }
   .wrap > #hero,
   .wrap > #intro,
   .wrap > div.reveal-stagger,
@@ -16,7 +16,7 @@
   .wrap > div[style*="position:relative;background:#141311"],
   .wrap > .topbar { max-width: none; }
   .wrap > div[style*="position:relative;background:#141311"] > div:last-child > * {
-    width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;
+    width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto;
   }
 
   /* ---------- navigation: horizontal menu instead of hamburger ---------- */
@@ -33,13 +33,13 @@
   .lang-switch button { font-size: 12.5px !important; }
 
   /* ---------- hero ---------- */
-  #hero { height: min(92vh, 900px) !important; min-height: 640px; }
-  #hero > img { object-position: 50% 20% !important; }
+  #hero { height: min(88vh, 820px) !important; min-height: 600px; }
+  #hero > img { object-position: 50% 30% !important; }
   #hero > div[style*="padding:12px 20px 0"] { padding: 28px var(--gutter) 0 !important; }
   #hero > div[style*="padding:12px 20px 0"] span { font-size: 14px !important; }
-  #hero > div[style*="padding:0 24px 20px"] { padding: 0 var(--gutter) 72px !important; gap: 26px !important; }
-  #hero h1 { font-size: clamp(56px, 6.4vw, 92px) !important; }
-  #hero p { font-size: 20px !important; max-width: 540px !important; }
+  #hero > div[style*="padding:0 24px 20px"] { padding: 0 var(--gutter) 56px !important; gap: 26px !important; }
+  #hero h1 { font-size: clamp(44px, 4.6vw, 68px) !important; }
+  #hero p { font-size: 17px !important; max-width: 540px !important; }
   #hero div[style*="flex-direction:column;gap:10px;margin:6px auto 0"] {
     flex-direction: row !important; margin: 6px 0 0 !important; max-width: 560px !important; gap: 16px !important;
   }
@@ -49,8 +49,8 @@
   #intro { padding-top: 40px !important; }
   #intro > div:first-child { padding: 0 var(--gutter) !important; }
   #intro > div:nth-child(2) { padding: 40px 26px 0 !important; gap: 24px !important; }
-  #intro > div:nth-child(2) > h2 { font-size: 64px !important; }
-  #intro > div:nth-child(2) > p { font-size: 18px !important; line-height: 1.7 !important; max-width: 760px; margin: 0 auto !important; text-align: center; }
+  #intro > div:nth-child(2) > h2 { font-size: 48px !important; }
+  #intro > div:nth-child(2) > p { font-size: 16px !important; line-height: 1.7 !important; max-width: 760px; margin: 0 auto !important; text-align: center; }
   #intro > div:nth-child(2) > div:last-child { font-size: 14px !important; padding: 20px 0 !important; margin: 16px -26px 0 !important; }
   .drive-in { transform: translateX(-110vw); }
   .drive-in.in-view { transform: translateX(0); }
@@ -60,7 +60,7 @@
   #services { padding-top: 84px !important; }
   #team { padding-top: 96px !important; }
   #reviews { padding-top: 84px !important; }
-  #services h2, #team h2, #reviews h2, #booking > div > h2 { font-size: 40px !important; line-height: 1.15 !important; }
+  #services h2, #team h2, #reviews h2, #booking > div > h2 { font-size: 32px !important; line-height: 1.15 !important; }
   #services > div:first-child, #team > div:first-child, #reviews > div:first-child { font-size: 13px !important; }
   #services > p, #team > p, #reviews > p { font-size: 17px !important; max-width: 640px; margin-left: auto !important; margin-right: auto !important; }
 
@@ -79,7 +79,7 @@
   .service-card div { font-size: 15px !important; }
 
   /* ---------- team ---------- */
-  .team-grid { gap: 32px; padding-left: 48px !important; padding-right: 48px !important; padding-top: 40px !important; max-width: 1000px !important; }
+  .team-grid { gap: 32px; padding-left: 48px !important; padding-right: 48px !important; padding-top: 40px !important; max-width: 900px !important; }
   .team-frame { padding: 10px; }
   .team-caption h3 { font-size: 22px; }
   .team-caption .role { font-size: 12px; margin-top: 4px; }
@@ -107,13 +107,13 @@
   #booking > div[style*="padding:0 24px"] { padding: 0 48px !important; }
   #booking > div > div[style*="margin-top:54px"] { margin-top: 80px !important; }
   #booking div[style*="aspect-ratio:1468/2000"] {
-    aspect-ratio: auto !important; min-height: 560px; padding: 56px 64px !important; justify-content: center !important;
+    aspect-ratio: auto !important; min-height: 460px; padding: 48px 56px !important; justify-content: center !important;
   }
   #booking div[style*="aspect-ratio:1468/2000"] > img { object-position: 50% 30% !important; }
   #booking div[style*="aspect-ratio:1468/2000"] > div[style*="linear-gradient"] {
     background: linear-gradient(90deg, rgba(20,19,17,0.95) 0%, rgba(20,19,17,0.75) 42%, rgba(20,19,17,0.1) 75%, rgba(20,19,17,0.35) 100%) !important;
   }
-  #booking div[style*="aspect-ratio:1468/2000"] h2 { font-size: 52px !important; }
+  #booking div[style*="aspect-ratio:1468/2000"] h2 { font-size: 40px !important; }
   #booking div[style*="aspect-ratio:1468/2000"] p { font-size: 18px !important; max-width: 460px !important; }
   #booking div[style*="aspect-ratio:1468/2000"] a.btn-cta { max-width: 360px; font-size: 14px !important; }
   .booking-badge { font-size: 12px; top: 24px; right: 24px; }
@@ -122,9 +122,9 @@
   .contact-frame { display: grid; grid-template-columns: 1.25fr 1fr; column-gap: 28px; padding: 0 40px 40px; align-items: start; }
   .contact-frame > * { min-width: 0; }
   .contact-frame > div:first-child, .contact-frame > .scroll-line-wrap { grid-column: 1 / -1; }
-  .contact-frame > div:first-child h2 { font-size: 40px !important; }
+  .contact-frame > div:first-child h2 { font-size: 32px !important; }
   .contact-frame > div:first-child p { font-size: 17px !important; max-width: 520px !important; }
-  .map-frame { grid-column: 1; grid-row: 2 / span 2; height: 100%; min-height: 460px; margin-top: 28px; }
+  .map-frame { grid-column: 1; grid-row: 2 / span 2; height: 100%; min-height: 400px; margin-top: 28px; }
   .contact-actions { grid-column: 2; grid-row: 2; margin-top: 28px; gap: 14px; }
   .hours-card { grid-column: 2; grid-row: 3; margin-top: 14px; padding: 26px 24px 20px; }
   .contact-action { padding: 22px 8px 20px; }
@@ -138,7 +138,7 @@
 
   /* ---------- gallery ---------- */
   .full-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 44px 48px 0 !important; }
-  .full-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .full-grid { max-width: 1400px; margin-left: auto; margin-right: auto; }
   .photo-frame { padding: 10px; }
   .lightbox-nav { width: 56px; height: 56px; font-size: 22px; }
   .lightbox-prev { left: 40px; }
@@ -150,7 +150,7 @@
   h1[class*="reveal"] { font-size: 48px !important; }
 
   /* ---------- about page ---------- */
-  .wrap > div[style*="padding:36px 24px 0;text-align:center"] h1 { font-size: 44px !important; }
+  .wrap > div[style*="padding:36px 24px 0;text-align:center"] h1 { font-size: 36px !important; }
   .wrap > div.reveal-stagger { padding: 90px 0 70px !important; }
   .wrap > div.reveal-stagger > div > div:last-child { max-width: 860px; margin: 0 auto; gap: 22px !important; text-align: center; }
   .wrap > div.reveal-stagger p { font-size: 19px !important; line-height: 1.7 !important; }
@@ -158,7 +158,7 @@
   .wrap > div > .bio-card.reveal { max-width: 860px; padding: 40px 48px; }
   .bio-card.reveal h2 { font-size: 30px !important; }
   .bio-card.reveal p { font-size: 17px; }
-  #booking-calendar { max-width: 760px; margin-left: auto; margin-right: auto; padding: 32px 36px 36px; }
+  #booking-calendar { max-width: 720px; margin-left: auto; margin-right: auto; padding: 32px 36px 36px; }
   .booking-calendar .step-label { font-size: 13px; }
   .svc-grid { grid-template-columns: repeat(3, 1fr); }
   .barber-grid { grid-template-columns: repeat(4, 1fr); }
@@ -172,6 +172,6 @@
 }
 
 @media (min-width: 1280px) {
-  #hero h1 { font-size: 92px !important; }
+  #hero h1 { font-size: 68px !important; }
   .full-grid { gap: 32px; }
 }
