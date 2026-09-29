@@ -188,10 +188,13 @@
     main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],
     booking: ['change', '_back'],
     change: ['booknew', '_back'],
+    hours: ['booking', 'location', '_back'],
+    location: ['hours', 'contact', '_back'],
+    contact: ['booking', 'location', '_back'],
     about: ['team', '_back'],
     services: ['prices', '_back']
   };
-  var SUBMENU = { booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
+  var SUBMENU = { hours: 'hours', location: 'location', contact: 'contact', booking: 'booking', booknew: 'booking', change: 'change', about: 'about', services: 'services' };
   var BACK = { sk: '← Späť', en: '← Back' };
   var BACK_MSG = { sk: 'Hlavné menu – s čím ti môžem pomôcť?', en: 'Main menu — how can I help you?' };
 
