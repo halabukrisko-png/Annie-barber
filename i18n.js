@@ -342,9 +342,9 @@
     var s = document.createElement('style');
     s.textContent =
       '.lang-switch{display:inline-flex;align-items:center;gap:2px;font-family:inherit;}' +
-      '.lang-switch button{background:none;border:none;padding:4px 6px;font:inherit;font-size:11.5px;font-weight:600;letter-spacing:0.1em;color:rgba(43,23,20,0.55);cursor:pointer;}' +
-      '.lang-switch button+button{border-left:1px solid rgba(43,23,20,0.22);}' +
-      '.lang-switch button.active{color:var(--bronze,#2B1714);}';
+      '.lang-switch button{background:none;border:none;padding:4px 6px;font:inherit;font-size:11.5px;font-weight:600;letter-spacing:0.1em;color:rgba(244,237,225,0.55);cursor:pointer;}' +
+      '.lang-switch button+button{border-left:1px solid rgba(244,237,225,0.22);}' +
+      '.lang-switch button.active{color:var(--bronze,#c49a7a);}';
     document.head.appendChild(s);
   }
 
