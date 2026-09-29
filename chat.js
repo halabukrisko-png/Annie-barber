@@ -5,7 +5,7 @@
   var PHONE = '0951 833 488';
   var TEL = 'tel:+421951833488';
   var MAPS = 'https://maps.google.com/?q=Hurbana+4,+Prievidza';
-  var IG = 'https://instagram.com/barberis';
+  var IG = 'https://www.instagram.com/_barberis._/';
   var BOOK = 'o-nas.html#booking';
 
   var HOURS = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
@@ -156,10 +156,10 @@
       keys: ['kontakt', 'telef', 'cislo', 'zavol', 'napis', 'instagram', 'facebook', 'mail', 'contact', 'phone', 'call', 'number', 'message', 'dm'],
       chip: { sk: 'Kontakt', en: 'Contact' },
       sk: function () {
-        return 'Zavolaj: <a href="' + TEL + '">' + PHONE + '</a><br>Instagram: <a href="' + IG + '" target="_blank" rel="noopener">@barberis</a><br>Facebook: <a href="https://facebook.com/barberisprievidza" target="_blank" rel="noopener">Barberis</a>';
+        return 'Zavolaj: <a href="' + TEL + '">' + PHONE + '</a><br>Instagram: <a href="' + IG + '" target="_blank" rel="noopener">@_barberis._</a><br>Facebook: <a href="https://www.facebook.com/p/BARBERIS-100077906015748/" target="_blank" rel="noopener">Barberis</a>';
       },
       en: function () {
-        return 'Call: <a href="' + TEL + '">' + PHONE + '</a><br>Instagram: <a href="' + IG + '" target="_blank" rel="noopener">@barberis</a><br>Facebook: <a href="https://facebook.com/barberisprievidza" target="_blank" rel="noopener">Barberis</a>';
+        return 'Call: <a href="' + TEL + '">' + PHONE + '</a><br>Instagram: <a href="' + IG + '" target="_blank" rel="noopener">@_barberis._</a><br>Facebook: <a href="https://www.facebook.com/p/BARBERIS-100077906015748/" target="_blank" rel="noopener">Barberis</a>';
       }
     },
     kids: {

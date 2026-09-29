@@ -130,7 +130,7 @@
     'NA NOVÝ LOOK?': 'A NEW LOOK?',
     'Vyber si termín, sadni do kresla a zvyšok nechaj na nás.': 'Pick a time, sit in the chair and leave the rest to us.',
     'a napíš na': 'or message us on',
-    'Instagram @barberis': 'Instagram @barberis',
+    'Instagram @_barberis._': 'Instagram @_barberis._',
 
     // about page
     'Nie každý prichádza do barberu na hodinový pokec. Niekto chce prebrať život,': 'Not everyone comes to the barber for an hour-long chat. Some want to talk about life,',
