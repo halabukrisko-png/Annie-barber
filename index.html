@@ -11,7 +11,7 @@
     --card: #1a1815;
     --cream: #f4ede1;
     --cream-dim: #cfc6b8;
-    --bronze: #c9a06a;
+    --bronze: #2B1714;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
@@ -57,9 +57,9 @@
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
-  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
+  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color:#f4ede1; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
-  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); cursor: zoom-in; }
+  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(43,23,20,0.3); cursor: zoom-in; }
   .svc-lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(10,9,8,0.95); display: none; align-items: center; justify-content: center; padding: 24px; }
   .svc-lightbox.open { display: flex; }
   .svc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7); }
@@ -76,24 +76,24 @@
   .team-caption { padding: 9px 3px 3px; text-align: center; }
   .team-caption h3 { font-size: 12.5px; }
   .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
-  .tap-hint { position: absolute; right: 7px; bottom: 7px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(20,19,17,0.7); backdrop-filter: blur(2px); border: 1px solid rgba(201,160,106,0.4); border-radius: 50%; animation: tapPulse 2.2s ease-in-out infinite; pointer-events: none; }
+  .tap-hint { position: absolute; right: 7px; bottom: 7px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(20,19,17,0.7); backdrop-filter: blur(2px); border: 1px solid rgba(43,23,20,0.4); border-radius: 50%; animation: tapPulse 2.2s ease-in-out infinite; pointer-events: none; }
   .tap-hint svg { width: 10px; height: 10px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
-  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(201,160,106,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
-  .bio-close:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
-  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color: #141311; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
+  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(43,23,20,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .bio-close:hover { background: rgba(43,23,20,0.14); border-color: var(--bronze); }
+  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color:#f4ede1; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
   .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
-  .contact-frame { margin-top: 0; border: 1px solid rgba(201,160,106,0.45); box-shadow: 0 0 10px rgba(201,160,106,0.2); border-radius: 4px; padding: 0 14px 14px; background: var(--bg); overflow: hidden; }
+  .contact-frame { margin-top: 0; border: 1px solid rgba(43,23,20,0.45); box-shadow: 0 0 10px rgba(43,23,20,0.2); border-radius: 4px; padding: 0 14px 14px; background: var(--bg); overflow: hidden; }
   .contact-frame .scroll-line-wrap { margin-top: 0; }
   .map-frame { position: relative; margin-top: 22px; height: 260px; overflow: hidden; border-radius: 2px; background: #1a1815; }
   .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.92) sepia(0.25) contrast(0.9) brightness(0.95); }
   .map-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(20,19,17,0) 45%, rgba(20,19,17,0.92) 100%); pointer-events: none; }
   .map-info { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 14px; }
-  .map-nav { flex: 0 0 auto; background: var(--bronze); color: #141311; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
+  .map-nav { flex: 0 0 auto; background: var(--bronze); color:#f4ede1; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
   .contact-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
   .contact-action { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 16px 6px 14px; color: var(--bronze); text-align: center; transition: border-color .2s; }
-  .contact-action:hover { border-color: rgba(201,160,106,0.5); }
+  .contact-action:hover { border-color: rgba(43,23,20,0.5); }
   .contact-action .ca-label { font-size: 12px; font-weight: 600; color: var(--cream); }
   .contact-action .ca-sub { font-size: 10px; color: var(--cream-dim); overflow-wrap: anywhere; }
   .hours-card { margin-top: 10px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 18px 16px 14px; }
@@ -103,17 +103,17 @@
   .hours-list li.today { color: var(--cream); font-weight: 600; }
   .hours-list li.today span:first-child::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--bronze); margin-right: 7px; transform: translateY(-2px); }
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
-  .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
+  .open-status.is-open { background: rgba(43,23,20,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
-  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
-  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
-  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
+  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(43,23,20,0.55); }
+  .btn-cta:hover { background: #3d211d; box-shadow: 0 10px 26px -6px rgba(43,23,20,0.7); transform: translateY(-2px); }
+  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(43,23,20,0.55); }
   .btn-cta-arrow { display: inline-block; transition: transform 0.25s ease; }
   .btn-cta:hover .btn-cta-arrow { transform: translateX(3px); }
-  .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(20,19,17,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(201,160,106,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
+  .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(20,19,17,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(43,23,20,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
   .booking-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #7cd68a; box-shadow: 0 0 6px #7cd68a; flex: 0 0 auto; }
   .btn-outline { transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(.16,.6,.2,1); }
-  .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze) !important; transform: translateY(-2px); }
+  .btn-outline:hover { background: rgba(43,23,20,0.1); border-color: var(--bronze) !important; transform: translateY(-2px); }
   .btn-outline:active { transform: translateY(0); }
   .row-link { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(244,237,225,0.08); transition: opacity 0.2s ease; }
   .row-link:hover { opacity: 0.75; }
@@ -179,7 +179,7 @@
         <a href="#contact"><span>04</span>Kontakt</a>
       </nav>
       <div class="nav-cta">
-        <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+        <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
       </div>
     </div>
 
@@ -193,7 +193,7 @@
       <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor-1"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="tw-cursor" id="tw-cursor-2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
       <p class="hero-fade-in" style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;animation-delay:0.65s;">Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.</p>
       <div class="hero-fade-in" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
-        <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+        <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
       </div>
     </div>
@@ -208,7 +208,7 @@
       <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
-      <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
+      <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(43,23,20,0.25);border-bottom:1px solid rgba(43,23,20,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
         </div>
@@ -231,7 +231,7 @@
       <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
       <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho strihu až po úpravu brady. Vyber si, čo ti sadne.</p>
       <div id="svc-list" style="display:flex;flex-direction:column;gap:10px;">
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(43,23,20,0.35);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-strih" style="display:inline-block;">Obľúbené</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-1.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -270,7 +270,7 @@
       </div>
 
       <div id="cennik-full" style="display:none;flex-direction:column;gap:0;margin-top:10px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:6px 16px 14px;">
-        <div style="margin-top:10px;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-radius:4px;background:rgba(201,160,106,0.03);padding:6px 12px;">
+        <div style="margin-top:10px;border:1px solid rgba(43,23,20,0.45);box-shadow:0 0 10px rgba(43,23,20,0.2);border-radius:4px;background:rgba(43,23,20,0.03);padding:6px 12px;">
           <ul class="price-list" style="list-style:none;margin:0;padding:0;">
             <li><span class="pl-name">Strih</span><span class="pl-price">20 €</span></li>
             <li><span class="pl-name">Kompletná úprava (strih + brada)</span><span class="pl-price">30 €</span></li>
@@ -283,8 +283,8 @@
         </div>
         <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
-      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
-      <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(43,23,20,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
+      <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#f4ede1;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
     <div style="margin-top:8px;padding:0 26px;">
@@ -497,7 +497,7 @@
   <div id="booking">
     <div style="padding:0 24px;">
       <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-      <div style="margin-top:54px;border:1px solid rgba(201,160,106,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
+      <div style="margin-top:54px;border:1px solid rgba(43,23,20,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
         <div style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
           <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
           <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
@@ -505,7 +505,7 @@
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
           <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ VZHĽAD?</h2>
           <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
-          <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+          <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         </div>
         <div style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
       </div>
@@ -728,7 +728,7 @@
     var rows = Array.prototype.slice.call(list.querySelectorAll('.svc-hover-row'));
     var defaultRow = list.querySelector('[data-badge-default]');
     var defaultBadge = defaultRow ? defaultRow.querySelector('.svc-badge') : null;
-    var ACTIVE_BORDER = 'rgba(201,160,106,0.35)';
+    var ACTIVE_BORDER = 'rgba(43,23,20,0.35)';
     var INACTIVE_BORDER = 'rgba(244,237,225,0.08)';
     function clearAll() {
       rows.forEach(function (r) {
