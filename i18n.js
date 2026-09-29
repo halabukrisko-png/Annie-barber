@@ -351,7 +351,14 @@
   function init() {
     injectStyles();
     var openBtn = document.getElementById('nav-open');
-    if (openBtn && openBtn.parentNode) openBtn.parentNode.insertBefore(makeSwitch(), openBtn);
+    if (openBtn && openBtn.parentNode) {
+      // keep the switch and the hamburger together, whatever the header layout is
+      var group = document.createElement('div');
+      group.style.cssText = 'display:flex;align-items:center;gap:12px;flex:0 0 auto;';
+      openBtn.parentNode.insertBefore(group, openBtn);
+      group.appendChild(makeSwitch());
+      group.appendChild(openBtn);
+    }
     var overlayTop = document.querySelector('.nav-overlay-top');
     var closeBtn = document.getElementById('nav-close');
     if (overlayTop && closeBtn) overlayTop.insertBefore(makeSwitch('margin-left:auto;margin-right:14px;'), closeBtn);
