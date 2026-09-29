@@ -145,8 +145,8 @@
   var css =
     '#bb-chat-btn{position:fixed;right:16px;bottom:16px;z-index:30;width:52px;height:52px;border-radius:50%;border:none;background:#c9a06a;color:#141311;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px rgba(0,0,0,0.45);}' +
     '#bb-chat-btn svg{width:24px;height:24px;}' +
-    '#bb-chat{position:fixed;right:16px;bottom:80px;z-index:30;width:min(360px,calc(100vw - 32px));height:min(480px,calc(100vh - 110px));display:none;flex-direction:column;background:#1a1815;color:#f4ede1;border:1px solid rgba(244,237,225,0.12);border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.55);overflow:hidden;font-family:"Work Sans",sans-serif;}' +
-    '#bb-chat.open{display:flex;}' +
+    '#bb-chat{position:fixed;right:16px;bottom:80px;z-index:30;width:min(360px,calc(100vw - 32px));height:min(480px,calc(100vh - 110px));display:flex;flex-direction:column;visibility:hidden;opacity:0;pointer-events:none;transform:translateY(14px) scale(.94);transform-origin:bottom right;transition:opacity .28s ease,transform .38s cubic-bezier(.22,1,.36,1),visibility 0s linear .38s;background:#1a1815;color:#f4ede1;border:1px solid rgba(244,237,225,0.12);border-radius:6px;box-shadow:0 12px 40px rgba(0,0,0,0.55);overflow:hidden;font-family:"Work Sans",sans-serif;}' +
+    '#bb-chat.open{visibility:visible;opacity:1;pointer-events:auto;transform:none;transition:opacity .28s ease,transform .38s cubic-bezier(.22,1,.36,1),visibility 0s;}' +
     '#bb-chat header{display:flex;align-items:center;justify-content:space-between;padding:12px 14px;border-bottom:1px solid rgba(244,237,225,0.08);background:#141311;}' +
     '#bb-chat header b{display:block;font-family:"Fraunces",serif;font-size:14px;letter-spacing:0.02em;}' +
     '#bb-chat header span{font-size:10.5px;color:rgba(244,237,225,0.55);}' +
@@ -161,7 +161,31 @@
     '#bb-form{display:flex;gap:8px;padding:10px;border-top:1px solid rgba(244,237,225,0.08);background:#141311;}' +
     '#bb-form input{flex:1;min-width:0;background:#1a1815;border:1px solid rgba(244,237,225,0.14);border-radius:3px;color:#f4ede1;padding:9px 10px;font:inherit;font-size:16px;}' +
     '#bb-form button{background:#c9a06a;color:#141311;border:none;border-radius:3px;padding:0 14px;font:inherit;font-size:12px;font-weight:700;letter-spacing:0.05em;cursor:pointer;}' +
-    '@media (prefers-reduced-motion:no-preference){#bb-chat.open{animation:bbIn .22s ease-out;}@keyframes bbIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}}';
+    '#bb-chat-btn{transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s ease;}' +
+    '#bb-chat-btn:hover{transform:scale(1.07);box-shadow:0 8px 26px rgba(0,0,0,0.5);}' +
+    '#bb-chat-btn:active{transform:scale(.94);}' +
+    '#bb-chat-btn .ic{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .25s ease;}' +
+    '#bb-chat-btn .ic-x{opacity:0;transform:rotate(-90deg) scale(.5);}' +
+    '#bb-chat-btn.open .ic-chat{opacity:0;transform:rotate(90deg) scale(.5);}' +
+    '#bb-chat-btn.open .ic-x{opacity:1;transform:none;}' +
+    '#bb-chat-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #c9a06a;opacity:0;pointer-events:none;}' +
+    '.bb-m.bot.typing{display:flex;gap:4px;align-items:center;padding:12px 14px;}' +
+    '.bb-m.typing i{width:6px;height:6px;border-radius:50%;background:#c9a06a;opacity:.45;}' +
+    '@media (prefers-reduced-motion:no-preference){' +
+      '#bb-chat-btn{animation:bbPop .6s cubic-bezier(.34,1.56,.64,1) 1.2s both;}' +
+      '#bb-chat-btn.attn::after{animation:bbRing 2.6s ease-out 2.2s infinite;}' +
+      '.bb-m{animation:bbMsg .42s cubic-bezier(.22,1,.36,1) both;}' +
+      '.bb-m.me{transform-origin:bottom right;}.bb-m.bot{transform-origin:bottom left;}' +
+      '.bb-m.typing i{animation:bbDot 1s ease-in-out infinite;}' +
+      '.bb-m.typing i:nth-child(2){animation-delay:.15s;}.bb-m.typing i:nth-child(3){animation-delay:.3s;}' +
+      '#bb-chips button{animation:bbChip .45s cubic-bezier(.22,1,.36,1) both;transition:background .2s ease,color .2s ease,transform .2s ease;}' +
+      '#bb-chips button:hover{background:#c9a06a;color:#141311;transform:translateY(-1px);}' +
+      '@keyframes bbPop{from{opacity:0;transform:scale(.3) translateY(20px);}to{opacity:1;transform:none;}}' +
+      '@keyframes bbRing{0%{opacity:.7;transform:scale(1);}70%,100%{opacity:0;transform:scale(1.7);}}' +
+      '@keyframes bbMsg{from{opacity:0;transform:translateY(10px) scale(.94);}to{opacity:1;transform:none;}}' +
+      '@keyframes bbDot{0%,60%,100%{transform:translateY(0);opacity:.4;}30%{transform:translateY(-4px);opacity:1;}}' +
+      '@keyframes bbChip{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}' +
+    '}';
 
   function build() {
     var style = document.createElement('style');
@@ -171,7 +195,8 @@
     var btn = document.createElement('button');
     btn.id = 'bb-chat-btn';
     btn.type = 'button';
-    btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>';
+    btn.classList.add('attn');
+    btn.innerHTML = '<span class="ic ic-chat"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg></span><span class="ic ic-x"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></span>';
 
     var box = document.createElement('div');
     box.id = 'bb-chat';
@@ -197,7 +222,17 @@
     }
     function reply(id) {
       var l = lang();
-      setTimeout(function () { add(id ? TOPICS[id][l]() : UI[l].fallback, 'bot'); }, 280);
+      var html = id ? TOPICS[id][l]() : UI[l].fallback;
+      var dots = document.createElement('div');
+      dots.className = 'bb-m bot typing';
+      dots.innerHTML = '<i></i><i></i><i></i>';
+      msgs.appendChild(dots);
+      msgs.scrollTop = msgs.scrollHeight;
+      var wait = Math.min(1100, 450 + html.length * 1.2);
+      setTimeout(function () {
+        if (dots.parentNode) dots.parentNode.removeChild(dots);
+        add(html, 'bot');
+      }, wait);
     }
     function renderChrome() {
       var l = lang();
@@ -214,11 +249,14 @@
         c.type = 'button';
         c.textContent = TOPICS[id].chip[l];
         c.addEventListener('click', function () { add(TOPICS[id].chip[l], 'me'); reply(id); });
+        c.style.animationDelay = (0.25 + chips.children.length * 0.06) + 's';
         chips.appendChild(c);
       });
     }
     function toggle(open) {
       box.classList.toggle('open', open);
+      btn.classList.toggle('open', open);
+      btn.classList.remove('attn');
       if (open) {
         if (!started) { started = true; add(UI[lang()].hello, 'bot'); }
         input.focus();
