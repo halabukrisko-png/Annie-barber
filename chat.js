@@ -115,10 +115,10 @@
       keys: ['kde', 'adres', 'ulic', 'prievidz', 'hurban', 'mapa', 'navig', 'where', 'address', 'location', 'map', 'find', 'directions', 'parking', 'parkov'],
       chip: { sk: 'Kde nás nájdeš', en: 'Where to find us' },
       sk: function () {
-        return '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
+        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
       },
       en: function () {
-        return '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
+        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
       }
     },
     services: {
