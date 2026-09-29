@@ -11,7 +11,7 @@
     --card: #361e1a;
     --cream: #f4ede1;
     --cream-dim: #cfc6b8;
-    --bronze: #f4ede1;
+    --bronze: #c9a06a;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
@@ -33,7 +33,7 @@
   .photo-frame {
     position: relative;
     padding: 8px 8px 8px;
-    border: 1px solid rgba(244,237,225,0.35);
+    border: 1px solid rgba(201,160,106,0.35);
     border-radius: 3px;
     box-shadow: 0 10px 24px -12px rgba(0,0,0,0.6);
   }
@@ -60,8 +60,8 @@
     letter-spacing: 0.04em;
     backdrop-filter: blur(2px);
   }
-  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(244,237,225,0.55); }
-  .btn-cta:hover { background: #ffffff; box-shadow: 0 10px 26px -6px rgba(244,237,225,0.7); transform: translateY(-2px); }
+  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
+  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .lightbox { position: fixed; inset: 0; z-index: 50; background: rgba(24,12,10,0.95); display: none; align-items: center; justify-content: center; padding: 24px; }
   .lightbox.open { display: flex; }
   .lightbox-frame { position: relative; max-width: 100%; max-height: 100%; padding: 10px; border: 1px solid rgba(244,237,225,0.28); border-radius: 6px; background: rgba(244,237,225,0.04); box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7); display: flex; }
@@ -95,15 +95,15 @@
   @media (prefers-reduced-motion: reduce) {
     #page-veil { display: none; }
   }
-  .btn-outline { display: block; text-align: center; border: 1px solid rgba(244,237,225,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
-  .btn-outline:hover { background: rgba(244,237,225,0.1); border-color: var(--bronze); }
+  .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
+  .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .ig-strip { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 24px; }
   .ig-strip img { display: block; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
   .ig-strip .ig-side { width: 26%; height: 130px; opacity: 0.5; }
-  .ig-strip .ig-main { width: 38%; height: 180px; border: 1px solid rgba(244,237,225,0.5); box-shadow: 0 0 26px rgba(244,237,225,0.22); }
-  .ig-arrow { flex: none; background: transparent; border: 1px solid rgba(244,237,225,0.35); color: var(--bronze); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
-  .ig-arrow:hover { background: rgba(244,237,225,0.14); border-color: var(--bronze); }
-  .contact-frame { border: 1px solid rgba(244,237,225,0.45); box-shadow: 0 0 10px rgba(244,237,225,0.2); border-radius: 4px; padding: 18px 14px 14px; background: var(--bg); }
+  .ig-strip .ig-main { width: 38%; height: 180px; border: 1px solid rgba(201,160,106,0.5); box-shadow: 0 0 26px rgba(201,160,106,0.22); }
+  .ig-arrow { flex: none; background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .ig-arrow:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
+  .contact-frame { border: 1px solid rgba(201,160,106,0.45); box-shadow: 0 0 10px rgba(201,160,106,0.2); border-radius: 4px; padding: 18px 14px 14px; background: var(--bg); }
   .map-frame { position: relative; margin-top: 16px; height: 260px; overflow: hidden; border-radius: 2px; background: #361e1a; }
   .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.92) sepia(0.25) contrast(0.9) brightness(0.95); }
   .map-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(43,23,20,0) 45%, rgba(43,23,20,0.92) 100%); pointer-events: none; }
@@ -111,7 +111,7 @@
   .map-nav { flex: 0 0 auto; background: var(--bronze); color: #2B1714; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
   .contact-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
   .contact-action { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 16px 6px 14px; color: var(--bronze); text-align: center; transition: border-color .2s; }
-  .contact-action:hover { border-color: rgba(244,237,225,0.5); }
+  .contact-action:hover { border-color: rgba(201,160,106,0.5); }
   .contact-action .ca-label { font-size: 12px; font-weight: 600; color: var(--cream); }
   .contact-action .ca-sub { font-size: 10px; color: var(--cream-dim); overflow-wrap: anywhere; }
   .hours-card { margin-top: 10px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 18px 16px 14px; }
@@ -121,7 +121,7 @@
   .hours-list li.today { color: var(--cream); font-weight: 600; }
   .hours-list li.today span:first-child::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--bronze); margin-right: 7px; transform: translateY(-2px); }
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
-  .open-status.is-open { background: rgba(244,237,225,0.15); color: var(--bronze); }
+  .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 
   /* Rámčeky a číslovanie sú len pre mobilné zobrazenie */
@@ -194,7 +194,7 @@
   <!-- INSTAGRAM -->
   <div style="padding:32px 24px 0;">
     <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-    <div style="margin-top:0;border:1px solid rgba(244,237,225,0.45);box-shadow:0 0 10px rgba(244,237,225,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
+    <div style="margin-top:0;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
       <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
         <span>Instagram</span>
