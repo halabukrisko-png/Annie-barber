@@ -1,0 +1,177 @@
+/* Desktop (PC) layout. Mobile styles stay in each page; everything here applies from 900px up.
+   Much of the mobile layout is inline, so a few rules need !important to override it. */
+
+.dnav { display: none; }
+
+@media (min-width: 900px) {
+  :root { --gutter: max(48px, calc((100vw - 1200px) / 2)); }
+
+  /* ---------- container: full-bleed backgrounds, 1200px content ---------- */
+  .wrap { max-width: none; }
+  .wrap > div { width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .wrap > #hero,
+  .wrap > #intro,
+  .wrap > div.reveal-stagger,
+  .wrap > div[style*="overflow:hidden;font-size:10.5px"],
+  .wrap > div[style*="position:relative;background:#141311"],
+  .wrap > .topbar { max-width: none; }
+  .wrap > div[style*="position:relative;background:#141311"] > div:last-child > * {
+    width: 100%; max-width: 1200px; margin-left: auto; margin-right: auto;
+  }
+
+  /* ---------- navigation: horizontal menu instead of hamburger ---------- */
+  #nav-open, .nav-overlay { display: none !important; }
+  .dnav { display: flex; align-items: center; gap: 34px; margin-left: auto; margin-right: 32px; }
+  .dnav a { font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-dim); transition: color .2s; }
+  .dnav a:hover { color: var(--bronze); }
+  .dnav .dnav-cta { color: #141311; background: var(--bronze); font-weight: 700; padding: 11px 20px; border-radius: 2px; letter-spacing: 0.07em; transition: background .2s, transform .2s; }
+  .dnav .dnav-cta:hover { color: #141311; background: #d8af78; transform: translateY(-1px); }
+  .topbar,
+  #hero > div[style*="position:sticky"] { height: 76px !important; padding-left: var(--gutter) !important; padding-right: var(--gutter) !important; }
+  #hero > div[style*="position:sticky"] a[href="#hero"] { font-size: 24px !important; }
+  .topbar > a:first-child { font-size: 22px !important; }
+  .lang-switch button { font-size: 12.5px !important; }
+
+  /* ---------- hero ---------- */
+  #hero { height: min(92vh, 900px) !important; min-height: 640px; }
+  #hero > img { object-position: 50% 20% !important; }
+  #hero > div[style*="padding:12px 20px 0"] { padding: 28px var(--gutter) 0 !important; }
+  #hero > div[style*="padding:12px 20px 0"] span { font-size: 14px !important; }
+  #hero > div[style*="padding:0 24px 20px"] { padding: 0 var(--gutter) 72px !important; gap: 26px !important; }
+  #hero h1 { font-size: clamp(56px, 6.4vw, 92px) !important; }
+  #hero p { font-size: 20px !important; max-width: 540px !important; }
+  #hero div[style*="flex-direction:column;gap:10px;margin:6px auto 0"] {
+    flex-direction: row !important; margin: 6px 0 0 !important; max-width: 560px !important; gap: 16px !important;
+  }
+  #hero div[style*="flex-direction:column;gap:10px;margin:6px auto 0"] a { flex: 1; padding: 19px 22px !important; font-size: 14px !important; }
+
+  /* ---------- intro ---------- */
+  #intro { padding-top: 40px !important; }
+  #intro > div:first-child { padding: 0 var(--gutter) !important; }
+  #intro > div:nth-child(2) { padding: 40px 26px 0 !important; gap: 24px !important; }
+  #intro > div:nth-child(2) > h2 { font-size: 64px !important; }
+  #intro > div:nth-child(2) > p { font-size: 18px !important; line-height: 1.7 !important; max-width: 760px; margin: 0 auto !important; text-align: center; }
+  #intro > div:nth-child(2) > div:last-child { font-size: 14px !important; padding: 20px 0 !important; margin: 16px -26px 0 !important; }
+  .drive-in { transform: translateX(-110vw); }
+  .drive-in.in-view { transform: translateX(0); }
+
+  /* ---------- section headings ---------- */
+  #services, #team, #reviews { padding-left: 48px !important; padding-right: 48px !important; }
+  #services { padding-top: 84px !important; }
+  #team { padding-top: 96px !important; }
+  #reviews { padding-top: 84px !important; }
+  #services h2, #team h2, #reviews h2, #booking > div > h2 { font-size: 40px !important; line-height: 1.15 !important; }
+  #services > div:first-child, #team > div:first-child, #reviews > div:first-child { font-size: 13px !important; }
+  #services > p, #team > p, #reviews > p { font-size: 17px !important; max-width: 640px; margin-left: auto !important; margin-right: auto !important; }
+
+  /* ---------- services ---------- */
+  #svc-list { display: grid !important; grid-template-columns: 1fr 1fr; gap: 18px !important; }
+  #svc-list > a { padding: 22px !important; gap: 20px !important; }
+  #svc-list .svc-thumb { flex: 0 0 84px; height: 84px; }
+  #svc-list a div[style*="font-size:13.5px"] { font-size: 19px !important; }
+  #svc-list a div[style*="font-size:11px"] { font-size: 14px !important; }
+  #svc-list a div[style*="font-size:13px;font-weight:700"] { font-size: 19px !important; }
+  #cennik-full { max-width: 760px; margin-left: auto !important; margin-right: auto !important; margin-top: 18px !important; }
+  #cennik-toggle, #services > a.btn-cta { max-width: 420px; margin-left: auto !important; margin-right: auto !important; font-size: 13px !important; }
+  #services ~ div[style*="margin-top:8px"] { padding: 0 48px !important; margin-top: 28px !important; }
+  #services ~ div[style*="margin-top:8px"] .reveal-stagger { max-width: 520px; }
+  .service-card { padding: 18px 16px; }
+  .service-card div { font-size: 15px !important; }
+
+  /* ---------- team ---------- */
+  .team-grid { gap: 32px; padding-left: 48px !important; padding-right: 48px !important; padding-top: 40px !important; max-width: 1000px !important; }
+  .team-frame { padding: 10px; }
+  .team-caption h3 { font-size: 22px; }
+  .team-caption .role { font-size: 12px; margin-top: 4px; }
+  .team-hint { font-size: 11.5px; margin-top: 8px; }
+  .tap-hint { width: 28px; height: 28px; }
+  .tap-hint svg { width: 14px; height: 14px; }
+  .bio-card { padding: 32px 36px; max-width: 760px; margin-left: auto; margin-right: auto; }
+  .bio-card p { font-size: 15.5px; }
+  .bio-card .bio-photo { flex-basis: 84px; width: 84px; height: 84px; }
+  .bio-tag { font-size: 12px; }
+  .bio-book { font-size: 13px; padding: 16px; }
+  .bio-close { width: 34px; height: 34px; }
+
+  /* ---------- reviews ---------- */
+  #reviews + div { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 20px !important; padding: 40px 48px 0 !important; align-items: start; }
+  #reviews-more[style*="flex"] { display: grid !important; grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); gap: 20px !important; }
+  #reviews-toggle { grid-column: 1 / -1; max-width: 320px; margin: 0 auto; font-size: 13px !important; }
+  .review-card { padding: 24px; }
+  .review-card p { font-size: 15px !important; line-height: 1.65 !important; }
+  .review-card div[style*="font-size:12.5px"] { font-size: 15px !important; }
+  .review-card div[style*="font-size:10px"] { font-size: 12px !important; }
+  .stars { font-size: 15px; }
+
+  /* ---------- booking CTA (index) ---------- */
+  #booking > div[style*="padding:0 24px"] { padding: 0 48px !important; }
+  #booking > div > div[style*="margin-top:54px"] { margin-top: 80px !important; }
+  #booking div[style*="aspect-ratio:1468/2000"] {
+    aspect-ratio: auto !important; min-height: 560px; padding: 56px 64px !important; justify-content: center !important;
+  }
+  #booking div[style*="aspect-ratio:1468/2000"] > img { object-position: 50% 30% !important; }
+  #booking div[style*="aspect-ratio:1468/2000"] > div[style*="linear-gradient"] {
+    background: linear-gradient(90deg, rgba(20,19,17,0.95) 0%, rgba(20,19,17,0.75) 42%, rgba(20,19,17,0.1) 75%, rgba(20,19,17,0.35) 100%) !important;
+  }
+  #booking div[style*="aspect-ratio:1468/2000"] h2 { font-size: 52px !important; }
+  #booking div[style*="aspect-ratio:1468/2000"] p { font-size: 18px !important; max-width: 460px !important; }
+  #booking div[style*="aspect-ratio:1468/2000"] a.btn-cta { max-width: 360px; font-size: 14px !important; }
+  .booking-badge { font-size: 12px; top: 24px; right: 24px; }
+
+  /* ---------- contact (2 columns: map | actions + hours) ---------- */
+  .contact-frame { display: grid; grid-template-columns: 1.25fr 1fr; column-gap: 28px; padding: 0 40px 40px; align-items: start; }
+  .contact-frame > * { min-width: 0; }
+  .contact-frame > div:first-child, .contact-frame > .scroll-line-wrap { grid-column: 1 / -1; }
+  .contact-frame > div:first-child h2 { font-size: 40px !important; }
+  .contact-frame > div:first-child p { font-size: 17px !important; max-width: 520px !important; }
+  .map-frame { grid-column: 1; grid-row: 2 / span 2; height: 100%; min-height: 460px; margin-top: 28px; }
+  .contact-actions { grid-column: 2; grid-row: 2; margin-top: 28px; gap: 14px; }
+  .hours-card { grid-column: 2; grid-row: 3; margin-top: 14px; padding: 26px 24px 20px; }
+  .contact-action { padding: 22px 8px 20px; }
+  .contact-action .ca-label { font-size: 15px; }
+  .contact-action .ca-sub { font-size: 12.5px; }
+  .hours-list li { font-size: 15px; padding: 8px 0; }
+  .open-status { font-size: 12px; }
+  .map-info > div > div:first-child { font-size: 22px !important; }
+  .map-info > div > div:last-child { font-size: 14px !important; }
+  .map-nav { font-size: 12.5px; padding: 12px 16px; }
+
+  /* ---------- gallery ---------- */
+  .full-grid { grid-template-columns: repeat(3, 1fr); gap: 28px; padding: 44px 48px 0 !important; }
+  .full-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .photo-frame { padding: 10px; }
+  .lightbox-nav { width: 56px; height: 56px; font-size: 22px; }
+  .lightbox-prev { left: 40px; }
+  .lightbox-next { right: 40px; }
+  .ig-strip { gap: 16px; }
+  .ig-strip .ig-side { width: 24%; height: auto; aspect-ratio: 1/1; }
+  .ig-strip .ig-main { width: 34%; height: auto; aspect-ratio: 1/1; }
+  .ig-arrow { width: 44px; height: 44px; font-size: 20px; }
+  h1[class*="reveal"] { font-size: 48px !important; }
+
+  /* ---------- about page ---------- */
+  .wrap > div[style*="padding:36px 24px 0;text-align:center"] h1 { font-size: 44px !important; }
+  .wrap > div.reveal-stagger { padding: 90px 0 70px !important; }
+  .wrap > div.reveal-stagger > div > div:last-child { max-width: 860px; margin: 0 auto; gap: 22px !important; text-align: center; }
+  .wrap > div.reveal-stagger p { font-size: 19px !important; line-height: 1.7 !important; }
+  .wrap > div[style*="overflow:hidden;font-size:10.5px"] { font-size: 14px !important; padding: 20px 0 !important; margin-top: 56px !important; }
+  .wrap > div > .bio-card.reveal { max-width: 860px; padding: 40px 48px; }
+  .bio-card.reveal h2 { font-size: 30px !important; }
+  .bio-card.reveal p { font-size: 17px; }
+  #booking-calendar { max-width: 760px; margin-left: auto; margin-right: auto; padding: 32px 36px 36px; }
+  .booking-calendar .step-label { font-size: 13px; }
+  .svc-grid { grid-template-columns: repeat(3, 1fr); }
+  .barber-grid { grid-template-columns: repeat(4, 1fr); }
+  .svc-btn .svc-name { font-size: 14.5px; }
+  .svc-btn .svc-dur { font-size: 12px; }
+  .cal-day { font-size: 14.5px; }
+  .slot-grid { grid-template-columns: repeat(5, 1fr); }
+  .slot-btn { font-size: 14px; }
+  .cancel-card { max-width: 760px; margin-left: auto; margin-right: auto; }
+  .price-list li { font-size: 15px; }
+}
+
+@media (min-width: 1280px) {
+  #hero h1 { font-size: 92px !important; }
+  .full-grid { gap: 32px; }
+}

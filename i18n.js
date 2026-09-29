@@ -359,6 +359,27 @@
       group.appendChild(makeSwitch());
       group.appendChild(openBtn);
     }
+    // desktop nav (shown by desktop.css from 900px): clone the overlay links into the top bar
+    var links = document.querySelectorAll('.nav-links a');
+    if (openBtn && links.length && !document.querySelector('.dnav')) {
+      var dnav = document.createElement('nav');
+      dnav.className = 'dnav';
+      Array.prototype.forEach.call(links, function (a) {
+        var c = document.createElement('a');
+        c.href = a.getAttribute('href');
+        c.textContent = a.lastChild ? a.lastChild.textContent : a.textContent;
+        dnav.appendChild(c);
+      });
+      var cta = document.querySelector('.nav-cta a');
+      if (cta) {
+        var b = document.createElement('a');
+        b.href = cta.getAttribute('href');
+        b.className = 'dnav-cta';
+        b.textContent = cta.textContent.replace(/\s*→\s*$/, '');
+        dnav.appendChild(b);
+      }
+      openBtn.parentNode.parentNode.insertBefore(dnav, openBtn.parentNode);
+    }
     var overlayTop = document.querySelector('.nav-overlay-top');
     var closeBtn = document.getElementById('nav-close');
     if (overlayTop && closeBtn) overlayTop.insertBefore(makeSwitch('margin-left:auto;margin-right:14px;'), closeBtn);
