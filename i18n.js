@@ -183,7 +183,7 @@
     // gallery
     'Naša práca': 'Our work',
     'GALÉRIA': 'GALLERY',
-    'Priestor, atmosféra a naša práca — presne taká, akú u nás nájdeš.': 'The space, the atmosphere and our work — exactly as you will find it with us.',
+    'Pozri si našu prácu a priestor.': 'Take a look at our work and our space.',
     'Priestor BARBERIS': 'BARBERIS space',
     'Práca v BARBERIS': 'Work at BARBERIS',
 
