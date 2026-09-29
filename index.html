@@ -7,11 +7,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&display=swap">
 <style>
   :root {
-    --bg: #2B1714;
-    --card: #361d19;
-    --cream: #f4ede1;
-    --cream-dim: #cfc6b8;
-    --bronze: #f4ede1;
+    --bg: #f4ede1;
+    --card: #fbf6ec;
+    --cream: #2B1714;
+    --cream-dim: #6b4a42;
+    --bronze: #2B1714;
   }
   * { box-sizing: border-box; }
   body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
@@ -55,67 +55,67 @@
     #page-veil { display: none; }
   }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
-  .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
+  .service-card { flex: 1; background: var(--card); border: 1px solid rgba(43,23,20,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
   .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
-  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #2B1714; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
+  .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color:#f4ede1; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
-  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(244,237,225,0.3); cursor: zoom-in; }
+  .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(43,23,20,0.3); cursor: zoom-in; }
   .svc-lightbox { position: fixed; inset: 0; z-index: 60; background: rgba(10,9,8,0.95); display: none; align-items: center; justify-content: center; padding: 24px; }
   .svc-lightbox.open { display: flex; }
   .svc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7); }
-  .svc-lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid rgba(244,237,225,0.3); border-radius: 50%; width: 34px; height: 34px; color: var(--cream); font-size: 20px; line-height: 1; cursor: pointer; }
+  .svc-lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid rgba(43,23,20,0.3); border-radius: 50%; width: 34px; height: 34px; color: var(--cream); font-size: 20px; line-height: 1; cursor: pointer; }
   .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-  .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
+  .team-frame { background: var(--card); border: 1px solid rgba(43,23,20,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
   .team-trigger:hover { transform: translateY(-2px); }
   .team-trigger[aria-expanded="true"] { border-color: var(--bronze); }
   .team-hint { font-size: 8.5px; letter-spacing: 0.05em; text-transform: uppercase; color: var(--bronze); margin-top: 5px; opacity: 0.85; }
   .team-trigger[aria-expanded="true"] .team-hint { opacity: 1; }
-  .team-photo { position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 2px; overflow: hidden; background: #1f100e; display: flex; align-items: center; justify-content: center; }
+  .team-photo { position: relative; width: 100%; aspect-ratio: 3 / 4; border-radius: 2px; overflow: hidden; background: #ebe0cf; display: flex; align-items: center; justify-content: center; }
   .team-photo img { width: 100%; height: 100%; object-fit: contain; display: block; }
   .team-caption { padding: 9px 3px 3px; text-align: center; }
   .team-caption h3 { font-size: 12.5px; }
   .team-caption .role { font-size: 6.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--bronze); margin-top: 2px; }
-  .tap-hint { position: absolute; right: 7px; bottom: 7px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(43,23,20,0.7); backdrop-filter: blur(2px); border: 1px solid rgba(244,237,225,0.4); border-radius: 50%; animation: tapPulse 2.2s ease-in-out infinite; pointer-events: none; }
+  .tap-hint { position: absolute; right: 7px; bottom: 7px; width: 20px; height: 20px; display: flex; align-items: center; justify-content: center; color: var(--bronze); background: rgba(244,237,225,0.7); backdrop-filter: blur(2px); border: 1px solid rgba(43,23,20,0.4); border-radius: 50%; animation: tapPulse 2.2s ease-in-out infinite; pointer-events: none; }
   .tap-hint svg { width: 10px; height: 10px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
-  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(244,237,225,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
-  .bio-close:hover { background: rgba(244,237,225,0.14); border-color: var(--bronze); }
-  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color: #2B1714; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
-  .review-card { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 14px; }
-  .contact-frame { margin-top: 0; border: 1px solid rgba(244,237,225,0.45); box-shadow: 0 0 10px rgba(244,237,225,0.2); border-radius: 4px; padding: 0 14px 14px; background: var(--bg); overflow: hidden; }
+  .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(43,23,20,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
+  .bio-close:hover { background: rgba(43,23,20,0.14); border-color: var(--bronze); }
+  .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color:#f4ede1; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
+  .review-card { background: var(--card); border: 1px solid rgba(43,23,20,0.08); border-radius: 3px; padding: 14px; }
+  .contact-frame { margin-top: 0; border: 1px solid rgba(43,23,20,0.45); box-shadow: 0 0 10px rgba(43,23,20,0.2); border-radius: 4px; padding: 0 14px 14px; background: var(--bg); overflow: hidden; }
   .contact-frame .scroll-line-wrap { margin-top: 0; }
-  .map-frame { position: relative; margin-top: 22px; height: 260px; overflow: hidden; border-radius: 2px; background: #361d19; }
+  .map-frame { position: relative; margin-top: 22px; height: 260px; overflow: hidden; border-radius: 2px; background: #fbf6ec; }
   .map-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; filter: grayscale(1) invert(0.92) sepia(0.25) contrast(0.9) brightness(0.95); }
-  .map-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(43,23,20,0) 45%, rgba(43,23,20,0.92) 100%); pointer-events: none; }
+  .map-fade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(244,237,225,0) 45%, rgba(244,237,225,0.92) 100%); pointer-events: none; }
   .map-info { position: absolute; left: 0; right: 0; bottom: 0; display: flex; align-items: flex-end; justify-content: space-between; gap: 12px; padding: 14px; }
-  .map-nav { flex: 0 0 auto; background: var(--bronze); color: #2B1714; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
+  .map-nav { flex: 0 0 auto; background: var(--bronze); color:#f4ede1; font-size: 10.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 10px 12px; border-radius: 2px; }
   .contact-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 10px; }
-  .contact-action { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 16px 6px 14px; color: var(--bronze); text-align: center; transition: border-color .2s; }
-  .contact-action:hover { border-color: rgba(244,237,225,0.5); }
+  .contact-action { display: flex; flex-direction: column; align-items: center; gap: 6px; background: var(--card); border: 1px solid rgba(43,23,20,0.08); border-radius: 3px; padding: 16px 6px 14px; color: var(--bronze); text-align: center; transition: border-color .2s; }
+  .contact-action:hover { border-color: rgba(43,23,20,0.5); }
   .contact-action .ca-label { font-size: 12px; font-weight: 600; color: var(--cream); }
   .contact-action .ca-sub { font-size: 10px; color: var(--cream-dim); overflow-wrap: anywhere; }
-  .hours-card { margin-top: 10px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 18px 16px 14px; }
+  .hours-card { margin-top: 10px; background: var(--card); border: 1px solid rgba(43,23,20,0.08); border-radius: 3px; padding: 18px 16px 14px; }
   .hours-list { list-style: none; margin: 0; padding: 0; }
   .hours-list li { display: flex; align-items: baseline; gap: 8px; padding: 6px 0; font-size: 12.5px; color: var(--cream-dim); }
-  .hours-list li i { flex: 1; border-bottom: 1px dotted rgba(244,237,225,0.18); transform: translateY(-3px); }
+  .hours-list li i { flex: 1; border-bottom: 1px dotted rgba(43,23,20,0.18); transform: translateY(-3px); }
   .hours-list li.today { color: var(--cream); font-weight: 600; }
   .hours-list li.today span:first-child::before { content: ''; display: inline-block; width: 5px; height: 5px; border-radius: 50%; background: var(--bronze); margin-right: 7px; transform: translateY(-2px); }
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
-  .open-status.is-open { background: rgba(244,237,225,0.15); color: var(--bronze); }
-  .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
-  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(244,237,225,0.55); }
-  .btn-cta:hover { background: #ffffff; box-shadow: 0 10px 26px -6px rgba(244,237,225,0.7); transform: translateY(-2px); }
-  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(244,237,225,0.55); }
+  .open-status.is-open { background: rgba(43,23,20,0.15); color: var(--bronze); }
+  .open-status.is-closed { background: rgba(43,23,20,0.06); color: rgba(43,23,20,0.5); }
+  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(43,23,20,0.55); }
+  .btn-cta:hover { background: #4a2822; box-shadow: 0 10px 26px -6px rgba(43,23,20,0.7); transform: translateY(-2px); }
+  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(43,23,20,0.55); }
   .btn-cta-arrow { display: inline-block; transition: transform 0.25s ease; }
   .btn-cta:hover .btn-cta-arrow { transform: translateX(3px); }
-  .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(43,23,20,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(244,237,225,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
+  .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(244,237,225,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(43,23,20,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
   .booking-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #7cd68a; box-shadow: 0 0 6px #7cd68a; flex: 0 0 auto; }
   .btn-outline { transition: background 0.25s ease, border-color 0.25s ease, transform 0.25s cubic-bezier(.16,.6,.2,1); }
-  .btn-outline:hover { background: rgba(244,237,225,0.1); border-color: var(--bronze) !important; transform: translateY(-2px); }
+  .btn-outline:hover { background: rgba(43,23,20,0.1); border-color: var(--bronze) !important; transform: translateY(-2px); }
   .btn-outline:active { transform: translateY(0); }
-  .row-link { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(244,237,225,0.08); transition: opacity 0.2s ease; }
+  .row-link { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-top: 1px solid rgba(43,23,20,0.08); transition: opacity 0.2s ease; }
   .row-link:hover { opacity: 0.75; }
   .row-link:hover .row-value { color: var(--bronze); }
   .row-value { transition: color 0.2s ease; }
@@ -124,23 +124,23 @@
   .nav-overlay-top { flex: 0 0 auto; height: 64px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; }
   .nav-close { background: none; border: none; color: var(--cream); font-size: 26px; line-height: 1; cursor: pointer; padding: 4px; }
   .nav-links { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 0 32px; }
-  .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
+  .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(43,23,20,0.08); }
   .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
   .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .gallery-grid a:first-child { grid-column: span 2; }
   .gallery-grid img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 2px; aspect-ratio: 1/1; }
   .gallery-grid a:first-child img { aspect-ratio: 16/10; }
-  .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; margin-top: 14px; text-align: left; opacity: 0; transform: translateY(10px); transition: opacity 0.28s ease-out, transform 0.28s ease-out; }
+  .bio-card { position: relative; background: var(--card); border: 1px solid rgba(43,23,20,0.08); border-radius: 4px; padding: 20px 18px; margin-top: 14px; text-align: left; opacity: 0; transform: translateY(10px); transition: opacity 0.28s ease-out, transform 0.28s ease-out; }
   .bio-card.bio-open { opacity: 1; transform: translateY(0); }
   .bio-card .bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
-  .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #1f100e; }
+  .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #ebe0cf; }
   .bio-card .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
   .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
   .bio-card p:last-of-type { margin-bottom: 0; }
   .bio-tag { display: inline-block; margin-top: 12px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); }
   .price-list { text-align: left; }
-  .price-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(244,237,225,0.08); font-size: 13px; }
+  .price-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; padding: 10px 0; border-top: 1px solid rgba(43,23,20,0.08); font-size: 13px; }
   .price-list li:first-child { border-top: none; }
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
@@ -154,9 +154,9 @@
   <!-- HERO -->
   <div id="hero" style="position:relative;height:760px;display:flex;flex-direction:column;">
     <img src="assets/hero-team.jpg" alt="Anett, Karvy a Vladis — tím Barberis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,23,20,0.55) 0%,rgba(43,23,20,0.15) 24%,rgba(43,23,20,0.4) 55%,rgba(43,23,20,0.97) 92%,#2B1714 100%);"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,237,225,0.55) 0%,rgba(244,237,225,0.15) 24%,rgba(244,237,225,0.4) 55%,rgba(244,237,225,0.97) 92%,#f4ede1 100%);"></div>
 
-    <div style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(43,23,20,0.55) 0%,rgba(43,23,20,0.15) 100%);backdrop-filter:blur(4px);">
+    <div style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(244,237,225,0.55) 0%,rgba(244,237,225,0.15) 100%);backdrop-filter:blur(4px);">
       <a href="#hero" style="font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:0.02em;"><span id="tw-logo"></span><span class="tw-cursor" id="tw-cursor-logo"></span></a>
       <div style="display:flex;align-items:center;gap:10px;">
         <button id="nav-open" aria-label="Menu" style="background:none;border:none;padding:0;width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
@@ -179,12 +179,12 @@
         <a href="#contact"><span>04</span>Kontakt</a>
       </nav>
       <div class="nav-cta">
-        <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#2B1714;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+        <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
       </div>
     </div>
 
     <div style="position:relative;padding:12px 20px 0;">
-      <div class="badge-reveal" id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(43,23,20,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
+      <div class="badge-reveal" id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(244,237,225,0.55);backdrop-filter:blur(4px);border:1px solid rgba(43,23,20,0.15);border-radius:2px;padding:9px 12px;">
         <span style="color:var(--bronze);font-size:13px;">📍</span>
         <span style="font-size:11.5px;letter-spacing:0.02em;white-space:nowrap;">Pánsky barbershop v Prievidzi · Hurbana 4</span>
       </div>
@@ -193,8 +193,8 @@
       <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor-1"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="tw-cursor" id="tw-cursor-2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
       <p class="hero-fade-in" style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;animation-delay:0.65s;">Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.</p>
       <div class="hero-fade-in" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
-        <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#2B1714;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
-        <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
+        <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+        <a href="#intro" class="btn-outline" style="border:1px solid rgba(43,23,20,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
       </div>
     </div>
   </div>
@@ -204,11 +204,11 @@
     <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,23,20,0.9) 0%,rgba(43,23,20,0.98) 35%,rgba(43,23,20,0.98) 85%,var(--bg) 100%);"></div>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(244,237,225,0.9) 0%,rgba(244,237,225,0.98) 35%,rgba(244,237,225,0.98) 85%,var(--bg) 100%);"></div>
       <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
-      <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(244,237,225,0.25);border-bottom:1px solid rgba(244,237,225,0.25);padding:12px 0;margin:2px -26px 0;">
+      <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(43,23,20,0.25);border-bottom:1px solid rgba(43,23,20,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
         </div>
@@ -217,7 +217,7 @@
   </div>
 
   <!-- SLUŽBY -> TÍM -> RECENZIE (spoločné pozadie) -->
-  <div style="position:relative;background:#2B1714;">
+  <div style="position:relative;background:#f4ede1;">
     <div style="position:absolute;inset:0;background:url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='26'%3E%3Cline x1='0' y1='26' x2='26' y2='0' stroke='%23c9a06a' stroke-width='1' opacity='0.16'/%3E%3C/svg%3E&quot;) repeat;-webkit-mask-image:linear-gradient(180deg,transparent 0%,black 6%,black 100%);mask-image:linear-gradient(180deg,transparent 0%,black 6%,black 100%);pointer-events:none;"></div>
     <div style="position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 30%,rgba(0,0,0,0.55) 100%);pointer-events:none;"></div>
     <div style="position:relative;">
@@ -231,7 +231,7 @@
       <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
       <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho strihu až po úpravu brady. Vyber si, čo ti sadne.</p>
       <div id="svc-list" style="display:flex;flex-direction:column;gap:10px;">
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.35);border-radius:3px;padding:14px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(43,23,20,0.35);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-strih" style="display:inline-block;">Obľúbené</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-1.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -240,7 +240,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">20 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-combo" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-combo" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(43,23,20,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-combo">Kompletný balík</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-3.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -249,7 +249,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">30 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-brada" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-brada" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(43,23,20,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-brada">Odporúčame</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-2.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -258,7 +258,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">15 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-ornament" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-ornament" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(43,23,20,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-ornament">Originalita</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-4.jpg');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -269,8 +269,8 @@
         </a>
       </div>
 
-      <div id="cennik-full" style="display:none;flex-direction:column;gap:0;margin-top:10px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:6px 16px 14px;">
-        <div style="margin-top:10px;border:1px solid rgba(244,237,225,0.45);box-shadow:0 0 10px rgba(244,237,225,0.2);border-radius:4px;background:rgba(244,237,225,0.03);padding:6px 12px;">
+      <div id="cennik-full" style="display:none;flex-direction:column;gap:0;margin-top:10px;background:var(--card);border:1px solid rgba(43,23,20,0.08);border-radius:3px;padding:6px 16px 14px;">
+        <div style="margin-top:10px;border:1px solid rgba(43,23,20,0.45);box-shadow:0 0 10px rgba(43,23,20,0.2);border-radius:4px;background:rgba(43,23,20,0.03);padding:6px 12px;">
           <ul class="price-list" style="list-style:none;margin:0;padding:0;">
             <li><span class="pl-name">Strih</span><span class="pl-price">20 €</span></li>
             <li><span class="pl-name">Kompletná úprava (strih + brada)</span><span class="pl-price">30 €</span></li>
@@ -283,20 +283,20 @@
         </div>
         <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
-      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(244,237,225,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
-      <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#2B1714;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(43,23,20,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
+      <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#f4ede1;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
     <div style="margin-top:8px;padding:0 26px;">
       <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
       <div class="reveal-stagger reveal-stagger-x" style="display:flex;gap:8px;">
         <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#4a2f29,#331b17);"></div>
+          <div class="service-swatch" style="background:linear-gradient(160deg,#d9c9ae,#f7efe2);"></div>
           <div style="font-size:11px;font-weight:600;line-height:1.25;">Pánsky strih</div>
           <div style="font-size:11px;color:var(--bronze);font-weight:700;">20 €</div>
         </a>
         <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#3b2320,#331b17);"></div>
+          <div class="service-swatch" style="background:linear-gradient(160deg,#e8dcc8,#f7efe2);"></div>
           <div style="font-size:11px;font-weight:600;line-height:1.25;">Strih + brada</div>
           <div style="font-size:11px;color:var(--bronze);font-weight:700;">30 €</div>
         </a>
@@ -406,12 +406,12 @@
   <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;" class="reveal-stagger" data-reveal-together>
     <div class="review-card">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-        <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+        <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
         </div>
         <div style="flex:1;">
           <div style="font-size:12.5px;font-weight:600;">Martin K.</div>
-          <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 2 mesiacmi</div>
+          <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 2 mesiacmi</div>
         </div>
         <div class="stars">★★★★★</div>
       </div>
@@ -419,12 +419,12 @@
     </div>
     <div class="review-card">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-        <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+        <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
         </div>
         <div style="flex:1;">
           <div style="font-size:12.5px;font-weight:600;">Patrik S.</div>
-          <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 3 mesiacmi</div>
+          <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 3 mesiacmi</div>
         </div>
         <div class="stars">★★★★★</div>
       </div>
@@ -432,12 +432,12 @@
     </div>
     <div class="review-card">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-        <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+        <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
         </div>
         <div style="flex:1;">
           <div style="font-size:12.5px;font-weight:600;">Jakub M.</div>
-          <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 4 mesiacmi</div>
+          <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 4 mesiacmi</div>
         </div>
         <div class="stars">★★★★★</div>
       </div>
@@ -449,12 +449,12 @@
     <div id="reviews-more" class="toggle-fade" style="display:none;flex-direction:column;gap:10px;">
       <div class="review-card">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
           </div>
           <div style="flex:1;">
             <div style="font-size:12.5px;font-weight:600;">Tomáš V.</div>
-            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 5 mesiacmi</div>
+            <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 5 mesiacmi</div>
           </div>
           <div class="stars">★★★★★</div>
         </div>
@@ -462,12 +462,12 @@
       </div>
       <div class="review-card">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
           </div>
           <div style="flex:1;">
             <div style="font-size:12.5px;font-weight:600;">Marek H.</div>
-            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 6 mesiacmi</div>
+            <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 6 mesiacmi</div>
           </div>
           <div class="stars">★★★★★</div>
         </div>
@@ -475,12 +475,12 @@
       </div>
       <div class="review-card">
         <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
-          <div style="width:30px;height:30px;border-radius:50%;background:#3f2621;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+          <div style="width:30px;height:30px;border-radius:50%;background:#efe4d2;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7d5f57" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
           </div>
           <div style="flex:1;">
             <div style="font-size:12.5px;font-weight:600;">Dávid R.</div>
-            <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+            <div style="font-size:10px;color:rgba(43,23,20,0.5);">Pred 7 mesiacmi</div>
           </div>
           <div class="stars">★★★★★</div>
         </div>
@@ -497,17 +497,17 @@
   <div id="booking">
     <div style="padding:0 24px;">
       <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-      <div style="margin-top:54px;border:1px solid rgba(244,237,225,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
+      <div style="margin-top:54px;border:1px solid rgba(43,23,20,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
         <div style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
           <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(43,23,20,0.5) 12%,rgba(43,23,20,0) 32%,rgba(43,23,20,0) 60%,rgba(43,23,20,0.9) 85%,var(--bg) 100%);"></div>
+          <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(244,237,225,0.5) 12%,rgba(244,237,225,0) 32%,rgba(244,237,225,0) 60%,rgba(244,237,225,0.9) 85%,var(--bg) 100%);"></div>
           <div class="booking-badge"><span class="dot"></span>Voľné termíny</div>
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
           <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ VZHĽAD?</h2>
           <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
-          <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#2B1714;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+          <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#f4ede1;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         </div>
-        <div style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
+        <div style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(43,23,20,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
       </div>
     </div>
   </div>
@@ -567,7 +567,7 @@
           <li data-day="4"><span>Štvrtok</span><i></i><span>8:00 – 18:00</span></li>
           <li data-day="5"><span>Piatok</span><i></i><span>8:00 – 18:00</span></li>
           <li data-day="6"><span>Sobota</span><i></i><span>8:00 – 14:00</span></li>
-          <li data-day="0"><span>Nedeľa</span><i></i><span style="color:rgba(244,237,225,0.4);">Zatvorené</span></li>
+          <li data-day="0"><span>Nedeľa</span><i></i><span style="color:rgba(43,23,20,0.4);">Zatvorené</span></li>
         </ul>
       </div>
     </div>
@@ -728,8 +728,8 @@
     var rows = Array.prototype.slice.call(list.querySelectorAll('.svc-hover-row'));
     var defaultRow = list.querySelector('[data-badge-default]');
     var defaultBadge = defaultRow ? defaultRow.querySelector('.svc-badge') : null;
-    var ACTIVE_BORDER = 'rgba(244,237,225,0.35)';
-    var INACTIVE_BORDER = 'rgba(244,237,225,0.08)';
+    var ACTIVE_BORDER = 'rgba(43,23,20,0.35)';
+    var INACTIVE_BORDER = 'rgba(43,23,20,0.08)';
     function clearAll() {
       rows.forEach(function (r) {
         var badge = document.getElementById(r.getAttribute('data-badge'));
