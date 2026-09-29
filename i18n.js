@@ -174,7 +174,7 @@
     'Telefón': 'Phone',
 
     // instagram
-    'Sleduj najnovšie strihy a atmosféru u nás.': 'Follow our latest cuts and atmosphere.',
+    'Sleduj najnovšie strihy a novinky u nás.': 'Follow our latest cuts and news.',
     'Sledovať na Instagrame →': 'Follow on Instagram →',
     'Predchádzajúce fotky': 'Previous photos',
     'Nasledujúce fotky': 'Next photos',
