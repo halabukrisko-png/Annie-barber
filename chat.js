@@ -171,7 +171,7 @@
     }
   };
   var ORDER = ['change', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
-  var CHIPS = ['booking', 'prices', 'hours', 'location', 'kids', 'beard', 'fade', 'ornament', 'skin', 'includes', 'team', 'atmosphere', 'cosmetics', 'contact'];
+  var CHIPS = ['booking', 'prices', 'hours', 'location', 'team', 'contact', 'change'];
 
   var UI = {
     sk: {
