@@ -86,10 +86,10 @@
       keys: ['cena', 'ceny', 'cenn', 'cenu', 'kolko', 'stoj', 'eur', 'price', 'cost', 'how much', 'fee', 'platb', 'pay'],
       chip: { sk: 'Cenník', en: 'Prices' },
       sk: function () {
-        return '<b>Cenník</b><br>Strih – 20 €<br>Fade – 20 €<br>Strih + brada – 30 €<br>Úprava brady – 15 €<br>Detský strih do 12 r. – 15 €<br>Holenie hlavy + úprava brady – 25 €<br>Farbenie brady – 5 – 10 €<br>Čistenie pleti – od 10 €<br>Ornament – dohodou<br><br>Každý strih zahŕňa umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling.';
+        return '<b>Cenník</b><br>Strih – 20 €<br>Strih + brada – 30 €<br>Úprava brady – 15 €<br>Detský strih do 12 r. – 15 €<br>Holenie hlavy + úprava brady – 25 €<br>Farbenie brady – 5 – 10 €<br>Čistenie pleti – od 10 €<br>Ornament – dohodou<br><br>Každý strih zahŕňa umytie vlasov, úpravu obočia, depiláciu nosa a uší a záverečný styling.';
       },
       en: function () {
-        return '<b>Price list</b><br>Haircut – €20<br>Fade – €20<br>Haircut + beard – €30<br>Beard trim – €15<br>Kids’ haircut up to 12 y. – €15<br>Head shave + beard trim – €25<br>Beard coloring – €5 – 10<br>Facial cleansing – from €10<br>Ornament – by agreement<br><br>Every haircut includes hair wash, eyebrow shaping, nose and ear hair removal and final styling.';
+        return '<b>Price list</b><br>Haircut – €20<br>Haircut + beard – €30<br>Beard trim – €15<br>Kids’ haircut up to 12 y. – €15<br>Head shave + beard trim – €25<br>Beard coloring – €5 – 10<br>Facial cleansing – from €10<br>Ornament – by agreement<br><br>Every haircut includes hair wash, eyebrow shaping, nose and ear hair removal and final styling.';
       }
     },
     hours: {
@@ -123,13 +123,13 @@
       }
     },
     services: {
-      keys: ['sluzb', 'strih', 'fade', 'brad', 'ornament', 'holen', 'farb', 'plet', 'service', 'haircut', 'beard', 'shave', 'kids', 'child', 'detsk', 'offer', 'ponuk'],
+      keys: ['sluzb', 'strih', 'brad', 'ornament', 'holen', 'farb', 'plet', 'service', 'haircut', 'beard', 'shave', 'kids', 'child', 'detsk', 'offer', 'ponuk'],
       chip: { sk: 'Služby', en: 'Services' },
       sk: function () {
-        return '<b>Ponúkame</b> pánsky strih, fade, úpravu brady, kompletný balík strih + brada, ornamentálne strihy, detský strih do 12 rokov, holenie hlavy, farbenie brady a čistenie pleti.<br><a href="index.html#services">Pozrieť služby →</a>';
+        return '<b>Ponúkame</b> pánsky strih, úpravu brady, kompletný balík strih + brada, ornamentálne strihy, detský strih do 12 rokov, holenie hlavy, farbenie brady a čistenie pleti.<br><a href="index.html#services">Pozrieť služby →</a>';
       },
       en: function () {
-        return 'We <b>offer</b> men’s haircuts, fades, beard trims, the complete haircut + beard package, ornamental cuts, kids’ haircuts up to 12 years, head shaves, beard coloring and facial cleansing.<br><a href="index.html#services">See services →</a>';
+        return 'We <b>offer</b> men’s haircuts, beard trims, the complete haircut + beard package, ornamental cuts, kids’ haircuts up to 12 years, head shaves, beard coloring and facial cleansing.<br><a href="index.html#services">See services →</a>';
       }
     },
     team: {
@@ -167,12 +167,6 @@
       chip: { sk: 'Detský strih', en: 'Kids’ haircut' },
       sk: function () { return '<b>Detský strih do 12 rokov</b> – 15 €.<br><a href="' + BOOK + '">Zarezervovať termín →</a>'; },
       en: function () { return '<b>Kids’ haircut up to 12 years</b> – €15.<br><a href="' + BOOK + '">Book an appointment →</a>'; }
-    },
-    fade: {
-      keys: ['fade', 'prechod'],
-      chip: { sk: 'Fade', en: 'Fade' },
-      sk: function () { return '<b>Fade</b> – 20 €. Precízny prechod a čisté línie.<br><a href="' + BOOK + '">Zarezervovať termín →</a>'; },
-      en: function () { return '<b>Fade</b> – €20. A precise blend and clean lines.<br><a href="' + BOOK + '">Book an appointment →</a>'; }
     },
     beard: {
       keys: ['brad', 'beard', 'holen', 'shave', 'farben', 'coloring', 'colouring'],
@@ -260,7 +254,7 @@
       en: function () { return 'You are welcome! We look forward to seeing you in the chair. 💈'; }
     }
   };
-  var ORDER = ['change', 'calendar', 'gallery', 'about', 'kids', 'fade', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
+  var ORDER = ['change', 'calendar', 'gallery', 'about', 'kids', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
   // Hierarchical quick-reply menus: 'about' and 'services' open a submenu with a Back button.
   var MENUS = {
     main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],

@@ -40,11 +40,10 @@
     // services
     'Cenník': 'Price list',
     'SLUŽBY': 'SERVICES',
-    'Od klasiky až po moderné strihy, od precízneho fade až po úpravu brady. Vyber si, čo ti sadne.': 'From classics to modern cuts, from a precise fade to beard grooming. Pick what suits you.',
+    'Od klasiky až po moderné strihy, od precízneho strihu až po úpravu brady. Vyber si, čo ti sadne.': 'From classics to modern cuts, from a precise cut to beard grooming. Pick what suits you.',
     'Obľúbené': 'Popular',
     'Pánsky strih': 'Men’s haircut',
     'Klasický aj moderný strih podľa tvojho štýlu.': 'A classic or modern cut to match your style.',
-    'Skvelá voľba': 'Great choice',
     'Precízny prechod a čisté línie.': 'A precise blend and clean lines.',
     'Kompletný balík': 'Complete package',
     'Strih + brada': 'Haircut + beard',
