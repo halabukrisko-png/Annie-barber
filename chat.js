@@ -58,7 +58,7 @@
         }
         html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
           (any ? '<div class="bb-slots">' + slots + '</div><div class="bb-cal-note">' + (en ? 'Pick a time to continue with the booking.' : 'Vyber čas a pokračuj v rezervácii.') + '</div>'
-               : '<div class="bb-cal-note">' + (en ? 'No appointments are available for this day anymore.' : 'Na tento deň už nie sú voľné termíny.') + '</div>');
+               : '<div class="bb-cal-note none">' + (en ? 'No appointments are available on this day. Please choose another date.' : 'Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.') + '</div>');
       }
       wrap.innerHTML = html;
     }
@@ -331,7 +331,7 @@
     '.bb-cal-sub{margin:8px 0 4px;font-size:11px;color:#f4ede1;font-weight:600;}' +
     '.bb-slots{display:flex;flex-wrap:wrap;gap:4px;}' +
     '.bb-slots a{border:1px solid rgba(201,160,106,0.55);color:#c9a06a;border-radius:999px;padding:3px 8px;font-size:10.5px;text-decoration:none;}.bb-slots a:hover{background:#c9a06a;color:#141311;}' +
-    '.bb-cal-note{margin-top:6px;font-size:10px;color:rgba(244,237,225,0.55);}' +
+    '.bb-cal-note{margin-top:6px;font-size:10px;color:rgba(244,237,225,0.55);}.bb-cal-note.none{font-size:11px;line-height:1.45;color:#f4ede1;text-align:center;padding:8px;border:1px dashed rgba(201,160,106,0.55);border-radius:8px;background:rgba(201,160,106,0.07);}' +
     '#bb-lang{margin-left:auto;margin-right:6px;}#bb-lang .lang-switch button{padding:2px 5px;font-size:10px;}#bb-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
     '.bb-m{max-width:90%;padding:6px 10px;border-radius:12px;font-size:11.5px;line-height:1.45;}' +
     '.bb-m a{color:#c9a06a;text-decoration:underline;}' +

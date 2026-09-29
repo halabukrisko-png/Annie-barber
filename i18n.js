@@ -160,7 +160,7 @@
     'Rezervovať termín': 'Book appointment',
     'Napísať na Instagrame': 'Message on Instagram',
     'Zavolať': 'Call',
-    'Na tento deň už nie sú voľné termíny.': 'No appointments are available for this day anymore.',
+    'Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.': 'No appointments are available on this day. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
     'Nedeľa zatvorené · Sobota do 13:00': 'Closed on Sunday · Saturday until 1:00 PM',
     'Po odoslaní ti termín potvrdíme e-mailom na zadanú adresu. Ak by niečo, ozveme sa ti.': 'After you submit, we will confirm your appointment by e-mail to the address you provided. If anything comes up, we will get in touch.',
