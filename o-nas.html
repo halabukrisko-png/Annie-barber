@@ -159,6 +159,7 @@
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 </style>
 <script src="i18n.js"></script>
+<link rel="stylesheet" href="desktop.css" media="(min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -223,7 +224,7 @@
     </div>
   </div>
 
-  <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:36px 0 0;">
+  <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:36px 0 0;">
     <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
       <span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span><span style="color:var(--bronze);">•</span><span>Strih</span>
     </div>
@@ -374,6 +375,7 @@
         <div class="cal-grid" id="cal-grid"></div>
         <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 14:00</div>
 
+        <div class="cal-right">
         <div id="cal-slots-wrap" hidden>
           <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
           <div class="slot-grid" id="cal-slots"></div>
@@ -392,7 +394,8 @@
           <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
           <a href="tel:+421951833488" class="btn-outline">Zavolať</a>
           <div class="cal-footnote">Termín ti potvrdíme e-mailom.</div>
-        </div>
+                </div>
+</div>
       </div>
     </div>
 
@@ -888,5 +891,6 @@
   })();
 </script>
 <script src="chat.js"></script>
+<script src="desktop.js" defer></script>
 </body>
 </html>
