@@ -209,17 +209,21 @@ img { max-width: 100%; }
 .svc-badge { top: 14px !important; left: 14px !important; z-index: 2; font-size: 10px !important; padding: 5px 11px !important; letter-spacing: 0.1em !important; box-shadow: 0 6px 16px -6px rgba(0,0,0,0.6); }
 
 /* team -------------------------------------------------------------------- */
-#team {
-  position: relative; width: min(680px, calc(100% - var(--gutter) * 2)); margin: var(--section) auto 0 !important; padding: clamp(28px, 3vw, 44px) clamp(28px, 4vw, 56px) clamp(30px, 3.2vw, 46px) !important;
+/* one frame around the whole team block: heading + portraits + opened bio (wrapper injected by desktop.js) */
+.d-team-frame {
+  display: block !important; position: relative; width: min(1000px, calc(100% - var(--gutter) * 2)); margin: var(--section) auto 0;
+  padding: clamp(32px, 3.4vw, 52px) clamp(24px, 3.4vw, 52px) clamp(28px, 3vw, 44px);
   border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(28,26,23,0.72), rgba(20,19,17,0.5));
   box-shadow: 0 40px 80px -56px rgba(0,0,0,0.95), inset 0 1px 0 rgba(244,237,225,0.04);
 }
-#team::before { /* small bronze notch on the top edge */
+.d-team-frame::before { /* small bronze notch on the top edge */
   content: ''; position: absolute; top: -1px; left: 50%; width: 64px; height: 2px; transform: translateX(-50%); background: var(--bronze);
 }
+.d-team-frame #team { width: auto; margin: 0 !important; padding: 0 !important; }
 #team > h2 { margin-bottom: 12px !important; }
 #team > p { max-width: 460px; margin: 0 auto !important; }
-.team-grid { padding: clamp(28px, 3vw, 44px) max(var(--gutter), calc((100% - 940px) / 2)) 0 !important; gap: clamp(18px, 2.2vw, 36px) !important; }
+.team-grid { padding: clamp(28px, 3vw, 44px) 0 0 !important; gap: clamp(16px, 2vw, 32px) !important; }
+.d-team-frame div:has(> .bio-card) { padding: 0 !important; }
 .team-frame { padding: 10px !important; border-radius: var(--radius) !important; transition: transform .6s var(--ease), border-color .4s ease, box-shadow .6s ease !important; }
 .team-trigger:hover { transform: translateY(-6px) !important; border-color: var(--line-strong) !important; box-shadow: var(--shadow-card), var(--glow); }
 .team-photo { aspect-ratio: 4 / 5 !important; border-radius: 3px !important; }
@@ -233,7 +237,6 @@ img { max-width: 100%; }
 .tap-hint svg { width: 14px !important; height: 14px !important; }
 
 /* bios */
-div:has(> .bio-card:not(.reveal)) { padding: 0 var(--pad) !important; }
 .bio-card:not(.reveal) { max-width: 980px; width: 100%; margin: 32px auto 0 !important; padding: clamp(32px, 3.4vw, 52px) !important; border-radius: var(--radius) !important; border-color: var(--line) !important; box-shadow: var(--shadow-card); }
 .bio-card .bio-head { gap: 22px !important; margin-bottom: 20px !important; }
 .bio-card .bio-photo { flex-basis: 88px !important; width: 88px !important; height: 88px !important; }
