@@ -158,7 +158,13 @@ img { max-width: 100%; }
 /* services ---------------------------------------------------------------- */
 #services {
   display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); column-gap: clamp(32px, 6vw, 112px); align-items: end;
-  padding: var(--section) var(--pad) 0 !important; text-align: left !important;
+  position: relative; width: min(var(--maxw), calc(100% - var(--gutter) * 2)); margin: var(--section) auto 0 !important;
+  padding: clamp(32px, 3.4vw, 52px) clamp(24px, 3.4vw, 52px) clamp(28px, 3vw, 44px) !important; text-align: left !important;
+  border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(28,26,23,0.72), rgba(20,19,17,0.5));
+  box-shadow: 0 40px 80px -56px rgba(0,0,0,0.95), inset 0 1px 0 rgba(244,237,225,0.04);
+}
+#services::before { /* small bronze notch on the top edge */
+  content: ''; position: absolute; top: -1px; left: 50%; width: 64px; height: 2px; transform: translateX(-50%); background: var(--bronze);
 }
 #services > div:first-child { grid-column: 1; grid-row: 1; justify-content: flex-start !important; margin-bottom: 14px !important; }
 #services > h2 { grid-column: 1; grid-row: 2; margin: 0 !important; }
@@ -212,7 +218,7 @@ img { max-width: 100%; }
 /* team -------------------------------------------------------------------- */
 /* one frame around the whole team block: heading + portraits + opened bio (wrapper injected by desktop.js) */
 .d-team-frame {
-  display: block !important; position: relative; width: min(1000px, calc(100% - var(--gutter) * 2)); margin: var(--section) auto 0;
+  display: block !important; position: relative; width: min(var(--maxw), calc(100% - var(--gutter) * 2)); margin: var(--section) auto 0;
   padding: clamp(32px, 3.4vw, 52px) clamp(24px, 3.4vw, 52px) clamp(28px, 3vw, 44px);
   border: 1px solid var(--line); border-radius: var(--radius); background: linear-gradient(180deg, rgba(28,26,23,0.72), rgba(20,19,17,0.5));
   box-shadow: 0 40px 80px -56px rgba(0,0,0,0.95), inset 0 1px 0 rgba(244,237,225,0.04);
