@@ -92,6 +92,17 @@
     visual.appendChild(heroImg);
   }
 
+  /* ---------- team: one wrapper around heading + portraits + bios (display:contents = no-op on mobile) ---------- */
+  var teamHead = document.getElementById('team');
+  var teamGrid = teamHead && teamHead.nextElementSibling;
+  var teamBios = teamGrid && teamGrid.nextElementSibling;
+  if (teamGrid && teamGrid.classList.contains('team-grid') && teamBios && teamBios.querySelector('.bio-card')) {
+    var tf = el('div', 'd-team-frame');
+    tf.style.display = 'contents';
+    teamHead.parentNode.insertBefore(tf, teamHead);
+    tf.appendChild(teamHead); tf.appendChild(teamGrid); tf.appendChild(teamBios);
+  }
+
   /* ---------- footer ---------- */
   if (wrap) {
     var f = el('footer', 'd-footer', true);
