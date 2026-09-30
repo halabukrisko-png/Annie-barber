@@ -104,7 +104,7 @@ a.btn-cta[style*="display:block"], a.btn-outline { width: auto !important; }
   animation: heroReveal 1.6s var(--ease) both;
 }
 @keyframes heroReveal { from { opacity: 0; clip-path: inset(0 0 14% 0); scale: 1.08; } to { opacity: 1; clip-path: inset(0 0 0 0); scale: 1; } }
-.hero-shade { background: linear-gradient(90deg, rgba(20,19,17,0.9) 0%, rgba(20,19,17,0.6) 38%, rgba(20,19,17,0.08) 70%, rgba(20,19,17,0.2) 100%), linear-gradient(180deg, rgba(20,19,17,0.35) 0%, rgba(20,19,17,0) 18%, rgba(20,19,17,0) 100%) !important; }
+.hero-shade { background: linear-gradient(90deg, rgba(20,19,17,0.9) 0%, rgba(20,19,17,0.6) 38%, rgba(20,19,17,0.08) 70%, rgba(20,19,17,0.2) 100%), linear-gradient(180deg, rgba(20,19,17,0.35) 0%, rgba(20,19,17,0) 18%, rgba(20,19,17,0) 62%, rgba(20,19,17,0.55) 84%, #141311 100%) !important; }
 .hero-badge-row, .hero-content { position: relative; flex: 0 0 auto !important; width: min(780px, calc(100% - var(--pad) * 2 - min(42%, 640px) - 40px)); margin-left: var(--pad); padding: 0 !important; }
 .hero-badge-row { margin-bottom: 30px; padding-top: 24px !important; }
 #hero-badge { padding: 11px 16px !important; border-radius: 999px !important; }
