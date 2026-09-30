@@ -213,7 +213,13 @@
     'Práve otvorené': 'Open now',
     '8:00 – 18:00': '8:00 AM – 6:00 PM',
     '8:00 – 14:00': '8:00 AM – 2:00 PM',
-    'Mapa — BARBERIS, Hurbana 4, Prievidza': 'Map — BARBERIS, Hurbana 4, Prievidza'
+    'Mapa — BARBERIS, Hurbana 4, Prievidza': 'Map — BARBERIS, Hurbana 4, Prievidza',
+
+    // desktop footer
+    'Navigácia': 'Navigation',
+    'Nedeľa zatvorené': 'Closed on Sunday',
+    'Všetky práva vyhradené.': 'All rights reserved.',
+    'Späť hore ↑': 'Back to top ↑'
   };
 
   var MONTHS = {
