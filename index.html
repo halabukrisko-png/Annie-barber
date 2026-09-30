@@ -146,6 +146,7 @@
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
 <script src="i18n.js"></script>
+<link rel="stylesheet" href="desktop.css" media="(min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -154,9 +155,9 @@
   <!-- HERO -->
   <div id="hero" style="position:relative;height:760px;display:flex;flex-direction:column;">
     <img src="assets/hero-team.jpg" alt="Anett, Karvy a Vladis — tím Barberis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;">
-    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 24%,rgba(20,19,17,0.4) 55%,rgba(20,19,17,0.97) 92%,#141311 100%);"></div>
+    <div class="hero-shade" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 24%,rgba(20,19,17,0.4) 55%,rgba(20,19,17,0.97) 92%,#141311 100%);"></div>
 
-    <div style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 100%);backdrop-filter:blur(4px);">
+    <div class="site-header" style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 100%);backdrop-filter:blur(4px);">
       <a href="#hero" style="font-family:'Fraunces',serif;font-weight:600;font-size:19px;letter-spacing:0.02em;"><span id="tw-logo"></span><span class="tw-cursor" id="tw-cursor-logo"></span></a>
       <div style="display:flex;align-items:center;gap:10px;">
         <button id="nav-open" aria-label="Menu" style="background:none;border:none;padding:0;width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
@@ -183,18 +184,23 @@
       </div>
     </div>
 
-    <div style="position:relative;padding:12px 20px 0;">
+    <div class="hero-badge-row" style="position:relative;padding:12px 20px 0;">
       <div class="badge-reveal" id="hero-badge" style="display:inline-flex;align-items:center;gap:6px;background:rgba(20,19,17,0.55);backdrop-filter:blur(4px);border:1px solid rgba(244,237,225,0.15);border-radius:2px;padding:9px 12px;">
         <span style="color:var(--bronze);font-size:13px;">📍</span>
         <span style="font-size:11.5px;letter-spacing:0.02em;white-space:nowrap;">Pánsky barbershop v Prievidzi · Hurbana 4</span>
       </div>
     </div>
-    <div style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:0 24px 20px;">
+    <div class="hero-content" style="position:relative;flex:1;display:flex;flex-direction:column;justify-content:flex-end;gap:18px;padding:0 24px 20px;">
       <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span id="tw-l1"></span><span class="tw-cursor" id="tw-cursor-1"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2"></span><span class="tw-cursor" id="tw-cursor-2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
       <p class="hero-fade-in" style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;animation-delay:0.65s;">Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.</p>
-      <div class="hero-fade-in" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
+      <div class="hero-fade-in hero-cta-row" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
         <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
+        <a href="galeria.html" class="btn-outline hero-third" style="display:none;border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Galéria</a>
+      </div>
+      <div class="hero-meta" style="display:none;">
+        <div class="hero-card"><span class="hc-label">Otváracie hodiny</span><span>Pondelok – Piatok · 8:00 – 18:00</span><span>Sobota · 8:00 – 14:00</span></div>
+        <div class="hero-card"><span class="hc-label">Adresa</span><span>Hurbana 4</span><span>971 01 Prievidza</span></div>
       </div>
     </div>
   </div>
@@ -202,13 +208,13 @@
   <!-- INTRO -->
   <div id="intro" style="position:relative;background:var(--bg);padding:14px 0 0;display:flex;flex-direction:column;">
     <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-    <div style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
+    <div class="intro-inner" style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.9) 0%,rgba(20,19,17,0.98) 35%,rgba(20,19,17,0.98) 85%,var(--bg) 100%);"></div>
       <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
-      <div style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
+      <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
         </div>
@@ -287,7 +293,7 @@
       <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
-    <div style="margin-top:8px;padding:0 26px;">
+    <div class="svc-teaser" style="margin-top:8px;padding:0 26px;">
       <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
       <div class="reveal-stagger reveal-stagger-x" style="display:flex;gap:8px;">
         <a href="#booking" class="service-card">
@@ -497,17 +503,17 @@
   <div id="booking">
     <div style="padding:0 24px;">
       <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
-      <div style="margin-top:54px;border:1px solid rgba(201,160,106,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
-        <div style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
+      <div class="cta-frame" style="margin-top:54px;border:1px solid rgba(201,160,106,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
+        <div class="cta-body" style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
           <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
-          <div style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
+          <div class="cta-shade" style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
           <div class="booking-badge"><span class="dot"></span>Voľné termíny</div>
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
           <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ VZHĽAD?</h2>
           <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
           <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         </div>
-        <div style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
+        <div class="cta-foot" style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
       </div>
     </div>
   </div>
@@ -897,5 +903,6 @@
   })();
 </script>
 <script src="chat.js"></script>
+<script src="desktop.js" defer></script>
 </body>
 </html>
