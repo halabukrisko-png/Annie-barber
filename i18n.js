@@ -194,6 +194,8 @@
     'Hurbana 4, 971 01 Prievidza': 'Hurbana 4, 971 01 Prievidza',
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
+    'Pondelok – Piatok': 'Monday – Friday',
+    'Prievidza': 'Prievidza',
     'Pondelok': 'Monday',
     'Utorok': 'Tuesday',
     'Streda': 'Wednesday',
