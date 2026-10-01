@@ -34,6 +34,7 @@
     'Každý z nás má svoj štýl a my ti pomôžeme nájsť ten tvoj. Poradíme, čo ti pristane, a postaráme sa, aby si z kresla vstal s istotou.': 'Each of us has our own style, and we will help you find yours. We will advise what suits you and make sure you leave the chair with confidence.',
     'U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.': 'With us you are not a number in a queue. You are our guest — and we treat you that way.',
     'Objednať sa môžeš telefonicky na 0951 833 488 alebo cez Instagram. Radi ti poradíme s výberom strihu a nájdeme termín, ktorý ti vyhovuje.': 'You can book by phone on 0951 833 488 or via Instagram. We will gladly help you choose a cut and find a time that suits you.',
+    'Potrebuješ špeciálny termín mimo otváracích hodín? Aj to sa dá zariadiť, stačí nám napísať.': 'Need a special appointment outside opening hours? That can be arranged too, just message us.',
     'Kvalita': 'Quality',
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',
