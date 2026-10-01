@@ -44,7 +44,39 @@
   .reveal-stagger-x > *:nth-child(odd) { transform: translateX(-38px); }
   .reveal-stagger-x > *:nth-child(even) { transform: translateX(38px); }
   .reveal-stagger-x > *.in-view { transform: translateX(0); }
-  .rv-frame { display: none; }
+  /* reviews: "more reviews" opens a frame round the cards; a bronze line runs round its edge */
+  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  #reviews-wrap { position: relative; isolation: isolate; }
+  .rv-frame {
+    position: absolute; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .5s ease;
+    top: 14px; left: 8px; right: 8px; bottom: -10px; border: 1px solid rgba(244,237,225,0.12); border-radius: 6px;
+    background: linear-gradient(180deg, rgba(28,26,23,0.72), rgba(20,19,17,0.5));
+  }
+  .rv-frame.ring-in { opacity: 1; }
+  .rv-frame::before {
+    content: ''; position: absolute; inset: -1px; padding: 1.5px; border-radius: 6px; --ring: 0deg;
+    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
+      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    transition: --ring 2.6s cubic-bezier(.45,.05,.25,1);
+  }
+  .rv-frame.ring-in::before { --ring: 372deg; }
+  .rv-frame.ring-done::before { transition: none; background: var(--bronze); opacity: 0.85; }
+  .rv-frame::after { /* fine bronze diagonals cutting the corners */
+    content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: 6px;
+    --d: 40px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
+    --l: transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px);
+    background:
+      linear-gradient(to bottom right, var(--l)) top left / var(--d) var(--d) no-repeat,
+      linear-gradient(to bottom left, var(--l)) top right / var(--d) var(--d) no-repeat,
+      linear-gradient(to top right, var(--l)) bottom left / var(--d) var(--d) no-repeat,
+      linear-gradient(to top left, var(--l)) bottom right / var(--d) var(--d) no-repeat;
+    --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 86%, transparent 96%);
+    -webkit-mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
+    mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
+  }
+  @media (prefers-reduced-motion: reduce) { .rv-frame::before { transition: none; } }
   .toggle-fade { opacity: 0; transform: translateY(18px); overflow: hidden; max-height: 0; transition: opacity 0.55s ease-out, transform 0.55s ease-out, max-height 0.55s cubic-bezier(.22,1,.36,1); }
   .toggle-fade.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
@@ -148,8 +180,8 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610011831"></script>
-<link rel="stylesheet" href="desktop.css?v=202610011831" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610011832"></script>
+<link rel="stylesheet" href="desktop.css?v=202610011832" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -961,7 +993,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610011831"></script>
-<script src="desktop.js?v=202610011831" defer></script>
+<script src="chat.js?v=202610011832"></script>
+<script src="desktop.js?v=202610011832" defer></script>
 </body>
 </html>
