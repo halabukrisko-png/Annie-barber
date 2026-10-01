@@ -1202,3 +1202,25 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .gallery-anim > *, .gallery-anim > *:nth-child(even) { transform: translateY(28px) !important; }
   .gallery-anim > *.in-view { transform: none !important; }
 }
+
+/* o-nas photo block: a dark framed card; clicking it brightens the photo ---- */
+@media (min-width: 1024px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div {
+    position: relative; overflow: hidden; cursor: pointer; border: 1px solid rgba(201,160,106,0.5); border-radius: var(--radius); background: #141311;
+    min-height: clamp(420px, 34vw, 500px); align-items: center !important; padding: clamp(36px, 4vw, 60px) clamp(28px, 4vw, 64px) !important; box-shadow: 0 40px 80px -56px rgba(0,0,0,.95);
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] {
+    left: 0 !important; right: 0 !important; width: 100% !important; top: 0 !important; bottom: 0 !important; filter: none !important; -webkit-mask-image: none !important; mask-image: none !important;
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::before { display: none !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
+    background: url('assets/lounge-detail.jpg') 50% 62% / cover no-repeat !important; -webkit-mask-image: none !important; mask-image: none !important;
+    filter: brightness(.42) saturate(.8); transition: filter 1s ease;
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div { background: radial-gradient(ellipse at 50% 50%, rgba(14,13,11,.45), rgba(14,13,11,.7)) !important; transition: opacity 1s ease; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div.photo-lit > div[aria-hidden="true"]::after { filter: brightness(1) saturate(1.05); }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div.photo-lit > div[aria-hidden="true"] > div { opacity: .2; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { margin: 0 !important; align-self: center !important; justify-self: center !important; text-align: center !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"]::before { display: none; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div:hover { border-color: rgba(214,172,114,0.8); }
+}

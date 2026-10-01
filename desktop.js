@@ -251,6 +251,13 @@
     first.addEventListener('mouseenter', function () { body.classList.add('cta-lit'); });
   })();
 
+  /* ---------- o-nas: clicking the dark photo card brightens it (click again to dim) ---------- */
+  (function () {
+    var card = document.querySelector('.reveal-stagger[style*="padding:60px 0 40px"] > div');
+    if (!card || !card.querySelector('[aria-hidden="true"]')) return;
+    card.addEventListener('click', function () { card.classList.toggle('photo-lit'); });
+  })();
+
   /* ---------- the last line of the page lights up once the bottom of the page is in view ---------- */
   (function () {
     var cf = document.querySelector('.contact-frame');
