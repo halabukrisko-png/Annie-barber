@@ -44,7 +44,7 @@
   .reveal-stagger-x > *:nth-child(odd) { transform: translateX(-38px); }
   .reveal-stagger-x > *:nth-child(even) { transform: translateX(38px); }
   .reveal-stagger-x > *.in-view { transform: translateX(0); }
-  .rv-frame, .rv-link { display: none; }
+  .rv-frame { display: none; }
   .toggle-fade { opacity: 0; transform: translateY(18px); overflow: hidden; max-height: 0; transition: opacity 0.55s ease-out, transform 0.55s ease-out, max-height 0.55s cubic-bezier(.22,1,.36,1); }
   .toggle-fade.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
@@ -148,8 +148,8 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610011830"></script>
-<link rel="stylesheet" href="desktop.css?v=202610011830" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610011831"></script>
+<link rel="stylesheet" href="desktop.css?v=202610011831" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -398,7 +398,6 @@
   <!-- RECENZIE -->
   <div id="reviews-wrap">
     <div class="rv-frame" aria-hidden="true"></div>
-    <div class="rv-link" aria-hidden="true"></div>
   <div id="reviews" style="padding:32px 24px 0;text-align:center;">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -744,20 +743,17 @@
     var more = document.getElementById('reviews-more');
     if (!toggle || !more) return;
     var rvFrame = document.querySelector('#reviews-wrap > .rv-frame');
-    var rvLink = document.querySelector('#reviews-wrap > .rv-link');
     var rvTimer = null;
     function rvOpen() {
       if (!rvFrame) return;
       clearTimeout(rvTimer);
       rvFrame.classList.add('ring-in');
-      if (rvLink) rvLink.classList.add('rv-link-in');
       rvTimer = setTimeout(function () { rvFrame.classList.add('ring-done'); }, 2800);
     }
     function rvClose() {
       if (!rvFrame) return;
       clearTimeout(rvTimer);
       rvFrame.classList.remove('ring-in', 'ring-done');
-      if (rvLink) rvLink.classList.remove('rv-link-in');
     }
     toggle.addEventListener('click', function () {
       var isOpen = more.classList.contains('in-view');
@@ -965,7 +961,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610011830"></script>
-<script src="desktop.js?v=202610011830" defer></script>
+<script src="chat.js?v=202610011831"></script>
+<script src="desktop.js?v=202610011831" defer></script>
 </body>
 </html>
