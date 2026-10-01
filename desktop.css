@@ -790,8 +790,6 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 .svc-badge::before { content: ''; width: 5px; height: 5px; transform: rotate(45deg); background: #1a1612; flex: none; }
 .svc-badge[style*="inline-block"], .svc-hover-row:hover .svc-badge { animation: badgeDrop .5s var(--ease) both; }
 
-/* price list open: the booking button moves under the note, centred ---- */
-#services:has(> #cennik-full[style*="flex"]) > a.btn-cta { grid-column: 1 / -1; grid-row: 7; justify-self: center; margin-top: 28px !important; }
 #cennik-full > p { text-align: center; margin: 22px 0 0 !important; font-size: 14px !important; color: var(--cream) !important; }
 
 /* hero: the team photo becomes a dark, vignetted full-bleed background on the right, the copy sits on the shade on the left ---- */
