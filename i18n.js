@@ -156,8 +156,7 @@
     // booking form
     'Rezervácia': 'Booking',
     'ZAREZERVUJ SI TERMÍN': 'BOOK YOUR APPOINTMENT',
-    '1 · Barber –': '1 · Barber –',
-    'najprv si vyber barbera': 'first, choose your barber',
+    '1 · Barber – Najprv si vyber barbera': '1 · Barber – First, choose your barber',
     '2 · Služba': '2 · Service',
     '3 · Dátum': '3 · Date',
     '4 · Čas —': '4 · Time —',
