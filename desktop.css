@@ -189,7 +189,7 @@ img { max-width: 100%; }
     linear-gradient(to top right, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) bottom left / var(--d) var(--d) no-repeat,
     linear-gradient(to top left, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) bottom right / var(--d) var(--d) no-repeat;
   /* each diagonal fades out towards both ends */
-  --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.55) 45%, transparent 100%);
+  --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 86%, transparent 96%);
   -webkit-mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
   mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
 }
