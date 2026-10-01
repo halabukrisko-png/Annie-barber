@@ -179,9 +179,9 @@ img { max-width: 100%; }
 #services.ring-in::before, .d-team-frame.ring-in::before { --ring: 372deg; }
 #services.ring-done::before, .d-team-frame.ring-done::before { transition: none; background: var(--bronze); opacity: 0.85; }
 @media (prefers-reduced-motion: reduce) { #services::before, .d-team-frame::before { transition: none; } }
-#services::after { /* two fine bronze diagonals cutting each corner of the frame */
+#services::after, .d-team-frame::after, .contact-frame::after { /* two fine bronze diagonals cutting each corner of the frame */
   content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: var(--radius);
-  --d: 84px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
+  --d: 56px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
   background:
     linear-gradient(to bottom right, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) top left / var(--d) var(--d) no-repeat,
     linear-gradient(to bottom left, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) top right / var(--d) var(--d) no-repeat,
@@ -330,7 +330,7 @@ div[style="height:28px;"] { height: 0 !important; }
 /* contact ----------------------------------------------------------------- */
 #contact, div:has(> .contact-frame) { padding: var(--section) var(--pad) var(--section) !important; }
 .contact-frame {
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto auto auto 1fr; column-gap: clamp(28px, 3.4vw, 56px);
+  position: relative; display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); grid-template-rows: auto auto auto 1fr; column-gap: clamp(28px, 3.4vw, 56px);
   padding: 0 clamp(24px, 3.4vw, 56px) clamp(24px, 3.4vw, 56px) !important;
   border: 1px solid var(--line) !important; border-radius: var(--radius) !important; box-shadow: 0 60px 100px -70px rgba(0,0,0,0.95) !important;
 }
