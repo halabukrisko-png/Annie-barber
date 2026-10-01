@@ -933,3 +933,22 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   #hero-badge span:first-child { display: inline !important; }
   #hero-badge span:last-child { font-size: 15px !important; letter-spacing: 0.01em !important; text-transform: none !important; color: var(--cream) !important; }
 }
+
+/* o-nas: the lounge photo is a full-bleed section background, shaded towards the text ---- */
+@media (min-width: 1024px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { padding: clamp(48px, 5vw, 80px) 0 !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] {
+    position: absolute !important; top: 0 !important; bottom: 0 !important; left: calc(50% - 50vw) !important; right: auto !important; width: 100vw !important; height: auto !important;
+    grid-column: auto !important; grid-row: auto !important; aspect-ratio: auto !important; border: 0 !important; border-radius: 0 !important; box-shadow: none !important; z-index: 0;
+    background-size: cover !important; background-position: 62% 60% !important; filter: brightness(.9) saturate(.95);
+    -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%) !important; mask-image: linear-gradient(180deg, transparent 0, #000 90px, #000 calc(100% - 90px), transparent 100%) !important;
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div {
+    background: linear-gradient(90deg, rgba(20,19,17,.94) 0%, rgba(20,19,17,.78) 34%, rgba(20,19,17,.25) 62%, rgba(20,19,17,.4) 100%) !important;
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { position: relative; z-index: 1; text-shadow: 0 2px 14px rgba(0,0,0,.7) !important; }
+}
+@media (min-width: 1024px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { min-height: clamp(460px, 40vw, 600px); }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] { background-position: 60% 62% !important; }
+}
