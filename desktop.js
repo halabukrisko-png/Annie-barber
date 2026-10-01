@@ -83,6 +83,28 @@
     right.appendChild(cta);
   }
 
+  /* ---------- desktop: the SK / EN switch sits right next to the BARBERIS logo ---------- */
+  (function () {
+    if (!header) return;
+    function setup() {
+      var logoEl = header.querySelector('a');
+      var sw = header.querySelector('.lang-switch');
+      var burgerEl = document.getElementById('nav-open');
+      if (!logoEl || !sw || !burgerEl || header.querySelector('.d-brand')) return;
+      var brand = el('div', 'd-brand');
+      logoEl.parentNode.insertBefore(brand, logoEl);
+      brand.appendChild(logoEl);
+      function place() {
+        if (desktop.matches) { if (sw.parentNode !== brand) brand.appendChild(sw); }
+        else if (sw.parentNode === brand) burgerEl.parentNode.insertBefore(sw, burgerEl);
+      }
+      place();
+      if (desktop.addEventListener) desktop.addEventListener('change', place); else desktop.addListener(place);
+    }
+    /* i18n.js creates the switch on DOMContentLoaded – run after it */
+    if (document.readyState === 'complete') setup(); else document.addEventListener('DOMContentLoaded', setup);
+  })();
+
   /* ---------- hero: wrap the photo so desktop can frame it (display:contents = no-op on mobile) ---------- */
   var heroImg = document.querySelector('#hero > img');
   if (heroImg) {
