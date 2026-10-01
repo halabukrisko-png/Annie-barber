@@ -31,6 +31,8 @@
     'je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.': 'is a place where quality barber craft, a personal approach and a good atmosphere meet.',
     'Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.': 'We want you to leave with more than a great haircut — with the feeling that you took a moment to rest and did something for yourself.',
     'Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.': 'We’re in no rush. We take the time for every detail — from the consultation to the final touch — so you leave with a result you’re happy with.',
+    'Každý z nás má svoj štýl a my ti pomôžeme nájsť ten tvoj. Poradíme, čo ti pristane, a postaráme sa, aby si z kresla vstal s istotou.': 'Each of us has our own style, and we will help you find yours. We will advise what suits you and make sure you leave the chair with confidence.',
+    'U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.': 'With us you are not a number in a queue. You are our guest — and we treat you that way.',
     'Kvalita': 'Quality',
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',

@@ -215,6 +215,8 @@
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.</p>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Každý z nás má svoj štýl a my ti pomôžeme nájsť ten tvoj. Poradíme, čo ti pristane, a postaráme sa, aby si z kresla vstal s istotou.</p>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.</p>
       <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -708,7 +710,7 @@
         var sp = document.createElement('span');
         sp.textContent = ch;
         sp.setAttribute('aria-hidden', 'true');
-        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.32s ease-out,transform 0.32s ease-out;' +
+        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.5s ease-out,transform 0.5s ease-out;' +
           (visible ? '' : 'opacity:0;transform:translateY(4px);');
         h.appendChild(sp);
         spans.push(sp);
@@ -723,7 +725,7 @@
           spans[k].style.opacity = '1';
           spans[k].style.transform = 'translateY(0)';
           k++;
-          timer = setTimeout(next, 60);
+          timer = setTimeout(next, 140);
         })();
       });
     }
