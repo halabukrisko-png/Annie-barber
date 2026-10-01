@@ -1237,7 +1237,11 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .cancel-card > .cancel-call { grid-column: 1; text-align: center; }
 }
 
-/* hero: the copy block sits a bit further to the left ---- */
 @media (min-width: 1024px) {
-  .hero-badge-row, .hero-content { margin-left: calc(-1 * min(64px, max(0px, var(--pad) - 24px))) !important; }
+  .hero-badge-row, .hero-content { margin-left: calc(-1 * min(104px, max(0px, var(--pad) - 24px))) !important; }
+}
+
+/* hero: the copy block sits further to the left (up to 80px, scaled with the window width) ---- */
+@media (min-width: 1024px) {
+  .hero-badge-row, .hero-content { margin-left: calc(-1 * clamp(0px, (100vw - 1100px) * 0.25, 80px)) !important; }
 }
