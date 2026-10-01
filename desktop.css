@@ -766,6 +766,6 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 
 /* bio: the tag line sits small under the portrait instead of under the text ---- */
 .bio-card:not(.reveal) .bio-tag { display: none !important; }
-.bio-card:not(.reveal) .bio-tag-under { display: block; width: 200px; margin: 2px 0 0; font-size: 9.5px; line-height: 1.6; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); text-align: left; }
+.bio-card:not(.reveal) .bio-tag-under { display: block; width: 236px; letter-spacing: 0.11em; margin: 2px 0 0; font-size: 9.5px; line-height: 1.6; text-transform: uppercase; color: var(--bronze); text-align: left; }
 .bio-card:not(.reveal) .bio-head { align-self: stretch !important; }
 .bio-card:not(.reveal) .bio-tag-under { margin-top: auto; padding-bottom: 6px; }
