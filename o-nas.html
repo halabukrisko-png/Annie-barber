@@ -159,6 +159,8 @@
   .cancel-form { display: flex; gap: 10px; margin-top: 14px; }
   .cancel-form .cal-field { margin-bottom: 0; flex: 1; border: 1px solid rgba(201,160,106,0.55) !important; background: rgba(10,9,8,0.4); }
   .cancel-form .btn-outline { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; flex: 0 0 auto; margin-top: 0 !important; padding: 0 20px; font-family: inherit; cursor: pointer; white-space: nowrap; }
+  .step-cancel { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--cream); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 6px 12px; white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
+  .step-cancel:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
   .cancel-call { display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
   .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .slot-btn { background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); padding: 11px 0; border-radius: 3px; font-size: 12.5px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.18s ease, border-color 0.18s ease; }
@@ -202,9 +204,9 @@
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 </style>
-<script src="i18n.js?v=202610012303"></script>
-<link rel="stylesheet" href="endline.css?v=202610012303">
-<link rel="stylesheet" href="desktop.css?v=202610012303" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610012307"></script>
+<link rel="stylesheet" href="endline.css?v=202610012307">
+<link rel="stylesheet" href="desktop.css?v=202610012307" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -379,7 +381,7 @@
     </div>
 
     <div class="booking-calendar reveal" id="booking-calendar">
-      <div class="step-label" style="justify-content:flex-start;gap:8px;"><span>1 · Barber – Najprv si vyber barbera.</span></div>
+      <div class="step-label" style="justify-content:space-between;gap:8px;"><span>1 · Barber – Najprv si vyber barbera:</span><a href="#cancel-contact" class="step-cancel" id="step-cancel-link">Zrušiť termín</a></div>
       <div class="barber-grid" id="barber-grid">
         <button type="button" class="barber-btn" data-barber="Anett">
           <img class="barber-avatar" src="assets/anett.jpg" alt="Anett" style="object-position:50% 20%;">
@@ -400,14 +402,14 @@
       </div>
 
       <div id="cal-after-barber-wrap" hidden>
-        <div class="step-label"><span>2 · Služba – Teraz si vyber službu.</span></div>
+        <div class="step-label"><span>2 · Služba – Teraz si vyber službu:</span></div>
         <div class="svc-grid" id="svc-grid">
           <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
           <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
           <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
         </div>
 
-        <div class="step-label"><span>3 · Dátum – Vyber si dátum, kedy sa chceš strihať.</span></div>
+        <div class="step-label"><span>3 · Dátum – Vyber si dátum, kedy sa chceš strihať:</span></div>
         <div class="cal-head">
           <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
           <span id="cal-month-label"></span>
@@ -419,7 +421,7 @@
 
         <div class="cal-right">
         <div id="cal-slots-wrap" hidden>
-          <div class="step-label"><span>4 · Čas – Vyber si čas, kedy sa chceš strihať.<span id="cal-selected-date" hidden></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
+          <div class="step-label"><span>4 · Čas – Vyber si čas, kedy sa chceš strihať:<span id="cal-selected-date" hidden></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
           <div class="slot-grid" id="cal-slots"></div>
         </div>
 
@@ -961,18 +963,18 @@
     });
   })();
   (function () {
-    var l = document.getElementById('cal-cancel-link');
-    if (!l) return;
+    var ls = [document.getElementById('cal-cancel-link'), document.getElementById('step-cancel-link')];
+    ls.forEach(function (l) { if (!l) return;
     l.addEventListener('click', function (e) {
       e.preventDefault();
       var f = document.getElementById('cancel-contact');
       if (!f) return;
       f.scrollIntoView({ behavior: 'smooth', block: 'center' });
       setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (x) { f.focus(); } }, 500);
-    });
+    }); });
   })();
 </script>
-<script src="chat.js?v=202610012303"></script>
-<script src="desktop.js?v=202610012303" defer></script>
+<script src="chat.js?v=202610012307"></script>
+<script src="desktop.js?v=202610012307" defer></script>
 </body>
 </html>
