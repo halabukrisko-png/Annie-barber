@@ -1154,3 +1154,9 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .cancel-card > p { max-width: none; }
   .cancel-card > a { grid-column: 1 !important; grid-row: auto !important; justify-self: stretch !important; text-align: center; margin-top: 8px !important; padding: 15px 26px !important; border-radius: 2px; letter-spacing: .14em; }
 }
+
+@media (min-width: 1024px) {
+  #cal-after-barber-wrap:not([hidden]) { padding: clamp(24px, 2.6vw, 38px) clamp(24px, 3vw, 44px) clamp(28px, 3vw, 44px); }
+  #cal-after-barber-wrap .slot-grid { grid-template-columns: repeat(6, 1fr); gap: 10px; }
+  #cal-after-barber-wrap .slot-btn { padding: 14px 0 !important; font-size: 14px !important; }
+}
