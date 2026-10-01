@@ -243,19 +243,22 @@
     Array.prototype.forEach.call(frames, function (f) { rio.observe(f); });
   })();
 
-  /* ---------- the last line of the page lights up when the end of the page comes into view ---------- */
+  /* ---------- the last line of the page lights up once the bottom of the page is in view ---------- */
   (function () {
     var cf = document.querySelector('.contact-frame');
     if (!cf) return;
-    if (reduce || !('IntersectionObserver' in window)) { cf.classList.add('line-in'); return; }
-    var lio = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (!e.isIntersecting) return;
-        lio.unobserve(e.target);
-        e.target.classList.add('line-in');
-      });
-    }, { threshold: 0.6 });
-    lio.observe(cf);
+    if (reduce) { cf.classList.add('line-in'); return; }
+    function check() {
+      if (cf.classList.contains('line-in')) return;
+      if (cf.getBoundingClientRect().bottom <= window.innerHeight - 4) {
+        cf.classList.add('line-in');
+        window.removeEventListener('scroll', check);
+        window.removeEventListener('resize', check);
+      }
+    }
+    window.addEventListener('scroll', check, { passive: true });
+    window.addEventListener('resize', check);
+    check();
   })();
 
   /* ---------- scroll: header state, progress, scroll-spy, parallax ---------- */
