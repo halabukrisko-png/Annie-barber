@@ -792,3 +792,4 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 
 /* price list open: the booking button moves under the note, centred ---- */
 #services:has(> #cennik-full[style*="flex"]) > a.btn-cta { grid-column: 1 / -1; grid-row: 7; justify-self: center; margin-top: 28px !important; }
+#cennik-full > p { text-align: center; margin: 22px 0 0 !important; font-size: 14px !important; color: var(--cream) !important; }
