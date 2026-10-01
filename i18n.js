@@ -39,6 +39,7 @@
     'Možno máš za sebou dlhý týždeň a chceš len ticho a kávu. Možno máš chuť na dobrý príbeh, vtip alebo názor na posledný zápas. Nikam sa neponáhľame, kreslo máš celé tvoje.': 'Maybe you have had a long week and just want quiet and a coffee. Maybe you feel like a good story, a joke or an opinion on last night’s match. We are in no rush — the chair is all yours.',
     'Pri nás nie je správna ani zlá nálada. Dôležité je, aby si odišiel s dobrým strihom a pocitom, že si sa u nás cítil ako doma.': 'With us there is no right or wrong mood. What matters is that you leave with a great haircut and the feeling that you felt at home here.',
     'Zrušiť termín': 'Cancel appointment',
+    'Zrušiť termín:': 'Cancel appointment:',
     'Zadaj telefón alebo e-mail, s ktorým si rezervoval, a pošleme žiadosť o zrušenie alebo zmenu termínu.': 'Enter the phone number or e-mail you booked with and we will send a request to cancel or change your appointment.',
     'Telefón alebo e-mail': 'Phone or e-mail',
     'alebo zavolaj: 0951 833 488': 'or call: 0951 833 488',
