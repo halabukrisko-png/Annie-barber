@@ -691,11 +691,15 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 }
 #reviews-wrap > .rv-frame.ring-in { opacity: 1; }
 
-/* booking card + contact frame are one joined block; the card is just the whole photo at its own proportions (full length) ---- */
+/* booking card + contact frame are one joined block; the card shows the whole photo (own proportions) centred, melting into the dark card at the sides ---- */
 .cta-frame { border-bottom: 0 !important; border-radius: var(--radius) var(--radius) 0 0 !important; box-shadow: none; }
-.cta-body { aspect-ratio: 1468 / 2000 !important; height: auto; min-height: 0; background: #141311; padding: 0 !important; }
-.cta-body > img { object-fit: cover !important; object-position: 50% 50% !important; transform: none !important; }
+.cta-body { aspect-ratio: auto !important; height: clamp(520px, 56vw, 820px); min-height: 0; background: #141311; padding: 0 !important; }
+.cta-body > img {
+  inset: 0 auto 0 50% !important; width: auto !important; height: 100% !important; max-width: none !important; aspect-ratio: 1468 / 2000; object-fit: cover !important; transform: translateX(-50%) !important;
+  -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, #000 9%, #000 91%, transparent 100%);
+}
 .cta-shade { background: linear-gradient(180deg, rgba(20,19,17,0.35) 0%, rgba(20,19,17,0) 18%, rgba(20,19,17,0) 80%, rgba(20,19,17,0.5) 100%) !important; }
 .cta-body > :not(img):not(.cta-shade):not(.booking-badge), .cta-foot { display: none !important; }
+.cta-body .booking-badge { right: auto; left: calc(50% + clamp(120px, 14vw, 200px)); }
 .contact-frame { border-top: 1px solid var(--line) !important; border-radius: 0 0 var(--radius) var(--radius) !important; }
 .contact-frame::after { clip-path: inset(50% 0 0 0); }
