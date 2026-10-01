@@ -134,28 +134,27 @@ img { max-width: 100%; }
 #intro { padding: var(--section-sm) var(--pad) 0 !important; }
 #intro .scroll-line-wrap { padding: 0 !important; }
 .intro-inner {
-  display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto auto auto 1fr auto;
-  column-gap: clamp(36px, 6vw, 112px); row-gap: 20px !important; padding: var(--section-sm) 0 0 !important; overflow: visible !important;
+  display: grid !important; grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; justify-items: center; text-align: center;
+  position: relative; row-gap: 22px !important; padding: clamp(72px, 9vw, 132px) 0 0 !important; overflow: visible !important;
 }
-.intro-inner { position: relative; }
-/* lounge photo is a full-bleed section background (same as mobile), dimmed by the overlay */
+/* lounge photo is a full-bleed section background, cropped to the sofa + table and shaded towards the centre text */
 .intro-inner .intro-photo, .intro-inner > div[style*="position:absolute"] {
   position: absolute !important; top: 0 !important; bottom: 0 !important; left: calc(50% - 50vw) !important; right: auto !important;
-  grid-column: 1 / -1 !important; grid-row: 1 / -1 !important; width: 100vw !important; max-width: none !important; height: 100% !important; border: 0; border-radius: 0; box-shadow: none; transform: none !important; z-index: 0;
+  grid-column: 1 !important; grid-row: auto !important; width: 100vw !important; max-width: none !important; height: 100% !important; border: 0; border-radius: 0; box-shadow: none; transform: none !important; z-index: 0;
 }
-.intro-inner .intro-photo { object-fit: cover; object-position: 50% 55%; }
-.intro-inner > div[style*="position:absolute"] { background: linear-gradient(90deg, rgba(20,19,17,0.45) 0%, rgba(20,19,17,0.62) 45%, rgba(20,19,17,0.88) 100%) !important; }
-.intro-inner > h2, .intro-inner > p { text-shadow: 0 1px 10px rgba(0,0,0,0.75); }
-.intro-inner > :not(.intro-photo) { grid-column: 2; }
-.intro-inner > h2 { grid-row: 2; }
-.intro-inner > p:nth-of-type(1) { grid-row: 3; }
-.intro-inner > p:nth-of-type(2) { grid-row: 4; }
-.intro-inner > .ticker { grid-row: 6; }
-.intro-inner h2 { text-align: left !important; font-size: calc(var(--fs-h2) * 1.3) !important; line-height: 1.02 !important; margin-bottom: 4px !important; }
-.intro-inner p { max-width: 520px; font-size: var(--fs-lead) !important; }
+.intro-inner .intro-photo { object-fit: cover; object-position: 50% 68%; filter: saturate(0.92) contrast(1.04); }
+.intro-inner > div[style*="position:absolute"] { background:
+  linear-gradient(180deg, var(--bg) 0%, rgba(20,19,17,0) 26%, rgba(20,19,17,0) 74%, rgba(20,19,17,0.55) 100%),
+  linear-gradient(90deg, rgba(20,19,17,0.9) 0%, rgba(20,19,17,0) 24%, rgba(20,19,17,0) 76%, rgba(20,19,17,0.9) 100%),
+  radial-gradient(ellipse 62% 78% at 50% 50%, rgba(20,19,17,0.74) 0%, rgba(20,19,17,0.56) 55%, rgba(20,19,17,0.28) 100%) !important; }
+.intro-inner > :not(.intro-photo) { grid-column: 1; grid-row: auto; }
+.intro-inner > h2, .intro-inner > p { text-shadow: 0 2px 16px rgba(0,0,0,0.85), 0 0 2px rgba(0,0,0,0.5); }
+.intro-inner h2 { text-align: center !important; font-size: calc(var(--fs-h2) * 1.3) !important; line-height: 1.05 !important; margin: 0 0 6px !important; }
+.intro-inner h2::after { content: ''; display: block; width: 56px; height: 1px; background: var(--bronze); margin: 22px auto 0; }
+.intro-inner p { max-width: 600px; text-align: center; color: var(--cream) !important; font-size: var(--fs-lead) !important; }
 .ticker { font-size: 12px !important; letter-spacing: 0.26em !important; padding: 18px 0 !important; }
-/* the ticker sits under the photo as a full-width band, flush with the next section */
-.intro-inner > .ticker { grid-column: 1 / -1; margin: var(--section-sm) calc(50% - 50vw) 0 !important; border-radius: 0; border-left: 0 !important; border-right: 0 !important; }
+/* the ticker sits at the bottom of the photo as a full-width band, flush with the next section */
+.intro-inner > .ticker { width: 100vw; margin: clamp(48px, 6vw, 88px) calc(50% - 50vw) 0 !important; border-radius: 0; border-left: 0 !important; border-right: 0 !important; }
 
 /* services ---------------------------------------------------------------- */
 #services {
@@ -602,11 +601,6 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .hero-content > p { font-size: var(--fs-lead) !important; max-width: 440px !important; }
   #hero-badge span:last-child { font-size: 12.5px !important; }
 
-  /* intro stacks, but at a comfortable reading width */
-  .intro-inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; max-width: 720px; margin: 0 auto; width: 100%; }
-  .intro-inner > .ticker { grid-row: auto; margin-top: 28px !important; }
-    .intro-inner > :not(.intro-photo) { grid-column: 1; grid-row: auto; }
-  .intro-inner > p:nth-of-type(1), .intro-inner > p:nth-of-type(2) { grid-row: auto; }
   .intro-inner h2 { font-size: 30px !important; }
 
   .team-caption h3 { font-size: 16px !important; }
