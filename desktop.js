@@ -225,6 +225,24 @@
     }, { passive: true });
   }
 
+  /* ---------- bronze notch runs round the frame when it scrolls into view ---------- */
+  (function () {
+    var frames = document.querySelectorAll('#services, .d-team-frame');
+    if (!frames.length) return;
+    function done(f) { f.classList.add('ring-in', 'ring-done'); }
+    if (reduce || !('IntersectionObserver' in window)) { Array.prototype.forEach.call(frames, done); return; }
+    var rio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var f = e.target;
+        rio.unobserve(f);
+        f.classList.add('ring-in');
+        setTimeout(function () { f.classList.add('ring-done'); }, 2800);
+      });
+    }, { threshold: 0.2 });
+    Array.prototype.forEach.call(frames, function (f) { rio.observe(f); });
+  })();
+
   /* ---------- scroll: header state, progress, scroll-spy, parallax ---------- */
   var introPhoto = document.querySelector('#intro .intro-photo');
   var ctaImg = document.querySelector('.cta-body > img');
