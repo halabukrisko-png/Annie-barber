@@ -250,7 +250,7 @@
     if (reduce) { cf.classList.add('line-in'); return; }
     function check() {
       if (cf.classList.contains('line-in')) return;
-      if (cf.getBoundingClientRect().bottom <= window.innerHeight - 4) {
+      if (cf.getBoundingClientRect().bottom <= window.innerHeight + 2) {
         cf.classList.add('line-in');
         window.removeEventListener('scroll', check);
         window.removeEventListener('resize', check);
