@@ -211,9 +211,10 @@
     <div class="intro-inner" style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.62) 35%,rgba(20,19,17,0.7) 80%,var(--bg) 100%);"></div>
-      <h2 class="reveal" style="position:relative;text-shadow:0 1px 10px rgba(0,0,0,0.75);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
+      <h2 id="intro-title" style="position:relative;text-shadow:0 1px 10px rgba(0,0,0,0.75);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.</p>
       <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -692,6 +693,51 @@
       if (logo) setTimeout(typeLogo, 350);
       setTimeout(typeLine1, 750);
     }
+  })();
+  (function () {
+    var h = document.getElementById('intro-title');
+    if (!h) return;
+    var text = T('VIAC NEŽ LEN STRIH.');
+    var started = false, timer = null;
+    function build(visible) {
+      clearTimeout(timer);
+      h.setAttribute('aria-label', text);
+      h.textContent = '';
+      var spans = [];
+      text.split('').forEach(function (ch) {
+        var sp = document.createElement('span');
+        sp.textContent = ch;
+        sp.setAttribute('aria-hidden', 'true');
+        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.32s ease-out,transform 0.32s ease-out;' +
+          (visible ? '' : 'opacity:0;transform:translateY(4px);');
+        h.appendChild(sp);
+        spans.push(sp);
+      });
+      return spans;
+    }
+    function type() {
+      var spans = build(false), k = 0;
+      window.requestAnimationFrame(function () {
+        (function next() {
+          if (k >= spans.length) return;
+          spans[k].style.opacity = '1';
+          spans[k].style.transform = 'translateY(0)';
+          k++;
+          timer = setTimeout(next, 60);
+        })();
+      });
+    }
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    build(still);
+    window.addEventListener('langchange', function () { text = T('VIAC NEŽ LEN STRIH.'); build(true); started = true; });
+    if (still || !('IntersectionObserver' in window)) { build(true); return; }
+    var io = new IntersectionObserver(function (es) {
+      if (started || !es[0].isIntersecting) return;
+      started = true;
+      io.disconnect();
+      type();
+    }, { threshold: 0.9 });
+    io.observe(h);
   })();
   (function () {
     var toggle = document.getElementById('reviews-toggle');

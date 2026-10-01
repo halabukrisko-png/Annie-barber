@@ -30,6 +30,7 @@
     'VIAC NEŽ LEN STRIH.': 'MORE THAN JUST A HAIRCUT.',
     'je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.': 'is a place where quality barber craft, a personal approach and a good atmosphere meet.',
     'Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.': 'We want you to leave with more than a great haircut — with the feeling that you took a moment to rest and did something for yourself.',
+    'Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.': 'We’re in no rush. We take the time for every detail — from the consultation to the final touch — so you leave with a result you’re happy with.',
     'Kvalita': 'Quality',
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',
