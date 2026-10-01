@@ -169,12 +169,16 @@ img { max-width: 100%; }
 }
 #services::after { /* two fine bronze diagonals cutting each corner of the frame */
   content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: var(--radius);
-  --d: 68px; --b: rgba(201,160,106,0.7); --b2: rgba(201,160,106,0.32);
+  --d: 84px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
   background:
     linear-gradient(to bottom right, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) top left / var(--d) var(--d) no-repeat,
     linear-gradient(to bottom left, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) top right / var(--d) var(--d) no-repeat,
     linear-gradient(to top right, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) bottom left / var(--d) var(--d) no-repeat,
     linear-gradient(to top left, transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px)) bottom right / var(--d) var(--d) no-repeat;
+  /* each diagonal fades out towards both ends */
+  --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.55) 45%, transparent 100%);
+  -webkit-mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
+  mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
 }
 #services > div:first-child { grid-column: 1 / -1; grid-row: 1; justify-content: center !important; margin-bottom: 14px !important; }
 #services > h2 { grid-column: 1 / -1; grid-row: 2; text-align: center; margin: 0 0 14px !important; }
