@@ -137,13 +137,15 @@ img { max-width: 100%; }
   display: grid !important; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); grid-template-rows: 1fr auto auto auto 1fr auto;
   column-gap: clamp(36px, 6vw, 112px); row-gap: 20px !important; padding: var(--section-sm) 0 0 !important; overflow: visible !important;
 }
-.intro-inner > div[style*="position:absolute"] { display: none !important; }
-.intro-inner .intro-photo {
-  position: relative !important; inset: auto !important; grid-column: 1; grid-row: 1 / 6; align-self: center; width: 100% !important; height: auto !important;
-  aspect-ratio: 4 / 3.3; object-fit: cover; border-radius: var(--radius); border: 1px solid var(--line);
-  box-shadow: 0 50px 90px -50px rgba(0,0,0,0.95), 0 0 0 12px rgba(201,160,106,0.04);
-  transform: translate3d(0, var(--py, 0px), 0);
+.intro-inner { position: relative; }
+/* lounge photo is a full-bleed section background (same as mobile), dimmed by the overlay */
+.intro-inner .intro-photo, .intro-inner > div[style*="position:absolute"] {
+  position: absolute !important; top: 0 !important; bottom: 0 !important; left: calc(50% - 50vw) !important; right: auto !important;
+  grid-column: 1 / -1 !important; grid-row: 1 / -1 !important; width: 100vw !important; max-width: none !important; height: 100% !important; border: 0; border-radius: 0; box-shadow: none; transform: none !important; z-index: 0;
 }
+.intro-inner .intro-photo { object-fit: cover; object-position: 50% 55%; }
+.intro-inner > div[style*="position:absolute"] { background: linear-gradient(90deg, rgba(20,19,17,0.45) 0%, rgba(20,19,17,0.62) 45%, rgba(20,19,17,0.88) 100%) !important; }
+.intro-inner > h2, .intro-inner > p { text-shadow: 0 1px 10px rgba(0,0,0,0.75); }
 .intro-inner > :not(.intro-photo) { grid-column: 2; }
 .intro-inner > h2 { grid-row: 2; }
 .intro-inner > p:nth-of-type(1) { grid-row: 3; }
@@ -603,8 +605,8 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   /* intro stacks, but at a comfortable reading width */
   .intro-inner { grid-template-columns: minmax(0, 1fr); grid-template-rows: none; max-width: 720px; margin: 0 auto; width: 100%; }
   .intro-inner > .ticker { grid-row: auto; margin-top: 28px !important; }
-  .intro-inner .intro-photo { grid-column: 1; grid-row: 1; aspect-ratio: 16 / 10; margin-bottom: 16px; }
-  .intro-inner > :not(.intro-photo) { grid-column: 1; grid-row: auto; }
+    .intro-inner > :not(.intro-photo) { grid-column: 1; grid-row: auto; }
+  .intro-inner > p:nth-of-type(1), .intro-inner > p:nth-of-type(2) { grid-row: auto; }
   .intro-inner h2 { font-size: 30px !important; }
 
   .team-caption h3 { font-size: 16px !important; }
