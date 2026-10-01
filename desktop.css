@@ -705,3 +705,6 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 
 /* the page ends right under the contact frame: no footer block ---- */
 .d-footer { display: none !important; }
+
+/* the last line of the page – the bottom edge of the contact frame – glows in bronze ---- */
+.contact-frame { border-bottom-color: rgba(214,172,114,0.85) !important; box-shadow: 0 60px 100px -70px rgba(0,0,0,0.95), 0 10px 26px -14px rgba(201,160,106,0.55) !important; }
