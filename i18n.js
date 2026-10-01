@@ -35,6 +35,7 @@
     'U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.': 'With us you are not a number in a queue. You are our guest — and we treat you that way.',
     'Objednať sa môžeš telefonicky na 0951 833 488 alebo cez Instagram. Radi ti poradíme s výberom strihu a nájdeme termín, ktorý ti vyhovuje.': 'You can book by phone on 0951 833 488 or via Instagram. We will gladly help you choose a cut and find a time that suits you.',
     'Potrebuješ špeciálny termín mimo otváracích hodín? Aj to sa dá zariadiť, stačí nám napísať.': 'Need a special appointment outside opening hours? That can be arranged too, just message us.',
+    'K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.': 'He approaches his work with humility and always makes sure you leave the chair satisfied. He is happy to go through what you have in mind, advise on shape and length, and refine every detail until it matches your idea exactly.',
     'Kvalita': 'Quality',
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',
