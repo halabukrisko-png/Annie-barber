@@ -36,6 +36,8 @@
     'Objednať sa môžeš telefonicky na 0951 833 488 alebo cez Instagram. Radi ti poradíme s výberom strihu a nájdeme termín, ktorý ti vyhovuje.': 'You can book by phone on 0951 833 488 or via Instagram. We will gladly help you choose a cut and find a time that suits you.',
     'Potrebuješ špeciálny termín mimo otváracích hodín? Aj to sa dá zariadiť, stačí nám napísať.': 'Need a special appointment outside opening hours? That can be arranged too, just message us.',
     'K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.': 'He approaches his work with humility and always makes sure you leave the chair satisfied. He is happy to go through what you have in mind, advise on shape and length, and refine every detail until it matches your idea exactly.',
+    'Možno máš za sebou dlhý týždeň a chceš len ticho a kávu. Možno máš chuť na dobrý príbeh, vtip alebo názor na posledný zápas. Nikam sa neponáhľame, kreslo máš celé tvoje.': 'Maybe you have had a long week and just want quiet and a coffee. Maybe you feel like a good story, a joke or an opinion on last night’s match. We are in no rush — the chair is all yours.',
+    'Pri nás nie je správna ani zlá nálada. Dôležité je, aby si odišiel s dobrým strihom a pocitom, že si sa u nás cítil ako doma.': 'With us there is no right or wrong mood. What matters is that you leave with a great haircut and the feeling that you felt at home here.',
     'Kvalita': 'Quality',
     'Detail': 'Detail',
     'Atmosféra': 'Atmosphere',
