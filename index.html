@@ -77,6 +77,25 @@
     mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
   }
   @media (prefers-reduced-motion: reduce) { .rv-frame::before { transition: none; } }
+  /* price list: the frame draws itself first, then the rows write in one by one */
+  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  @keyframes cnRing { from { --ring: 0deg; } to { --ring: 400deg; } }
+  #cennik-full { position: relative; }
+  #cennik-full::before {
+    content: ''; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none; opacity: 0; --ring: 0deg;
+    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
+      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  #cennik-full.cn-run { border-color: transparent !important; }
+  #cennik-full.cn-run::before { opacity: 1; animation: cnRing 1.5s cubic-bezier(.45,.05,.25,1) both; }
+  #cennik-full.cn-done { border-color: rgba(201,160,106,0.5) !important; transition: border-color .6s ease; }
+  #cennik-full > div, #cennik-full > p { opacity: 0; transition: opacity .5s ease; }
+  #cennik-full .price-list li { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+  #cennik-full.cn-items > div, #cennik-full.cn-items > p { opacity: 1; }
+  #cennik-full.cn-items .price-list li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 110ms); }
+  @media (prefers-reduced-motion: reduce) { #cennik-full > div, #cennik-full > p, #cennik-full .price-list li { opacity: 1; transform: none; transition: none; } #cennik-full.cn-run::before { animation: none; } }
   .cta-text { display: contents; }
   .cta-img2, .cta-more, .cta-note { display: none; }
   .toggle-fade { opacity: 0; transform: translateY(18px); overflow: hidden; max-height: 0; transition: opacity 0.55s ease-out, transform 0.55s ease-out, max-height 0.55s cubic-bezier(.22,1,.36,1); }
@@ -183,9 +202,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610012019"></script>
-<link rel="stylesheet" href="endline.css?v=202610012019">
-<link rel="stylesheet" href="desktop.css?v=202610012019" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610012022"></script>
+<link rel="stylesheet" href="endline.css?v=202610012022">
+<link rel="stylesheet" href="desktop.css?v=202610012022" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -331,7 +350,7 @@
         </div>
         <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
-      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
+      <button id="cennik-toggle" type="button" aria-expanded="false" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
       <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
@@ -784,6 +803,34 @@
     io.observe(h);
   })();
   (function () {
+    var btn = document.getElementById('cennik-toggle');
+    var box = document.getElementById('cennik-full');
+    if (!btn || !box) return;
+    var timers = [];
+    function clear() { timers.forEach(clearTimeout); timers = []; }
+    box.querySelectorAll('.price-list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    btn.addEventListener('click', function () {
+      var open = box.style.display === 'flex';
+      clear();
+      if (open) {
+        box.style.display = 'none';
+        box.classList.remove('cn-run', 'cn-items', 'cn-done');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = T('Pozrieť celý cenník ↓');
+        return;
+      }
+      box.classList.remove('cn-run', 'cn-items', 'cn-done');
+      box.style.display = 'flex';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = T('Skryť cenník ↑');
+      if (still) { box.classList.add('cn-items', 'cn-done'); return; }
+      void box.offsetWidth;
+      box.classList.add('cn-run');
+      timers.push(setTimeout(function () { box.classList.add('cn-items', 'cn-done'); }, 1300));
+    });
+  })();
+  (function () {
     var toggle = document.getElementById('reviews-toggle');
     var more = document.getElementById('reviews-more');
     if (!toggle || !more) return;
@@ -1007,7 +1054,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610012019"></script>
-<script src="desktop.js?v=202610012019" defer></script>
+<script src="chat.js?v=202610012022"></script>
+<script src="desktop.js?v=202610012022" defer></script>
 </body>
 </html>
