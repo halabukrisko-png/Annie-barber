@@ -161,7 +161,8 @@
   .cancel-form .btn-outline { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; flex: 0 0 auto; margin-top: 0 !important; padding: 0 20px; font-family: inherit; cursor: pointer; white-space: nowrap; }
   .step-cancel { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--cream); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 6px 12px; white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
   .step-cancel:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
-  .cancel-call { display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
+  .cancel-call a { color: var(--bronze); text-decoration: underline; text-underline-offset: 3px; }
+  .cancel-call { margin-bottom: 0; display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
   .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .slot-btn { background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); padding: 11px 0; border-radius: 3px; font-size: 12.5px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.18s ease, border-color 0.18s ease; }
   .slot-btn:hover { border-color: rgba(201,160,106,0.5); }
@@ -204,9 +205,9 @@
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 </style>
-<script src="i18n.js?v=202610012309"></script>
-<link rel="stylesheet" href="endline.css?v=202610012309">
-<link rel="stylesheet" href="desktop.css?v=202610012309" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610012311"></script>
+<link rel="stylesheet" href="endline.css?v=202610012311">
+<link rel="stylesheet" href="desktop.css?v=202610012311" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -451,7 +452,7 @@
         <input type="text" class="cal-field" id="cancel-contact" placeholder="Telefón alebo e-mail" autocomplete="tel" aria-label="Telefón alebo e-mail">
         <button type="submit" class="btn-outline" id="cancel-send">Zrušiť termín</button>
       </form>
-      <a href="tel:+421951833488" class="cancel-call">alebo zavolaj: 0951 833 488</a>
+      <p class="cancel-call">alebo zavolaj: <a href="tel:+421951833488">0951 833 488</a> alebo napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
 
@@ -974,7 +975,7 @@
     }); });
   })();
 </script>
-<script src="chat.js?v=202610012309"></script>
-<script src="desktop.js?v=202610012309" defer></script>
+<script src="chat.js?v=202610012311"></script>
+<script src="desktop.js?v=202610012311" defer></script>
 </body>
 </html>
