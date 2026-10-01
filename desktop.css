@@ -1003,3 +1003,12 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
     mask-composite: intersect;
   }
 }
+/* o-nas: the three paragraphs sit right under the headline, centred on the photo ---- */
+@media (min-width: 1024px) {
+  div[style*="padding:36px 24px 0;text-align:center;"]:has(> h1#tw-onas, > h1) { padding-bottom: 0 !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] { padding-top: 8px !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { align-items: flex-start !important; min-height: clamp(460px, 36vw, 540px); padding: 24px 0 clamp(40px, 4vw, 60px) !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { grid-column: 1 / -1 !important; justify-self: center; max-width: 700px !important; text-align: center; }
+  .reveal-stagger[style*="padding:60px 0 40px"] p:last-child { padding-left: 0 !important; border-left: 0 !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] p { text-shadow: 0 2px 16px rgba(0,0,0,.85); }
+}
