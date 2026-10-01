@@ -131,7 +131,7 @@ img { max-width: 100%; }
 .hero-card .hc-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); margin-bottom: 4px; }
 
 /* intro ------------------------------------------------------------------- */
-#intro { padding: 0 var(--pad) 0 !important; margin-top: -14px; }
+#intro { padding: 0 var(--pad) 0 !important; margin-top: -70px; }
 #intro .scroll-line-wrap { padding: 0 !important; }
 .intro-inner {
   display: grid !important; grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; justify-items: center; text-align: center;
