@@ -864,3 +864,30 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 16%, #000 42%, #000 76%, rgba(0,0,0,.4) 92%, transparent 100%) !important;
   }
 }
+
+/* hero v3: the wide studio shot as the full-bleed background, shifted right so the copy sits on its dark left side ---- */
+@media (min-width: 1024px) {
+  .hero-visual > img {
+    content: url('assets/hero-wide.jpg');
+    inset: 0 0 0 auto !important; width: 108% !important; height: 100% !important; aspect-ratio: auto !important; object-fit: cover !important; object-position: 30% 50% !important; max-width: none !important;
+    transform: translateX(14%) !important; filter: brightness(.82) saturate(.9) contrast(1.05) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 46%), linear-gradient(180deg, #000 78%, transparent 100%) !important;
+    -webkit-mask-composite: source-in !important;
+    mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 46%), linear-gradient(180deg, #000 78%, transparent 100%) !important; mask-composite: intersect !important;
+  }
+  .hero-visual { width: 100% !important; inset: 0 !important; overflow: hidden; }
+}
+@media (min-width: 1024px) {
+  .hero-visual > img {
+    inset: auto 0 0 auto !important; width: 118% !important; height: auto !important; aspect-ratio: 2032 / 774 !important; object-fit: fill !important; transform: translateX(19%) !important; filter: brightness(.85) saturate(.9) contrast(1.05) !important;
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%) !important; mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%) !important;
+    -webkit-mask-composite: source-over !important; mask-composite: add !important;
+  }
+}
+@media (min-width: 1024px) {
+  .hero-visual > img {
+    width: 132% !important; transform: translateX(24%) !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%), linear-gradient(180deg, transparent 0%, #000 26%) !important; -webkit-mask-composite: source-in !important;
+    mask-image: linear-gradient(90deg, transparent 0%, #000 34%), linear-gradient(180deg, transparent 0%, #000 26%) !important; mask-composite: intersect !important;
+  }
+}
