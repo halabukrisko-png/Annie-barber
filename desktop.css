@@ -179,7 +179,8 @@ img { max-width: 100%; }
 #services.ring-in::before, .d-team-frame.ring-in::before { --ring: 372deg; }
 #services.ring-done::before, .d-team-frame.ring-done::before { transition: none; background: var(--bronze); opacity: 0.85; }
 @media (prefers-reduced-motion: reduce) { #services::before, .d-team-frame::before { transition: none; } }
-#services::after, .d-team-frame::after, .contact-frame::after { /* two fine bronze diagonals cutting each corner of the frame */
+.bio-card::after { --d: 44px !important; }
+#services::after, .d-team-frame::after, .contact-frame::after, .bio-card::after { /* two fine bronze diagonals cutting each corner of the frame */
   content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: var(--radius);
   --d: 56px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
   background:
