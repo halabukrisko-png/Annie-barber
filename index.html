@@ -94,7 +94,7 @@
   #cennik-full > div, #cennik-full > p { opacity: 0; transition: opacity .5s ease; }
   #cennik-full .price-list li { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
   #cennik-full.cn-items > div, #cennik-full.cn-items > p { opacity: 1; }
-  #cennik-full > p { transition-delay: 1.5s; }
+  #cennik-full > p { transition-delay: .2s; }
   #cennik-full.cn-items .price-list li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 200ms); }
   @media (prefers-reduced-motion: reduce) { #cennik-full > div, #cennik-full > p, #cennik-full .price-list li { opacity: 1; transform: none; transition: none; } #cennik-full.cn-run::before { animation: none; } }
   .cta-text { display: contents; }
@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610012030"></script>
-<link rel="stylesheet" href="endline.css?v=202610012030">
-<link rel="stylesheet" href="desktop.css?v=202610012030" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610012032"></script>
+<link rel="stylesheet" href="endline.css?v=202610012032">
+<link rel="stylesheet" href="desktop.css?v=202610012032" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -808,7 +808,22 @@
     var box = document.getElementById('cennik-full');
     if (!btn || !box) return;
     var timers = [];
-    function clear() { timers.forEach(clearTimeout); timers = []; }
+    var note = box.querySelector(':scope > p');
+    var noteText = note ? note.textContent : '';
+    function clear() { timers.forEach(clearTimeout); timers = []; if (note) note.textContent = noteText; }
+    function typeNote() {
+      if (!note) return;
+      var full = T(noteText), chars = Array.from(full), k = 0;
+      note.innerHTML = '<span></span><span style="opacity:0"></span>';
+      var a = note.firstChild, b = note.lastChild;
+      (function step() {
+        a.textContent = chars.slice(0, k).join('');
+        b.textContent = chars.slice(k).join('');
+        if (k >= chars.length) { note.textContent = full; return; }
+        k++;
+        timers.push(setTimeout(step, 55));
+      })();
+    }
     box.querySelectorAll('.price-list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
     var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     btn.addEventListener('click', function () {
@@ -829,6 +844,7 @@
       void box.offsetWidth;
       box.classList.add('cn-run');
       timers.push(setTimeout(function () { box.classList.add('cn-items', 'cn-done'); }, 2300));
+      timers.push(setTimeout(typeNote, 2300 + box.querySelectorAll('.price-list li').length * 200 + 400));
     });
   })();
   (function () {
@@ -1055,7 +1071,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610012030"></script>
-<script src="desktop.js?v=202610012030" defer></script>
+<script src="chat.js?v=202610012032"></script>
+<script src="desktop.js?v=202610012032" defer></script>
 </body>
 </html>
