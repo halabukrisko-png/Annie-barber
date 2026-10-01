@@ -240,7 +240,7 @@ img { max-width: 100%; }
 }
 .svc-hover-row > div:last-child::after { content: '→'; font-family: 'Work Sans', sans-serif; font-size: 16px; opacity: .55; transform: translateX(-6px); transition: transform .5s var(--ease), opacity .4s ease; }
 .svc-hover-row:hover > div:last-child::after { opacity: 1; transform: none; }
-.svc-badge { top: 14px !important; left: 14px !important; z-index: 2; font-size: 10px !important; padding: 5px 11px !important; letter-spacing: 0.1em !important; box-shadow: 0 6px 16px -6px rgba(0,0,0,0.6); }
+.svc-badge { top: -12px !important; left: 18px !important; z-index: 2; font-size: 10px !important; padding: 5px 11px !important; letter-spacing: 0.1em !important; box-shadow: 0 6px 16px -6px rgba(0,0,0,0.6); }
 
 /* team -------------------------------------------------------------------- */
 /* one frame around the whole team block: heading + portraits + opened bio (wrapper injected by desktop.js) */
