@@ -243,6 +243,21 @@
     Array.prototype.forEach.call(frames, function (f) { rio.observe(f); });
   })();
 
+  /* ---------- the last line of the page lights up when the end of the page comes into view ---------- */
+  (function () {
+    var cf = document.querySelector('.contact-frame');
+    if (!cf) return;
+    if (reduce || !('IntersectionObserver' in window)) { cf.classList.add('line-in'); return; }
+    var lio = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        lio.unobserve(e.target);
+        e.target.classList.add('line-in');
+      });
+    }, { threshold: 0.6 });
+    lio.observe(cf);
+  })();
+
   /* ---------- scroll: header state, progress, scroll-spy, parallax ---------- */
   var introPhoto = document.querySelector('#intro .intro-photo');
   var ctaImg = document.querySelector('.cta-body > img');
