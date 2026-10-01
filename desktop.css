@@ -561,6 +561,9 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .bio-card:not(.reveal) .bio-head { grid-column: 1; grid-row: 1 / span 8; align-self: start; flex-direction: column; align-items: flex-start !important; gap: 18px !important; margin: 0 !important; }
   .bio-card:not(.reveal) .bio-photo { flex: none !important; width: 200px !important; height: 250px !important; border-radius: 4px !important; border: 1px solid var(--line); }
   .bio-card:not(.reveal) .bio-photo img { object-position: 50% 20%; }
+  .bio-card:not(.reveal) .bio-name { grid-row: 1; }
+  .bio-card:not(.reveal) .bio-name h3 { font-size: 22px !important; }
+  .bio-card:not(.reveal) .bio-name .role { font-size: 11.5px !important; letter-spacing: 0.14em !important; margin: 6px 0 18px !important; }
   .bio-card:not(.reveal) .bio-tag, .bio-card:not(.reveal) .bio-book { justify-self: start; }
 
   /* gallery: editorial bento grid */
