@@ -131,11 +131,11 @@ img { max-width: 100%; }
 .hero-card .hc-label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--bronze); margin-bottom: 4px; }
 
 /* intro ------------------------------------------------------------------- */
-#intro { padding: var(--section-sm) var(--pad) 0 !important; }
+#intro { padding: calc(var(--section-sm) * 0.6) var(--pad) 0 !important; }
 #intro .scroll-line-wrap { padding: 0 !important; }
 .intro-inner {
   display: grid !important; grid-template-columns: minmax(0, 1fr); grid-auto-rows: auto; justify-items: center; text-align: center;
-  position: relative; row-gap: 22px !important; padding: clamp(32px, 4vw, 56px) 0 0 !important; overflow: visible !important;
+  position: relative; row-gap: 22px !important; padding: clamp(22px, 2.4vw, 34px) 0 0 !important; overflow: visible !important;
 }
 /* lounge photo is a full-bleed section background, cropped to the sofa + table and shaded towards the centre text */
 .intro-inner .intro-photo, .intro-inner > div[style*="position:absolute"] {
