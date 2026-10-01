@@ -243,6 +243,23 @@
     Array.prototype.forEach.call(frames, function (f) { rio.observe(f); });
   })();
 
+  /* ---------- reviews are always framed; the bronze line runs round the frame when it scrolls into view ---------- */
+  (function () {
+    var wrap = document.getElementById('reviews-wrap');
+    var fr = wrap && wrap.querySelector('.rv-frame');
+    if (!fr) return;
+    fr.setAttribute('data-keep', '1');
+    function done() { fr.classList.add('ring-in', 'ring-done'); }
+    if (reduce || !('IntersectionObserver' in window)) { done(); return; }
+    var rio2 = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      rio2.disconnect();
+      fr.classList.add('ring-in');
+      setTimeout(function () { fr.classList.add('ring-done'); }, 2800);
+    }, { threshold: 0.25 });
+    rio2.observe(wrap);
+  })();
+
   /* ---------- booking card: once the first photo has been hovered, the lit state stays ---------- */
   (function () {
     var body = document.querySelector('.cta-body');
