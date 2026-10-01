@@ -1258,3 +1258,9 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 }
 .site-header .d-brand > a:first-child, .topbar .d-brand > a:first-child { font-size: 15px !important; letter-spacing: 0.18em !important; transition: color .3s ease; }
 .site-header .d-brand > a:first-child:hover, .topbar .d-brand > a:first-child:hover { color: var(--bronze); }
+
+/* desktop header: the menu links sit right next to the "Zarezervovať termín" button ---- */
+@media (min-width: 1024px) {
+  .site-header, .topbar { grid-template-columns: auto minmax(0, 1fr) auto !important; }
+  .site-header > .d-nav, .topbar > .d-nav { justify-self: end; margin-right: 8px; }
+}
