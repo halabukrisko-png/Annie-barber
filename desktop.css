@@ -1025,3 +1025,23 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
     background: linear-gradient(180deg, rgba(20,19,17,.72) 0%, rgba(20,19,17,.6) 34%, rgba(20,19,17,.12) 58%, rgba(20,19,17,.15) 100%), linear-gradient(90deg, rgba(20,19,17,.5) 0%, rgba(20,19,17,0) 28%, rgba(20,19,17,0) 72%, rgba(20,19,17,.5) 100%) !important;
   }
 }
+/* o-nas: the paragraphs lie on the table to the right of the jar ---- */
+@media (min-width: 1024px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { min-height: clamp(560px, 46vw, 680px); align-items: end !important; padding: 24px 0 clamp(56px, 6vw, 90px) !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] {
+    justify-self: end !important; max-width: 470px !important; text-align: left !important; margin-right: clamp(0px, 4vw, 70px); position: relative;
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"]::before {
+    content: ''; position: absolute; inset: -40px -50px; z-index: -1; pointer-events: none;
+    background: radial-gradient(ellipse at 50% 50%, rgba(14,13,11,.82) 0%, rgba(14,13,11,.66) 55%, rgba(14,13,11,0) 100%);
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after { background-position: 38% 78% !important; }
+}
+@media (min-width: 1024px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { padding-bottom: clamp(24px, 2.6vw, 40px) !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { margin-right: clamp(0px, 3vw, 50px); }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"]::before {
+    inset: -60px -90px -50px -90px; background: radial-gradient(closest-side, rgba(14,13,11,.72) 0%, rgba(14,13,11,.5) 60%, rgba(14,13,11,0) 100%);
+  }
+  .reveal-stagger[style*="padding:60px 0 40px"] p { text-shadow: 0 1px 3px rgba(0,0,0,.9), 0 2px 18px rgba(0,0,0,.85); }
+}
