@@ -749,12 +749,12 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 .review-card:hover { border-color: rgba(214,172,114,0.65) !important; }
 
 /* bio photo: when a bio opens, a bronze line runs round the portrait and the photo lights up ---- */
-@keyframes bioRing { from { --ring: 0deg; } to { --ring: 372deg; } }
+@keyframes bioRing { from { --ring: 0deg; } to { --ring: 400deg; } }
 @keyframes bioLit { 0% { filter: brightness(.55) saturate(.8); } 55% { filter: brightness(1.12) saturate(1.05); } 100% { filter: brightness(1) saturate(1); } }
 .bio-card:not(.reveal) .bio-photo { position: relative; overflow: visible !important; }
 .bio-card:not(.reveal) .bio-photo img { border-radius: 4px; }
 .bio-card:not(.reveal) .bio-photo::before {
-  content: ''; position: absolute; inset: -6px; padding: 1.5px; border-radius: 8px; pointer-events: none; --ring: 0deg; opacity: 0;
+  content: ''; position: absolute; inset: -5px; padding: 1px; border-radius: 7px; pointer-events: none; --ring: 0deg; opacity: 0;
   background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
     rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
   -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
@@ -762,4 +762,4 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 }
 .bio-card.bio-open:not(.reveal) .bio-photo::before { opacity: 1; animation: bioRing 2.2s cubic-bezier(.45,.05,.25,1) .25s both; box-shadow: 0 0 0 0 transparent; }
 .bio-card.bio-open:not(.reveal) .bio-photo img { animation: bioLit 1.8s ease .25s both; }
-@media (prefers-reduced-motion: reduce) { .bio-card.bio-open:not(.reveal) .bio-photo::before, .bio-card.bio-open:not(.reveal) .bio-photo img { animation: none; } .bio-card.bio-open:not(.reveal) .bio-photo::before { --ring: 372deg; } }
+@media (prefers-reduced-motion: reduce) { .bio-card.bio-open:not(.reveal) .bio-photo::before, .bio-card.bio-open:not(.reveal) .bio-photo img { animation: none; } .bio-card.bio-open:not(.reveal) .bio-photo::before { --ring: 400deg; } }
