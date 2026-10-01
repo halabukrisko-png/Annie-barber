@@ -793,3 +793,20 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 /* price list open: the booking button moves under the note, centred ---- */
 #services:has(> #cennik-full[style*="flex"]) > a.btn-cta { grid-column: 1 / -1; grid-row: 7; justify-self: center; margin-top: 28px !important; }
 #cennik-full > p { text-align: center; margin: 22px 0 0 !important; font-size: 14px !important; color: var(--cream) !important; }
+
+/* hero: the team photo becomes a dark, vignetted full-bleed background on the right, the copy sits on the shade on the left ---- */
+@media (min-width: 1024px) {
+  #hero { isolation: isolate; }
+  .hero-visual {
+    position: absolute !important; inset: 0 0 0 auto !important; z-index: -1 !important; width: 64% !important; max-width: none !important; min-width: 0 !important; grid-column: auto !important; grid-row: auto !important; align-self: stretch !important; justify-self: stretch !important; height: auto !important;
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.55) 22%, #000 48%), linear-gradient(180deg, #000 70%, transparent 100%);
+    -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.55) 22%, #000 48%), linear-gradient(180deg, #000 70%, transparent 100%); mask-composite: intersect;
+  }
+  .hero-visual::before, .hero-visual::after { display: none !important; }
+  .hero-visual > img {
+    position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; aspect-ratio: auto; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
+    object-fit: cover !important; object-position: 50% 16% !important; filter: brightness(.62) saturate(.8) contrast(1.08);
+  }
+  #hero::after { display: none; }
+  #hero { background: radial-gradient(60% 80% at 0% 100%, rgba(74,98,112,0.14), transparent 70%), #141311; }
+}
