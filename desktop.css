@@ -1264,3 +1264,4 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .site-header, .topbar { grid-template-columns: auto minmax(0, 1fr) auto !important; }
   .site-header > .d-nav, .topbar > .d-nav { justify-self: end; margin-right: 8px; }
 }
+@media (min-width: 1024px) { .site-header > .d-nav, .topbar > .d-nav { margin-right: -14px; } }
