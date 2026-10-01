@@ -154,7 +154,7 @@ img { max-width: 100%; }
 .intro-inner p { max-width: 600px; text-align: center; color: var(--cream) !important; font-size: var(--fs-lead) !important; }
 .ticker { font-size: 12px !important; letter-spacing: 0.26em !important; padding: 18px 0 !important; }
 /* the ticker sits at the bottom of the photo as a full-width band, flush with the next section */
-.intro-inner > .ticker { width: 100vw; margin: clamp(48px, 6vw, 88px) calc(50% - 50vw) 0 !important; border-radius: 0; border-left: 0 !important; border-right: 0 !important; }
+.intro-inner > .ticker { width: 100vw; margin: clamp(20px, 2.5vw, 36px) calc(50% - 50vw) 0 !important; border-radius: 0; border-left: 0 !important; border-right: 0 !important; }
 
 /* services ---------------------------------------------------------------- */
 #services {
