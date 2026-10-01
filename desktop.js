@@ -243,6 +243,14 @@
     Array.prototype.forEach.call(frames, function (f) { rio.observe(f); });
   })();
 
+  /* ---------- booking card: once the first photo has been hovered, the lit state stays ---------- */
+  (function () {
+    var body = document.querySelector('.cta-body');
+    var first = body && body.querySelector('img');
+    if (!first) return;
+    first.addEventListener('mouseenter', function () { body.classList.add('cta-lit'); });
+  })();
+
   /* ---------- the last line of the page lights up once the bottom of the page is in view ---------- */
   (function () {
     var cf = document.querySelector('.contact-frame');
