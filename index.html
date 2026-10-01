@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610012036"></script>
-<link rel="stylesheet" href="endline.css?v=202610012036">
-<link rel="stylesheet" href="desktop.css?v=202610012036" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610012045"></script>
+<link rel="stylesheet" href="endline.css?v=202610012045">
+<link rel="stylesheet" href="desktop.css?v=202610012045" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -826,7 +826,7 @@
         b.textContent = chars.slice(k).join('');
         if (k >= chars.length) { note.textContent = full; return; }
         k++;
-        timers.push(setTimeout(step, 55));
+        timers.push(setTimeout(step, 24));
       })();
     }
     box.querySelectorAll('.price-list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
@@ -1077,7 +1077,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610012036"></script>
-<script src="desktop.js?v=202610012036" defer></script>
+<script src="chat.js?v=202610012045"></script>
+<script src="desktop.js?v=202610012045" defer></script>
 </body>
 </html>
