@@ -1272,6 +1272,8 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .site-header > .d-nav, .topbar > .d-nav { justify-self: end; margin-right: 8px; }
 }
 @media (min-width: 1024px) { .site-header > .d-nav, .topbar > .d-nav { margin-right: -14px; } }
+/* header sits wider: the logo + SK/EN moves further left, the menu + button further right ---- */
+@media (min-width: 1024px) { .site-header, .topbar { padding-left: max(28px, calc(var(--pad) - 48px)) !important; padding-right: max(28px, calc(var(--pad) - 48px)) !important; } }
 
 /* intro B divider: the lines run almost to the edges of the screen ---- */
 @media (min-width: 768px) {
