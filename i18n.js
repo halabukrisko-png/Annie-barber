@@ -469,6 +469,22 @@
         break;
       }
     });
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card p'), barbering);
+  }
+  /* also highlight the word "barbering(u)" (first occurrence per paragraph) */
+  function barbering(p) {
+    for (var n = p.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType !== 3) continue;
+      var m = /barbering\w*/i.exec(n.nodeValue);
+      if (!m) continue;
+      var mid = n.splitText(m.index);
+      mid.splitText(m[0].length);
+      var st = document.createElement('strong');
+      st.className = 'bio-b';
+      p.replaceChild(st, mid);
+      st.appendChild(mid);
+      return;
+    }
   }
   window.__bioUnbold = unbold;
   function run() { try { bold(); } catch (e) {} }
