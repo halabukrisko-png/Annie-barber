@@ -1508,3 +1508,8 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 @media (min-width: 768px) and (max-width: 1279px) {
   #booking-calendar > .step-label:first-child > span > span { color: #e6c494; }
 }
+
+/* o-nas "Naša kozmetika" (notebook/desktop): no photo background, plain dark card – tablet keeps the photo ---- */
+@media (min-width: 1024px) {
+  .bio-card.reveal { background: linear-gradient(135deg, #1d1b17 0%, #171613 100%) !important; }
+}
