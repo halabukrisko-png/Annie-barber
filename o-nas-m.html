@@ -105,6 +105,12 @@
   .booking-calendar { background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px 22px; }
   .step-label { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--bronze); margin-bottom: 12px; display: flex; align-items: center; justify-content: space-between; }
   .step-note { font-size: 11px; letter-spacing: 0.02em; color: rgba(207,198,184,0.55); text-transform: none; font-weight: 400; }
+  .cal-msg { margin: 0 0 12px; padding: 10px 12px; font-size: 12.5px; line-height: 1.5; color: #f3b5a8; border: 1px solid rgba(243,181,168,0.5); border-radius: 3px; background: rgba(243,181,168,0.07); }
+  .cal-done { text-align: center; padding: 18px 14px; margin-bottom: 14px; border: 1px solid var(--bronze); border-radius: 4px; background: rgba(201,160,106,0.08); }
+  .cal-done-title { font-size: 15px; font-weight: 700; color: var(--bronze); margin-bottom: 8px; }
+  .cal-done p { margin: 10px 0 0; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
+  .cal-grid.is-loading { opacity: 0.45; pointer-events: none; }
+  #cal-confirm.is-busy { opacity: 0.6; pointer-events: none; }
   .svc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 26px; }
   .svc-btn { grid-column: span 1; background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 10px; text-align: left; font-family: inherit; cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease; }
   .svc-btn:first-child { grid-column: 1 / -1; }
@@ -384,9 +390,13 @@
       <div id="cal-after-barber-wrap" hidden>
         <div class="step-label"><span>2 · Služba – Teraz si vyber službu:</span></div>
         <div class="svc-grid" id="svc-grid">
-          <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
-          <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
-          <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
+          <button type="button" class="svc-btn selected" data-service="strih" data-price="20 €"><span class="svc-name">Strih</span><span class="svc-dur">30 min · 20 €</span></button>
+          <button type="button" class="svc-btn" data-service="komplet" data-price="30 €"><span class="svc-name">Kompletná úprava (strih + brada)</span><span class="svc-dur">60 min · 30 €</span></button>
+          <button type="button" class="svc-btn" data-service="brada" data-price="15 €"><span class="svc-name">Úprava brady</span><span class="svc-dur">30 min · 15 €</span></button>
+          <button type="button" class="svc-btn" data-service="detsky" data-price="15 €"><span class="svc-name">Detský strih do 12 r.</span><span class="svc-dur">30 min · 15 €</span></button>
+          <button type="button" class="svc-btn" data-service="holenie" data-price="25 €"><span class="svc-name">Holenie hlavy + úprava brady</span><span class="svc-dur">45 min · 25 €</span></button>
+          <button type="button" class="svc-btn" data-service="farbenie" data-price="5 – 10 €"><span class="svc-name">Farbenie brady</span><span class="svc-dur">30 min · 5 – 10 €</span></button>
+          <button type="button" class="svc-btn" data-service="cistenie" data-price="od 10 €"><span class="svc-name">Čistenie pleti</span><span class="svc-dur">30 min · od 10 €</span></button>
         </div>
 
         <div class="step-label"><span>3 · Dátum – Vyber si dátum, kedy sa chceš strihať:</span></div>
@@ -397,6 +407,7 @@
         </div>
         <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
         <div class="cal-grid" id="cal-grid"></div>
+        <div class="cal-hours-note" id="cal-load-note" hidden></div>
         <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 14:00</div>
 
         <div class="cal-right">
@@ -407,18 +418,27 @@
 
         <div id="cal-step4-wrap" hidden>
           <div class="step-label" style="margin-top:24px;"><span>5 · Potvrdenie</span></div>
-          <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno">
-          <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón">
-          <input type="email" class="cal-field" id="cal-email" placeholder="E-mail">
+          <div id="cal-form-box">
+          <input type="text" class="cal-field" id="cal-name" placeholder="Tvoje meno" autocomplete="name">
+          <input type="tel" class="cal-field" id="cal-phone" placeholder="Telefón" autocomplete="tel">
+          <input type="email" class="cal-field" id="cal-email" placeholder="E-mail (nepovinné)" autocomplete="email">
+          <input type="text" id="cal-website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0;">
           <div class="cal-confirm-box">
             Tvoj termín
             <div class="cal-confirm-value" id="cal-summary"></div>
           </div>
-          <a href="tel:+421951833488" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
+          <div id="cal-msg" class="cal-msg" role="alert" hidden></div>
+          <a href="#" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
+          <div class="cal-footnote">Termín sa ti uloží hneď, potvrdenie dostaneš e-mailom (ak ho zadáš).</div>
+          </div>
+          <div id="cal-done" class="cal-done" hidden>
+            <div class="cal-done-title">Termín je zarezervovaný ✓</div>
+            <div class="cal-confirm-value" id="cal-done-text"></div>
+            <p>Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.</p>
+          </div>
           <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
           <a href="tel:+421951833488" class="btn-outline">Zavolať</a>
           <a href="#cancel-contact" class="btn-outline" id="cal-cancel-link">Zrušiť termín</a>
-          <div class="cal-footnote">Termín ti potvrdíme e-mailom.</div>
                 </div>
 </div>
       </div>
@@ -620,209 +640,6 @@
     overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
   })();
   (function () {
-    var grid = document.getElementById('cal-grid');
-    if (!grid) return;
-    var monthLabel = document.getElementById('cal-month-label');
-    var prevBtn = document.getElementById('cal-prev');
-    var nextBtn = document.getElementById('cal-next');
-    var slotsWrap = document.getElementById('cal-slots-wrap');
-    var slotsGrid = document.getElementById('cal-slots');
-    var selectedDateLabel = document.getElementById('cal-selected-date');
-    var summary = document.getElementById('cal-summary');
-    var confirmBtn = document.getElementById('cal-confirm');
-    var step4Wrap = document.getElementById('cal-step4-wrap');
-    var nameField = document.getElementById('cal-name');
-    var phoneField = document.getElementById('cal-phone');
-    var svcGrid = document.getElementById('svc-grid');
-    var selectedService = svcGrid.querySelector('.svc-btn.selected');
-    Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (el) {
-      el.addEventListener('click', function () {
-        Array.prototype.slice.call(svcGrid.querySelectorAll('.svc-btn')).forEach(function (b) { b.classList.remove('selected'); });
-        el.classList.add('selected');
-        selectedService = el;
-        if (currentHour !== null) selectSlot(currentHour, slotsGrid.querySelector('.slot-btn.selected'));
-      });
-    });
-    var barberGrid = document.getElementById('barber-grid');
-    var afterBarberWrap = document.getElementById('cal-after-barber-wrap');
-    var selectedBarber = barberGrid.querySelector('.barber-btn.selected');
-    Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (el) {
-      el.addEventListener('click', function () {
-        Array.prototype.slice.call(barberGrid.querySelectorAll('.barber-btn')).forEach(function (b) { b.classList.remove('selected'); });
-        el.classList.add('selected');
-        selectedBarber = el;
-        if (afterBarberWrap.hidden) {
-          afterBarberWrap.hidden = false;
-          afterBarberWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }
-        if (currentHour !== null) updateSummary();
-      });
-    });
-    [nameField, phoneField].forEach(function (field) {
-      field.addEventListener('input', function () { if (currentHour !== null) updateSummary(); });
-    });
-    var currentHour = null;
-    var hours = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
-    var todayDate = new Date();
-    todayDate.setHours(0, 0, 0, 0);
-    var view = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
-    var selectedDate = null;
-
-    function sameDay(a, b) {
-      return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate();
-    }
-    function pad(n) { return n < 10 ? '0' + n : String(n); }
-
-    function resetSelection() {
-      selectedDate = null;
-      currentHour = null;
-      slotsWrap.hidden = true;
-      step4Wrap.hidden = true;
-    }
-
-    function render() {
-      grid.innerHTML = '';
-      monthLabel.textContent = I18N.months()[view.getMonth()] + ' ' + view.getFullYear();
-      prevBtn.disabled = view.getFullYear() === todayDate.getFullYear() && view.getMonth() === todayDate.getMonth();
-      var first = new Date(view.getFullYear(), view.getMonth(), 1);
-      var startOffset = (first.getDay() + 6) % 7;
-      var daysInMonth = new Date(view.getFullYear(), view.getMonth() + 1, 0).getDate();
-      for (var i = 0; i < startOffset; i++) {
-        var empty = document.createElement('span');
-        empty.className = 'cal-day empty';
-        grid.appendChild(empty);
-      }
-      var _loop = function (d) {
-        var date = new Date(view.getFullYear(), view.getMonth(), d);
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'cal-day';
-        btn.textContent = d;
-        var isPast = date < todayDate;
-        var isClosed = !hours[date.getDay()];
-        if (isPast || isClosed) {
-          btn.classList.add('disabled');
-          btn.disabled = true;
-        } else {
-          btn.addEventListener('click', function () { selectDate(date, btn); });
-        }
-        if (sameDay(date, todayDate)) btn.classList.add('today');
-        if (selectedDate && sameDay(date, selectedDate)) btn.classList.add('selected');
-        grid.appendChild(btn);
-      };
-      for (var d = 1; d <= daysInMonth; d++) _loop(d);
-    }
-
-    function selectDate(date, btn) {
-      selectedDate = date;
-      currentHour = null;
-      step4Wrap.hidden = true;
-      Array.prototype.slice.call(grid.querySelectorAll('.cal-day')).forEach(function (el) { el.classList.remove('selected'); });
-      btn.classList.add('selected');
-      selectedDateLabel.textContent = I18N.dateShort(date);
-      renderSlots(date);
-      slotsWrap.hidden = false;
-      slotsWrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function renderSlots(date) {
-      slotsGrid.innerHTML = '';
-      var range = hours[date.getDay()];
-      if (!range) return;
-      var nowH = null;
-      if (sameDay(date, todayDate)) {
-        var now = new Date();
-        nowH = now.getHours() + now.getMinutes() / 60;
-      }
-      var any = false;
-      for (var h = range[0]; h < range[1]; h++) {
-        if (nowH !== null && h <= nowH) continue;
-        any = true;
-        var btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'slot-btn';
-        btn.textContent = pad(h) + ':00';
-        btn.addEventListener('click', (function (hour) { return function () { selectSlot(hour, this); }; })(h));
-        slotsGrid.appendChild(btn);
-      }
-      if (!any) {
-        var msg = document.createElement('div');
-        msg.style.cssText = 'grid-column:1/-1;font-size:12.5px;line-height:1.5;color:var(--cream);text-align:center;padding:14px;border:1px dashed rgba(201,160,106,0.55);border-radius:3px;background:rgba(201,160,106,0.06);';
-        msg.textContent = T('Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.');
-        slotsGrid.appendChild(msg);
-      }
-    }
-
-    function selectSlot(hour, btn) {
-      currentHour = hour;
-      if (btn) {
-        Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).forEach(function (el) { el.classList.remove('selected'); });
-        btn.classList.add('selected');
-      }
-      step4Wrap.hidden = false;
-      updateSummary();
-      step4Wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    function updateSummary() {
-      var barberName = selectedBarber ? selectedBarber.getAttribute('data-barber') : '';
-      var barberPart = barberName ? ((LANG() === 'en' ? ' with ' : ' u ') + barberName) : '';
-      var svcName = selectedService ? selectedService.querySelector('.svc-name').textContent : '';
-      var dateStr = I18N.dateLong(selectedDate);
-      var timeStr = pad(currentHour) + ':00';
-      var atWord = LANG() === 'en' ? ' at ' : ' o ';
-      summary.textContent = svcName + barberPart + ' · ' + dateStr + atWord + timeStr;
-      var name = nameField.value.trim();
-      var phone = phoneField.value.trim();
-      var en = LANG() === 'en';
-      var msg = (en ? 'Hello, I would like to book an appointment: ' : 'Dobrý deň, chcel(a) by som si rezervovať termín: ') + svcName + barberPart + ', ' + dateStr + atWord + timeStr + (name ? ((en ? '. Name: ' : '. Meno: ') + name) : '') + (phone ? ((en ? ', tel.: ' : ', tel.: ') + phone) : '') + '.';
-      confirmBtn.href = 'sms:+421951833488?body=' + encodeURIComponent(msg);
-    }
-
-    prevBtn.addEventListener('click', function () { view.setMonth(view.getMonth() - 1); resetSelection(); render(); });
-    nextBtn.addEventListener('click', function () { view.setMonth(view.getMonth() + 1); resetSelection(); render(); });
-
-    window.addEventListener('langchange', function () {
-      render();
-      if (selectedDate) {
-        selectedDateLabel.textContent = I18N.dateShort(selectedDate);
-        renderSlots(selectedDate);
-        if (currentHour !== null) {
-          Array.prototype.forEach.call(slotsGrid.querySelectorAll('.slot-btn'), function (b) {
-            if (b.textContent === pad(currentHour) + ':00') b.classList.add('selected');
-          });
-          updateSummary();
-        }
-      }
-    });
-
-    render();
-
-    // Pre-select a slot picked in the chat assistant (?d=YYYY-MM-DD&t=HH)
-    (function () {
-      var q = new URLSearchParams(location.search);
-      var d = q.get('d'), tt = q.get('t');
-      if (!d) return;
-      var p = d.split('-');
-      var date = new Date(+p[0], +p[1] - 1, +p[2]);
-      if (isNaN(date.getTime()) || date < todayDate || !hours[date.getDay()]) return;
-      // barber defaults to "Nezáleží" (no preference) when coming from the chat calendar
-      var anyBarber = barberGrid.querySelector('.barber-btn[data-barber=""]');
-      if (anyBarber) anyBarber.click(); else afterBarberWrap.hidden = false;
-      view = new Date(date.getFullYear(), date.getMonth(), 1);
-      render();
-      var dayBtn = Array.prototype.slice.call(grid.querySelectorAll('.cal-day:not(.empty)')).filter(function (b) { return +b.textContent === date.getDate(); })[0];
-      if (!dayBtn || dayBtn.disabled) return;
-      selectDate(date, dayBtn);
-      if (tt) {
-        var h = +tt;
-        var slot = Array.prototype.slice.call(slotsGrid.querySelectorAll('.slot-btn')).filter(function (b) { return b.textContent === pad(h) + ':00'; })[0];
-        if (slot) selectSlot(h, slot);
-      }
-    })();
-  })();
-
-  (function () {
     var prevBtn = document.getElementById('ig-prev');
     if (!prevBtn) return;
     var nextBtn = document.getElementById('ig-next');
@@ -942,6 +759,7 @@
     }); });
   })();
 </script>
+<script src="booking.js?v=202610021800" defer></script>
 <script src="chat.js"></script>
 <script src="btnfill.js?v=202610022000" defer></script>
 <script src="desktop-m.js" defer></script>

@@ -23,8 +23,8 @@
     return h + '</div>';
   }
 
-  // Mini booking calendar shown inside the chat. Picking a day + time opens the
-  // real booking form (o-nas.html) with that slot pre-selected.
+  // Mini booking calendar shown inside the chat. Picking a day opens the
+  // real booking form (o-nas.html) with that day pre-selected; free times come from Google Calendar there.
   function buildCalendar() {
     var wrap = document.createElement('div');
     wrap.className = 'bb-cal';
@@ -50,16 +50,10 @@
       }
       html += '</div>';
       if (picked) {
-        var r = HOURS[picked.getDay()], now = new Date(), nowH = now.getHours() + now.getMinutes() / 60;
-        var isToday = picked.getTime() === today.getTime(), slots = '', any = false;
-        for (var h = r[0]; h < r[1]; h++) {
-          if (isToday && h <= nowH) continue;
-          any = true;
-          slots += '<a href="o-nas.html?d=' + picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate()) + '&t=' + h + '#booking">' + pad(h) + ':00</a>';
-        }
+        var pd = picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate());
         html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
-          (any ? '<div class="bb-slots">' + slots + '</div><div class="bb-cal-note">' + (en ? 'Pick a time to continue with the booking.' : 'Vyber čas a pokračuj v rezervácii.') + '</div>'
-               : '<div class="bb-cal-note none">' + (en ? 'No appointments are available on this day. Please choose another date.' : 'Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.') + '</div>');
+          '<div class="bb-slots"><a href="o-nas.html?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
+          '<div class="bb-cal-note">' + (en ? 'Choose your barber and service to see the exact free times.' : 'Vyber barbera a službu a uvidíš presné voľné časy.') + '</div>';
       }
       wrap.innerHTML = html;
     }

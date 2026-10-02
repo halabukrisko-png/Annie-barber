@@ -1,0 +1,29 @@
+# Online rezervácia cez Google Kalendár – nastavenie
+
+Rezervácie bežia cez Vercel funkcie v `api/` (`/api/availability`, `/api/book`) a zapisujú do Google Kalendára.
+
+## 1. Google kalendáre
+Vytvor 4 kalendáre (Google Kalendár → Ďalšie kalendáre → Vytvoriť): **Anett**, **Karvy**, **Vladis** a **BARBERIS spoločný**.
+Pre každý skopíruj *ID kalendára* (Nastavenia kalendára → Integrovať kalendár).
+
+## 2. Service account
+1. <https://console.cloud.google.com> → nový projekt → *APIs & Services* → zapni **Google Calendar API**.
+2. *IAM & Admin → Service Accounts* → vytvor účet → *Keys → Add key → JSON* (stiahne sa súbor).
+3. Každý zo 4 kalendárov zdieľaj s e-mailom service accountu (`...@...iam.gserviceaccount.com`) s právom **Vykonávať zmeny udalostí**.
+
+## 3. Premenné prostredia vo Verceli (Project → Settings → Environment Variables)
+| Názov | Hodnota |
+|---|---|
+| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` z JSON súboru |
+| `GOOGLE_PRIVATE_KEY` | `private_key` z JSON súboru (celé, aj s `-----BEGIN...`) |
+| `CAL_ANETT`, `CAL_KARVY`, `CAL_VLADIS` | ID kalendárov barberov |
+| `CAL_SHARED` | ID spoločného kalendára (každá rezervácia sa tam zrkadlí s menom barbera) |
+| `RESEND_API_KEY`, `MAIL_FROM` | *voliteľné* – potvrdzovacie e-maily cez Resend |
+
+Po pridaní premenných treba nasadiť znova (Redeploy).
+
+## Ako to funguje
+- Voľné časy sa počítajú z kalendárov barberov: **akákoľvek udalosť v kalendári barbera blokuje čas** (dovolenka, obed… stačí si ju tam pridať).
+- Dĺžky služieb a hodiny sú v `api/_lib/config.js` (strih 30 min, Vladis 45 min; komplet 60; brada, detský, farbenie, pleť 30; holenie + brada 45).
+- Medzi termínmi je 5 min prestávka. Pri voľbe „Nezáleží“ sa termín priradí barberovi, ku ktorému sa najlepšie hodí (nalepí sa na jeho existujúce termíny a nerozbíja voľné okná iných).
+- Rezervovať sa dá najskôr o hodinu dopredu a max. 60 dní vopred.

@@ -161,6 +161,25 @@
     'DOBRÝ STRIH. DOBRÁ ATMOSFÉRA.': 'GOOD HAIRCUT. GOOD VIBES.',
     'TVOJE TEMPO.': 'YOUR PACE.',
 
+    // online rezervácia (Google Kalendár)
+    'Kompletná úprava (strih + brada)': 'Full grooming (haircut + beard)',
+    'Úprava brady': 'Beard trim',
+    'Detský strih do 12 r.': 'Kids’ haircut (up to 12)',
+    'Holenie hlavy + úprava brady': 'Head shave + beard trim',
+    'Farbenie brady': 'Beard colouring',
+    'Čistenie pleti': 'Facial cleansing',
+    'E-mail (nepovinné)': 'E-mail (optional)',
+    'Termín sa ti uloží hneď, potvrdenie dostaneš e-mailom (ak ho zadáš).': 'Your appointment is saved instantly; you will get a confirmation by e-mail (if you enter one).',
+    'Termín je zarezervovaný ✓': 'Appointment booked ✓',
+    'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.': 'We look forward to seeing you. If you need to change or cancel, give us a call.',
+    'Načítavam voľné termíny…': 'Loading available times…',
+    'Voľné termíny sa nepodarilo načítať. Skús to znova alebo nám zavolaj.': 'Could not load available times. Try again or give us a call.',
+    'Zadaj svoje meno.': 'Please enter your name.',
+    'Zadaj platné telefónne číslo.': 'Please enter a valid phone number.',
+    'Zadaj platný e-mail.': 'Please enter a valid e-mail.',
+    'Tento čas už nie je voľný. Vyber si, prosím, iný.': 'This time is no longer available. Please choose another.',
+    'Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.': 'We could not save your booking. Please give us a call.',
+
     // booking form
     'Rezervácia': 'Booking',
     'ZAREZERVUJ SI TERMÍN': 'BOOK YOUR APPOINTMENT',
