@@ -80,7 +80,7 @@
     '15 €': '€15',
     '25 €': '€25',
     '5 – 10 €': '€5 – 10',
-    'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️': 'Book your appointment in advance and skip the wait. ✂️',
+    'Objednajte sa online a vyhnite sa radu. Stačí pár klikov. ✂️': 'Book online and skip the queue. Just a few clicks. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Čo si môžeš dať u nás:': 'What you can get with us:',
 
