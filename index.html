@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BARBERIS — Pánsky barbershop v Prievidzi</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&family=Bebas+Neue&family=Montserrat:wght@400;500&display=swap">
 <style>
   :root {
     --bg: #141311;
@@ -24,6 +24,9 @@
   .line-draw.draw { width: 100%; }
   @keyframes heroFadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
   .hero-fade-in { animation: heroFadeIn 1.3s cubic-bezier(.22,1,.36,1) 0.5s both; }
+  /* hero copy: Bebas Neue headline + Montserrat lead */
+  #hero h1 { font-family: 'Bebas Neue', 'Oswald', Impact, sans-serif !important; font-weight: 400 !important; letter-spacing: 0.035em !important; line-height: 1.0 !important; font-size: 52px !important; }
+  #hero .hero-content > p { font-family: 'Montserrat', 'Work Sans', sans-serif !important; font-weight: 400; letter-spacing: 0.005em; }
   .tw-cursor { display: none !important; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
   @keyframes twBlink { 50% { opacity: 0; } }
   .badge-reveal { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.22,1,.36,1); }
@@ -214,9 +217,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021447"></script>
-<link rel="stylesheet" href="endline.css?v=202610021447">
-<link rel="stylesheet" href="desktop.css?v=202610021447" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021448"></script>
+<link rel="stylesheet" href="endline.css?v=202610021448">
+<link rel="stylesheet" href="desktop.css?v=202610021448" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -1095,7 +1098,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021447"></script>
-<script src="desktop.js?v=202610021447" defer></script>
+<script src="chat.js?v=202610021448"></script>
+<script src="desktop.js?v=202610021448" defer></script>
 </body>
 </html>
