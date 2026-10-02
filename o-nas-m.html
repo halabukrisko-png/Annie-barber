@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="sk">
 <head>
-<!-- build 2026-10-02g -->
+<!-- build 2026-10-02h -->
 <meta charset="utf-8">
 <link rel="canonical" href="o-nas.html">
 
@@ -63,6 +63,11 @@
   .tap-hint svg { width: 10px; height: 10px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
+  .tap-hint::after { content: ''; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid rgba(201,160,106,0.65); opacity: 0; animation: tapRing 2.8s ease-out infinite; pointer-events: none; }
+  .team-frame:nth-child(2) .tap-hint::after { animation-delay: .5s; }
+  .team-frame:nth-child(3) .tap-hint::after { animation-delay: 1s; }
+  @keyframes tapRing { 0% { transform: scale(1); opacity: 0.7; } 70%, 100% { transform: scale(2.1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .tap-hint::after { animation: none; } }
   .btn-cta { display: block; transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .drive-in { transform: translateX(-420px); transition: transform 2s cubic-bezier(.22,1,.36,1); }

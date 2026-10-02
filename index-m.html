@@ -83,6 +83,11 @@
   .tap-hint svg { width: 10px; height: 10px; }
   .team-trigger[aria-expanded="true"] .tap-hint { display: none; }
   @keyframes tapPulse { 0%, 100% { transform: scale(1); opacity: 0.75; } 50% { transform: scale(1.1); opacity: 1; } }
+  .tap-hint::after { content: ''; position: absolute; inset: -1px; border-radius: 50%; border: 1px solid rgba(201,160,106,0.65); opacity: 0; animation: tapRing 2.8s ease-out infinite; pointer-events: none; }
+  .team-frame:nth-child(2) .tap-hint::after { animation-delay: .5s; }
+  .team-frame:nth-child(3) .tap-hint::after { animation-delay: 1s; }
+  @keyframes tapRing { 0% { transform: scale(1); opacity: 0.7; } 70%, 100% { transform: scale(2.1); opacity: 0; } }
+  @media (prefers-reduced-motion: reduce) { .tap-hint::after { animation: none; } }
   .bio-close { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; display: flex; align-items: center; justify-content: center; background: none; border: 1px solid rgba(201,160,106,0.45); border-radius: 50%; color: var(--bronze); font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
   .bio-close:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
   .bio-book { display: block; text-align: center; margin-top: 16px; background: var(--bronze); color: #141311; padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; }
