@@ -1406,4 +1406,4 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 }
 
 /* service photos (Pánsky strih, Strih + brada, Ornament): the picture sits a bit higher in its frame ---- */
-.svc-thumb[style*="gallery-1.jpg"], .svc-thumb[style*="gallery-3.jpg"], .svc-thumb[style*="gallery-4.jpg"] { background-position: 50% 48% !important; }
+.svc-thumb[style*="gallery-1.jpg"], .svc-thumb[style*="gallery-3.jpg"], .svc-thumb[style*="gallery-4.jpg"] { background-position: 50% 14% !important; }
