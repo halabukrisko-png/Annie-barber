@@ -1,5 +1,5 @@
 // POST /api/book { service, barber, date, time, name, phone, email }
-const { SERVICES, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, calendarId } = require('./_lib/config');
+const { SERVICES, BARBERS, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, calendarId } = require('./_lib/config');
 const { localToMs, addDays, todayStr, isDateStr } = require('./_lib/time');
 const { freeBusy, insertEvent, deleteEvent, listEvents } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
@@ -60,12 +60,17 @@ module.exports = async function handler(req, res) {
     const startMs = slot.start, endMs = startMs + dur * 60000;
     const svc = SERVICES[service];
     const iso = (ms) => new Date(ms).toISOString();
-    const description = 'Služba: ' + svc.name + ' (' + svc.price + ')\nBarber: ' + who + '\nMeno: ' + name + '\nTelefón: ' + phone + (email ? '\nE-mail: ' + email : '') +
+    const when = date.split('-').reverse().join('. ') + ' o ' + time;
+    const description = '✂️ ' + svc.name + ' · ' + svc.price + ' · ' + dur + ' min\n' +
+      BARBERS[who].icon + ' Barber: ' + who + '\n' +
+      '👤 Zákazník: ' + name + '\n' +
+      '📞 Telefón: ' + phone + (email ? '\n✉️ E-mail: ' + email : '') +
       '\n\nRezervované cez web.';
     const base = { start: { dateTime: iso(startMs), timeZone: TZ }, end: { dateTime: iso(endMs), timeZone: TZ }, description,
+      colorId: BARBERS[who].colorId, reminders: { useDefault: false },
       extendedProperties: { private: { barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase() } } };
 
-    const own = await insertEvent(calendarId(who), Object.assign({ summary: svc.name + ' – ' + name }, base));
+    const own = await insertEvent(calendarId(who), Object.assign({ summary: svc.name + ' · ' + name }, base));
 
     // ochrana proti súbehu: ak sa v rovnakom čase vytvoril iný termín skôr, ten náš zrušíme
     const near = await listEvents(calendarId(who), startMs, endMs);
@@ -77,12 +82,11 @@ module.exports = async function handler(req, res) {
     }
 
     if (sharedId) {
-      await insertEvent(sharedId, Object.assign({ summary: '[' + who + '] ' + svc.name + ' – ' + name,
-        extendedProperties: { private: { barberis: '1', barber: who, service, phone, source: own.id } } }, { start: base.start, end: base.end, description })).catch((e) => console.error('shared', e));
+      await insertEvent(sharedId, Object.assign({ summary: BARBERS[who].icon + ' ' + who + ' · ' + svc.name + ' · ' + name,
+        extendedProperties: { private: { barberis: '1', barber: who, service, phone, source: own.id } } }, { start: base.start, end: base.end, description, colorId: base.colorId, reminders: base.reminders })).catch((e) => console.error('shared', e));
     }
 
     if (email) {
-      const when = date.split('-').reverse().join('. ') + ' o ' + time;
       await sendMail(email, 'Potvrdenie termínu – BARBERIS',
         'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbanova 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, zavolaj na 0951 833 488.\n\nBARBERIS');
     }
