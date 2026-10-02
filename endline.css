@@ -23,3 +23,13 @@
 .contact-frame.line-in::before { opacity: 1; --spread: 54%; animation: endLineSpread 3s cubic-bezier(.45,.05,.3,1) both, endLineComet 3.8s linear 3.2s infinite; }
 @media (prefers-reduced-motion: reduce) { .contact-frame::before { opacity: 1; animation: none !important; -webkit-mask-image: none; mask-image: none; } }
 @media (max-width: 767px) { .contact-frame::before { bottom: 0; } }
+
+/* ticker band "Kvalita • Detail • Atmosféra": refined – hairline bronze edges, diamond separators, calmer lettering ---- */
+.ticker { position: relative; background: linear-gradient(180deg, #1b1915 0%, #151410 100%) !important; border-top: 0 !important; border-bottom: 0 !important; }
+.ticker::before, .ticker::after { content: ''; position: absolute; left: 0; right: 0; height: 1px; pointer-events: none;
+  background: linear-gradient(90deg, rgba(201,160,106,0) 0%, rgba(201,160,106,0.55) 22%, rgba(226,189,136,0.95) 50%, rgba(201,160,106,0.55) 78%, rgba(201,160,106,0) 100%); }
+.ticker::before { top: 0; }
+.ticker::after { bottom: 0; opacity: .6; }
+.ticker .drive-in { gap: clamp(18px, 3vw, 44px) !important; }
+.ticker .drive-in > span { color: #efe6d6; font-weight: 500; letter-spacing: 0.34em; text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
+.ticker .drive-in > span:nth-child(even) { font-size: 0 !important; width: 7px; height: 7px; transform: rotate(45deg); background: linear-gradient(135deg, #e2bd88, #b88f58); box-shadow: 0 0 10px rgba(214,172,114,0.6); flex: none; }
