@@ -14,7 +14,7 @@ const HOURS = {
 };
 
 const BREAK_MIN = 5;          // prestávka medzi dvoma termínmi
-const GRID_MIN = 15;          // základný krok ponúkaných časov
+const GRID_MIN = 30;          // základný krok ponúkaných časov (okrem časov hneď po existujúcom termíne)
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
 const HORIZON_DAYS = 60;      // ako ďaleko dopredu sa dá rezervovať
 
