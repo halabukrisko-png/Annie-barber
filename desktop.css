@@ -1437,7 +1437,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .contact-actions { align-self: stretch !important; grid-template-rows: auto auto auto 1fr; }
   .contact-actions::after {
     content: 'BARBERIS'; grid-row: 4; align-self: center; justify-self: center;
-    font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 30px; letter-spacing: 0.22em; text-indent: 0.22em;
+    font-family: 'Fraunces', serif; font-weight: 600; font-size: 30px; letter-spacing: 0.14em; text-indent: 0.14em;
     color: #fff; opacity: 1; padding: 18px 0;
   }
 }
