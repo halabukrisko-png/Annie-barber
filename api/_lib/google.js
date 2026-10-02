@@ -3,15 +3,33 @@ const crypto = require('crypto');
 
 let tokenCache = null;
 
+const unquote = (v) => String(v || '').trim().replace(/^["']+|["',]+$/g, '').trim();
+
+// Údaje service accountu: buď celý JSON súbor v GOOGLE_SERVICE_ACCOUNT_JSON,
+// alebo samostatne GOOGLE_SERVICE_ACCOUNT_EMAIL + GOOGLE_PRIVATE_KEY.
+function credentials() {
+  let email, key;
+  const raw = (process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '').trim();
+  if (raw) {
+    let j;
+    try { j = JSON.parse(raw); } catch (e) { throw new Error('GOOGLE_SERVICE_ACCOUNT_JSON nie je platný JSON'); }
+    email = j.client_email; key = j.private_key;
+  } else {
+    email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL; key = process.env.GOOGLE_PRIVATE_KEY;
+  }
+  email = unquote(email);
+  key = unquote(key).replace(/\\n/g, '\n');
+  if (!email || !key) throw new Error('Chýbajú údaje service accountu (GOOGLE_SERVICE_ACCOUNT_JSON)');
+  return { email, key };
+}
+
 function b64url(buf) {
   return Buffer.from(buf).toString('base64').replace(/=/g, '').replace(/\+/g, '-').replace(/\//g, '_');
 }
 
 async function getToken() {
   if (tokenCache && tokenCache.exp > Date.now() + 60000) return tokenCache.token;
-  const email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-  const key = (process.env.GOOGLE_PRIVATE_KEY || '').replace(/\\n/g, '\n');
-  if (!email || !key) throw new Error('Chýba GOOGLE_SERVICE_ACCOUNT_EMAIL / GOOGLE_PRIVATE_KEY');
+  const { email, key } = credentials();
   const now = Math.floor(Date.now() / 1000);
   const head = b64url(JSON.stringify({ alg: 'RS256', typ: 'JWT' }));
   const claim = b64url(JSON.stringify({
@@ -25,7 +43,7 @@ async function getToken() {
     body: 'grant_type=' + encodeURIComponent('urn:ietf:params:oauth:grant-type:jwt-bearer') + '&assertion=' + head + '.' + claim + '.' + sig,
   });
   const j = await r.json();
-  if (!r.ok) throw new Error('Google auth: ' + (j.error_description || j.error));
+  if (!r.ok) throw new Error('Google auth (' + email + '): ' + (j.error_description || j.error));
   tokenCache = { token: j.access_token, exp: Date.now() + (j.expires_in || 3600) * 1000 };
   return tokenCache.token;
 }

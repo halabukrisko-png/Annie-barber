@@ -14,8 +14,7 @@ Pre každý skopíruj *ID kalendára* (Nastavenia kalendára → Integrovať kal
 ## 3. Premenné prostredia vo Verceli (Project → Settings → Environment Variables)
 | Názov | Hodnota |
 |---|---|
-| `GOOGLE_SERVICE_ACCOUNT_EMAIL` | `client_email` z JSON súboru |
-| `GOOGLE_PRIVATE_KEY` | `private_key` z JSON súboru (celé, aj s `-----BEGIN...`) |
+| `GOOGLE_SERVICE_ACCOUNT_JSON` | **celý obsah** stiahnutého JSON súboru (otvoriť v Poznámkovom bloku, Ctrl+A, Ctrl+C, vložiť). Alternatíva: samostatné `GOOGLE_SERVICE_ACCOUNT_EMAIL` a `GOOGLE_PRIVATE_KEY` |
 | `CAL_ANETT`, `CAL_KARVY`, `CAL_VLADIS` | ID kalendárov barberov |
 | `CAL_SHARED` | ID spoločného kalendára (každá rezervácia sa tam zrkadlí s menom barbera) |
 | `RESEND_API_KEY`, `MAIL_FROM` | *voliteľné* – potvrdzovacie e-maily cez Resend |
