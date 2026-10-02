@@ -1303,3 +1303,33 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   .hero-card:nth-child(2) > span:nth-child(2)::after { content: '·'; margin-left: 8px; color: #d6ac72; }
 }
 @media (min-width: 1024px) { .hero-card:nth-child(2) { align-content: flex-start; padding-bottom: 18px !important; } .hero-card:nth-child(2) > span:not(.hc-label) { margin-top: 2px; } }
+
+/* hero cards: the bronze frame draws itself round the card, and fine diagonal lines cut the corners ---- */
+@property --hcring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+@keyframes hcRingDraw { from { --hcring: 0deg; } to { --hcring: 440deg; } }
+@media (min-width: 1024px) {
+  .hero-card::after {
+    left: 0 !important; top: 0 !important; width: auto !important; height: auto !important; inset: -1px; padding: 1.5px; border-radius: 4px; pointer-events: none; --hcring: 0deg;
+    background: conic-gradient(from 0deg, #e2bd88 0deg, #e2bd88 calc(var(--hcring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--hcring) / 2),
+      rgba(201,160,106,0) calc(360deg - var(--hcring) / 2), #e2bd88 calc(360deg - var(--hcring) / 2 + 9deg), #e2bd88 360deg) !important;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    animation: hcRingDraw 2.2s cubic-bezier(.45,.05,.25,1) 1.5s both;
+  }
+  .hero-card:nth-child(2)::after { animation-delay: 1.9s; }
+  .hero-card::before {
+    opacity: 1 !important; inset: -1px; z-index: 1; transition: none;
+    --d: 44px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
+    --l: transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px);
+    background:
+      linear-gradient(to bottom right, var(--l)) top left / var(--d) var(--d) no-repeat,
+      linear-gradient(to bottom left, var(--l)) top right / var(--d) var(--d) no-repeat,
+      linear-gradient(to top right, var(--l)) bottom left / var(--d) var(--d) no-repeat,
+      linear-gradient(to top left, var(--l)) bottom right / var(--d) var(--d) no-repeat !important;
+    --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 86%, transparent 96%);
+    -webkit-mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
+    mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
+  }
+  .hero-card:hover::before { opacity: 1 !important; }
+}
+@media (prefers-reduced-motion: reduce) { .hero-card::after { animation: none; --hcring: 440deg; } }
