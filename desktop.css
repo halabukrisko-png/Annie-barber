@@ -1453,3 +1453,9 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .ticker { font-size: 10.5px !important; letter-spacing: 0.12em !important; padding: 12px 0 !important; }
   .intro-inner > .ticker { margin-top: 2px !important; }
 }
+
+/* tablet: the Instagram section (@BARBERIS) is hidden; the contact frame closes with a full border */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ig-section { display: none !important; }
+  .contact-frame { border-radius: var(--radius) !important; }
+}
