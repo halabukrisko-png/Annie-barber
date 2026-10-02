@@ -1379,3 +1379,8 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
   #svc-list.svc-in .svc-badge { animation: svcBadgePop .6s cubic-bezier(.16,.84,.3,1) backwards; animation-delay: calc(.9s + var(--si, 0) * 120ms); }
 }
 @media (prefers-reduced-motion: reduce) { #svc-list.svc-in .svc-thumb, #svc-list.svc-in .svc-hover-row > div, #svc-list.svc-in .svc-hover-row > div > *, #svc-list.svc-in .svc-badge { animation: none !important; } }
+@media (min-width: 1024px) {
+  .contact-frame > div:first-child { text-align: center !important; }
+  .contact-frame > div:first-child > div { justify-content: center !important; }
+  .contact-frame > div:first-child p { margin-left: auto !important; margin-right: auto !important; text-align: center; }
+}
