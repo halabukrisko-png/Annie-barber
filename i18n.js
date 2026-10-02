@@ -348,6 +348,7 @@
     try { localStorage.setItem('lang', lang); } catch (e) {}
     document.documentElement.setAttribute('lang', lang);
     updateTitle();
+    if (window.__bioUnbold) window.__bioUnbold();
     apply();
     updateSwitchers();
     window.dispatchEvent(new Event('langchange'));
@@ -404,34 +405,45 @@
   else init();
 })();
 
-/* Highlights key phrases in the team bios with the CSS Custom Highlight API (no DOM changes, so translations keep working). */
+/* Bold key phrase in every team-bio paragraph. Wraps the phrase in <strong> after translation, unwraps before the next one,
+   so the paragraph-level translation keys keep matching. */
 (function () {
-  if (!window.CSS || !CSS.highlights || typeof Highlight === 'undefined') return;
   var PHRASES = [
-    'takmer 7 rokov', 'práca s ľuďmi',
-    '6 rokov', 'ornamentálna tvorba', 'Karvy je ten správny človek',
-    'približne 4 roky', 'kvalitná a precízna práca a spokojný zákazník',
-    'almost 7 years', 'working with people',
-    'for 6 years', 'ornamental work', 'Karvy is the right person',
-    'about 4 years', 'quality, precise work and a satisfied customer'
+    'takmer 7 rokov', 'dobrú atmosféru', 'kvôli ľuďom, atmosfére a pocitu',
+    'ornamentálna tvorba', 'Karvy je ten správny človek', 'poriadnu dávku humoru',
+    'približne 4 roky', 'kvalitná a precízna práca a spokojný zákazník', 'dotiahne každý detail',
+    'almost 7 years', 'a good atmosphere', 'for the people, the atmosphere and the feeling',
+    'ornamental work', 'Karvy is the right person', 'a proper dose of humor',
+    'about 4 years', 'quality, precise work and a satisfied customer', 'refine every detail'
   ];
-  function paint() {
-    var ranges = [];
+  function unbold() {
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card strong.bio-b'), function (s) {
+      var p = s.parentNode;
+      s.parentNode.replaceChild(document.createTextNode(s.textContent), s);
+      p.normalize();
+    });
+  }
+  function bold() {
+    unbold();
     Array.prototype.forEach.call(document.querySelectorAll('.bio-card p'), function (p) {
       var n = p.firstChild;
       if (!n || n.nodeType !== 3) return;
       var t = n.nodeValue;
-      PHRASES.forEach(function (ph) {
-        var i = t.indexOf(ph);
-        if (i < 0) return;
-        var r = document.createRange();
-        r.setStart(n, i); r.setEnd(n, i + ph.length);
-        ranges.push(r);
-      });
+      for (var k = 0; k < PHRASES.length; k++) {
+        var i = t.indexOf(PHRASES[k]);
+        if (i < 0) continue;
+        var after = n.splitText(i);
+        after.splitText(PHRASES[k].length);
+        var st = document.createElement('strong');
+        st.className = 'bio-b';
+        after.parentNode.replaceChild(st, after);
+        st.appendChild(after);
+        break;
+      }
     });
-    if (ranges.length) CSS.highlights.set('bio-em', new (Function.prototype.bind.apply(Highlight, [null].concat(ranges)))()); else CSS.highlights.delete('bio-em');
   }
-  function run() { try { paint(); } catch (e) {} }
+  window.__bioUnbold = unbold;
+  function run() { try { bold(); } catch (e) {} }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 0); }); else setTimeout(run, 0);
   window.addEventListener('langchange', function () { setTimeout(run, 0); });
 })();
