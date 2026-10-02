@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021124"></script>
-<link rel="stylesheet" href="endline.css?v=202610021124">
-<link rel="stylesheet" href="desktop.css?v=202610021124" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021128"></script>
+<link rel="stylesheet" href="endline.css?v=202610021128">
+<link rel="stylesheet" href="desktop.css?v=202610021128" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -1042,7 +1042,9 @@
       lines.forEach(function (el) {
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
-        if (rect.top < vh * 0.92 && rect.bottom > 0) {
+        var lim = vh * 0.92;
+        if (el.parentNode && el.parentNode.id === 'intro') { lim = vh * 0.62; if ((window.pageYOffset || 0) < 60) return; }
+        if (rect.top < lim && rect.bottom > 0) {
           el.classList.add('in-view');
           if (el.hasAttribute('data-reveal-together')) {
             Array.prototype.forEach.call(el.children, function (c) { c.classList.add('in-view'); });
@@ -1077,7 +1079,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021124"></script>
-<script src="desktop.js?v=202610021124" defer></script>
+<script src="chat.js?v=202610021128"></script>
+<script src="desktop.js?v=202610021128" defer></script>
 </body>
 </html>
