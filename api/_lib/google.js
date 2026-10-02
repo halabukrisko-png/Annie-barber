@@ -11,9 +11,14 @@ function credentials() {
   let email, key;
   const raw = (process.env.GOOGLE_SERVICE_ACCOUNT_JSON || '').trim();
   if (raw) {
-    let j;
-    try { j = JSON.parse(raw); } catch (e) { throw new Error('GOOGLE_SERVICE_ACCOUNT_JSON nie je platný JSON'); }
-    email = j.client_email; key = j.private_key;
+    let j = null;
+    try { j = JSON.parse(raw); } catch (e) { /* neúplný JSON – skúsime vytiahnuť polia */ }
+    if (j) { email = j.client_email; key = j.private_key; }
+    else {
+      const m = (name) => { const r = new RegExp('"?' + name + '"?\\s*:\\s*"([^"]*)"').exec(raw); return r && r[1]; };
+      email = m('client_email'); key = m('private_key');
+      if (!email || !key) throw new Error('GOOGLE_SERVICE_ACCOUNT_JSON: chýba client_email alebo private_key (dĺžka ' + raw.length + ')');
+    }
   } else {
     email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL; key = process.env.GOOGLE_PRIVATE_KEY;
   }
