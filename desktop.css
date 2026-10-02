@@ -1447,3 +1447,9 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 @media (min-width: 768px) and (max-width: 1023px) {
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] > p:not(:last-child) { display: none !important; }
 }
+
+/* tablet: the "Kvalita • Detail • Atmosféra" band looks like on mobile (smaller type, tight spacing) */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .ticker { font-size: 10.5px !important; letter-spacing: 0.12em !important; padding: 12px 0 !important; }
+  .intro-inner > .ticker { margin-top: 2px !important; }
+}
