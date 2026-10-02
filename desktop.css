@@ -94,7 +94,7 @@ img { max-width: 100%; }
 }
 .site-header > a:first-child, .topbar > a:first-child { font-size: 15px !important; letter-spacing: 0.18em !important; transition: color .3s ease; }
 .site-header > a:first-child:hover, .topbar > a:first-child:hover { color: var(--bronze); }
-.site-header .lang-switch button, .topbar .lang-switch button { font-size: 12px; transition: color .3s ease; }
+.site-header .lang-switch button, .topbar .lang-switch button { transition: background .25s ease, color .25s ease; }
 .site-header .lang-switch button:hover, .topbar .lang-switch button:hover { color: var(--cream); }
 
 /* buttons ----------------------------------------------------------------- */
