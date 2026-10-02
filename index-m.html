@@ -144,9 +144,7 @@
   #reviews-more.in-view { padding-top: 10px; }
   .review-card { border: 1px solid rgba(201,160,106,0.3); box-shadow: inset 0 0 0 1px rgba(201,160,106,0.05); }
   #hero h1 { font-family: 'Playfair Display', Georgia, serif !important; font-weight: 500 !important; letter-spacing: 0 !important; line-height: 1.08 !important; font-size: 36px !important; }
-  .cta-photo { filter: brightness(0.38) saturate(0.85); transition: filter 1.6s ease; }
-  .cta-body.lit .cta-photo { filter: none; }
-  @media (prefers-reduced-motion: reduce) { .cta-photo { transition: none; } }
+  .cta-photo { filter: brightness(var(--cb, 0.2)) saturate(var(--cs, 0.7)); will-change: filter; }
   .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
@@ -978,12 +976,21 @@
   (function () {
     var body = document.querySelector('.cta-body');
     if (!body) return;
-    function on() { body.classList.add('lit'); }
-    if (!('IntersectionObserver' in window)) { on(); return; }
-    var io = new IntersectionObserver(function (es) {
-      es.forEach(function (e) { if (e.isIntersecting) { setTimeout(on, 250); io.disconnect(); } });
-    }, { threshold: 0.4 });
-    io.observe(body);
+    var tick = false;
+    function upd() {
+      tick = false;
+      var r = body.getBoundingClientRect(), vh = window.innerHeight || 800;
+      var c = r.top + r.height * 0.35;
+      var p = (vh * 0.95 - c) / (vh * 0.6);
+      p = Math.max(0, Math.min(1, p));
+      p = p * p * (3 - 2 * p);
+      body.style.setProperty('--cb', (0.2 + 0.8 * p).toFixed(3));
+      body.style.setProperty('--cs', (0.7 + 0.3 * p).toFixed(3));
+    }
+    function req() { if (!tick) { tick = true; requestAnimationFrame(upd); } }
+    window.addEventListener('scroll', req, { passive: true });
+    window.addEventListener('resize', req);
+    upd();
   })();
 </script>
 <script src="chat.js"></script>
