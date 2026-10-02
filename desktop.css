@@ -1459,3 +1459,12 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .ig-section { display: none !important; }
   .contact-frame { border-radius: var(--radius) !important; }
 }
+
+/* tablet menu: sits above the header, shows BARBERIS + a close cross, no "Zarezervovať termín" button */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .nav-overlay { z-index: 100 !important; background: #0e0d0b !important; }
+  .nav-overlay-top { height: 64px !important; padding: 0 var(--gutter) !important; }
+  .nav-overlay-top > span { letter-spacing: 0.14em; }
+  .nav-close { font-size: 38px !important; padding: 4px 0 4px 12px !important; }
+  .nav-cta { display: none !important; }
+}
