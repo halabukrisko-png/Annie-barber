@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021128"></script>
-<link rel="stylesheet" href="endline.css?v=202610021128">
-<link rel="stylesheet" href="desktop.css?v=202610021128" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021130"></script>
+<link rel="stylesheet" href="endline.css?v=202610021130">
+<link rel="stylesheet" href="desktop.css?v=202610021130" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -795,13 +795,13 @@
     build(still);
     window.addEventListener('langchange', function () { text = T('VIAC NEŽ LEN STRIH.'); build(true); started = true; });
     if (still || !('IntersectionObserver' in window)) { build(true); return; }
-    var io = new IntersectionObserver(function (es) {
-      if (started || !es[0].isIntersecting) return;
-      started = true;
-      io.disconnect();
-      type();
-    }, { threshold: 0.9 });
-    io.observe(h);
+    /* B first, then the headline is typed: wait for the B-divider above to light up */
+    var wrapEl = document.querySelector('#intro .scroll-line-wrap');
+    function go() { if (started) return; started = true; setTimeout(type, 1200); }
+    if (!wrapEl) { go(); return; }
+    if (wrapEl.classList.contains('in-view')) { go(); return; }
+    var mo = new MutationObserver(function () { if (wrapEl.classList.contains('in-view')) { mo.disconnect(); go(); } });
+    mo.observe(wrapEl, { attributes: true, attributeFilter: ['class'] });
   })();
   (function () {
     var btn = document.getElementById('cennik-toggle');
@@ -1036,6 +1036,7 @@
       });
       if (group.hasAttribute('data-reveal-together')) lines.push(group);
     });
+    Array.prototype.forEach.call(document.querySelectorAll('.intro-inner > .reveal'), function (r, i) { r.style.transitionDelay = (2.4 + i * 0.35) + 's'; });
     var ticking = false;
     function check() {
       var vh = window.innerHeight || document.documentElement.clientHeight;
@@ -1043,6 +1044,7 @@
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
         var lim = vh * 0.92;
+        if (el.closest && el.closest('.intro-inner')) { var iw = document.querySelector('#intro .scroll-line-wrap'); if (iw && !iw.classList.contains('in-view')) return; }
         if (el.parentNode && el.parentNode.id === 'intro') { lim = vh * 0.62; if ((window.pageYOffset || 0) < 60) return; }
         if (rect.top < lim && rect.bottom > 0) {
           el.classList.add('in-view');
@@ -1079,7 +1081,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021128"></script>
-<script src="desktop.js?v=202610021128" defer></script>
+<script src="chat.js?v=202610021130"></script>
+<script src="desktop.js?v=202610021130" defer></script>
 </body>
 </html>
