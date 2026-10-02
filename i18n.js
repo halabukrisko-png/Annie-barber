@@ -403,3 +403,35 @@
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
 })();
+
+/* Highlights key phrases in the team bios with the CSS Custom Highlight API (no DOM changes, so translations keep working). */
+(function () {
+  if (!window.CSS || !CSS.highlights || typeof Highlight === 'undefined') return;
+  var PHRASES = [
+    'takmer 7 rokov', 'Vždy som chcela podnikať', 'práca s ľuďmi', 'kvalitný strih', 'oddýchnuť, pokecať a užiť si dobrú atmosféru', 'kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie',
+    '6 rokov', 'ornamentálna tvorba', 'niečo originálne', 'Karvy je ten správny človek', 'poriadnu dávku humoru', 'našich showmanov',
+    'približne 4 roky', 'trochu tichší', 'kvalitná a precízna práca a spokojný zákazník', 's pokorou', 'dotiahne každý detail',
+    'almost 7 years', 'I always wanted to run my own business', 'working with people', 'quality haircut', 'relax, chat and enjoy a good atmosphere', 'for the people, the atmosphere and the feeling they take away with them',
+    'for 6 years', 'ornamental work', 'something original', 'Karvy is the right person', 'a proper dose of humor', 'our showmen',
+    'about 4 years', 'a bit quieter', 'quality, precise work and a satisfied customer', 'with humility', 'refines every detail'
+  ];
+  function paint() {
+    var ranges = [];
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card p'), function (p) {
+      var n = p.firstChild;
+      if (!n || n.nodeType !== 3) return;
+      var t = n.nodeValue;
+      PHRASES.forEach(function (ph) {
+        var i = t.indexOf(ph);
+        if (i < 0) return;
+        var r = document.createRange();
+        r.setStart(n, i); r.setEnd(n, i + ph.length);
+        ranges.push(r);
+      });
+    });
+    if (ranges.length) CSS.highlights.set('bio-em', new (Function.prototype.bind.apply(Highlight, [null].concat(ranges)))()); else CSS.highlights.delete('bio-em');
+  }
+  function run() { try { paint(); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 0); }); else setTimeout(run, 0);
+  window.addEventListener('langchange', function () { setTimeout(run, 0); });
+})();

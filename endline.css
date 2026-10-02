@@ -33,3 +33,6 @@
 .ticker .drive-in { gap: clamp(18px, 3vw, 44px) !important; }
 .ticker .drive-in > span { color: #efe6d6; font-weight: 500; letter-spacing: 0.34em; text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
 .ticker .drive-in > span:nth-child(even) { font-size: 0 !important; width: 7px; height: 7px; transform: rotate(45deg); background: linear-gradient(135deg, #e2bd88, #b88f58); box-shadow: 0 0 10px rgba(214,172,114,0.6); flex: none; }
+
+/* highlighted phrases in the team bios */
+::highlight(bio-em) { color: #e8c88f; text-decoration: underline; text-decoration-color: rgba(214,172,114,0.55); text-decoration-thickness: 1px; text-underline-offset: 4px; }
