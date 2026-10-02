@@ -1475,3 +1475,10 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .contact-frame { border-top: 1px solid var(--line-strong) !important; border-radius: var(--radius) !important; }
   .contact-frame::after { clip-path: none !important; }
 }
+
+/* tablet: smaller chat button, and the "B" divider moves up to where the hero photo fades out */
+@media (min-width: 768px) and (max-width: 1023px) {
+  html #bb-chat-btn { zoom: .8; right: 14px; bottom: 14px; }
+  html #bb-chat { bottom: 52px; right: 14px; }
+  #intro { padding-top: 0 !important; }
+}
