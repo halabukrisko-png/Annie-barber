@@ -85,7 +85,7 @@
     '15 €': '€15',
     '25 €': '€25',
     '5 – 10 €': '€5 – 10',
-    'Objednajte sa online a vyhnite sa radu. Stačí pár klikov. ✂️': 'Book online and skip the queue. Just a few clicks. ✂️',
+    'Rýchla online objednávka na pár klikov. ✂️': 'Quick online booking in just a few clicks. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Čo si môžeš dať u nás:': 'What you can get with us:',
 
