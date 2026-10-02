@@ -408,12 +408,12 @@
 (function () {
   if (!window.CSS || !CSS.highlights || typeof Highlight === 'undefined') return;
   var PHRASES = [
-    'takmer 7 rokov', 'Vždy som chcela podnikať', 'práca s ľuďmi', 'kvalitný strih', 'oddýchnuť, pokecať a užiť si dobrú atmosféru', 'kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie',
-    '6 rokov', 'ornamentálna tvorba', 'niečo originálne', 'Karvy je ten správny človek', 'poriadnu dávku humoru', 'našich showmanov',
-    'približne 4 roky', 'trochu tichší', 'kvalitná a precízna práca a spokojný zákazník', 's pokorou', 'dotiahne každý detail',
-    'almost 7 years', 'I always wanted to run my own business', 'working with people', 'quality haircut', 'relax, chat and enjoy a good atmosphere', 'for the people, the atmosphere and the feeling they take away with them',
-    'for 6 years', 'ornamental work', 'something original', 'Karvy is the right person', 'a proper dose of humor', 'our showmen',
-    'about 4 years', 'a bit quieter', 'quality, precise work and a satisfied customer', 'with humility', 'refines every detail'
+    'takmer 7 rokov', 'práca s ľuďmi',
+    '6 rokov', 'ornamentálna tvorba', 'Karvy je ten správny človek',
+    'približne 4 roky', 'kvalitná a precízna práca a spokojný zákazník',
+    'almost 7 years', 'working with people',
+    'for 6 years', 'ornamental work', 'Karvy is the right person',
+    'about 4 years', 'quality, precise work and a satisfied customer'
   ];
   function paint() {
     var ranges = [];
