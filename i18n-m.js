@@ -160,6 +160,8 @@
     'Telefón alebo e-mail': 'Phone or e-mail',
     'alebo zavolaj:': 'or call:',
     'alebo napíš na': 'or message us on',
+    'Najprv si vyber barbera.': 'First, choose your barber.',
+    '1 · Barber –': '1 · Barber –',
     '2 · Služba': '2 · Service',
     '3 · Dátum': '3 · Date',
     '4 · Čas —': '4 · Time —',

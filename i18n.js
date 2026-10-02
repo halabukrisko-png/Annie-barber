@@ -168,6 +168,8 @@
     '2 · Služba – Teraz si vyber službu:': '2 · Service – Now choose your service:',
     '3 · Dátum – Vyber si dátum, kedy sa chceš strihať:': '3 · Date – Choose the date you want your haircut:',
     '4 · Čas – Vyber si čas, kedy sa chceš strihať:': '4 · Time – Choose the time you want your haircut:',
+    'Najprv si vyber barbera.': 'First, choose your barber.',
+    '1 · Barber –': '1 · Barber –',
     '2 · Služba': '2 · Service',
     '3 · Dátum': '3 · Date',
     '4 · Čas —': '4 · Time —',
