@@ -1276,3 +1276,24 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 .intro-inner h2::after { width: 96px; background: linear-gradient(90deg, transparent 0%, rgba(201,160,106,0.55) 22%, var(--bronze) 50%, rgba(201,160,106,0.55) 78%, transparent 100%); }
 @media (min-width: 1024px) { .intro-inner p.intro-hl { font-size: 22px !important; max-width: 640px; color: #e4c48f !important; } }
 @media (min-width: 1024px) { .intro-inner p.intro-white { color: #fff !important; font-size: var(--fs-lead) !important; font-weight: 700 !important; } }
+
+/* hero info cards: refined glass cards with icon, hairline accent and calmer typography ---- */
+@media (min-width: 1024px) {
+  .hero-meta { gap: 16px !important; margin-top: 22px !important; }
+  .hero-card {
+    position: relative; min-width: 232px; padding: 18px 22px 18px !important; gap: 7px !important; border-radius: 4px !important;
+    background: linear-gradient(160deg, rgba(34,31,26,0.72) 0%, rgba(16,15,13,0.72) 100%) !important; border: 1px solid rgba(201,160,106,0.28) !important;
+    box-shadow: inset 0 1px 0 rgba(255,240,210,0.06), 0 22px 40px -26px rgba(0,0,0,0.9);
+    font-size: 14px !important; line-height: 1.45 !important; color: var(--cream); letter-spacing: 0.01em;
+  }
+  .hero-card::after { content: ''; position: absolute; left: 22px; top: -1px; width: 44px; height: 2px; background: linear-gradient(90deg, #d6ac72, rgba(214,172,114,0)); pointer-events: none; }
+  .hero-card:hover { border-color: rgba(214,172,114,0.6) !important; transform: translateY(-3px); }
+  .hero-card .hc-label {
+    display: flex; align-items: center; gap: 9px; margin: 0 0 6px !important; padding-bottom: 10px; font-size: 10.5px !important; font-weight: 600; letter-spacing: 0.24em !important; color: #d6ac72 !important;
+    border-bottom: 1px solid rgba(201,160,106,0.2);
+  }
+  .hero-card .hc-label::before { content: ''; width: 15px; height: 15px; flex: none; background: #d6ac72; -webkit-mask: var(--ic) center / contain no-repeat; mask: var(--ic) center / contain no-repeat; }
+  .hero-card:nth-child(1) .hc-label { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='9'/%3E%3Cpath d='M12 7v5l3 2'/%3E%3C/svg%3E"); }
+  .hero-card:nth-child(2) .hc-label { --ic: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s7-6.2 7-12a7 7 0 0 0-14 0c0 5.8 7 12 7 12z'/%3E%3Ccircle cx='12' cy='10' r='2.6'/%3E%3C/svg%3E"); }
+  .hero-card > span:not(.hc-label) { color: rgba(244,237,225,0.92); }
+}
