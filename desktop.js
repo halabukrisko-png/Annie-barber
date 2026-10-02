@@ -389,3 +389,14 @@
     }
   }, { passive: true });
 })();
+
+/* "Zobraziť viac recenzií" button: when it scrolls into view the bronze fill sweeps across it ---- */
+(function () {
+  var btn = document.getElementById('reviews-toggle');
+  if (!btn) return;
+  if (!('IntersectionObserver' in window)) { btn.classList.add('btn-filled'); return; }
+  var io = new IntersectionObserver(function (es) {
+    if (es[0].isIntersecting) { btn.classList.add('btn-filled'); io.disconnect(); }
+  }, { threshold: 0.8 });
+  io.observe(btn);
+})();
