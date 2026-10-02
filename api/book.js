@@ -24,9 +24,11 @@ async function sendMail(to, subject, text) {
 
 module.exports = async function handler(req, res) {
   res.setHeader('Cache-Control', 'no-store');
+  let dbg = false;
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
   try {
     const b = await readBody(req);
+    dbg = !!b.debug;
     if (b.website) return res.status(200).json({ ok: true }); // honeypot
 
     const service = clean(b.service, 20), barber = clean(b.barber, 20), date = clean(b.date, 10), time = clean(b.time, 5);
@@ -86,6 +88,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ ok: true, barber: who, time, date, duration: dur });
   } catch (e) {
     console.error(e);
-    return res.status(500).json({ error: 'Rezerváciu sa nepodarilo uložiť. Skús to prosím znova alebo zavolaj.' });
+    return res.status(500).json({ error: 'Rezerváciu sa nepodarilo uložiť. Skús to prosím znova alebo zavolaj.', detail: dbg ? String(e && e.message).slice(0, 300) : undefined });
   }
 };

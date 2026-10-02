@@ -156,7 +156,7 @@
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-        name: name, phone: phone, email: mail, website: ($('cal-website') || {}).value || '' })
+        name: name, phone: phone, email: mail, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
@@ -169,13 +169,14 @@
           doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           resetAfterBooking();
         } else {
+          if (res.j && res.j.detail) { setMsg((res.j.error || '') + ' [' + res.j.detail + ']'); return; }
           setMsg(res.j && res.j.error ? (res.j.taken ? tr('Tento čas už nie je voľný. Vyber si, prosím, iný.') : res.j.error) : tr('Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.'));
           if (res.j && res.j.taken) { cache = {}; selectedTime = null; load(function () { if (selectedDate) { renderSlots(); } }); step4Wrap.hidden = false; }
         }
       })
       .catch(function () {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
-        setMsg(tr('Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.'));
+        setMsg(tr('Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.') + (/[?&]debug=1/.test(location.search) ? ' [sieťová chyba]' : ''));
       });
   }
 
