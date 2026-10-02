@@ -280,6 +280,20 @@
     card.addEventListener('click', function () { card.classList.toggle('photo-lit'); });
   })();
 
+  /* ---------- service cards: ring + fade-up when the row scrolls into view ---------- */
+  (function () {
+    var list = document.getElementById('svc-list');
+    if (!list || !desktop.matches) return;
+    Array.prototype.forEach.call(list.querySelectorAll('.svc-hover-row'), function (c, i) { c.style.setProperty('--si', i); });
+    if (reduce || !('IntersectionObserver' in window)) { list.classList.add('svc-in'); return; }
+    var sio = new IntersectionObserver(function (es) {
+      if (!es[0].isIntersecting) return;
+      sio.disconnect();
+      list.classList.add('svc-in');
+    }, { threshold: 0.25 });
+    sio.observe(list);
+  })();
+
   /* ---------- the last line of the page lights up once the bottom of the page is in view ---------- */
   (function () {
     var cf = document.querySelector('.contact-frame');
