@@ -1490,3 +1490,10 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   html #bb-chat-btn svg { width: 12px; height: 12px; }
   html #bb-chat { bottom: 52px; right: 14px; }
 }
+
+/* o-nas (tablet): no lounge photo next to / above the intro line */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] { display: none !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { grid-template-columns: minmax(0, 1fr) !important; row-gap: 0 !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { grid-column: 1 !important; grid-row: 1 !important; }
+}
