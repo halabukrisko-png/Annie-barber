@@ -1438,6 +1438,6 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .contact-actions::after {
     content: 'BARBERIS'; grid-row: 4; align-self: center; justify-self: center;
     font-family: 'Playfair Display', Georgia, serif; font-weight: 500; font-size: 30px; letter-spacing: 0.22em; text-indent: 0.22em;
-    color: var(--bronze); opacity: .75; padding: 18px 0;
+    color: #fff; opacity: 1; padding: 18px 0;
   }
 }
