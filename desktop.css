@@ -1275,3 +1275,4 @@ html #bb-chat { zoom: 1.3; right: 18px; bottom: 64px; }
 /* the small line under the intro headline fades out at both ends, like the B lines ---- */
 .intro-inner h2::after { width: 96px; background: linear-gradient(90deg, transparent 0%, rgba(201,160,106,0.55) 22%, var(--bronze) 50%, rgba(201,160,106,0.55) 78%, transparent 100%); }
 @media (min-width: 1024px) { .intro-inner p.intro-hl { font-size: 22px !important; max-width: 640px; color: #e4c48f !important; } }
+@media (min-width: 1024px) { .intro-inner p.intro-white { color: #fff !important; font-size: var(--fs-lead) !important; font-weight: 700 !important; } }
