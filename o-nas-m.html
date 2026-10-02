@@ -133,6 +133,15 @@
   .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
   .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .cal-footnote { margin-top: 14px; font-size: 11px; line-height: 1.6; color: rgba(207,198,184,0.55); }
+  .cancel-form { display: flex; gap: 10px; margin-top: 14px; }
+  .cancel-form .cal-field { margin-bottom: 0; flex: 1; border: 1px solid rgba(201,160,106,0.55) !important; background: rgba(10,9,8,0.4); }
+  .cancel-form .btn-outline { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; flex: 0 0 auto; margin-top: 0 !important; padding: 0 20px; font-family: inherit; cursor: pointer; white-space: nowrap; }
+  .step-cancel { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--cream); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 6px 12px; white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
+  .step-cancel:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
+  .cancel-call a { color: var(--bronze); text-decoration: underline; text-underline-offset: 3px; }
+  .cancel-call a[href^="tel"] { color: #fff; font-weight: 700; font-size: 1.28em; letter-spacing: 0.04em; text-decoration: none; padding: 3px 11px; margin: 0 2px; border: 1px solid rgba(214,172,114,0.65); border-radius: 3px; background: rgba(201,160,106,0.12); white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
+  .cancel-call a[href^="tel"]:hover { background: rgba(201,160,106,0.26); border-color: #e2bd88; }
+  .cancel-call { line-height: 2.1; margin-bottom: 0; display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
   .cancel-card { margin-top: 16px; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px; }
   .ig-strip { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
   .ig-strip img { display: block; min-width: 0; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
@@ -339,7 +348,7 @@
     </div>
 
     <div class="booking-calendar reveal" id="booking-calendar">
-      <div class="step-label"><span>1 · Barber – Najprv si vyber barbera:</span></div>
+      <div class="step-label" style="justify-content:space-between;gap:8px;"><span>1 · Barber – Najprv si vyber barbera:</span><a href="#cancel-contact" class="step-cancel" id="step-cancel-link">Zrušiť termín</a></div>
       <div class="barber-grid" id="barber-grid">
         <button type="button" class="barber-btn" data-barber="Anett">
           <img class="barber-avatar" src="assets/anett.jpg" alt="Anett" style="object-position:50% 20%;">
@@ -395,6 +404,7 @@
           <a href="tel:+421951833488" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
           <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
           <a href="tel:+421951833488" class="btn-outline">Zavolať</a>
+          <a href="#cancel-contact" class="btn-outline" id="cal-cancel-link">Zrušiť termín</a>
           <div class="cal-footnote">Termín ti potvrdíme e-mailom.</div>
                 </div>
 </div>
@@ -402,9 +412,13 @@
     </div>
 
     <div class="cancel-card">
-      <div class="step-label"><span>Zrušiť alebo zmeniť termín</span></div>
-      <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.</p>
-      <a href="tel:+421951833488" class="btn-outline" style="margin-top:14px;">Zavolať kvôli zmene termínu</a>
+      <div class="step-label"><span>Zrušiť termín:</span></div>
+      <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Zadaj telefón alebo e-mail, s ktorým si rezervoval, a pošleme žiadosť o zrušenie alebo zmenu termínu.</p>
+      <form class="cancel-form" id="cancel-form" novalidate>
+        <input type="text" class="cal-field" id="cancel-contact" placeholder="Telefón alebo e-mail" autocomplete="tel" aria-label="Telefón alebo e-mail">
+        <button type="submit" class="btn-outline" id="cancel-send">Zrušiť termín</button>
+      </form>
+      <p class="cancel-call">alebo zavolaj: <a href="tel:+421951833488">0951 833 488</a> alebo napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
 
@@ -890,6 +904,29 @@
         document.getElementById('team').scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+  })();
+  (function () {
+    var f = document.getElementById('cancel-form');
+    if (!f) return;
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = (document.getElementById('cancel-contact').value || '').trim();
+      if (!v) { document.getElementById('cancel-contact').focus(); return; }
+      var en = window.LANG && window.LANG() === 'en';
+      var msg = (en ? 'Hello, I would like to cancel or change my appointment. My contact: ' : 'Dobrý deň, chcel(a) by som zrušiť alebo zmeniť svoj termín. Môj kontakt: ') + v;
+      window.location.href = 'sms:+421951833488?body=' + encodeURIComponent(msg);
+    });
+  })();
+  (function () {
+    var ls = [document.getElementById('cal-cancel-link'), document.getElementById('step-cancel-link')];
+    ls.forEach(function (l) { if (!l) return;
+    l.addEventListener('click', function (e) {
+      e.preventDefault();
+      var f = document.getElementById('cancel-contact');
+      if (!f) return;
+      f.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (x) { f.focus(); } }, 500);
+    }); });
   })();
 </script>
 <script src="chat.js"></script>
