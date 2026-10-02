@@ -33,3 +33,17 @@
 .ticker .drive-in { gap: clamp(18px, 3vw, 44px) !important; }
 .ticker .drive-in > span { color: #efe6d6; font-weight: 500; letter-spacing: 0.34em; text-shadow: 0 1px 10px rgba(0,0,0,0.6); }
 .ticker .drive-in > span:nth-child(even) { font-size: 0 !important; width: 7px; height: 7px; transform: rotate(45deg); background: linear-gradient(135deg, #e2bd88, #b88f58); box-shadow: 0 0 10px rgba(214,172,114,0.6); flex: none; }
+
+/* ticker v2: three equal cells with numerals and hairline dividers ---- */
+.ticker { padding: 0 !important; }
+.ticker .drive-in { gap: 0 !important; max-width: 980px; margin: 0 auto; padding: 0 !important; justify-content: stretch !important; }
+.ticker .drive-in > span:nth-child(odd) { flex: 1 1 0; display: flex; align-items: center; justify-content: center; gap: 14px; padding: 22px 12px; font-size: 12.5px; font-weight: 600; letter-spacing: 0.3em; text-transform: uppercase; color: #f1e8d8; }
+.ticker .drive-in > span:nth-child(odd)::before { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 17px; letter-spacing: 0.04em; color: #d6ac72; text-transform: none; }
+.ticker .drive-in > span:nth-child(1)::before { content: '01'; }
+.ticker .drive-in > span:nth-child(3)::before { content: '02'; }
+.ticker .drive-in > span:nth-child(5)::before { content: '03'; }
+.ticker .drive-in > span:nth-child(even) { width: 1px !important; height: 30px !important; transform: none !important; box-shadow: none !important; flex: none; align-self: center; background: linear-gradient(180deg, rgba(201,160,106,0), rgba(201,160,106,0.7), rgba(201,160,106,0)) !important; }
+@media (max-width: 767px) {
+  .ticker .drive-in > span:nth-child(odd) { flex-direction: column; gap: 4px; padding: 14px 4px; font-size: 9.5px; letter-spacing: 0.2em; }
+  .ticker .drive-in > span:nth-child(odd)::before { font-size: 15px; }
+}
