@@ -2,11 +2,12 @@
 <html lang="sk">
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="index.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){try{var q=matchMedia('(min-width: 768px) and (min-height: 480px), (min-width: 1024px)');function go(){if(!q.matches)location.replace('index-m.html'+location.search+location.hash);}go();if(q.addEventListener)q.addEventListener('change',go);}catch(e){}})();</script>
+<script>(function(){try{var q=matchMedia('(min-width: 768px) and (min-height: 480px), (min-width: 1024px)');function go(){if(q.matches)location.replace('index.html'+location.search+location.hash);}go();if(q.addEventListener)q.addEventListener('change',go);}catch(e){}})();</script>
 <title>BARBERIS — Pánsky barbershop v Prievidzi</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&family=Playfair+Display:wght@500&family=Jost:wght@300;400&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&display=swap">
 <style>
   :root {
     --bg: #141311;
@@ -26,25 +27,18 @@
   .line-draw.draw { width: 100%; }
   @keyframes heroFadeIn { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
   .hero-fade-in { animation: heroFadeIn 1.3s cubic-bezier(.22,1,.36,1) 0.5s both; }
-  /* hero copy: Playfair Display headline + Jost lead */
-  #hero h1 { font-family: 'Playfair Display', Georgia, serif !important; font-weight: 500 !important; letter-spacing: 0 !important; line-height: 1.08 !important; font-size: 36px !important; }
-  #hero .hero-content > p { font-family: 'Jost', 'Work Sans', sans-serif !important; font-weight: 300; letter-spacing: 0.01em; }
   .tw-cursor { display: none !important; width: 3px; height: 0.82em; background: var(--bronze); margin-left: 3px; vertical-align: -0.08em; animation: twBlink 0.9s steps(2) infinite; transition: opacity 0.4s ease; }
   @keyframes twBlink { 50% { opacity: 0; } }
   .badge-reveal { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.22,1,.36,1); }
   .badge-reveal.draw { clip-path: inset(0 0 0 0); }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
-  .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.5s cubic-bezier(.22,1,.36,1) 0.4s, opacity 0.5s ease-out 0.4s; }
+  .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1), opacity 1.6s ease-out; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
-  #intro .scroll-line.left { background: linear-gradient(90deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
-  #intro .scroll-line.right { background: linear-gradient(270deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
   .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, transparent, var(--bronze) 45%, transparent); }
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
-  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 0.35s ease-out; }
+  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 1.6s ease-out 0.5s; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
-  .intro-hl { color: #e4c48f !important; font-weight: 600 !important; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px !important; line-height: 1.45 !important; letter-spacing: 0.01em; text-shadow: 0 1px 12px rgba(0,0,0,0.85); }
-  .intro-white { color: #fff !important; font-weight: 700 !important; font-family: 'Work Sans', sans-serif; font-style: normal; text-shadow: 0 1px 12px rgba(0,0,0,0.85); }
-  .intro-photo { opacity: 0; transition: opacity 2s cubic-bezier(.22,1,.36,1) 1.1s; }
+  .intro-photo { opacity: 0; transition: opacity 1.7s cubic-bezier(.22,1,.36,1) 0.3s; }
   .scroll-line-wrap.in-view + div .intro-photo { opacity: 1; }
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1.3s cubic-bezier(.22,1,.36,1), transform 1.3s cubic-bezier(.22,1,.36,1); }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
@@ -53,61 +47,6 @@
   .reveal-stagger-x > *:nth-child(odd) { transform: translateX(-38px); }
   .reveal-stagger-x > *:nth-child(even) { transform: translateX(38px); }
   .reveal-stagger-x > *.in-view { transform: translateX(0); }
-  /* reviews: "more reviews" opens a frame round the cards; a bronze line runs round its edge */
-  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-  #reviews-wrap { position: relative; isolation: isolate; }
-  .rv-frame {
-    position: absolute; z-index: -1; pointer-events: none; opacity: 0; transition: opacity .5s ease;
-    top: 14px; left: 8px; right: 8px; bottom: -10px; border: 1px solid rgba(244,237,225,0.12); border-radius: 6px;
-    background: linear-gradient(180deg, rgba(28,26,23,0.72), rgba(20,19,17,0.5));
-  }
-  .rv-frame.ring-in { opacity: 1; }
-  .rv-frame::before {
-    content: ''; position: absolute; inset: -1px; padding: 1.5px; border-radius: 6px; --ring: 0deg;
-    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
-      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-    transition: --ring 2.6s cubic-bezier(.45,.05,.25,1);
-  }
-  .rv-frame.ring-in::before { --ring: 372deg; }
-  .rv-frame.ring-done::before { transition: none; background: var(--bronze); opacity: 0.85; }
-  .rv-frame::after { /* fine bronze diagonals cutting the corners */
-    content: ''; position: absolute; inset: -1px; pointer-events: none; border-radius: 6px;
-    --d: 40px; --b: rgba(214,172,114,1); --b2: rgba(201,160,106,0.55);
-    --l: transparent calc(34% - .5px), var(--b2) calc(34% - .5px) calc(34% + .5px), transparent calc(34% + .5px), transparent calc(50% - .5px), var(--b) calc(50% - .5px) calc(50% + .5px), transparent calc(50% + .5px);
-    background:
-      linear-gradient(to bottom right, var(--l)) top left / var(--d) var(--d) no-repeat,
-      linear-gradient(to bottom left, var(--l)) top right / var(--d) var(--d) no-repeat,
-      linear-gradient(to top right, var(--l)) bottom left / var(--d) var(--d) no-repeat,
-      linear-gradient(to top left, var(--l)) bottom right / var(--d) var(--d) no-repeat;
-    --f: radial-gradient(circle farthest-corner at 50% 50%, #000 0%, rgba(0,0,0,0.92) 14%, rgba(0,0,0,0.7) 30%, rgba(0,0,0,0.42) 50%, rgba(0,0,0,0.18) 70%, rgba(0,0,0,0.05) 86%, transparent 96%);
-    -webkit-mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
-    mask: var(--f) top left / var(--d) var(--d) no-repeat, var(--f) top right / var(--d) var(--d) no-repeat, var(--f) bottom left / var(--d) var(--d) no-repeat, var(--f) bottom right / var(--d) var(--d) no-repeat;
-  }
-  @media (prefers-reduced-motion: reduce) { .rv-frame::before { transition: none; } }
-  /* price list: the frame draws itself first, then the rows write in one by one */
-  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-  @keyframes cnRing { from { --ring: 0deg; } to { --ring: 400deg; } }
-  #cennik-full { position: relative; }
-  #cennik-full::before {
-    content: ''; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none; opacity: 0; --ring: 0deg;
-    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
-      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  }
-  #cennik-full.cn-run { border-color: transparent !important; }
-  #cennik-full.cn-run::before { opacity: 1; animation: cnRing 2.5s cubic-bezier(.45,.05,.25,1) both; }
-  #cennik-full.cn-done { border-color: rgba(201,160,106,0.5) !important; transition: border-color .6s ease; }
-  #cennik-full > div, #cennik-full > p { opacity: 0; transition: opacity .5s ease; }
-  #cennik-full .price-list li { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
-  #cennik-full.cn-items > div, #cennik-full.cn-items > p { opacity: 1; }
-  #cennik-full > p { transition-delay: .2s; }
-  #cennik-full.cn-items .price-list li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 200ms); }
-  @media (prefers-reduced-motion: reduce) { #cennik-full > div, #cennik-full > p, #cennik-full .price-list li { opacity: 1; transform: none; transition: none; } #cennik-full.cn-run::before { animation: none; } }
-  .cta-text { display: contents; }
-  .cta-img2, .cta-more, .cta-note { display: none; }
   .toggle-fade { opacity: 0; transform: translateY(18px); overflow: hidden; max-height: 0; transition: opacity 0.55s ease-out, transform 0.55s ease-out, max-height 0.55s cubic-bezier(.22,1,.36,1); }
   .toggle-fade.in-view { opacity: 1; transform: translateY(0); }
   @media (prefers-reduced-motion: reduce) {
@@ -169,17 +108,10 @@
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
-  .btn-cta {
-    display: flex !important; align-items: center; justify-content: center; gap: 12px;
-    background: linear-gradient(180deg, #e4c08a 0%, #cba46e 48%, #b78e57 100%) !important; color: #17130e !important;
-    border: 1px solid rgba(255,238,205,0.4); border-radius: 3px !important; font-weight: 700; letter-spacing: 0.13em !important;
-    text-shadow: 0 1px 0 rgba(255,255,255,0.28);
-    box-shadow: inset 0 1px 0 rgba(255,246,225,0.55), inset 0 -2px 0 rgba(90,60,25,0.22), 0 12px 26px -12px rgba(201,160,106,0.75), 0 2px 0 rgba(0,0,0,0.25);
-    transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, filter 0.25s ease;
-  }
-  .btn-cta:hover { filter: brightness(1.07) saturate(1.05); box-shadow: inset 0 1px 0 rgba(255,246,225,0.6), inset 0 -2px 0 rgba(90,60,25,0.2), 0 16px 32px -12px rgba(214,172,114,0.85), 0 2px 0 rgba(0,0,0,0.25); transform: translateY(-2px); }
-  .btn-cta:active { transform: translateY(0); filter: brightness(0.97); box-shadow: inset 0 2px 4px rgba(90,60,25,0.3), 0 4px 12px -6px rgba(201,160,106,0.5); }
-  .btn-cta-arrow { display: inline-block; font-size: 1.15em; line-height: 1; transition: transform 0.25s ease; }
+  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
+  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
+  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
+  .btn-cta-arrow { display: inline-block; transition: transform 0.25s ease; }
   .btn-cta:hover .btn-cta-arrow { transform: translateX(3px); }
   .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(20,19,17,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(201,160,106,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
   .booking-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #7cd68a; box-shadow: 0 0 6px #7cd68a; flex: 0 0 auto; }
@@ -207,9 +139,6 @@
   .bio-card .bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
   .bio-card .bio-photo { flex: 0 0 64px; width: 64px; height: 64px; border-radius: 50%; overflow: hidden; background: #0f0e0c; }
   .bio-card .bio-photo img { width: 100%; height: 100%; object-fit: cover; }
-  .bio-card .bio-name h3 { margin: 0; font-size: 15px; letter-spacing: 0.04em; }
-  .bio-card .bio-name .role { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bronze); margin: 4px 0 12px; }
-  .bio-tag-under { display: none; }
   .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
   .bio-card p:last-of-type { margin-bottom: 0; }
   .bio-tag { display: inline-block; margin-top: 12px; font-size: 10px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); }
@@ -219,9 +148,7 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021506"></script>
-<link rel="stylesheet" href="endline.css?v=202610021506">
-<link rel="stylesheet" href="desktop.css?v=202610021506" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n-m.js"></script>
 </head>
 <body>
 <div id="page-veil"></div>
@@ -229,7 +156,7 @@
 
   <!-- HERO -->
   <div id="hero" style="position:relative;height:760px;display:flex;flex-direction:column;">
-    <img data-wide="assets/hero-wide.jpg" src="assets/hero-team.jpg" alt="Anett, Karvy a Vladis — tím Barberis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;">
+    <img src="assets/hero-team.jpg" alt="Anett, Karvy a Vladis — tím Barberis" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%;display:block;">
     <div class="hero-shade" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 24%,rgba(20,19,17,0.4) 55%,rgba(20,19,17,0.97) 92%,#141311 100%);"></div>
 
     <div class="site-header" style="position:sticky;top:0;z-index:20;height:64px;flex:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:0 20px;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.15) 100%);backdrop-filter:blur(4px);">
@@ -250,8 +177,8 @@
       </div>
       <nav class="nav-links">
         <a href="#hero"><span>01</span>Úvod</a>
-        <a href="o-nas.html"><span>02</span>O nás</a>
-        <a href="galeria.html"><span>03</span>Galéria</a>
+        <a href="o-nas-m.html"><span>02</span>O nás</a>
+        <a href="galeria-m.html"><span>03</span>Galéria</a>
         <a href="#contact"><span>04</span>Kontakt</a>
       </nav>
       <div class="nav-cta">
@@ -271,7 +198,7 @@
       <div class="hero-fade-in hero-cta-row" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
         <a href="#booking" class="btn-cta" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
-        <a href="galeria.html" class="btn-outline hero-third" style="display:none;border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Galéria</a>
+        <a href="galeria-m.html" class="btn-outline hero-third" style="display:none;border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Galéria</a>
       </div>
       <div class="hero-meta" style="display:none;">
         <div class="hero-card"><span class="hc-label">Otváracie hodiny</span><span>Pondelok – Piatok · 8:00 – 18:00</span><span>Sobota · 8:00 – 14:00</span></div>
@@ -285,13 +212,10 @@
     <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div class="intro-inner" style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge.jpg" alt="Oddychová zóna BARBERIS" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
-      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.62) 35%,rgba(20,19,17,0.7) 80%,var(--bg) 100%);"></div>
-      <h2 id="intro-title" style="position:relative;text-shadow:0 1px 10px rgba(0,0,0,0.75);font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
-      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
-      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
-      <p class="reveal intro-hl" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.</p>
-      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">Každý z nás má svoj štýl a my ti pomôžeme nájsť ten tvoj. Poradíme, čo ti pristane, a postaráme sa, aby si z kresla vstal s istotou.</p>
-      <p class="reveal intro-white" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);text-shadow:0 1px 8px rgba(0,0,0,0.75);">U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.</p>
+      <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.9) 0%,rgba(20,19,17,0.98) 35%,rgba(20,19,17,0.98) 85%,var(--bg) 100%);"></div>
+      <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
+      <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
       <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -365,9 +289,9 @@
             <li><span class="pl-name">Čistenie pleti</span><span class="pl-price">od 10 €</span></li>
           </ul>
         </div>
-        <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);text-align:center;">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
+        <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
-      <button id="cennik-toggle" type="button" aria-expanded="false" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
+      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
       <a href="#booking" class="btn-cta" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
@@ -432,9 +356,11 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"></div>
-        <span class="bio-tag-under">Precíznosť • Osobný prístup • Dobrá nálada</span>
+        <div>
+          <h3 style="font-size:15px;">ZA BARBERIS STOJÍM JA</h3>
+          <div class="role" style="font-size:10px;">Anett · Zakladateľka</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>ANETT</h3><div class="role">Zakladateľka</div></div>
       <p>Barberingu sa venujem už takmer 7 rokov. Vždy som chcela podnikať a práve v barberingu som sa našla. Od začiatku mi bola táto práca prirodzená a dodnes ma baví nielen samotné strihanie, ale hlavne práca s ľuďmi.</p>
       <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
       <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
@@ -446,9 +372,11 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"></div>
-        <span class="bio-tag-under">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
+        <div>
+          <h3 style="font-size:15px;">KARVY</h3>
+          <div class="role" style="font-size:10px;">Barber · 6 rokov skúseností</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>KARVY</h3><div class="role">Barber · 6 rokov skúseností</div></div>
       <p>Karvy sa barberingu venuje už 6 rokov a okrem precíznych strihov je jeho veľkou špecialitou ornamentálna tvorba.</p>
       <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
       <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový vzhľad.</p>
@@ -460,20 +388,19 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"></div>
-        <span class="bio-tag-under">Precízne strihy • Detail • Pohodová atmosféra</span>
+        <div>
+          <h3 style="font-size:15px;">VLADIS</h3>
+          <div class="role" style="font-size:10px;">Barber · 4 roky skúseností</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>VLADIS</h3><div class="role">Barber · 4 roky skúseností</div></div>
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
-      <p>K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
       <a href="#booking" class="bio-book">Objednaj si strih u Vladisa →</a>
     </div>
   </div>
 
   <!-- RECENZIE -->
-  <div id="reviews-wrap">
-    <div class="rv-frame" aria-hidden="true"></div>
   <div id="reviews" style="padding:32px 24px 0;text-align:center;">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -571,7 +498,6 @@
 
     <button id="reviews-toggle" type="button" aria-expanded="false" style="display:block;width:100%;background:none;border:none;color:var(--bronze);padding:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Zobraziť viac recenzií ↓</button>
   </div>
-  </div><!-- /reviews-wrap -->
 
   <div style="height:28px;"></div>
 
@@ -582,17 +508,12 @@
       <div class="cta-frame" style="margin-top:54px;border:1px solid rgba(201,160,106,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
         <div class="cta-body" style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
           <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
-          <img class="cta-img2" src="assets/booking-2.jpg" alt="Barber kreslo v BARBERIS" loading="lazy">
           <div class="cta-shade" style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
           <div class="booking-badge"><span class="dot"></span>Voľné termíny</div>
-          <div class="cta-text">
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
           <h2 style="position:relative;font-size:29px;line-height:1.12;margin-bottom:12px;">PRIPRAVENÝ<br>NA NOVÝ VZHĽAD?</h2>
           <p style="position:relative;margin:0 0 20px;font-size:13.5px;line-height:1.55;color:var(--cream-dim);max-width:280px;">Vyber si termín, sadni do kresla a zvyšok nechaj na nás.</p>
           <a href="tel:+421951833488" class="btn-cta" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
-            <p class="cta-more">Objednať sa môžeš telefonicky na 0951 833 488 alebo cez Instagram. Radi ti poradíme s výberom strihu a nájdeme termín, ktorý ti vyhovuje.</p>
-            <p class="cta-note">Potrebuješ špeciálny termín mimo otváracích hodín? Aj to sa dá zariadiť, stačí nám napísať.</p>
-          </div>
         </div>
         <div class="cta-foot" style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
       </div>
@@ -775,123 +696,11 @@
     }
   })();
   (function () {
-    var h = document.getElementById('intro-title');
-    if (!h) return;
-    var text = T('VIAC NEŽ LEN STRIH.');
-    var started = false, timer = null;
-    function build(visible) {
-      clearTimeout(timer);
-      h.setAttribute('aria-label', text);
-      h.textContent = '';
-      var spans = [];
-      text.split('').forEach(function (ch) {
-        var sp = document.createElement('span');
-        sp.textContent = ch;
-        sp.setAttribute('aria-hidden', 'true');
-        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.3s ease-out,transform 0.3s ease-out;' +
-          (visible ? '' : 'opacity:0;transform:translateY(4px);');
-        h.appendChild(sp);
-        spans.push(sp);
-      });
-      return spans;
-    }
-    function type() {
-      var spans = build(false), k = 0;
-      window.requestAnimationFrame(function () {
-        (function next() {
-          if (k >= spans.length) return;
-          spans[k].style.opacity = '1';
-          spans[k].style.transform = 'translateY(0)';
-          k++;
-          if (k >= spans.length) setTimeout(function () { h.classList.add('typed'); }, 500);
-          timer = setTimeout(next, 60);
-        })();
-      });
-    }
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    build(still);
-    if (still) h.classList.add('typed');
-    window.addEventListener('langchange', function () { text = T('VIAC NEŽ LEN STRIH.'); build(true); started = true; h.classList.add('typed'); });
-    if (still || !('IntersectionObserver' in window)) { build(true); return; }
-    /* B first, then the headline is typed: wait for the B-divider above to light up */
-    var wrapEl = document.querySelector('#intro .scroll-line-wrap');
-    function go() { if (started) return; started = true; setTimeout(type, 600); }
-    if (!wrapEl) { go(); return; }
-    if (wrapEl.classList.contains('in-view')) { go(); return; }
-    var mo = new MutationObserver(function () { if (wrapEl.classList.contains('in-view')) { mo.disconnect(); go(); } });
-    mo.observe(wrapEl, { attributes: true, attributeFilter: ['class'] });
-  })();
-  (function () {
-    var btn = document.getElementById('cennik-toggle');
-    var box = document.getElementById('cennik-full');
-    if (!btn || !box) return;
-    var timers = [];
-    var note = box.querySelector(':scope > p');
-    var noteText = note ? note.textContent : '';
-    function clear() { timers.forEach(clearTimeout); timers = []; if (note) note.textContent = noteText; }
-    function hideNote() {
-      if (!note) return;
-      note.innerHTML = '<span></span><span style="opacity:0"></span>';
-      note.lastChild.textContent = T(noteText);
-    }
-    function typeNote() {
-      if (!note) return;
-      var full = T(noteText), chars = Array.from(full), k = 0;
-      if (!note.firstChild || note.childNodes.length !== 2) hideNote();
-      var a = note.firstChild, b = note.lastChild;
-      (function step() {
-        a.textContent = chars.slice(0, k).join('');
-        b.textContent = chars.slice(k).join('');
-        if (k >= chars.length) { note.textContent = full; return; }
-        k++;
-        timers.push(setTimeout(step, 24));
-      })();
-    }
-    box.querySelectorAll('.price-list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
-    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    btn.addEventListener('click', function () {
-      var open = box.style.display === 'flex';
-      clear();
-      if (open) {
-        box.style.display = 'none';
-        box.classList.remove('cn-run', 'cn-items', 'cn-done');
-        btn.setAttribute('aria-expanded', 'false');
-        btn.textContent = T('Pozrieť celý cenník ↓');
-        return;
-      }
-      box.classList.remove('cn-run', 'cn-items', 'cn-done');
-      box.style.display = 'flex';
-      btn.setAttribute('aria-expanded', 'true');
-      btn.textContent = T('Skryť cenník ↑');
-      if (still) { box.classList.add('cn-items', 'cn-done'); return; }
-      hideNote();
-      void box.offsetWidth;
-      box.classList.add('cn-run');
-      timers.push(setTimeout(function () { box.classList.add('cn-items', 'cn-done'); }, 2300));
-      timers.push(setTimeout(typeNote, 2300 + box.querySelectorAll('.price-list li').length * 200 + 400));
-    });
-  })();
-  (function () {
     var toggle = document.getElementById('reviews-toggle');
     var more = document.getElementById('reviews-more');
     if (!toggle || !more) return;
-    var rvFrame = document.querySelector('#reviews-wrap > .rv-frame');
-    var rvTimer = null;
-    function rvOpen() {
-      if (!rvFrame) return;
-      clearTimeout(rvTimer);
-      rvFrame.classList.add('ring-in');
-      rvTimer = setTimeout(function () { rvFrame.classList.add('ring-done'); }, 2800);
-    }
-    function rvClose() {
-      if (!rvFrame) return;
-      if (rvFrame.getAttribute('data-keep')) return;
-      clearTimeout(rvTimer);
-      rvFrame.classList.remove('ring-in', 'ring-done');
-    }
     toggle.addEventListener('click', function () {
       var isOpen = more.classList.contains('in-view');
-      if (!isOpen) rvOpen(); else rvClose();
       if (!isOpen) {
         more.style.display = 'flex';
         var fullHeight = more.scrollHeight;
@@ -1054,18 +863,13 @@
       });
       if (group.hasAttribute('data-reveal-together')) lines.push(group);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('.intro-inner > .reveal'), function (r, i) { r.style.transitionDelay = (1.4 + i * 0.22) + 's'; });
     var ticking = false;
     function check() {
       var vh = window.innerHeight || document.documentElement.clientHeight;
       lines.forEach(function (el) {
         if (el.classList.contains('in-view')) return;
         var rect = el.getBoundingClientRect();
-        var lim = vh * 0.92;
-        if (el.closest && el.closest('.intro-inner')) { var iw = document.querySelector('#intro .scroll-line-wrap'); if (iw && !iw.classList.contains('in-view')) return; }
-        if (el.parentNode && el.parentNode.id === 'intro') { lim = vh * 0.62; if ((window.pageYOffset || 0) < 60) return; }
-        var introWrap = el.parentNode && el.parentNode.id === 'intro';
-        if (rect.top < lim && (rect.bottom > 0 || introWrap)) {
+        if (rect.top < vh * 0.92 && rect.bottom > 0) {
           el.classList.add('in-view');
           if (el.hasAttribute('data-reveal-together')) {
             Array.prototype.forEach.call(el.children, function (c) { c.classList.add('in-view'); });
@@ -1100,7 +904,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021506"></script>
-<script src="desktop.js?v=202610021506" defer></script>
+<script src="chat.js"></script>
+<script src="desktop-m.js" defer></script>
 </body>
 </html>

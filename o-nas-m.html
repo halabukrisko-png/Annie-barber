@@ -2,9 +2,10 @@
 <html lang="sk">
 <head>
 <meta charset="utf-8">
+<link rel="canonical" href="o-nas.html">
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script>(function(){try{var q=matchMedia('(min-width: 768px) and (min-height: 480px), (min-width: 1024px)');function go(){if(!q.matches)location.replace('o-nas-m.html'+location.search+location.hash);}go();if(q.addEventListener)q.addEventListener('change',go);}catch(e){}})();</script>
+<script>(function(){try{var q=matchMedia('(min-width: 768px) and (min-height: 480px), (min-width: 1024px)');function go(){if(q.matches)location.replace('o-nas.html'+location.search+location.hash);}go();if(q.addEventListener)q.addEventListener('change',go);}catch(e){}})();</script>
 <title>O nás — BARBERIS</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,600&family=Fraunces:wght@600&family=Work+Sans:wght@400;600;700&display=swap">
 <style>
@@ -34,9 +35,6 @@
   .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
   .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
-  .bio-card .bio-name h3 { margin: 0; font-size: 15px; letter-spacing: 0.04em; }
-  .bio-card .bio-name .role { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--bronze); margin: 4px 0 12px; }
-  .bio-tag-under { display: none; }
   .bio-card p { margin: 0 0 10px; font-size: 12.5px; line-height: 1.6; color: var(--cream-dim); }
   .bio-card p:last-of-type { margin-bottom: 0; }
   .bio-card .bio-head { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; }
@@ -102,24 +100,8 @@
   .svc-btn.selected .svc-name { color: var(--bronze); }
   .barber-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 26px; }
   .barber-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); border-radius: 3px; padding: 12px 6px; text-align: center; font-family: inherit; font-size: 12px; font-weight: 700; letter-spacing: 0.02em; cursor: pointer; transition: border-color 0.18s ease, background 0.18s ease; }
-  .barber-btn { border: 1px solid rgba(244,237,225,0.12) !important; background: rgba(10,9,8,0.35); box-shadow: none; }
-  /* each barber card: the bronze frame draws itself when the row comes into view, one after another */
-  @keyframes bsRing { from { --ring: 0deg; } to { --ring: 400deg; } }
-  .barber-btn { position: relative; }
-  @keyframes bsInner { from { box-shadow: inset 0 0 0 3px rgba(20,19,17,0) , inset 0 0 0 4px rgba(201,160,106,0); } to { box-shadow: inset 0 0 0 3px rgba(20,19,17,0.9), inset 0 0 0 4px rgba(201,160,106,0.16); } }
-  .barber-btn::before {
-    content: ''; position: absolute; inset: -1px; padding: 1px; border-radius: 3px; pointer-events: none; --ring: 0deg; opacity: 0;
-    background: conic-gradient(from 0deg, rgba(201,160,106,.6) 0deg, rgba(201,160,106,.6) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
-      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), rgba(201,160,106,.6) calc(360deg - var(--ring) / 2 + 9deg), rgba(201,160,106,.6) 360deg);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-  }
-  .barber-grid.rg-in .barber-btn::before { opacity: 1; animation: bsRing 1.5s cubic-bezier(.45,.05,.25,1) both; animation-delay: calc(var(--bi, 0) * 240ms); }
-  .barber-grid.rg-in .barber-btn:not(.selected) { animation: bsInner .8s ease both; animation-delay: calc(1.3s + var(--bi, 0) * 240ms); }
-  @media (prefers-reduced-motion: reduce) { .barber-grid .barber-btn::before { opacity: 1; animation: none; --ring: 400deg; } }
-  .barber-btn:hover { border-color: rgba(214,172,114,0.9) !important; }
   .barber-btn:hover { border-color: rgba(201,160,106,0.5); }
-  .barber-btn.selected { background: rgba(201,160,106,0.14) !important; border-color: #e2bd88 !important; color: var(--bronze); box-shadow: inset 0 0 0 3px rgba(20,19,17,0.9), inset 0 0 0 4px rgba(214,172,114,0.7), 0 0 16px -4px rgba(214,172,114,0.5); }
+  .barber-btn.selected { background: rgba(201,160,106,0.12); border-color: var(--bronze); color: var(--bronze); }
   .barber-avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; background: #0f0e0c; border: 1px solid rgba(201,160,106,0.55); box-shadow: 0 0 0 2px rgba(201,160,106,0.08); }
   .barber-avatar-any { display: flex; align-items: center; justify-content: center; color: var(--bronze); }
   .cal-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
@@ -137,36 +119,6 @@
   .cal-day:not(.disabled):not(.empty):not(.selected):hover { border-color: rgba(201,160,106,0.5); }
   .cal-hours-note { margin-top: 12px; font-size: 11.5px; color: rgba(207,198,184,0.65); }
   .slot-label { margin: 24px 0 10px; font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--bronze); display: flex; align-items: center; justify-content: space-between; }
-  /* opened calendar: one bronze frame, every day / time / input field framed */
-  #cal-after-barber-wrap:not([hidden]) { position: relative; border: 1px solid transparent; border-radius: 4px; padding: 18px 16px 20px; margin-top: 18px; background: rgba(201,160,106,0.03); box-shadow: 0 0 14px rgba(201,160,106,0.12); }
-  @property --ring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
-  @keyframes calRing { from { --ring: 0deg; } to { --ring: 400deg; } }
-  @keyframes calFill { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-  #cal-after-barber-wrap:not([hidden])::before {
-    content: ''; position: absolute; inset: -1px; padding: 1px; border-radius: 4px; pointer-events: none; --ring: 400deg;
-    background: conic-gradient(from 0deg, #d6ac72 0deg, #d6ac72 calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
-      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), #d6ac72 calc(360deg - var(--ring) / 2 + 9deg), #d6ac72 360deg);
-    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
-    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
-    animation: calRing 1.6s cubic-bezier(.45,.05,.25,1) both;
-  }
-  #cal-after-barber-wrap:not([hidden]) > * { animation: calFill .6s ease .9s both; }
-  @media (prefers-reduced-motion: reduce) { #cal-after-barber-wrap:not([hidden])::before, #cal-after-barber-wrap:not([hidden]) > * { animation: none; } }
-  #cal-after-barber-wrap .cal-day:not(.empty) { border: 1px solid rgba(201,160,106,0.4) !important; }
-  #cal-after-barber-wrap .cal-day.disabled { border-color: rgba(201,160,106,0.14) !important; }
-  #cal-after-barber-wrap .slot-btn { border: 1px solid rgba(201,160,106,0.5) !important; }
-  #cal-after-barber-wrap .svc-btn { border: 1px solid rgba(201,160,106,0.4); }
-  #cal-after-barber-wrap .cal-field { border: 1px solid rgba(201,160,106,0.55) !important; background: rgba(10,9,8,0.4); }
-  #cal-after-barber-wrap .cal-confirm-box, #cal-after-barber-wrap .cal-summary { border: 1px solid rgba(201,160,106,0.5) !important; }
-  .cancel-form { display: flex; gap: 10px; margin-top: 14px; }
-  .cancel-form .cal-field { margin-bottom: 0; flex: 1; border: 1px solid rgba(201,160,106,0.55) !important; background: rgba(10,9,8,0.4); }
-  .cancel-form .btn-outline { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; flex: 0 0 auto; margin-top: 0 !important; padding: 0 20px; font-family: inherit; cursor: pointer; white-space: nowrap; }
-  .step-cancel { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--cream); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 6px 12px; white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
-  .step-cancel:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
-  .cancel-call a { color: var(--bronze); text-decoration: underline; text-underline-offset: 3px; }
-  .cancel-call a[href^="tel"] { color: #fff; font-weight: 700; font-size: 1.28em; letter-spacing: 0.04em; text-decoration: none; padding: 3px 11px; margin: 0 2px; border: 1px solid rgba(214,172,114,0.65); border-radius: 3px; background: rgba(201,160,106,0.12); white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
-  .cancel-call a[href^="tel"]:hover { background: rgba(201,160,106,0.26); border-color: #e2bd88; }
-  .cancel-call { margin-bottom: 0; display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
   .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
   .slot-btn { background: transparent; border: 1px solid rgba(244,237,225,0.16); color: var(--cream); padding: 11px 0; border-radius: 3px; font-size: 12.5px; font-weight: 600; font-family: inherit; cursor: pointer; transition: background 0.18s ease, border-color 0.18s ease; }
   .slot-btn:hover { border-color: rgba(201,160,106,0.5); }
@@ -209,16 +161,14 @@
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
 </style>
-<script src="i18n.js?v=202610021506"></script>
-<link rel="stylesheet" href="endline.css?v=202610021506">
-<link rel="stylesheet" href="desktop.css?v=202610021506" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n-m.js"></script>
 </head>
 <body>
 <div id="page-veil"></div>
 <div class="wrap">
 
   <div class="topbar">
-    <a href="index.html" style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;">BARBERIS</a>
+    <a href="index-m.html" style="font-family:'Fraunces',serif;font-weight:600;font-size:17px;">BARBERIS</a>
     <button id="nav-open" aria-label="Menu" style="background:none;border:none;padding:0;width:28px;height:20px;display:flex;flex-direction:column;justify-content:space-between;cursor:pointer;">
       <span style="display:block;height:2px;background:var(--cream);"></span>
       <span style="display:block;height:2px;background:var(--cream);"></span>
@@ -232,13 +182,13 @@
       <button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button>
     </div>
     <nav class="nav-links">
-      <a href="index.html#hero"><span>01</span>Úvod</a>
-      <a href="o-nas.html"><span>02</span>O nás</a>
-      <a href="galeria.html"><span>03</span>Galéria</a>
-      <a href="index.html#contact"><span>04</span>Kontakt</a>
+      <a href="index-m.html#hero"><span>01</span>Úvod</a>
+      <a href="o-nas-m.html"><span>02</span>O nás</a>
+      <a href="galeria-m.html"><span>03</span>Galéria</a>
+      <a href="index-m.html#contact"><span>04</span>Kontakt</a>
     </nav>
     <div class="nav-cta">
-      <a href="index.html#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+      <a href="index-m.html#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
     </div>
   </div>
 
@@ -259,8 +209,6 @@
       <div style="position:relative;padding:0 24px;display:flex;flex-direction:column;gap:14px;text-shadow:0 1px 8px rgba(0,0,0,0.6);">
         <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Nie každý prichádza do barberu na hodinový pokec. Niekto chce prebrať život, <strong style="color:var(--cream);font-weight:600;">niekto sa chce zasmiať</strong> a <strong style="color:var(--cream);font-weight:600;">niekto si len sadnúť</strong>, zavrieť oči a chvíľu vypnúť.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">U nás je v poriadku všetko. Vieme byť poriadne zábavný, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.</p>
-    <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Možno máš za sebou dlhý týždeň a chceš len ticho a kávu. Možno máš chuť na dobrý príbeh, vtip alebo názor na posledný zápas. Nikam sa neponáhľame, kreslo máš celé tvoje.</p>
-    <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Pri nás nie je správna ani zlá nálada. Dôležité je, aby si odišiel s dobrým strihom a pocitom, že si sa u nás cítil ako doma.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);font-weight:600;">My sa postaráme o strih. Ty si vyber, či chceš pokec, srandu alebo jednoducho pokoj.</p>
       </div>
     </div>
@@ -335,9 +283,11 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/anett.jpg" alt="Anett — zakladateľka Barberis"></div>
-        <span class="bio-tag-under">Precíznosť • Osobný prístup • Dobrá nálada</span>
+        <div>
+          <h3 style="font-size:15px;">ZA BARBERIS STOJÍM JA</h3>
+          <div class="role" style="font-size:10px;">Anett · Zakladateľka</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>ANETT</h3><div class="role">Zakladateľka</div></div>
       <p>Barberingu sa venujem už takmer 7 rokov. Vždy som chcela podnikať a práve v barberingu som sa našla. Od začiatku mi bola táto práca prirodzená a dodnes ma baví nielen samotné strihanie, ale hlavne práca s ľuďmi.</p>
       <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
       <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
@@ -349,9 +299,11 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/karvy.jpg" alt="Karvy — barber"></div>
-        <span class="bio-tag-under">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
+        <div>
+          <h3 style="font-size:15px;">KARVY</h3>
+          <div class="role" style="font-size:10px;">Barber · 6 rokov skúseností</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>KARVY</h3><div class="role">Barber · 6 rokov skúseností</div></div>
       <p>Karvy sa barberingu venuje už 6 rokov a okrem precíznych strihov je jeho veľkou špecialitou ornamentálna tvorba.</p>
       <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
       <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový vzhľad.</p>
@@ -363,12 +315,13 @@
       <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
       <div class="bio-head">
         <div class="bio-photo"><img src="assets/vladis.jpg" alt="Vladis — barber"></div>
-        <span class="bio-tag-under">Precízne strihy • Detail • Pohodová atmosféra</span>
+        <div>
+          <h3 style="font-size:15px;">VLADIS</h3>
+          <div class="role" style="font-size:10px;">Barber · 4 roky skúseností</div>
+        </div>
       </div>
-      <div class="bio-name"><h3>VLADIS</h3><div class="role">Barber · 4 roky skúseností</div></div>
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
-      <p>K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
       <a href="#booking" class="bio-book">Objednaj si strih u Vladisa →</a>
     </div>
@@ -386,7 +339,7 @@
     </div>
 
     <div class="booking-calendar reveal" id="booking-calendar">
-      <div class="step-label" style="justify-content:space-between;gap:8px;"><span>1 · Barber – Najprv si vyber barbera:</span><a href="#cancel-contact" class="step-cancel" id="step-cancel-link">Zrušiť termín</a></div>
+      <div class="step-label"><span>1 · Barber</span></div>
       <div class="barber-grid" id="barber-grid">
         <button type="button" class="barber-btn" data-barber="Anett">
           <img class="barber-avatar" src="assets/anett.jpg" alt="Anett" style="object-position:50% 20%;">
@@ -407,14 +360,14 @@
       </div>
 
       <div id="cal-after-barber-wrap" hidden>
-        <div class="step-label"><span>2 · Služba – Teraz si vyber službu:</span></div>
+        <div class="step-label"><span>2 · Služba</span></div>
         <div class="svc-grid" id="svc-grid">
           <button type="button" class="svc-btn selected" data-duration="40"><span class="svc-name">Pánsky strih</span><span class="svc-dur">40 min · 20 €</span></button>
           <button type="button" class="svc-btn" data-duration="20"><span class="svc-name">Brada</span><span class="svc-dur">20 min · 12 €</span></button>
           <button type="button" class="svc-btn" data-duration="60"><span class="svc-name">Strih + brada</span><span class="svc-dur">60 min · 30 €</span></button>
         </div>
 
-        <div class="step-label"><span>3 · Dátum – Vyber si dátum, kedy sa chceš strihať:</span></div>
+        <div class="step-label"><span>3 · Dátum</span></div>
         <div class="cal-head">
           <button type="button" id="cal-prev" aria-label="Predchádzajúci mesiac">‹</button>
           <span id="cal-month-label"></span>
@@ -426,7 +379,7 @@
 
         <div class="cal-right">
         <div id="cal-slots-wrap" hidden>
-          <div class="step-label"><span>4 · Čas – Vyber si čas, kedy sa chceš strihať:<span id="cal-selected-date" hidden></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
+          <div class="step-label"><span>4 · Čas — <span id="cal-selected-date"></span></span><span class="step-note">Zobrazené len voľné časy</span></div>
           <div class="slot-grid" id="cal-slots"></div>
         </div>
 
@@ -442,7 +395,6 @@
           <a href="tel:+421951833488" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
           <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" class="btn-outline">Napísať na Instagrame</a>
           <a href="tel:+421951833488" class="btn-outline">Zavolať</a>
-          <a href="#cancel-contact" class="btn-outline" id="cal-cancel-link">Zrušiť termín</a>
           <div class="cal-footnote">Termín ti potvrdíme e-mailom.</div>
                 </div>
 </div>
@@ -450,13 +402,9 @@
     </div>
 
     <div class="cancel-card">
-      <div class="step-label"><span>Zrušiť termín:</span></div>
-      <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Zadaj telefón alebo e-mail, s ktorým si rezervoval, a pošleme žiadosť o zrušenie alebo zmenu termínu.</p>
-      <form class="cancel-form" id="cancel-form" novalidate>
-        <input type="text" class="cal-field" id="cancel-contact" placeholder="Telefón alebo e-mail" autocomplete="tel" aria-label="Telefón alebo e-mail">
-        <button type="submit" class="btn-outline" id="cancel-send">Zrušiť termín</button>
-      </form>
-      <p class="cancel-call">alebo zavolaj: <a href="tel:+421951833488">0951 833 488</a> alebo napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></p>
+      <div class="step-label"><span>Zrušiť alebo zmeniť termín</span></div>
+      <p style="margin:0;font-size:12px;line-height:1.6;color:var(--cream-dim);">Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.</p>
+      <a href="tel:+421951833488" class="btn-outline" style="margin-top:14px;">Zavolať kvôli zmene termínu</a>
     </div>
   </div>
 
@@ -464,12 +412,12 @@
   <div style="padding:0 24px;">
     <div class="scroll-line-wrap in-view" style="position:relative;z-index:1;margin-bottom:0;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div style="margin-top:0;border:1px solid rgba(201,160,106,0.45);box-shadow:0 0 10px rgba(201,160,106,0.2);border-bottom:none;border-radius:4px 4px 0 0;background:var(--bg);padding:26px 20px 24px;text-align:center;">
-      <h2 style="font-size:28px;letter-spacing:0.01em;margin-bottom:10px;color:var(--bronze);">@BARBERIS</h2>
-      <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin:2px 0 8px;">
+      <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
         <span>Instagram</span>
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
       </div>
+      <h2 style="font-size:28px;letter-spacing:0.01em;margin-bottom:10px;color:var(--bronze);">@BARBERIS</h2>
       <p style="margin:0 0 22px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Sleduj najnovšie strihy a novinky u nás.</p>
       <div class="ig-strip">
         <button type="button" class="ig-arrow" id="ig-prev" aria-label="Predchádzajúce fotky">‹</button>
@@ -943,43 +891,8 @@
       });
     });
   })();
-  (function () {
-    var g = document.getElementById('barber-grid');
-    if (!g) return;
-    Array.prototype.forEach.call(g.querySelectorAll('.barber-btn'), function (b, i) { b.style.setProperty('--bi', i); });
-    if (!('IntersectionObserver' in window)) { g.classList.add('rg-in'); return; }
-    var io = new IntersectionObserver(function (es) {
-      if (!es[0].isIntersecting) return;
-      io.disconnect();
-      g.classList.add('rg-in');
-    }, { threshold: 0.5 });
-    io.observe(g);
-  })();
-  (function () {
-    var f = document.getElementById('cancel-form');
-    if (!f) return;
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var v = (document.getElementById('cancel-contact').value || '').trim();
-      if (!v) { document.getElementById('cancel-contact').focus(); return; }
-      var en = window.LANG && window.LANG() === 'en';
-      var msg = (en ? 'Hello, I would like to cancel or change my appointment. My contact: ' : 'Dobrý deň, chcel(a) by som zrušiť alebo zmeniť svoj termín. Môj kontakt: ') + v;
-      window.location.href = 'sms:+421951833488?body=' + encodeURIComponent(msg);
-    });
-  })();
-  (function () {
-    var ls = [document.getElementById('cal-cancel-link'), document.getElementById('step-cancel-link')];
-    ls.forEach(function (l) { if (!l) return;
-    l.addEventListener('click', function (e) {
-      e.preventDefault();
-      var f = document.getElementById('cancel-contact');
-      if (!f) return;
-      f.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      setTimeout(function () { try { f.focus({ preventScroll: true }); } catch (x) { f.focus(); } }, 500);
-    }); });
-  })();
 </script>
-<script src="chat.js?v=202610021506"></script>
-<script src="desktop.js?v=202610021506" defer></script>
+<script src="chat.js"></script>
+<script src="desktop-m.js" defer></script>
 </body>
 </html>
