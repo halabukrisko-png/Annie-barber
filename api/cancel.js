@@ -18,19 +18,24 @@ module.exports = async function handler(req, res) {
     const isMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
     const pk = phoneKey(contact);
     if (!isMail && pk.length < 9) return res.status(400).json({ error: 'Zadaj telefónne číslo alebo e-mail, s ktorým si rezervoval.' });
-    const filter = isMail ? 'emailKey=' + contact.toLowerCase() : 'phoneKey=' + pk;
-    const q = '&privateExtendedProperty=' + encodeURIComponent(filter);
+    const mail = contact.toLowerCase();
+    const matches = (pr, desc) => {
+      if (pr.barberis !== '1') return false;
+      if (isMail) return pr.emailKey === mail || new RegExp('E-mail:\\s*' + mail.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '\\s*$', 'im').test(desc || '');
+      return pr.phoneKey === pk || phoneKey(pr.phone) === pk;
+    };
     const from = Date.now(), to = from + (HORIZON_DAYS + 5) * 86400000;
 
     const mine = [];
     for (const barber of BARBER_NAMES) {
       const cal = calendarId(barber);
       if (!cal) continue;
-      const r = await listEvents(cal, from, to, q);
+      const r = await listEvents(cal, from, to, '&maxResults=250');
       (r.items || []).forEach((e) => {
         if (e.status === 'cancelled' || !e.start || !e.start.dateTime) return;
         const ms = Date.parse(e.start.dateTime);
         const pr = (e.extendedProperties && e.extendedProperties.private) || {};
+        if (!matches(pr, e.description)) return;
         mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? SERVICES[pr.service].name : (e.summary || ''),
           date: todayStr(ms), time: hhmm(minuteOfDay(ms)) });
       });

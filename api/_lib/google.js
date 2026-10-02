@@ -86,7 +86,7 @@ async function freeBusy(calendarIds, fromMs, toMs) {
 const insertEvent = (calId, ev) => call('POST', '/calendars/' + encodeURIComponent(calId) + '/events', ev);
 const deleteEvent = (calId, id) => call('DELETE', '/calendars/' + encodeURIComponent(calId) + '/events/' + encodeURIComponent(id));
 const listEvents = (calId, fromMs, toMs, extra) =>
-  call('GET', '/calendars/' + encodeURIComponent(calId) + '/events?singleEvents=true&showDeleted=false&maxResults=50&timeMin=' +
+  call('GET', '/calendars/' + encodeURIComponent(calId) + '/events?singleEvents=true&showDeleted=false&timeMin=' +
     encodeURIComponent(new Date(fromMs).toISOString()) + '&timeMax=' + encodeURIComponent(new Date(toMs).toISOString()) + (extra || ''));
 
 module.exports = { freeBusy, insertEvent, deleteEvent, listEvents };
