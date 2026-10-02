@@ -1468,3 +1468,10 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .nav-close { font-size: 38px !important; padding: 4px 0 4px 12px !important; }
   .nav-cta { display: none !important; }
 }
+
+/* tablet: the contact frame stands on its own (gap above, full border) with the bronze corner diagonals on all four corners */
+@media (min-width: 768px) and (max-width: 1023px) {
+  #contact, div:has(> .contact-frame) { padding-top: 48px !important; }
+  .contact-frame { border-top: 1px solid var(--line-strong) !important; border-radius: var(--radius) !important; }
+  .contact-frame::after { clip-path: none !important; }
+}
