@@ -1501,5 +1501,5 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 /* o-nas (tablet): the "My sa postaráme o strih…" line moves under the "Kvalita, na ktorej nám záleží" card */
 @media (min-width: 768px) and (max-width: 1023px) {
   .reveal-stagger[style*="padding:60px 0 40px"] { display: none !important; }
-  .onas-closer { display: block !important; margin: 28px 0 0 !important; text-align: center; font-family: 'Fraunces', serif; font-weight: 600; font-size: 17px; line-height: 1.5; color: var(--cream); }
+  .onas-closer { display: none !important; }
 }
