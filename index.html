@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021134"></script>
-<link rel="stylesheet" href="endline.css?v=202610021134">
-<link rel="stylesheet" href="desktop.css?v=202610021134" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021136"></script>
+<link rel="stylesheet" href="endline.css?v=202610021136">
+<link rel="stylesheet" href="desktop.css?v=202610021136" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -772,7 +772,7 @@
         var sp = document.createElement('span');
         sp.textContent = ch;
         sp.setAttribute('aria-hidden', 'true');
-        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.5s ease-out,transform 0.5s ease-out;' +
+        sp.style.cssText = 'display:inline-block;white-space:pre;transition:opacity 0.3s ease-out,transform 0.3s ease-out;' +
           (visible ? '' : 'opacity:0;transform:translateY(4px);');
         h.appendChild(sp);
         spans.push(sp);
@@ -788,7 +788,7 @@
           spans[k].style.transform = 'translateY(0)';
           k++;
           if (k >= spans.length) setTimeout(function () { h.classList.add('typed'); }, 500);
-          timer = setTimeout(next, 140);
+          timer = setTimeout(next, 60);
         })();
       });
     }
@@ -1038,7 +1038,7 @@
       });
       if (group.hasAttribute('data-reveal-together')) lines.push(group);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('.intro-inner > .reveal'), function (r, i) { r.style.transitionDelay = (1.8 + i * 0.35) + 's'; });
+    Array.prototype.forEach.call(document.querySelectorAll('.intro-inner > .reveal'), function (r, i) { r.style.transitionDelay = (1.4 + i * 0.22) + 's'; });
     var ticking = false;
     function check() {
       var vh = window.innerHeight || document.documentElement.clientHeight;
@@ -1083,7 +1083,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021134"></script>
-<script src="desktop.js?v=202610021134" defer></script>
+<script src="chat.js?v=202610021136"></script>
+<script src="desktop.js?v=202610021136" defer></script>
 </body>
 </html>
