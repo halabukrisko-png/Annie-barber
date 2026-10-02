@@ -1420,7 +1420,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 .contact-frame > div:first-child p { margin-left: auto !important; margin-right: auto !important; text-align: center; }
 
 /* first "B" divider sits further below the hero image / cards */
-#intro { padding-top: 56px !important; }
+#intro { padding-top: 70px !important; } /* offsets the -70px overlap: "B" sits exactly at the bottom edge of the hero image */
 @media (max-width: 1023px) { .hero-content { padding-bottom: 112px !important; } }
 
 /* o-nas "Naša kozmetika": photo as the card background, text centred on top */
