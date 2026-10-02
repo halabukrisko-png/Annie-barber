@@ -1441,3 +1441,10 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     color: #fff; opacity: 1; padding: 18px 0;
   }
 }
+
+/* o-nas (tablet): no photo above the "Nie každý prichádza…" text */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] { display: none !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { grid-row: 1 !important; }
+  .reveal-stagger[style*="padding:60px 0 40px"] > div { row-gap: 0 !important; }
+}
