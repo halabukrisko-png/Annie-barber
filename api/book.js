@@ -4,6 +4,7 @@ const { localToMs, addDays, todayStr, isDateStr } = require('./_lib/time');
 const { freeBusy, insertEvent, deleteEvent, listEvents } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
 
+const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
 
 async function readBody(req) {
@@ -62,7 +63,7 @@ module.exports = async function handler(req, res) {
     const description = 'Služba: ' + svc.name + ' (' + svc.price + ')\nBarber: ' + who + '\nMeno: ' + name + '\nTelefón: ' + phone + (email ? '\nE-mail: ' + email : '') +
       '\n\nRezervované cez web.';
     const base = { start: { dateTime: iso(startMs), timeZone: TZ }, end: { dateTime: iso(endMs), timeZone: TZ }, description,
-      extendedProperties: { private: { barberis: '1', barber: who, service, phone } } };
+      extendedProperties: { private: { barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase() } } };
 
     const own = await insertEvent(calendarId(who), Object.assign({ summary: svc.name + ' – ' + name }, base));
 

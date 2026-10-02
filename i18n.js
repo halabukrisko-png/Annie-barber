@@ -162,6 +162,13 @@
     'TVOJE TEMPO.': 'YOUR PACE.',
 
     // online rezervácia (Google Kalendár)
+    'Termín sa nepodarilo zrušiť. Zavolaj nám prosím na': 'We could not cancel the appointment. Please call us on',
+    'Nenašli sme žiadny budúci termín pre tento kontakt. Zavolaj nám na': 'We found no upcoming appointment for this contact. Please call us on',
+    'Vyber termín, ktorý chceš zrušiť:': 'Choose the appointment you want to cancel:',
+    'Zrušiť': 'Cancel',
+    'Naozaj zrušiť tento termín?': 'Really cancel this appointment?',
+    'Termín bol zrušený.': 'Your appointment has been cancelled.',
+    'Hľadám tvoje termíny…': 'Looking for your appointments…',
     'Kompletná úprava (strih + brada)': 'Full grooming (haircut + beard)',
     'Úprava brady': 'Beard trim',
     'Detský strih do 12 r.': 'Kids’ haircut (up to 12)',

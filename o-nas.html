@@ -169,6 +169,10 @@
   .cancel-form .btn-outline { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; font-size: 11.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; flex: 0 0 auto; margin-top: 0 !important; padding: 0 20px; font-family: inherit; cursor: pointer; white-space: nowrap; }
   .step-cancel { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; font-weight: 700; color: var(--cream); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 6px 12px; white-space: nowrap; transition: background .25s ease, border-color .25s ease; }
   .step-cancel:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
+  .cancel-result { margin-top: 14px; font-size: 12.5px; line-height: 1.6; color: var(--cream); }
+  .cancel-result .cr-item { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 12px; margin-top: 8px; border: 1px solid rgba(201,160,106,0.4); border-radius: 3px; }
+  .cancel-result .cr-item button { background: transparent; color: var(--bronze); border: 1px solid rgba(201,160,106,0.55); border-radius: 3px; padding: 8px 12px; font: inherit; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; white-space: nowrap; }
+  .cancel-result .cr-ok { color: var(--bronze); font-weight: 700; }
   .cancel-call a { color: inherit; font-weight: 700; text-decoration: none; }
   .cancel-call { line-height: 2.1; margin-bottom: 0; display: block; margin-top: 12px; font-size: 11.5px; color: var(--bronze); text-align: center; }
   .slot-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
@@ -474,6 +478,7 @@
         <input type="text" class="cal-field" id="cancel-contact" placeholder="Telefón alebo e-mail" autocomplete="tel" aria-label="Telefón alebo e-mail">
         <button type="submit" class="btn-outline" id="cancel-send">Zrušiť termín</button>
       </form>
+      <div id="cancel-result" class="cancel-result" aria-live="polite" hidden></div>
       <p class="cancel-call">alebo zavolaj: <a href="tel:+421951833488">0951 833 488</a> alebo napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></p>
     </div>
   </div>
@@ -771,18 +776,6 @@
     io.observe(g);
   })();
   (function () {
-    var f = document.getElementById('cancel-form');
-    if (!f) return;
-    f.addEventListener('submit', function (e) {
-      e.preventDefault();
-      var v = (document.getElementById('cancel-contact').value || '').trim();
-      if (!v) { document.getElementById('cancel-contact').focus(); return; }
-      var en = window.LANG && window.LANG() === 'en';
-      var msg = (en ? 'Hello, I would like to cancel or change my appointment. My contact: ' : 'Dobrý deň, chcel(a) by som zrušiť alebo zmeniť svoj termín. Môj kontakt: ') + v;
-      window.location.href = 'sms:+421951833488?body=' + encodeURIComponent(msg);
-    });
-  })();
-  (function () {
     var ls = [document.getElementById('cal-cancel-link'), document.getElementById('step-cancel-link')];
     ls.forEach(function (l) { if (!l) return;
     l.addEventListener('click', function (e) {
@@ -794,7 +787,7 @@
     }); });
   })();
 </script>
-<script src="booking.js?v=202610022330" defer></script>
+<script src="booking.js?v=202610022345" defer></script>
 <script src="chat.js?v=202610021800"></script>
 <script src="btnfill.js?v=202610022000" defer></script>
 <script src="desktop.js?v=202610021900" defer></script>

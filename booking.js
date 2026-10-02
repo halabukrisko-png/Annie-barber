@@ -238,4 +238,49 @@
       if (btn && !btn.disabled) selectDate(date, btn);
     });
   })();
+
+  // ---- Zrušenie termínu ----
+  (function () {
+    var f = $('cancel-form'), out = $('cancel-result'), inp = $('cancel-contact'), sendBtn = $('cancel-send');
+    if (!f || !out) return;
+    var PHONE = '0951 833 488';
+    function show(html) { out.hidden = !html; out.innerHTML = html || ''; }
+    function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
+    function call(body) {
+      return fetch('/api/cancel', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
+    }
+    function fail(msg) { show('<span>' + esc(msg || (tr('Termín sa nepodarilo zrušiť. Zavolaj nám prosím na') + ' ' + PHONE + '.')) + '</span>'); }
+    function when(it) {
+      var p = it.date.split('-');
+      return I18N.dateShort(new Date(+p[0], +p[1] - 1, +p[2])) + (en() ? ' at ' : ' o ') + it.time;
+    }
+    function list(items, contact) {
+      if (!items.length) { show('<span>' + esc(tr('Nenašli sme žiadny budúci termín pre tento kontakt. Zavolaj nám na') + ' ' + PHONE + '.') + '</span>'); return; }
+      show('<div>' + esc(tr('Vyber termín, ktorý chceš zrušiť:')) + '</div>' + items.map(function (it, i) {
+        return '<div class="cr-item"><span>' + esc(it.service + (en() ? ' with ' : ' u ') + it.barber + ' · ' + when(it)) + '</span><button type="button" data-i="' + i + '">' + esc(tr('Zrušiť')) + '</button></div>';
+      }).join(''));
+      all(out, 'button[data-i]').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var it = items[+btn.getAttribute('data-i')];
+          if (!window.confirm(tr('Naozaj zrušiť tento termín?') + '\n' + it.service + ' · ' + when(it))) return;
+          btn.disabled = true;
+          call({ contact: contact, id: it.id, barber: it.barber }).then(function (res) {
+            if (res.ok && res.j.ok) { cache = {}; show('<span class="cr-ok">' + esc(tr('Termín bol zrušený.')) + '</span>'); load(); }
+            else { fail(res.j && res.j.error); }
+          }).catch(function () { fail(); });
+        });
+      });
+    }
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var v = (inp.value || '').trim();
+      if (!v) { inp.focus(); return; }
+      sendBtn.disabled = true; show('<span>' + esc(tr('Hľadám tvoje termíny…')) + '</span>');
+      call({ contact: v }).then(function (res) {
+        sendBtn.disabled = false;
+        if (res.ok) list(res.j.items || [], v); else fail(res.j && res.j.error);
+      }).catch(function () { sendBtn.disabled = false; fail(); });
+    });
+  })();
 })();

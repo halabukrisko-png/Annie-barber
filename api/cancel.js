@@ -1,0 +1,59 @@
+// POST /api/cancel
+//   { contact }            -> { items: [{ id, barber, service, date, time }] }  (budúce termíny s týmto telefónom/e-mailom)
+//   { contact, id, barber } -> { ok: true }  (termín sa zruší v kalendári barbera aj v spoločnom)
+const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId } = require('./_lib/config');
+const { todayStr, minuteOfDay, hhmm } = require('./_lib/time');
+const { listEvents, deleteEvent } = require('./_lib/google');
+
+const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
+
+module.exports = async function handler(req, res) {
+  res.setHeader('Cache-Control', 'no-store');
+  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  try {
+    let b = req.body;
+    if (typeof b === 'string') { try { b = JSON.parse(b); } catch (e) { b = {}; } }
+    b = b || {};
+    const contact = String(b.contact || '').trim().slice(0, 120);
+    const isMail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(contact);
+    const pk = phoneKey(contact);
+    if (!isMail && pk.length < 9) return res.status(400).json({ error: 'Zadaj telefónne číslo alebo e-mail, s ktorým si rezervoval.' });
+    const filter = isMail ? 'emailKey=' + contact.toLowerCase() : 'phoneKey=' + pk;
+    const q = '&privateExtendedProperty=' + encodeURIComponent(filter);
+    const from = Date.now(), to = from + (HORIZON_DAYS + 5) * 86400000;
+
+    const mine = [];
+    for (const barber of BARBER_NAMES) {
+      const cal = calendarId(barber);
+      if (!cal) continue;
+      const r = await listEvents(cal, from, to, q);
+      (r.items || []).forEach((e) => {
+        if (e.status === 'cancelled' || !e.start || !e.start.dateTime) return;
+        const ms = Date.parse(e.start.dateTime);
+        const pr = (e.extendedProperties && e.extendedProperties.private) || {};
+        mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? SERVICES[pr.service].name : (e.summary || ''),
+          date: todayStr(ms), time: hhmm(minuteOfDay(ms)) });
+      });
+    }
+    mine.sort((a, c) => a.ms - c.ms);
+
+    if (!b.id) {
+      return res.status(200).json({ items: mine.slice(0, 10).map(({ ms, ...rest }) => rest) });
+    }
+
+    const target = mine.find((m) => m.id === String(b.id) && m.barber === String(b.barber));
+    if (!target) return res.status(404).json({ error: 'Termín sa nenašiel (možno už je zrušený).' });
+    await deleteEvent(calendarId(target.barber), target.id);
+    const shared = process.env.CAL_SHARED;
+    if (shared) {
+      try {
+        const m = await listEvents(shared, from, to, '&privateExtendedProperty=' + encodeURIComponent('source=' + target.id));
+        for (const e of (m.items || [])) await deleteEvent(shared, e.id).catch(() => {});
+      } catch (e) { console.error('shared cancel', e); }
+    }
+    return res.status(200).json({ ok: true });
+  } catch (e) {
+    console.error(e);
+    return res.status(500).json({ error: 'Termín sa nepodarilo zrušiť. Zavolaj nám prosím na 0951 833 488.' });
+  }
+};
