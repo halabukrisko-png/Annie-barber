@@ -630,7 +630,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   #hero { height: min(100svh, 1060px) !important; min-height: 760px; }
   #hero img { object-position: 50% 22% !important; }
   .hero-badge-row { padding: calc(var(--header-h) + 12px) var(--gutter) 0 !important; }
-  .hero-content { padding: 0 var(--gutter) 64px !important; gap: 20px !important; }
+  .hero-content { padding: 0 var(--gutter) 104px !important; gap: 20px !important; }
   #hero h1 { font-size: var(--fs-h1) !important; line-height: 1.04 !important; }
   .hero-content > p { font-size: var(--fs-lead) !important; max-width: 440px !important; }
   #hero-badge span:last-child { font-size: 12.5px !important; }
@@ -657,6 +657,8 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .bio-card.reveal p { grid-column: 1; grid-row: auto; margin-top: 14px !important; }
 
   .barber-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  /* booking photos fill the whole frame instead of leaving an empty strip below */
+  .cta-body > img { height: auto !important; aspect-ratio: auto !important; align-self: stretch; object-fit: cover !important; min-height: 460px; }
   .cancel-card { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }
   .cancel-card > a { grid-column: 1; grid-row: auto; justify-self: start; }
 
