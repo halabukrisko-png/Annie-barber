@@ -13,10 +13,12 @@ function credentials() {
   if (raw) {
     let j = null;
     try { j = JSON.parse(raw); } catch (e) { /* neúplný JSON – skúsime vytiahnuť polia */ }
-    if (j) { email = j.client_email; key = j.private_key; }
+    if (j && typeof j === 'object') { email = j.client_email; key = j.private_key; }
     else {
       const m = (name) => { const r = new RegExp('"?' + name + '"?\\s*:\\s*"([^"]*)"').exec(raw); return r && r[1]; };
       email = m('client_email'); key = m('private_key');
+      if (!key) { const k = /-----BEGIN PRIVATE KEY-----[\s\S]*?-----END PRIVATE KEY-----(?:\\n)?/.exec(raw); key = k && k[0]; }
+      if (!email) email = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
       if (!email || !key) throw new Error('GOOGLE_SERVICE_ACCOUNT_JSON: chýba client_email alebo private_key (dĺžka ' + raw.length + ')');
     }
   } else {
