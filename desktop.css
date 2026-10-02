@@ -1503,3 +1503,8 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .reveal-stagger[style*="padding:60px 0 40px"] { display: none !important; }
   .onas-closer { display: none !important; }
 }
+
+/* booking step 1 (tablet): "Najprv si vyber barbera." in the lighter gold ---- */
+@media (min-width: 768px) and (max-width: 1279px) {
+  #booking-calendar > .step-label:first-child > span > span { color: #e6c494; }
+}
