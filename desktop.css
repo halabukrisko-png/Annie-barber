@@ -627,17 +627,17 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .site-header #nav-open, .topbar #nav-open { width: 30px !important; }
 
   /* hero keeps the mobile full-bleed portrait (it suits portrait tablets) */
-  #hero { height: min(100svh, 1060px) !important; min-height: 760px; }
+  #hero { height: min(92svh, 980px) !important; min-height: 680px; }
   #hero img { object-position: 50% 22% !important; }
   .hero-badge-row { padding: calc(var(--header-h) + 12px) var(--gutter) 0 !important; }
-  .hero-content { padding: 0 var(--gutter) 104px !important; gap: 20px !important; }
-  #hero h1 { font-size: var(--fs-h1) !important; line-height: 1.04 !important; }
+  .hero-content { padding: 0 var(--gutter) 88px !important; gap: 16px !important; }
+  #hero h1 { font-size: 32px !important; line-height: 1.04 !important; }
   .hero-content > p { font-size: var(--fs-lead) !important; max-width: 440px !important; }
   #hero-badge span:last-child { font-size: 12.5px !important; }
 
-  .intro-inner h2 { font-size: 30px !important; }
+  .intro-inner h2 { font-size: 27px !important; }
 
-  .team-caption h3 { font-size: 16px !important; }
+  .team-caption h3 { font-size: 15px !important; }
   .team-caption .role { font-size: 10.5px !important; letter-spacing: 0.08em !important; }
   .review-card { flex-basis: calc(50% - 11px); }
   .review-card:last-child:nth-child(odd) { flex-basis: 100%; }
