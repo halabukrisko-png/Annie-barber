@@ -340,6 +340,7 @@
     try { localStorage.setItem('lang', lang); } catch (e) {}
     document.documentElement.setAttribute('lang', lang);
     updateTitle();
+    if (window.__bioUnbold) window.__bioUnbold();
     apply();
     updateSwitchers();
     window.dispatchEvent(new Event('langchange'));
@@ -394,4 +395,41 @@
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
   else init();
+})();
+
+/* Bold "perfect haircut" in the cosmetics paragraph; unwrapped before each translation so the paragraph key keeps matching. */
+(function () {
+  var PH = ['perfektný strih', 'perfect haircut'];
+  function unbold() {
+    Array.prototype.forEach.call(document.querySelectorAll('p.kozm-p strong.kozm-b'), function (s) {
+      var p = s.parentNode;
+      p.replaceChild(document.createTextNode(s.textContent), s);
+      p.normalize();
+    });
+  }
+  function bold() {
+    unbold();
+    Array.prototype.forEach.call(document.querySelectorAll('p.kozm-p'), function (p) {
+      for (var n = p.firstChild; n; n = n.nextSibling) {
+        if (n.nodeType !== 3) continue;
+        for (var k = 0; k < PH.length; k++) {
+          var i = n.nodeValue.indexOf(PH[k]);
+          if (i < 0) continue;
+          var mid = n.splitText(i);
+          mid.splitText(PH[k].length);
+          var st = document.createElement('strong');
+          st.className = 'kozm-b';
+          st.style.cssText = 'color:#fff;font-weight:700;';
+          p.replaceChild(st, mid);
+          st.appendChild(mid);
+          return;
+        }
+      }
+    });
+  }
+  var prev = window.__bioUnbold;
+  window.__bioUnbold = function () { if (prev) prev(); unbold(); };
+  function run() { try { bold(); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 0); }); else setTimeout(run, 0);
+  window.addEventListener('langchange', function () { setTimeout(run, 0); });
 })();
