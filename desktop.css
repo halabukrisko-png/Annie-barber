@@ -1497,3 +1497,9 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div { grid-template-columns: minmax(0, 1fr) !important; row-gap: 0 !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { grid-column: 1 !important; grid-row: 1 !important; }
 }
+
+/* o-nas (tablet): the "My sa postaráme o strih…" line moves under the "Kvalita, na ktorej nám záleží" card */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .reveal-stagger[style*="padding:60px 0 40px"] { display: none !important; }
+  .onas-closer { display: none !important; }
+}
