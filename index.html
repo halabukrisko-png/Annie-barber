@@ -29,13 +29,13 @@
   .badge-reveal { clip-path: inset(0 100% 0 0); transition: clip-path 1.1s cubic-bezier(.22,1,.36,1); }
   .badge-reveal.draw { clip-path: inset(0 0 0 0); }
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
-  .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1), opacity 1.6s ease-out; }
+  .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.8s cubic-bezier(.22,1,.36,1) 0.9s, opacity 0.8s ease-out 0.9s; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
   .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, transparent, var(--bronze) 45%, transparent); }
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
-  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 1.6s ease-out 0.5s; }
+  .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 0.9s ease-out; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
-  .intro-photo { opacity: 0; transition: opacity 1.7s cubic-bezier(.22,1,.36,1) 0.3s; }
+  .intro-photo { opacity: 0; transition: opacity 2s cubic-bezier(.22,1,.36,1) 1.9s; }
   .scroll-line-wrap.in-view + div .intro-photo { opacity: 1; }
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1.3s cubic-bezier(.22,1,.36,1), transform 1.3s cubic-bezier(.22,1,.36,1); }
   .reveal.in-view { opacity: 1; transform: translateY(0); }
@@ -203,9 +203,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610012329"></script>
-<link rel="stylesheet" href="endline.css?v=202610012329">
-<link rel="stylesheet" href="desktop.css?v=202610012329" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021124"></script>
+<link rel="stylesheet" href="endline.css?v=202610021124">
+<link rel="stylesheet" href="desktop.css?v=202610021124" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -1077,7 +1077,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610012329"></script>
-<script src="desktop.js?v=202610012329" defer></script>
+<script src="chat.js?v=202610021124"></script>
+<script src="desktop.js?v=202610021124" defer></script>
 </body>
 </html>
