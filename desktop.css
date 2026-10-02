@@ -1483,3 +1483,10 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   html #bb-chat { bottom: 52px; right: 14px; }
   #intro { padding-top: 0 !important; }
 }
+
+/* any touch tablet (also landscape / >= 1024px): same smaller chat button as the portrait tablet */
+@media (min-width: 768px) and (hover: none) and (pointer: coarse) {
+  html #bb-chat-btn { zoom: .95; right: 14px; bottom: 14px; }
+  html #bb-chat-btn svg { width: 12px; height: 12px; }
+  html #bb-chat { bottom: 52px; right: 14px; }
+}
