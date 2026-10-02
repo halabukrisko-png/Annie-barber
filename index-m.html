@@ -144,6 +144,9 @@
   #reviews-more.in-view { padding-top: 10px; }
   .review-card { border: 1px solid rgba(201,160,106,0.3); box-shadow: inset 0 0 0 1px rgba(201,160,106,0.05); }
   #hero h1 { font-family: 'Playfair Display', Georgia, serif !important; font-weight: 500 !important; letter-spacing: 0 !important; line-height: 1.08 !important; font-size: 36px !important; }
+  .cta-photo { filter: brightness(0.38) saturate(0.85); transition: filter 1.6s ease; }
+  .cta-body.lit .cta-photo { filter: none; }
+  @media (prefers-reduced-motion: reduce) { .cta-photo { transition: none; } }
   .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
   .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
   .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
@@ -562,7 +565,7 @@
       <div class="scroll-line-wrap in-view"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
       <div class="cta-frame" style="margin-top:54px;border:1px solid rgba(201,160,106,0.45);border-bottom:none;border-radius:4px 4px 0 0;overflow:hidden;">
         <div class="cta-body" style="position:relative;aspect-ratio:1468/2000;display:flex;flex-direction:column;justify-content:flex-end;padding:24px;">
-          <img src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
+          <img class="cta-photo" src="assets/booking.jpg" alt="Barber pri práci na ornamentálnom strihu" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 25%;">
           <div class="cta-shade" style="position:absolute;inset:0;background:linear-gradient(180deg,var(--bg) 0%,rgba(20,19,17,0.5) 12%,rgba(20,19,17,0) 32%,rgba(20,19,17,0) 60%,rgba(20,19,17,0.9) 85%,var(--bg) 100%);"></div>
           <div class="booking-badge"><span class="dot"></span>Voľné termíny</div>
           <div style="position:relative;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:12px;">Rezervácia:</div>
@@ -971,6 +974,16 @@
     var open = hours[day] && h >= hours[day][0] && h < hours[day][1];
     el.textContent = open ? 'Práve otvorené' : 'Zatvorené';
     el.classList.add(open ? 'is-open' : 'is-closed');
+  })();
+  (function () {
+    var body = document.querySelector('.cta-body');
+    if (!body) return;
+    function on() { body.classList.add('lit'); }
+    if (!('IntersectionObserver' in window)) { on(); return; }
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { setTimeout(on, 250); io.disconnect(); } });
+    }, { threshold: 0.4 });
+    io.observe(body);
   })();
 </script>
 <script src="chat.js"></script>
