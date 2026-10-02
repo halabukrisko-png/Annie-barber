@@ -1404,3 +1404,6 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .hero-card:nth-child(1) { flex-shrink: 0; }
   .hero-card:nth-child(2) { flex: 1 1 0; max-width: 331px; }
 }
+
+/* service photos (Pánsky strih, Strih + brada, Ornament): the picture sits a bit higher in its frame ---- */
+.svc-thumb[style*="gallery-1.jpg"], .svc-thumb[style*="gallery-3.jpg"], .svc-thumb[style*="gallery-4.jpg"] { background-position: 50% 48% !important; }
