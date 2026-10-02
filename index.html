@@ -31,8 +31,8 @@
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.5s cubic-bezier(.22,1,.36,1) 0.4s, opacity 0.5s ease-out 0.4s; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
-  #intro .scroll-line.left { background: linear-gradient(90deg, transparent, var(--bronze) 12%, var(--bronze)); }
-  #intro .scroll-line.right { background: linear-gradient(270deg, transparent, var(--bronze) 12%, var(--bronze)); }
+  #intro .scroll-line.left { background: linear-gradient(90deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
+  #intro .scroll-line.right { background: linear-gradient(270deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
   .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, transparent, var(--bronze) 45%, transparent); }
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
   .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 0.35s ease-out; }
@@ -205,9 +205,9 @@
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
 </style>
-<script src="i18n.js?v=202610021143"></script>
-<link rel="stylesheet" href="endline.css?v=202610021143">
-<link rel="stylesheet" href="desktop.css?v=202610021143" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
+<script src="i18n.js?v=202610021146"></script>
+<link rel="stylesheet" href="endline.css?v=202610021146">
+<link rel="stylesheet" href="desktop.css?v=202610021146" media="(min-width: 768px) and (min-height: 480px), (min-width: 1024px)">
 </head>
 <body>
 <div id="page-veil"></div>
@@ -1085,7 +1085,7 @@
     el.classList.add(open ? 'is-open' : 'is-closed');
   })();
 </script>
-<script src="chat.js?v=202610021143"></script>
-<script src="desktop.js?v=202610021143" defer></script>
+<script src="chat.js?v=202610021146"></script>
+<script src="desktop.js?v=202610021146" defer></script>
 </body>
 </html>
