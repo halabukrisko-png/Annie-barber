@@ -108,10 +108,17 @@
   .open-status { font-size: 10px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 5px 8px; border-radius: 2px; }
   .open-status.is-open { background: rgba(201,160,106,0.15); color: var(--bronze); }
   .open-status.is-closed { background: rgba(244,237,225,0.06); color: rgba(244,237,225,0.5); }
-  .btn-cta { transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, background 0.25s ease; box-shadow: 0 8px 22px -8px rgba(201,160,106,0.55); }
-  .btn-cta:hover { background: #d8af78; box-shadow: 0 10px 26px -6px rgba(201,160,106,0.7); transform: translateY(-2px); }
-  .btn-cta:active { transform: translateY(0); box-shadow: 0 4px 14px -6px rgba(201,160,106,0.55); }
-  .btn-cta-arrow { display: inline-block; transition: transform 0.25s ease; }
+  .btn-cta {
+    display: flex !important; align-items: center; justify-content: center; gap: 12px;
+    background: linear-gradient(180deg, #e4c08a 0%, #cba46e 48%, #b78e57 100%) !important; color: #17130e !important;
+    border: 1px solid rgba(255,238,205,0.4); border-radius: 3px !important; font-weight: 700; letter-spacing: 0.13em !important;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.28);
+    box-shadow: inset 0 1px 0 rgba(255,246,225,0.55), inset 0 -2px 0 rgba(90,60,25,0.22), 0 12px 26px -12px rgba(201,160,106,0.75), 0 2px 0 rgba(0,0,0,0.25);
+    transition: transform 0.25s cubic-bezier(.16,.6,.2,1), box-shadow 0.25s ease, filter 0.25s ease;
+  }
+  .btn-cta:hover { filter: brightness(1.07) saturate(1.05); box-shadow: inset 0 1px 0 rgba(255,246,225,0.6), inset 0 -2px 0 rgba(90,60,25,0.2), 0 16px 32px -12px rgba(214,172,114,0.85), 0 2px 0 rgba(0,0,0,0.25); transform: translateY(-2px); }
+  .btn-cta:active { transform: translateY(0); filter: brightness(0.97); box-shadow: inset 0 2px 4px rgba(90,60,25,0.3), 0 4px 12px -6px rgba(201,160,106,0.5); }
+  .btn-cta-arrow { display: inline-block; font-size: 1.15em; line-height: 1; transition: transform 0.25s ease; }
   .btn-cta:hover .btn-cta-arrow { transform: translateX(3px); }
   .booking-badge { position: absolute; top: 16px; right: 16px; display: flex; align-items: center; gap: 6px; background: rgba(20,19,17,0.6); backdrop-filter: blur(4px); border: 1px solid rgba(201,160,106,0.4); border-radius: 20px; padding: 6px 12px 6px 9px; font-size: 9.5px; letter-spacing: 0.04em; text-transform: uppercase; color: var(--cream); }
   .booking-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: #7cd68a; box-shadow: 0 0 6px #7cd68a; flex: 0 0 auto; }
