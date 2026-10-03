@@ -82,7 +82,11 @@
         btn.type = 'button'; btn.className = 'cal-day'; btn.textContent = d;
         var free = avail && avail[key(date)];
         if (date < todayDate || !HOURS_OPEN[date.getDay()] || !free) { btn.classList.add('disabled'); btn.disabled = true; }
-        else btn.addEventListener('click', function () { selectDate(date, btn); });
+        else {
+          // obsadený deň (prázdne pole): vyzerá ako nedostupný, ale po kliknutí napíše, že už nie je voľný
+          if (!free.length) { btn.classList.add('disabled'); btn.style.cursor = 'pointer'; }
+          btn.addEventListener('click', function () { selectDate(date, btn); });
+        }
         if (sameDay(date, todayDate)) btn.classList.add('today');
         if (selectedDate && sameDay(date, selectedDate)) btn.classList.add('selected');
         grid.appendChild(btn);
@@ -118,7 +122,7 @@
     if (!times.length) {
       var msg = document.createElement('div');
       msg.style.cssText = 'grid-column:1/-1;font-size:12.5px;line-height:1.5;color:var(--cream);text-align:center;padding:14px;border:1px dashed rgba(201,160,106,0.55);border-radius:3px;background:rgba(201,160,106,0.06);';
-      msg.textContent = tr('Na tento deň už nie sú voľné termíny. Vyber si, prosím, iný dátum.');
+      msg.textContent = tr('Tento deň už nie je voľný. Vyber si, prosím, iný dátum.');
       slotsGrid.appendChild(msg);
     }
   }
