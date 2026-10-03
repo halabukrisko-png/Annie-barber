@@ -74,7 +74,6 @@
   .nav-links { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 0 32px; }
   .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
   .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
-  .nav-links a span { display: none; }
   .nav-cta { display: none; }
   .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .bio-card { position: relative; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 4px; padding: 20px 18px; text-align: left; }
@@ -260,7 +259,7 @@
       <a href="/index-m#contact"><span>04</span>Kontakt</a>
     </nav>
     <div class="nav-cta">
-      <a href="/index-m#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+      <a href="#booking" class="btn-cta" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
     </div>
   </div>
 
@@ -281,8 +280,6 @@
       <div style="position:relative;padding:0 24px;display:flex;flex-direction:column;gap:14px;text-shadow:0 1px 8px rgba(0,0,0,0.6);">
         <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Nie každý prichádza do barberu na hodinový pokec. Niekto chce prebrať život, <strong style="color:var(--cream);font-weight:600;">niekto sa chce zasmiať</strong> a <strong style="color:var(--cream);font-weight:600;">niekto si len sadnúť</strong>, zavrieť oči a chvíľu vypnúť.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">U nás je v poriadku všetko. Vieme byť poriadne zábavný, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.</p>
-    <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">Možno máš za sebou dlhý týždeň a chceš len <strong style="color:var(--cream);font-weight:600;">ticho a kávu</strong>. Možno máš chuť na <strong style="color:var(--cream);font-weight:600;">dobrý príbeh, vtip alebo názor na posledný zápas</strong>. Nikam sa neponáhľame, <strong style="color:var(--cream);font-weight:600;">kreslo máš celé tvoje</strong>.</p>
-    <p style="margin:0;font-size:13.5px;line-height:1.55;color:#e6ddcd;">U nás sa môžeš uvoľniť, nech máš akúkoľvek náladu. Dôležité je, aby si odišiel s dobrým strihom a pocitom, že si sa u nás cítil ako doma.</p>
     <p style="margin:0;font-size:13.5px;line-height:1.55;color:var(--cream);font-weight:600;">My sa postaráme o strih. Ty si vyber, či chceš pokec, srandu alebo jednoducho pokoj.</p>
       </div>
     </div>
@@ -396,7 +393,6 @@
       </div>
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
-      <p>K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
       <a href="#booking" class="bio-book">Zarezervovať termín →</a>
     </div>
@@ -829,7 +825,45 @@
     }); });
   })();
 </script>
-<script src="booking.js?v=20261003seo" defer></script>
+<script src="booking.js?v=20261003c" defer></script>
+<script>
+/* "Zarezervovať termín" -> slow, smooth glide to the booking section */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf = 0;
+  function glide(el, duration) {
+    var startY = window.pageYOffset;
+    var targetY = Math.max(0, startY + el.getBoundingClientRect().top - 64);
+    if (reduce) { window.scrollTo(0, targetY); return; }
+    var t0 = null;
+    function stop() { cancelAnimationFrame(raf); window.removeEventListener('touchstart', stop); window.removeEventListener('wheel', stop); }
+    window.addEventListener('touchstart', stop, { passive: true });
+    window.addEventListener('wheel', stop, { passive: true });
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / duration, 1);
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, startY + (targetY - startY) * e);
+      if (p < 1) raf = requestAnimationFrame(step); else stop();
+    }
+    raf = requestAnimationFrame(step);
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href="#booking"]');
+    var el = document.getElementById('booking');
+    if (!a || !el) return;
+    ev.preventDefault();
+    var ov = document.getElementById('nav-overlay');
+    var wait = ov && ov.classList.contains('open') ? 350 : 0;
+    if (wait) { var cb = document.getElementById('nav-close'); if (cb) cb.click(); }
+    setTimeout(function () { glide(el, 1800); }, wait);
+  });
+  if (location.hash === '#booking') {
+    var el = document.getElementById('booking');
+    if (el) { window.addEventListener('load', function () { window.scrollTo(0, 0); setTimeout(function () { glide(el, 1800); }, 350); }); }
+  }
+})();
+</script>
 <script src="chat.js" defer></script>
 <script src="btnfill.js?v=20261003seo" defer></script>
 <script src="desktop-m.js" defer></script>

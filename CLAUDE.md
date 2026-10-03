@@ -16,4 +16,4 @@ git config user.email "287959535+halabukrisko-png@users.noreply.github.com"
 - Pred pushom `git fetch origin main`; ak `main` pribudol, zlúč ho (`git merge origin/main`), nerob force push.
 
 ## Dve sady stránok (desktop `X.html` a mobil `X-m.html`)
-Každá textová zmena (cena, hodiny, telefón, odstavce) sa robí v oboch súboroch. Pred commitom spusti `python3 tools/check-sync.py` - vypíše rozdiely vo viditeľnom texte medzi desktop a mobilnou verziou a skončí chybou, ak sa líšia.
+Mobilné stránky (`X-m.html`) majú vlastný obsah a vlastné SEO (hlavička, canonical). Texty v nich sa menia samostatne, nie automaticky podľa desktopu.

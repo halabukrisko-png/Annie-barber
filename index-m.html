@@ -8,7 +8,7 @@
 <noscript><style>.reveal,.reveal-stagger>*,.gallery-anim>*,.drive-in,.intro-photo,.badge-reveal,.scroll-line,.scroll-line-initial{opacity:1!important;transform:none!important;clip-path:none!important}#page-veil{display:none!important}.map-load{display:none!important}</style></noscript>
 <script>(function(){try{var q=matchMedia('(min-width: 768px) and (min-height: 480px), (min-width: 1024px)');function go(){if(q.matches)location.replace('/'+location.search+location.hash);}go();if(q.addEventListener)q.addEventListener('change',go);}catch(e){}})();</script>
 <title>BARBERIS | Barber & pánsky strih Prievidza</title>
-<meta name="description" content="Pánsky barbershop BARBERIS v Prievidzi, Hurbana 4. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
+<meta name="description" content="Pánsky barbershop BARBERIS na Hurbanovej 4 v Prievidzi. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
 <meta name="robots" content="index, follow, max-image-preview:large">
 <link rel="canonical" href="https://barberis-barber-prievidza.com/">
 <meta name="theme-color" content="#141311">
@@ -24,7 +24,7 @@
 <meta property="og:site_name" content="BARBERIS">
 <meta property="og:locale" content="sk_SK">
 <meta property="og:title" content="BARBERIS | Barber & pánsky strih Prievidza">
-<meta property="og:description" content="Pánsky barbershop BARBERIS v Prievidzi, Hurbana 4. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
+<meta property="og:description" content="Pánsky barbershop BARBERIS na Hurbanovej 4 v Prievidzi. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
 <meta property="og:url" content="https://barberis-barber-prievidza.com/">
 <meta property="og:image" content="https://barberis-barber-prievidza.com/assets/og-image.jpg">
 <meta property="og:image:width" content="1200">
@@ -32,7 +32,7 @@
 <meta property="og:image:alt" content="Tím BARBERIS – pánsky barbershop v Prievidzi">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="BARBERIS | Barber & pánsky strih Prievidza">
-<meta name="twitter:description" content="Pánsky barbershop BARBERIS v Prievidzi, Hurbana 4. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
+<meta name="twitter:description" content="Pánsky barbershop BARBERIS na Hurbanovej 4 v Prievidzi. Pánsky strih, úprava brady aj strih + brada v príjemnej atmosfére. Objednaj sa online alebo telefonicky.">
 <meta name="twitter:image" content="https://barberis-barber-prievidza.com/assets/og-image.jpg">
 <link rel="preload" href="/assets/fonts/fraunces-n600-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="/assets/fonts/work-sans-n400-latin.woff2" as="font" type="font/woff2" crossorigin>
@@ -87,8 +87,6 @@
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
   .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 1.6s ease-out 0.5s; }
   .scroll-line-wrap.in-view .scroll-line-initial { opacity: 1; }
-  .intro-hl { color: #e4c48f !important; font-weight: 600 !important; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 17px !important; line-height: 1.45 !important; letter-spacing: 0.01em; text-shadow: 0 1px 12px rgba(0,0,0,0.85); }
-  .intro-white { color: #fff !important; font-weight: 700 !important; font-family: 'Work Sans', sans-serif; font-style: normal; text-shadow: 0 1px 12px rgba(0,0,0,0.85); }
   .intro-photo { opacity: 0; transition: opacity 1.7s cubic-bezier(.22,1,.36,1) 0.3s; }
   .scroll-line-wrap.in-view + div .intro-photo { opacity: 1; }
   .reveal { opacity: 0; transform: translateY(26px); transition: opacity 1.3s cubic-bezier(.22,1,.36,1), transform 1.3s cubic-bezier(.22,1,.36,1); }
@@ -110,7 +108,16 @@
   }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
-  .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
+  @property --kring { syntax: '<angle>'; inherits: false; initial-value: 0deg; }
+  .service-swatch { position: relative; }
+  .service-swatch::before { content: ''; position: absolute; inset: 0; padding: 1.5px; border-radius: 2px; pointer-events: none; --kring: 0deg;
+    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--kring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--kring) / 2), rgba(201,160,106,0) calc(360deg - var(--kring) / 2), var(--bronze) calc(360deg - var(--kring) / 2 + 9deg), var(--bronze) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+    transition: --kring 2.4s cubic-bezier(.45,.05,.25,1); }
+  .service-swatch.ring-in::before { --kring: 372deg; }
+  @media (prefers-reduced-motion: reduce) { .service-swatch::before { transition: none; } }
+  .service-swatch { width: 100%; aspect-ratio: 4/5; border-radius: 2px; background-size: cover; background-position: center; }
   .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
   .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); cursor: zoom-in; }
@@ -245,7 +252,6 @@
   .nav-links { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 6px; padding: 0 32px; }
   .nav-links a { display: block; width: 100%; font-family: 'Fraunces', serif; font-size: 26px; padding: 12px 0; border-bottom: 1px solid rgba(244,237,225,0.08); }
   .nav-links a span { color: var(--bronze); font-size: 13px; font-family: 'Work Sans', sans-serif; margin-right: 10px; }
-  .nav-links a span { display: none; }
   .nav-cta { display: none; }
   .nav-cta { flex: 0 0 auto; padding: 0 32px 40px; }
   .gallery-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
@@ -300,7 +306,7 @@
         <a href="#contact"><span>04</span>Kontakt</a>
       </nav>
       <div class="nav-cta">
-        <a href="#booking" class="btn-cta btn-cta-pro" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
+        <a href="/o-nas-m#booking" class="btn-cta btn-cta-pro" style="display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín →</a>
       </div>
     </div>
 
@@ -314,7 +320,7 @@
       <h1 class="hero-fade-in" style="font-size:38px;line-height:1.06;letter-spacing:-0.01em;text-shadow:0 2px 16px rgba(0,0,0,0.35);"><span class="sr-only">BARBERIS – pánsky barber v Prievidzi: </span><span id="tw-l1">TVOJ ŠTÝL.</span><span class="tw-cursor" id="tw-cursor-1"></span><br><span style="position:relative;display:inline-block;"><span id="tw-l2">TVOJ BARBER.</span><span class="tw-cursor" id="tw-cursor-2"></span><span class="line-draw" id="hero-line-draw"></span></span></h1>
       <p class="hero-fade-in" style="margin:0;font-size:15px;line-height:1.55;color:var(--cream-dim);max-width:320px;animation-delay:0.65s;">Precízny strih, upravená brada a atmosféra, v ktorej sa budeš cítiť dobre.</p>
       <div class="hero-fade-in hero-cta-row" style="display:flex;flex-direction:column;gap:10px;margin:6px auto 0;max-width:320px;width:100%;animation-delay:0.8s;">
-        <a href="#booking" class="btn-cta btn-cta-pro" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+        <a href="/o-nas-m#booking" class="btn-cta btn-cta-pro" style="background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         <a href="#intro" class="btn-outline" style="border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Pozrieť služby →</a>
         <a href="/galeria-m" class="btn-outline hero-third" style="display:none;border:1px solid rgba(244,237,225,0.3);text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Galéria</a>
       </div>
@@ -327,16 +333,13 @@
 
   <!-- INTRO -->
   <div id="intro" style="position:relative;background:var(--bg);padding:14px 0 0;display:flex;flex-direction:column;">
-    <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><div class="scroll-line right"></div></div>
+    <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div class="intro-inner" style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge-1000.webp" srcset="assets/lounge-640.webp 640w, assets/lounge-1000.webp 1000w, assets/lounge-1600.webp 1600w" sizes="100vw" width="1600" height="1066" alt="Oddychová zóna s koženou sedačkou v BARBERIS" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.9) 0%,rgba(20,19,17,0.98) 35%,rgba(20,19,17,0.98) 85%,var(--bg) 100%);"></div>
       <h2 class="reveal" style="position:relative;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:600;font-size:31px;line-height:1.15;text-align:center;">VIAC NEŽ LEN STRIH.</h2>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);"><strong style="color:var(--cream);font-weight:600;">BARBERIS</strong> je miesto, kde sa stretáva kvalitné barber remeslo, osobný prístup a dobrá atmosféra.</p>
       <p class="reveal" style="position:relative;margin:0;font-size:13.5px;line-height:1.55;color:var(--cream-dim);">Chceme, aby si od nás neodchádzal len s dobre spraveným strihom, ale aj s pocitom, že si si na chvíľu oddýchol a urobil niečo pre seba.</p>
-      <p class="reveal intro-hl" style="position:relative;color:var(--cream-dim);margin:0;font-size:13.5px;line-height:1.55;">Nikam sa neponáhľame. Dáme si čas na každý detail — od poradenstva až po finálnu úpravu — aby si odišiel s výsledkom, s ktorým si spokojný.</p>
-      <p class="reveal" style="position:relative;color:var(--cream-dim);margin:0;font-size:13.5px;line-height:1.55;">Každý z nás má svoj štýl a my ti pomôžeme nájsť ten tvoj. Poradíme, čo ti pristane, a postaráme sa, aby si z kresla vstal s istotou.</p>
-      <p class="reveal intro-white" style="position:relative;color:var(--cream-dim);margin:0;font-size:13.5px;line-height:1.55;">U nás nie si číslo v rade. Si náš hosť — a tak sa k tebe aj správame.</p>
       <div class="ticker" style="position:relative;overflow:hidden;font-size:10.5px;letter-spacing:0.12em;text-transform:uppercase;background:var(--card);border-top:1px solid rgba(201,160,106,0.25);border-bottom:1px solid rgba(201,160,106,0.25);padding:12px 0;margin:2px -26px 0;">
         <div class="drive-in" style="display:flex;align-items:center;justify-content:center;gap:10px;white-space:nowrap;">
           <span>Kvalita</span><span style="color:var(--bronze);">•</span><span>Detail</span><span style="color:var(--bronze);">•</span><span>Atmosféra</span>
@@ -358,9 +361,9 @@
         <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
       </div>
       <h2 style="font-size:22px;margin-bottom:14px;">SLUŽBY</h2>
-      <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Pánsky strih, strih s bradou, úprava brady aj detský strih — v centre Prievidze, pár krokov od námestia. Vyber si, čo ti sadne.</p>
+      <p style="margin:0 0 18px;font-size:13px;line-height:1.55;color:var(--cream-dim);">Od klasiky až po moderné strihy, od precízneho strihu až po úpravu brady. Vyber si, čo ti sadne.</p>
       <div id="svc-list" style="display:flex;flex-direction:column;gap:10px;">
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
+        <a href="/o-nas-m#booking" class="svc-hover-row" data-badge="svc-badge-strih" data-badge-default="true" style="position:relative;display:flex;gap:14px;background:var(--card);border:1px solid rgba(201,160,106,0.35);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-strih" style="display:inline-block;">Obľúbené</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-1-480.webp');background-size:105% auto;background-position:30% 12%;"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -369,7 +372,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">20 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-combo" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="/o-nas-m#booking" class="svc-hover-row" data-badge="svc-badge-combo" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-combo">Kompletný balík</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-3-480.webp');background-size:105% auto;background-position:55% 30%;"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -378,7 +381,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">30 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-brada" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="/o-nas-m#booking" class="svc-hover-row" data-badge="svc-badge-brada" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-brada">Odporúčame</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-2-480.webp');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -387,7 +390,7 @@
           </div>
           <div style="flex:0 0 auto;font-size:13px;font-weight:700;color:var(--bronze);align-self:center;">15 €</div>
         </a>
-        <a href="#booking" class="svc-hover-row" data-badge="svc-badge-ornament" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
+        <a href="/o-nas-m#booking" class="svc-hover-row" data-badge="svc-badge-ornament" style="display:flex;gap:14px;background:var(--card);border:1px solid rgba(244,237,225,0.08);border-radius:3px;padding:14px;">
           <span class="svc-badge" id="svc-badge-ornament">Originalita</span>
           <div class="svc-thumb" style="background-image:url('assets/gallery/gallery-4-480.webp');"></div>
           <div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:4px;">
@@ -410,24 +413,24 @@
             <li><span class="pl-name">Čistenie pleti</span><span class="pl-price">od 10 €</span></li>
           </ul>
         </div>
-        <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rýchla online objednávka na pár klikov. ✂️</p>
+        <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
       <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Skryť cenník ↑':'Pozrieť celý cenník ↓';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
-      <a href="#booking" class="btn-cta btn-cta-pro" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
+      <a href="/o-nas-m#booking" class="btn-cta btn-cta-pro" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
     <div class="svc-teaser" style="margin-top:8px;padding:0 26px;">
-      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
+      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Naše komplety:</div>
       <div class="reveal-stagger reveal-stagger-x" style="display:flex;gap:8px;">
-        <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Pánsky strih</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">20 €</div>
-        </a>
-        <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#2c231a,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Strih + brada</div>
+        <a href="/o-nas-m#booking" class="service-card">
+          <div class="service-swatch" style="background-image:url('assets/komplet-1.webp');"></div>
+          <div style="font-size:11px;font-weight:600;line-height:1.25;">Kompletná úprava (strih + brada)</div>
           <div style="font-size:11px;color:var(--bronze);font-weight:700;">30 €</div>
+        </a>
+        <a href="/o-nas-m#booking" class="service-card">
+          <div class="service-swatch" style="background-image:url('assets/komplet-2.webp');"></div>
+          <div style="font-size:11px;font-weight:600;line-height:1.25;">Holenie hlavy + úprava brady</div>
+          <div style="font-size:11px;color:var(--bronze);font-weight:700;">25 €</div>
         </a>
       </div>
     </div>
@@ -486,7 +489,7 @@
       <p>BARBERIS som vytvorila ako miesto, kde dostaneš kvalitný strih, ale zároveň si môžeš oddýchnuť, pokecať a užiť si dobrú atmosféru.</p>
       <p>Chcela som vytvoriť barber shop, kam sa človek nebude vracať iba kvôli strihu, ale aj kvôli ľuďom, atmosfére a pocitu, ktorý si od nás odnesie.</p>
       <span class="bio-tag">Precíznosť • Osobný prístup • Dobrá nálada</span>
-      <a href="#booking" class="bio-book">Zarezervovať termín →</a>
+      <a href="/o-nas-m#booking" class="bio-book">Zarezervovať termín →</a>
     </div>
 
     <div class="bio-card" id="bio-karvy" hidden>
@@ -502,7 +505,7 @@
       <p>Ak chceš na hlave niečo originálne, čo len tak niekde neuvidíš, Karvy je ten správny človek.</p>
       <p>A pozor – okrem strojčeka má v rukách aj poriadnu dávku humoru. 😄 Je jedným z našich showmanov a o dobrú náladu v kresle sa vie postarať rovnako dobre ako o tvoj nový vzhľad.</p>
       <span class="bio-tag">Ornamenty • Kreatívne strihy • Dobrá nálada</span>
-      <a href="#booking" class="bio-book">Zarezervovať termín →</a>
+      <a href="/o-nas-m#booking" class="bio-book">Zarezervovať termín →</a>
     </div>
 
     <div class="bio-card" id="bio-vladis" hidden>
@@ -516,9 +519,8 @@
       </div>
       <p>Vladis sa barberingu venuje približne 4 roky. Zo začiatku je možno trochu tichší, ale nenechaj sa tým zmiasť. 😄</p>
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
-      <p>K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
-      <a href="#booking" class="bio-book">Zarezervovať termín →</a>
+      <a href="/o-nas-m#booking" class="bio-book">Zarezervovať termín →</a>
     </div>
   </div>
 
@@ -641,7 +643,6 @@
           <a href="tel:+421951833488" class="btn-cta btn-cta-pro" style="position:relative;display:block;background:var(--bronze);color:#141311;text-align:center;padding:16px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:0.07em;text-transform:uppercase;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
         </div>
         <div class="cta-foot" style="text-align:center;padding:0 24px 20px;font-size:10.5px;color:rgba(244,237,225,0.55);background:var(--bg);">a napíš na <a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener" style="color:var(--bronze);text-decoration:underline;text-underline-offset:2px;">Instagram @_barberis._</a></div>
-        <div class="cta-extra" style="padding:0 24px 22px;background:var(--bg);text-align:center;font-size:12px;line-height:1.6;color:var(--cream-dim);"><p style="margin:10px 0 0;">Objednať sa môžeš telefonicky na 0951 833 488 alebo cez Instagram. Radi ti poradíme s výberom strihu a nájdeme termín, ktorý ti vyhovuje.</p><p style="margin:10px 0 0;"><a href="/o-nas-m#booking" style="text-decoration:underline;text-underline-offset:3px;">Rezervovať si termín online</a> — vyber barbera, službu a voľný čas.</p><p style="margin:10px 0 0;">Potrebuješ špeciálny termín mimo otváracích hodín? Aj to sa dá zariadiť, stačí nám napísať.</p></div>
       </div>
     </div>
   </div>
@@ -1081,6 +1082,16 @@
     window.addEventListener('resize', req);
     upd();
   })();
+</script>
+<script>
+(function () {
+  var sw = document.querySelectorAll('.service-swatch');
+  if (!('IntersectionObserver' in window)) { for (var i = 0; i < sw.length; i++) sw[i].classList.add('ring-in'); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { setTimeout(function () { e.target.classList.add('ring-in'); }, 250); io.unobserve(e.target); } });
+  }, { threshold: 0.4 });
+  for (var i = 0; i < sw.length; i++) io.observe(sw[i]);
+})();
 </script>
 <script src="chat.js" defer></script>
 <script src="btnfill.js?v=20261003seo" defer></script>

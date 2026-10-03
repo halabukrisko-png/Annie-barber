@@ -98,7 +98,7 @@
     '5 – 10 €': '€5 – 10',
     'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️': 'Book your appointment in advance and skip the wait. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
-    'Čo si môžeš dať u nás:': 'What you can get with us:',
+    'Naše komplety:': 'Our packages:',
 
     // team
     'O Barberis · náš tím': 'About Barberis · our team',

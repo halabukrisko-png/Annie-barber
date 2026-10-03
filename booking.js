@@ -266,7 +266,7 @@
           if (!window.confirm(tr('Naozaj zrušiť tento termín?') + '\n' + it.service + ' · ' + when(it))) return;
           btn.disabled = true;
           call({ contact: contact, id: it.id, barber: it.barber }).then(function (res) {
-            if (res.ok && res.j.ok) { cache = {}; show('<span class="cr-ok">' + esc(tr('Termín bol zrušený.')) + '</span>'); load(); }
+            if (res.ok && res.j.ok) { cache = {}; show('<span class="cr-ok">' + esc(en() ? 'Your appointment on ' + when(it) + ' has been cancelled.' : 'Tvoj termín ' + when(it) + ' bol zrušený.') + '</span>'); load(); }
             else { fail(res.j && res.j.error); }
           }).catch(function () { fail(); });
         });
