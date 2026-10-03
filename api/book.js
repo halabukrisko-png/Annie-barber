@@ -47,6 +47,7 @@ module.exports = async function handler(req, res) {
     const dur = durationFor(service, who);
     const startMs = slot.start, endMs = startMs + dur * 60000;
     const svc = SERVICES[service];
+    const lang = b.lang === 'en' ? 'en' : 'sk';
     const iso = (ms) => new Date(ms).toISOString();
     const when = date.split('-').reverse().join('. ') + ' o ' + time;
     const description = '✂️ ' + svc.name + ' · ' + svc.price + ' · ' + dur + ' min\n' +
@@ -56,7 +57,7 @@ module.exports = async function handler(req, res) {
       '\n\nRezervované cez web.';
     const base = { start: { dateTime: iso(startMs), timeZone: TZ }, end: { dateTime: iso(endMs), timeZone: TZ }, description,
       colorId: BARBERS[who].colorId, reminders: { useDefault: false },
-      extendedProperties: { private: { barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase() } } };
+      extendedProperties: { private: { barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase(), lang } } };
 
     const own = await insertEvent(calendarId(who), Object.assign({ summary: svc.name + ' · ' + name }, base));
 
@@ -75,8 +76,13 @@ module.exports = async function handler(req, res) {
     }
 
     if (email) {
-      await sendMail(email, 'Potvrdenie termínu – BARBERIS',
-        'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbana 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, môžeš to spraviť na webe:\nhttps://barberis-barber-prievidza.com/\nalebo zavolaj na 0951 833 488.\n\nBARBERIS');
+      if (lang === 'en') {
+        await sendMail(email, 'Appointment confirmation – BARBERIS',
+          'Hi ' + name + ',\n\nyour appointment is confirmed:\n' + (svc.nameEn || svc.name) + ' with ' + who + '\n' + date.split('-').reverse().join('. ') + ' at ' + time + '\nHurbana 4, Prievidza\n\nIf you need to change or cancel your appointment, you can do it on our website:\nhttps://barberis-barber-prievidza.com/\nor call us at 0951 833 488.\n\nBARBERIS');
+      } else {
+        await sendMail(email, 'Potvrdenie termínu – BARBERIS',
+          'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbana 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, môžeš to spraviť na webe:\nhttps://barberis-barber-prievidza.com/\nalebo zavolaj na 0951 833 488.\n\nBARBERIS');
+      }
     }
     await notifyOwner('new', { when, service: svc.name, barber: who, name, phone, email });
     return res.status(200).json({ ok: true, barber: who, time, date, duration: dur });

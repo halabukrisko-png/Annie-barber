@@ -39,6 +39,7 @@ module.exports = async function handler(req, res) {
         const pr = (e.extendedProperties && e.extendedProperties.private) || {};
         if (!matches(pr, e.description)) return;
         mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? SERVICES[pr.service].name : (e.summary || ''),
+          serviceEn: SERVICES[pr.service] ? (SERVICES[pr.service].nameEn || SERVICES[pr.service].name) : (e.summary || ''), lang: pr.lang || 'sk',
           date: todayStr(ms), time: hhmm(minuteOfDay(ms)),
           name: ((e.description || '').match(/Zákazník:\s*(.+)/) || [])[1] || '',
           phone: pr.phone || '',
@@ -63,9 +64,15 @@ module.exports = async function handler(req, res) {
     }
     const when = target.date.split('-').reverse().join('. ') + ' o ' + target.time;
     if (target.email) {
-      await sendMail(target.email, 'Zrušenie termínu – BARBERIS',
-        'Ahoj ' + (target.name || '') + ',\n\ntvoj termín bol zrušený:\n' + target.service + ' u ' + target.barber + '\n' + when +
-        '\n\nNový termín si môžeš rezervovať na webe:\nhttps://barberis-barber-prievidza.com/\nalebo na čísle 0951 833 488.\n\nBARBERIS');
+      if (b.lang === 'en' || target.lang === 'en') {
+        await sendMail(target.email, 'Appointment cancelled – BARBERIS',
+          'Hi ' + (target.name || '') + ',\n\nyour appointment has been cancelled:\n' + target.serviceEn + ' with ' + target.barber + '\n' + target.date.split('-').reverse().join('. ') + ' at ' + target.time +
+          '\n\nYou can book a new appointment on our website:\nhttps://barberis-barber-prievidza.com/\nor by calling 0951 833 488.\n\nBARBERIS');
+      } else {
+        await sendMail(target.email, 'Zrušenie termínu – BARBERIS',
+          'Ahoj ' + (target.name || '') + ',\n\ntvoj termín bol zrušený:\n' + target.service + ' u ' + target.barber + '\n' + when +
+          '\n\nNový termín si môžeš rezervovať na webe:\nhttps://barberis-barber-prievidza.com/\nalebo na čísle 0951 833 488.\n\nBARBERIS');
+      }
     }
     await notifyOwner('cancel', { when, service: target.service, barber: target.barber, name: target.name, phone: target.phone, email: target.email });
     return res.status(200).json({ ok: true });

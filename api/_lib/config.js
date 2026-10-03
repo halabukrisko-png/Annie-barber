@@ -28,13 +28,13 @@ const BARBER_NAMES = Object.keys(BARBERS);
 
 // Dĺžky v minútach. `byBarber` prepisuje základnú dĺžku pre konkrétneho barbera.
 const SERVICES = {
-  strih:     { name: 'Strih',                          price: '20 €',     min: 30, byBarber: { Vladis: 45 } },
-  komplet:   { name: 'Kompletná úprava (strih + brada)', price: '30 €',   min: 60 },
-  brada:     { name: 'Úprava brady',                   price: '15 €',     min: 30 },
-  detsky:    { name: 'Detský strih do 12 r.',          price: '15 €',     min: 30 },
-  holenie:   { name: 'Holenie hlavy + úprava brady',   price: '25 €',     min: 45 },
-  farbenie:  { name: 'Farbenie brady',                 price: '5 – 10 €', min: 30 },
-  cistenie:  { name: 'Čistenie pleti',                 price: 'od 10 €',  min: 30 },
+  strih:     { name: 'Strih', nameEn: 'Haircut',                          price: '20 €',     min: 30, byBarber: { Vladis: 45 } },
+  komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60 },
+  brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30 },
+  detsky:    { name: 'Detský strih do 12 r.', nameEn: 'Kids haircut (under 12)',          price: '15 €',     min: 30 },
+  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 45 },
+  farbenie:  { name: 'Farbenie brady', nameEn: 'Beard colouring',                 price: '5 – 10 €', min: 30 },
+  cistenie:  { name: 'Čistenie pleti', nameEn: 'Facial cleansing',                 price: 'od 10 €',  min: 30 },
 };
 
 function durationFor(serviceId, barber) {

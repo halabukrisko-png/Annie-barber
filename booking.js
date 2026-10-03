@@ -156,7 +156,7 @@
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-        name: name, phone: phone, email: mail, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
+        name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
@@ -267,7 +267,7 @@
           btn.disabled = true;
           // pri chybe servera / siete sa skúsi ešte raz automaticky
           function attempt(n) {
-            return call({ contact: contact, id: it.id, barber: it.barber }).then(function (res) {
+            return call({ contact: contact, id: it.id, barber: it.barber, lang: en() ? 'en' : 'sk' }).then(function (res) {
               if (!res.ok && res.status >= 500 && n < 1) return attempt(n + 1);
               return res;
             }, function (err) { if (n < 1) return attempt(n + 1); throw err; });
