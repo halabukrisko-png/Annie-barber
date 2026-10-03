@@ -455,6 +455,65 @@
   else init();
 })();
 
+/* Bold key phrase in every team-bio paragraph. Wraps the phrase in <strong> after translation, unwraps before the next one,
+   so the paragraph-level translation keys keep matching. */
+(function () {
+  var PHRASES = [
+    'takmer 7 rokov', 'dobrú atmosféru', 'kvôli ľuďom, atmosfére a pocitu',
+    'ornamentálna tvorba', 'Karvy je ten správny človek', 'poriadnu dávku humoru',
+    'približne 4 roky', 'kvalitná a precízna práca a spokojný zákazník', 'dotiahne každý detail',
+    'almost 7 years', 'a good atmosphere', 'for the people, the atmosphere and the feeling',
+    'ornamental work', 'Karvy is the right person', 'a proper dose of humor',
+    'about 4 years', 'quality, precise work and a satisfied customer', 'refine every detail'
+  ];
+  function unbold() {
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card strong.bio-b'), function (s) {
+      var p = s.parentNode;
+      s.parentNode.replaceChild(document.createTextNode(s.textContent), s);
+      p.normalize();
+    });
+  }
+  function bold() {
+    unbold();
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card p'), function (p) {
+      var n = p.firstChild;
+      if (!n || n.nodeType !== 3) return;
+      var t = n.nodeValue;
+      for (var k = 0; k < PHRASES.length; k++) {
+        var i = t.indexOf(PHRASES[k]);
+        if (i < 0) continue;
+        var after = n.splitText(i);
+        after.splitText(PHRASES[k].length);
+        var st = document.createElement('strong');
+        st.className = 'bio-b';
+        after.parentNode.replaceChild(st, after);
+        st.appendChild(after);
+        break;
+      }
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('.bio-card p'), barbering);
+  }
+  /* also highlight the word "barbering(u)" (first occurrence per paragraph) */
+  function barbering(p) {
+    for (var n = p.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType !== 3) continue;
+      var m = /barbering\w*/i.exec(n.nodeValue);
+      if (!m) continue;
+      var mid = n.splitText(m.index);
+      mid.splitText(m[0].length);
+      var st = document.createElement('strong');
+      st.className = 'bio-b';
+      p.replaceChild(st, mid);
+      st.appendChild(mid);
+      return;
+    }
+  }
+  window.__bioUnbold = unbold;
+  function run() { try { bold(); } catch (e) {} }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(run, 0); }); else setTimeout(run, 0);
+  window.addEventListener('langchange', function () { setTimeout(run, 0); });
+})();
+
 /* Bold "perfect haircut" in the cosmetics paragraph; unwrapped before each translation so the paragraph key keeps matching. */
 (function () {
   var PH = ['perfektný strih', 'perfect haircut'];
