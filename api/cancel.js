@@ -4,7 +4,7 @@
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId } = require('./_lib/config');
 const { todayStr, minuteOfDay, hhmm } = require('./_lib/time');
 const { listEvents, deleteEvent } = require('./_lib/google');
-const { sendMail, notifyOwner } = require('./_lib/mail');
+const { mailCustomer, notifyOwner } = require('./_lib/mail');
 
 const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 
@@ -64,15 +64,9 @@ module.exports = async function handler(req, res) {
     }
     const when = target.date.split('-').reverse().join('. ') + ' o ' + target.time;
     if (target.email) {
-      if (b.lang === 'en' || target.lang === 'en') {
-        await sendMail(target.email, 'Appointment cancelled – BARBERIS',
-          'Hi ' + (target.name || '') + ',\n\nyour appointment has been cancelled:\n' + target.serviceEn + ' with ' + target.barber + '\n' + target.date.split('-').reverse().join('. ') + ' at ' + target.time +
-          '\n\nYou can book a new appointment on our website:\nhttps://barberis-barber-prievidza.com/\nor by calling 0951 833 488.\n\nBARBERIS');
-      } else {
-        await sendMail(target.email, 'Zrušenie termínu – BARBERIS',
-          'Ahoj ' + (target.name || '') + ',\n\ntvoj termín bol zrušený:\n' + target.service + ' u ' + target.barber + '\n' + when +
-          '\n\nNový termín si môžeš rezervovať na webe:\nhttps://barberis-barber-prievidza.com/\nalebo na čísle 0951 833 488.\n\nBARBERIS');
-      }
+      const lang = (b.lang === 'en' || target.lang === 'en') ? 'en' : 'sk';
+      const whenL = lang === 'en' ? target.date.split('-').reverse().join('. ') + ' at ' + target.time : when;
+      await mailCustomer('cancel', lang, target.email, { name: target.name, when: whenL, service: lang === 'en' ? target.serviceEn : target.service, barber: target.barber });
     }
     await notifyOwner('cancel', { when, service: target.service, barber: target.barber, name: target.name, phone: target.phone, email: target.email });
     return res.status(200).json({ ok: true });

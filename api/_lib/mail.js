@@ -34,4 +34,41 @@ async function notifyOwner(kind, d) {
   await sendMail(to.split(',').map((s) => s.trim()).filter(Boolean), (ok ? '🟢 ' : '🔴 ') + title + ' – ' + d.name + ', ' + d.when, text, html);
 }
 
-module.exports = { sendMail, notifyOwner };
+const SITE = 'https://barberis-barber-prievidza.com/';
+const PHONE = '0951 833 488';
+const ADDRESS = 'Hurbana 4, Prievidza';
+const TXT = {
+  sk: {
+    new: { title: 'Termín potvrdený', subject: 'Potvrdenie termínu', hi: 'Ahoj ', intro: 'tvoj termín je potvrdený:', note: 'Ak potrebuješ termín zmeniť alebo zrušiť, môžeš to spraviť na webe:', color: '#1e8e3e' },
+    cancel: { title: 'Termín zrušený', subject: 'Zrušenie termínu', hi: 'Ahoj ', intro: 'tvoj termín bol zrušený:', note: 'Nový termín si môžeš rezervovať na webe:', color: '#d93025' },
+    rows: ['Termín', 'Služba', 'Barber', 'Adresa'], or: 'alebo zavolaj na', btn: 'Otvoriť web',
+  },
+  en: {
+    new: { title: 'Appointment confirmed', subject: 'Appointment confirmation', hi: 'Hi ', intro: 'your appointment is confirmed:', note: 'If you need to change or cancel your appointment, you can do it on our website:', color: '#1e8e3e' },
+    cancel: { title: 'Appointment cancelled', subject: 'Appointment cancelled', hi: 'Hi ', intro: 'your appointment has been cancelled:', note: 'You can book a new appointment on our website:', color: '#d93025' },
+    rows: ['Date', 'Service', 'Barber', 'Address'], or: 'or call us at', btn: 'Open website',
+  },
+};
+
+// E-mail pre zákazníka (potvrdenie / zrušenie) v slovenčine alebo angličtine. d: { name, when, service, barber }
+async function mailCustomer(kind, lang, to, d) {
+  const L = TXT[lang === 'en' ? 'en' : 'sk'], K = L[kind];
+  const rows = [[L.rows[0], d.when], [L.rows[1], d.service], [L.rows[2], d.barber], [L.rows[3], ADDRESS]];
+  const text = K.hi + (d.name || '') + ',\n\n' + K.intro + '\n' + rows.map((r) => r[0] + ': ' + r[1]).join('\n') +
+    '\n\n' + K.note + '\n' + SITE + '\n' + L.or + ' ' + PHONE + '.\n\nBARBERIS';
+  const html = '<div style="font-family:Arial,sans-serif;max-width:480px;color:#111">' +
+    '<h2 style="margin:0 0 12px;color:' + K.color + '">' + K.title + '</h2>' +
+    '<p style="margin:0 0 12px;font-size:15px">' + esc(K.hi + (d.name || '')) + ',<br>' + K.intro + '</p>' +
+    '<table style="border-collapse:collapse;font-size:15px">' +
+    rows.map((r, i) => '<tr><td style="padding:4px 12px 4px 0;color:#666">' + r[0] + '</td><td style="padding:4px 0"><b style="color:' +
+      (i === 0 ? K.color : '#000') + '">' + esc(r[1]) + '</b></td></tr>').join('') +
+    '</table>' +
+    '<p style="margin:16px 0 8px;font-size:14px;color:#444">' + K.note + '</p>' +
+    '<p style="margin:0 0 16px"><a href="' + SITE + '" style="display:inline-block;background:' + K.color + ';color:#fff;text-decoration:none;padding:10px 18px;border-radius:6px;font-size:15px">' + L.btn + '</a></p>' +
+    '<p style="margin:0 0 4px;font-size:14px;color:#444">' + L.or + ' <b>' + PHONE + '</b></p>' +
+    '<p style="margin:12px 0 0;font-size:14px;color:#888">BARBERIS</p></div>';
+  // termín v predmete: každý mail je samostatné vlákno, Gmail neskrýva časti ako „quoted text“
+  await sendMail(to, K.subject + ' – ' + d.when + ' – BARBERIS', text, html);
+}
+
+module.exports = { sendMail, notifyOwner, mailCustomer };
