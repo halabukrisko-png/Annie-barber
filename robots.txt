@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /api/
 
-Sitemap: https://annie-barber.vercel.app/sitemap.xml
+Sitemap: https://barberis-barber-prievidza.com/sitemap.xml
