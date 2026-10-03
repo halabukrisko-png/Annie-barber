@@ -2,7 +2,7 @@
 // -> { days: { 'YYYY-MM-DD': ['08:00', ...] } }  (prázdne pole = deň je obsadený)
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS, HOURS, calendarId } = require('./_lib/config');
 const { localToMs, addDays, todayStr, isDateStr, weekday } = require('./_lib/time');
-const { freeBusy } = require('./_lib/google');
+const { freeBusy, sharedBlocks } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
 
 module.exports = async function handler(req, res) {
@@ -26,9 +26,10 @@ module.exports = async function handler(req, res) {
     const names = barber ? [barber] : BARBER_NAMES;
     const ids = names.map(calendarId);
     if (ids.some((i) => !i)) return res.status(503).json({ error: 'Kalendár nie je nastavený' });
-    const busy = await freeBusy(ids, localToMs(from, 0), localToMs(addDays(to, 1), 0));
+    const fromMs = localToMs(from, 0), toMs = localToMs(addDays(to, 1), 0);
+    const [busy, shared] = await Promise.all([freeBusy(ids, fromMs, toMs), sharedBlocks(fromMs, toMs)]);
     const busyByBarber = {};
-    names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]]; });
+    names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]].concat(shared); });
 
     for (let d = from; d <= to; d = addDays(d, 1)) {
       const t = daySlots({ date: d, barber, service, busyByBarber, nowMs }).map((s) => s.time);

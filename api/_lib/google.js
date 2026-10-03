@@ -117,4 +117,20 @@ const listEvents = (calId, fromMs, toMs, extra) =>
   call('GET', '/calendars/' + encodeURIComponent(calId) + '/events?singleEvents=true&showDeleted=false&timeMin=' +
     encodeURIComponent(new Date(fromMs).toISOString()) + '&timeMax=' + encodeURIComponent(new Date(toMs).toISOString()) + (extra || ''));
 
-module.exports = { freeBusy, insertEvent, deleteEvent, listEvents };
+// Udalosti zapísané ručne do spoločného kalendára (CAL_SHARED) – blokujú všetkých barberov.
+// Zrkadlené rezervácie (barberis=1) sa preskakujú, tie patria len konkrétnemu barberovi.
+async function sharedBlocks(fromMs, toMs) {
+  const id = process.env.CAL_SHARED;
+  if (!id) return [];
+  const j = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,start,end,extendedProperties)');
+  const out = [];
+  (j.items || []).forEach((ev) => {
+    if (ev.status === 'cancelled' || !ev.start || !ev.end) return;
+    if (ev.extendedProperties && ev.extendedProperties.private && ev.extendedProperties.private.barberis === '1') return;
+    if (ev.start.date && ev.end.date) out.push({ start: localToMs(ev.start.date, 0), end: localToMs(ev.end.date, 0) });
+    else if (ev.start.dateTime && ev.end.dateTime) out.push({ start: Date.parse(ev.start.dateTime), end: Date.parse(ev.end.dateTime) });
+  });
+  return out;
+}
+
+module.exports = { sharedBlocks, freeBusy, insertEvent, deleteEvent, listEvents };

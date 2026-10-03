@@ -1,7 +1,7 @@
 // POST /api/book { service, barber, date, time, name, phone, email }
 const { SERVICES, BARBERS, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, calendarId } = require('./_lib/config');
 const { localToMs, addDays, todayStr, isDateStr } = require('./_lib/time');
-const { freeBusy, insertEvent, deleteEvent, listEvents } = require('./_lib/google');
+const { freeBusy, sharedBlocks, insertEvent, deleteEvent, listEvents } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
 const { mailCustomer, notifyOwner } = require('./_lib/mail');
 
@@ -37,9 +37,10 @@ module.exports = async function handler(req, res) {
     if (ids.some((i) => !i)) return res.status(503).json({ error: 'Kalendár nie je nastavený' });
     const sharedId = process.env.CAL_SHARED || null;
 
-    const busy = await freeBusy(ids, localToMs(date, 0), localToMs(addDays(date, 1), 0));
+    const dayFrom = localToMs(date, 0), dayTo = localToMs(addDays(date, 1), 0);
+    const [busy, shared] = await Promise.all([freeBusy(ids, dayFrom, dayTo), sharedBlocks(dayFrom, dayTo)]);
     const busyByBarber = {};
-    names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]]; });
+    names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]].concat(shared); });
     const slot = daySlots({ date, barber, service, busyByBarber, nowMs }).find((s) => s.time === time);
     if (!slot) return res.status(409).json({ error: 'Tento čas už nie je voľný. Vyber si, prosím, iný.', taken: true });
 
