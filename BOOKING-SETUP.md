@@ -17,7 +17,8 @@ Pre každý skopíruj *ID kalendára* (Nastavenia kalendára → Integrovať kal
 | `GOOGLE_SERVICE_ACCOUNT_JSON` | **celý obsah** stiahnutého JSON súboru (otvoriť v Poznámkovom bloku, Ctrl+A, Ctrl+C, vložiť). Alternatíva: samostatné `GOOGLE_SERVICE_ACCOUNT_EMAIL` a `GOOGLE_PRIVATE_KEY` |
 | `CAL_ANETT`, `CAL_KARVY`, `CAL_VLADIS` | ID kalendárov barberov |
 | `CAL_SHARED` | ID spoločného kalendára (každá rezervácia sa tam zrkadlí s menom barbera) |
-| `RESEND_API_KEY`, `MAIL_FROM` | *voliteľné* – potvrdzovacie e-maily cez Resend |
+| `RESEND_API_KEY`, `MAIL_FROM` | e-maily cez Resend (klient dostane potvrdenie aj zrušenie). `MAIL_FROM` napr. `BARBERIS <rezervacie@tvojadomena.sk>` – doména musí byť overená v Resende |
+| `OWNER_EMAIL` | tvoj Gmail (viac adries oddeľ čiarkou) – dostaneš farebný e-mail: 🟢 zelený pri novej rezervácii, 🔴 červený pri zrušení |
 
 Po pridaní premenných treba nasadiť znova (Redeploy).
 

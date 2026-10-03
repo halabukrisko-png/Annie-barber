@@ -4,6 +4,7 @@
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId } = require('./_lib/config');
 const { todayStr, minuteOfDay, hhmm } = require('./_lib/time');
 const { listEvents, deleteEvent } = require('./_lib/google');
+const { sendMail, notifyOwner } = require('./_lib/mail');
 
 const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 
@@ -37,7 +38,10 @@ module.exports = async function handler(req, res) {
         const pr = (e.extendedProperties && e.extendedProperties.private) || {};
         if (!matches(pr, e.description)) return;
         mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? SERVICES[pr.service].name : (e.summary || ''),
-          date: todayStr(ms), time: hhmm(minuteOfDay(ms)) });
+          date: todayStr(ms), time: hhmm(minuteOfDay(ms)),
+          name: ((e.description || '').match(/Zákazník:\s*(.+)/) || [])[1] || '',
+          phone: pr.phone || '',
+          email: pr.emailKey || ((e.description || '').match(/E-mail:\s*(\S+)/) || [])[1] || '' });
       });
     }
     mine.sort((a, c) => a.ms - c.ms);
@@ -56,6 +60,13 @@ module.exports = async function handler(req, res) {
         for (const e of (m.items || [])) await deleteEvent(shared, e.id).catch(() => {});
       } catch (e) { console.error('shared cancel', e); }
     }
+    const when = target.date.split('-').reverse().join('. ') + ' o ' + target.time;
+    if (target.email) {
+      await sendMail(target.email, 'Zrušenie termínu – BARBERIS',
+        'Ahoj ' + (target.name || '') + ',\n\ntvoj termín bol zrušený:\n' + target.service + ' u ' + target.barber + '\n' + when +
+        '\n\nNový termín si môžeš rezervovať na webe alebo na 0951 833 488.\n\nBARBERIS');
+    }
+    await notifyOwner('cancel', { when, service: target.service, barber: target.barber, name: target.name, phone: target.phone, email: target.email });
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.error(e);

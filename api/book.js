@@ -3,6 +3,7 @@ const { SERVICES, BARBERS, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, calendar
 const { localToMs, addDays, todayStr, isDateStr } = require('./_lib/time');
 const { freeBusy, insertEvent, deleteEvent, listEvents } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
+const { sendMail, notifyOwner } = require('./_lib/mail');
 
 const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
@@ -10,17 +11,6 @@ const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(
 async function readBody(req) {
   if (req.body && typeof req.body === 'object') return req.body;
   try { return JSON.parse(req.body || '{}'); } catch (e) { return {}; }
-}
-
-async function sendMail(to, subject, text) {
-  if (!process.env.RESEND_API_KEY || !process.env.MAIL_FROM) return;
-  try {
-    await fetch('https://api.resend.com/emails', {
-      method: 'POST',
-      headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: process.env.MAIL_FROM, to: [to], subject, text }),
-    });
-  } catch (e) { console.error('mail', e); }
 }
 
 module.exports = async function handler(req, res) {
@@ -88,6 +78,7 @@ module.exports = async function handler(req, res) {
       await sendMail(email, 'Potvrdenie termínu – BARBERIS',
         'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbana 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, zavolaj na 0951 833 488.\n\nBARBERIS');
     }
+    await notifyOwner('new', { when, service: svc.name, barber: who, name, phone, email });
     return res.status(200).json({ ok: true, barber: who, time, date, duration: dur });
   } catch (e) {
     console.error(e);
