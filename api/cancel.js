@@ -64,7 +64,7 @@ module.exports = async function handler(req, res) {
     if (target.email) {
       await sendMail(target.email, 'Zrušenie termínu – BARBERIS',
         'Ahoj ' + (target.name || '') + ',\n\ntvoj termín bol zrušený:\n' + target.service + ' u ' + target.barber + '\n' + when +
-        '\n\nNový termín si môžeš rezervovať na webe alebo na 0951 833 488.\n\nBARBERIS');
+        '\n\nNový termín si môžeš rezervovať na webe:\nhttps://annie-barber.vercel.app/\nalebo na čísle 0951 833 488.\n\nBARBERIS');
     }
     await notifyOwner('cancel', { when, service: target.service, barber: target.barber, name: target.name, phone: target.phone, email: target.email });
     return res.status(200).json({ ok: true });
