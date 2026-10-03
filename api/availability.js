@@ -1,5 +1,5 @@
 // GET /api/availability?service=strih&barber=Anett|''&from=YYYY-MM-DD&to=YYYY-MM-DD
-// -> { days: { 'YYYY-MM-DD': ['08:00', ...] } }  (prázdne pole = deň je obsadený)
+// -> { days: { 'YYYY-MM-DD': ['09:00', ...] } }  (prázdne pole = deň je obsadený)
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS, HOURS, calendarId } = require('./_lib/config');
 const { localToMs, addDays, todayStr, isDateStr, weekday } = require('./_lib/time');
 const { freeBusy, sharedBlocks } = require('./_lib/google');

@@ -5,18 +5,16 @@ const TZ = 'Europe/Bratislava';
 
 // Otváracie hodiny v minútach od polnoci (0 = nedeľa ... 6 = sobota); chýbajúci deň = zatvorené.
 const HOURS = {
-  1: [8 * 60, 18 * 60],
-  2: [8 * 60, 18 * 60],
-  3: [8 * 60, 18 * 60],
-  4: [8 * 60, 18 * 60],
-  5: [8 * 60, 18 * 60],
-  6: [8 * 60, 14 * 60],
+  1: [9 * 60, 18 * 60],
+  2: [9 * 60, 18 * 60],
+  3: [9 * 60, 18 * 60],
+  4: [9 * 60, 18 * 60],
+  5: [9 * 60, 18 * 60],
+  6: [9 * 60, 14 * 60],
 };
 
-const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi
+const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi (žiadna)
 const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
-// Vladis má vlastné nastavenie: krok 15 min a 5 min prestávka
-const BARBER_TIMING = { Vladis: { breakMin: 5, gridMin: 15 } };
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
 const HORIZON_DAYS = 60;      // ako ďaleko dopredu sa dá rezervovať
 
@@ -45,8 +43,8 @@ function durationFor(serviceId, barber) {
   return (s.byBarber && s.byBarber[barber]) || s.min;
 }
 
-function breakFor(barber) { return (BARBER_TIMING[barber] || {}).breakMin ?? BREAK_MIN; }
-function gridFor(barber) { return (BARBER_TIMING[barber] || {}).gridMin ?? GRID_MIN; }
+function breakFor() { return BREAK_MIN; }
+function gridFor(barber) { return barber === 'Vladis' ? 15 : GRID_MIN; } // Vladis: krok 15 min
 
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;

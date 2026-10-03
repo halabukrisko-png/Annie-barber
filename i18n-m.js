@@ -263,8 +263,8 @@
     'Hurbana 4, 971 01 Prievidza': 'Hurbana 4, 971 01 Prievidza',
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
-    'Pondelok – Piatok · 8:00 – 18:00': 'Monday – Friday · 8:00 – 18:00',
-    'Sobota · 8:00 – 14:00': 'Saturday · 8:00 – 14:00',
+    'Pondelok – Piatok · 9:00 – 18:00': 'Monday – Friday · 9:00 – 18:00',
+    'Sobota · 9:00 – 14:00': 'Saturday · 9:00 – 14:00',
     'Otváracie hodiny': 'Opening hours',
     'Adresa': 'Address',
     'Hurbana 4': 'Hurbana 4',
@@ -280,8 +280,8 @@
     'Nedeľa': 'Sunday',
     'Zatvorené': 'Closed',
     'Práve otvorené': 'Open now',
-    '8:00 – 18:00': '8:00 AM – 6:00 PM',
-    '8:00 – 14:00': '8:00 AM – 2:00 PM',
+    '9:00 – 18:00': '9:00 AM – 6:00 PM',
+    '9:00 – 14:00': '9:00 AM – 2:00 PM',
     'Mapa — BARBERIS, Hurbana 4, Prievidza': 'Map — BARBERIS, Hurbana 4, Prievidza',
 
     // desktop footer
