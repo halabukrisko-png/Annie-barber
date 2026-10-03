@@ -271,6 +271,26 @@
   .price-list li:first-child { border-top: none; }
   .price-list li .pl-name { font-weight: 600; }
   .price-list li .pl-price { color: var(--bronze); font-weight: 700; flex: 0 0 auto; }
+  @media (prefers-reduced-motion: reduce) { .rv-frame::before { transition: none; } }
+  /* price list: the frame draws itself first, then the rows write in one by one */
+  @keyframes cnRing { from { --ring: 0deg; } to { --ring: 400deg; } }
+  #cennik-full { position: relative; }
+  #cennik-full::before {
+    content: ''; position: absolute; inset: -1px; padding: 1px; border-radius: inherit; pointer-events: none; opacity: 0; --ring: 0deg;
+    background: conic-gradient(from 0deg, var(--bronze) 0deg, var(--bronze) calc(var(--ring) / 2 - 9deg), rgba(201,160,106,0) calc(var(--ring) / 2),
+      rgba(201,160,106,0) calc(360deg - var(--ring) / 2), var(--bronze) calc(360deg - var(--ring) / 2 + 9deg), var(--bronze) 360deg);
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+    mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  #cennik-full.cn-run { border-color: transparent !important; }
+  #cennik-full.cn-run::before { opacity: 1; animation: cnRing 2.5s cubic-bezier(.45,.05,.25,1) both; }
+  #cennik-full.cn-done { border-color: rgba(201,160,106,0.5) !important; transition: border-color .6s ease; }
+  #cennik-full > div, #cennik-full > p { opacity: 0; transition: opacity .5s ease; }
+  #cennik-full .price-list li { opacity: 0; transform: translateY(8px); transition: opacity .45s ease, transform .45s ease; }
+  #cennik-full.cn-items > div, #cennik-full.cn-items > p { opacity: 1; }
+  #cennik-full > p { transition-delay: .2s; }
+  #cennik-full.cn-items .price-list li { opacity: 1; transform: none; transition-delay: calc(var(--i, 0) * 200ms); }
+  @media (prefers-reduced-motion: reduce) { #cennik-full > div, #cennik-full > p, #cennik-full .price-list li { opacity: 1; transform: none; transition: none; } #cennik-full.cn-run::before { animation: none; } }
 </style>
 </head>
 <body>
@@ -415,7 +435,7 @@
         </div>
         <p style="margin:14px 0 0;font-size:11px;line-height:1.6;color:var(--cream-dim);">Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️</p>
       </div>
-      <button id="cennik-toggle" type="button" aria-expanded="false" onclick="var m=document.getElementById('cennik-full');var open=m.style.display==='flex';m.style.display=open?'none':'flex';this.setAttribute('aria-expanded',String(!open));this.textContent=open?'Pozrieť celý cenník ↓':'Zatvoriť cenník ↑';" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
+      <button id="cennik-toggle" type="button" aria-expanded="false" style="display:block;width:100%;margin-top:12px;background:var(--bg);border:1px solid rgba(201,160,106,0.4);color:var(--bronze);padding:13px;border-radius:2px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Pozrieť celý cenník ↓</button>
       <a href="/o-nas-m#booking" class="btn-cta btn-cta-pro" style="display:block;width:100%;margin-top:10px;background:var(--bronze);color:#141311;text-align:center;padding:13px;border-radius:2px;font-weight:700;font-size:11px;letter-spacing:0.06em;text-transform:uppercase;box-sizing:border-box;">Zarezervovať termín <span class="btn-cta-arrow">→</span></a>
     </div>
 
@@ -1081,6 +1101,56 @@
     window.addEventListener('scroll', req, { passive: true });
     window.addEventListener('resize', req);
     upd();
+  })();
+  (function () {
+    var btn = document.getElementById('cennik-toggle');
+    var box = document.getElementById('cennik-full');
+    if (!btn || !box) return;
+    var timers = [];
+    var note = box.querySelector(':scope > p');
+    var noteText = note ? note.textContent : '';
+    function clear() { timers.forEach(clearTimeout); timers = []; if (note) note.textContent = noteText; }
+    function hideNote() {
+      if (!note) return;
+      note.innerHTML = '<span></span><span style="opacity:0"></span>';
+      note.lastChild.textContent = T(noteText);
+    }
+    function typeNote() {
+      if (!note) return;
+      var full = T(noteText), chars = Array.from(full), k = 0;
+      if (!note.firstChild || note.childNodes.length !== 2) hideNote();
+      var a = note.firstChild, b = note.lastChild;
+      (function step() {
+        a.textContent = chars.slice(0, k).join('');
+        b.textContent = chars.slice(k).join('');
+        if (k >= chars.length) { note.textContent = full; return; }
+        k++;
+        timers.push(setTimeout(step, 24));
+      })();
+    }
+    box.querySelectorAll('.price-list li').forEach(function (li, i) { li.style.setProperty('--i', i); });
+    var still = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    btn.addEventListener('click', function () {
+      var open = box.style.display === 'flex';
+      clear();
+      if (open) {
+        box.style.display = 'none';
+        box.classList.remove('cn-run', 'cn-items', 'cn-done');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = T('Pozrieť celý cenník ↓');
+        return;
+      }
+      box.classList.remove('cn-run', 'cn-items', 'cn-done');
+      box.style.display = 'flex';
+      btn.setAttribute('aria-expanded', 'true');
+      btn.textContent = T('Zatvoriť cenník ↑');
+      if (still) { box.classList.add('cn-items', 'cn-done'); return; }
+      hideNote();
+      void box.offsetWidth;
+      box.classList.add('cn-run');
+      timers.push(setTimeout(function () { box.classList.add('cn-items', 'cn-done'); }, 2300));
+      timers.push(setTimeout(typeNote, 2300 + box.querySelectorAll('.price-list li').length * 200 + 400));
+    });
   })();
 </script>
 <script>
