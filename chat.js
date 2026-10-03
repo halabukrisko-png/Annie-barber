@@ -7,6 +7,8 @@
   var MAPS = 'https://maps.google.com/?q=Hurbana+4,+Prievidza';
   var IG = 'https://www.instagram.com/_barberis._/';
   var BOOK = '/o-nas#booking';
+  // mobile pages (X-m.html) get their own variants of a few answers
+  var MOBILE = /-m(\.html)?\/?$/.test(location.pathname);
 
   var HOURS = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
   function isOpenNow() {
@@ -110,10 +112,10 @@
       keys: ['kde', 'adres', 'ulic', 'prievidz', 'hurban', 'mapa', 'navig', 'where', 'address', 'location', 'map', 'find', 'directions', 'parking', 'parkov'],
       chip: { sk: 'Kde nás nájdeš', en: 'Where to find us' },
       sk: function () {
-        return img('assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
+        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
       },
       en: function () {
-        return img('assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
+        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
       }
     },
     services: {
@@ -140,9 +142,11 @@
       keys: ['zrus', 'zmen', 'presun', 'cancel', 'change', 'reschedul', 'move'],
       chip: { sk: 'Zrušiť termín', en: 'Cancel appointment' },
       sk: function () {
+        if (MOBILE) return '<div class="bb-ring"><b>Termín zrušíš najjednoduchšie cez web</b> – stačí zadať telefón alebo e-mail z rezervácie.<br><a href="/o-nas-m#cancel-contact">Zrušiť termín cez web →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>.</div>';
         return 'Termín zmeníš alebo zrušíš najjednoduchšie telefonicky – radi ti nájdeme nový čas.<br><a href="' + TEL + '">Zavolať ' + PHONE + '</a>';
       },
       en: function () {
+        if (MOBILE) return '<div class="bb-ring"><b>The easiest way to cancel is on the website</b> — just enter the phone or e-mail from your booking.<br><a href="/o-nas-m#cancel-contact">Cancel online →</a><br><br>Or call <a href="' + TEL + '">' + PHONE + '</a>.</div>';
         return 'The easiest way to change or cancel is by phone — we will gladly find you a new time.<br><a href="' + TEL + '">Call ' + PHONE + '</a>';
       }
     },
@@ -339,12 +343,16 @@
     '#bb-chat-btn.open .ic-chat{opacity:0;transform:rotate(90deg) scale(.5);}' +
     '#bb-chat-btn.open .ic-x{opacity:1;transform:none;}' +
     '#bb-chat-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #c9a06a;opacity:0;pointer-events:none;}' +
+    '@property --bbring{syntax:"<angle>";inherits:false;initial-value:0deg;}' +
+    '.bb-ring{position:relative;padding:8px 10px;margin:-6px -10px;border-radius:12px;}' +
+    '.bb-ring::before{content:"";position:absolute;inset:0;padding:1.5px;border-radius:12px;pointer-events:none;--bbring:372deg;background:conic-gradient(from 0deg,#c9a06a 0deg,#c9a06a calc(var(--bbring)/2 - 9deg),rgba(201,160,106,0) calc(var(--bbring)/2),rgba(201,160,106,0) calc(360deg - var(--bbring)/2),#c9a06a calc(360deg - var(--bbring)/2 + 9deg),#c9a06a 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);}' +
     '.bb-m.bot.typing{display:flex;gap:4px;align-items:center;padding:10px 12px;}' +
     '.bb-m.typing i{width:5px;height:5px;border-radius:50%;background:#c9a06a;opacity:.45;}' +
     '@media (prefers-reduced-motion:no-preference){' +
       '#bb-chat-btn{animation:bbPop .6s cubic-bezier(.34,1.56,.64,1) 1.2s both;}' +
       '#bb-chat-btn.attn::after{animation:bbRing 1.6s ease-out 2s 2 both;}' +
       '.bb-m{animation:bbMsg .42s cubic-bezier(.22,1,.36,1) both;}' +
+      '.bb-ring::before{animation:bbRingDraw 2.6s cubic-bezier(.45,.05,.25,1) .25s both;}@keyframes bbRingDraw{from{--bbring:0deg;}to{--bbring:372deg;}}' +
       '.bb-m.me{transform-origin:bottom right;}.bb-m.bot{transform-origin:bottom left;}' +
       '.bb-m.typing i{animation:bbDot 1s ease-in-out infinite;}' +
       '.bb-m.typing i:nth-child(2){animation-delay:.15s;}.bb-m.typing i:nth-child(3){animation-delay:.3s;}' +
