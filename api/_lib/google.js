@@ -100,12 +100,14 @@ async function freeBusy(calendarIds, fromMs, toMs) {
     if (!c || (c.errors && c.errors.length)) throw new Error('Kalendár nie je dostupný: ' + id + ' ' + JSON.stringify(c && c.errors));
     out[id] = (c.busy || []).map((b) => ({ start: Date.parse(b.start), end: Date.parse(b.end) }));
   });
-  // Celodenné udalosti sú v Google Kalendári predvolene "voľný" čas, takže ich freeBusy nevidí – berieme ich ako obsadený celý deň.
+  // Udalosti označené ako "voľný" čas (predvolené pri celodenných, často aj pri prestávkach) freeBusy nevidí.
+  // Pre barbera ich berieme ako obsadené vždy – celodenné na celý deň, ostatné na ich čas.
   await Promise.all(calendarIds.map(async (id) => {
-    const j2 = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,start,end)');
+    const j2 = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,transparency,start,end)');
     (j2.items || []).forEach((ev) => {
-      if (ev.status === 'cancelled' || !ev.start || !ev.start.date || !ev.end || !ev.end.date) return;
-      out[id].push({ start: localToMs(ev.start.date, 0), end: localToMs(ev.end.date, 0) });
+      if (ev.status === 'cancelled' || !ev.start || !ev.end) return;
+      if (ev.start.date && ev.end.date) out[id].push({ start: localToMs(ev.start.date, 0), end: localToMs(ev.end.date, 0) });
+      else if (ev.transparency === 'transparent' && ev.start.dateTime && ev.end.dateTime) out[id].push({ start: Date.parse(ev.start.dateTime), end: Date.parse(ev.end.dateTime) });
     });
   }));
   return out;
