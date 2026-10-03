@@ -76,7 +76,7 @@ module.exports = async function handler(req, res) {
 
     if (email) {
       await sendMail(email, 'Potvrdenie termínu – BARBERIS',
-        'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbana 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, môžeš to spraviť na webe (stačí zadať telefón alebo e-mail, s ktorým si rezervoval):\nhttps://annie-barber.vercel.app/\nalebo zavolaj na 0951 833 488.\n\nBARBERIS');
+        'Ahoj ' + name + ',\n\ntvoj termín je potvrdený:\n' + svc.name + ' u ' + who + '\n' + when + '\nHurbana 4, Prievidza\n\nAk potrebuješ termín zmeniť alebo zrušiť, môžeš to spraviť na webe:\nhttps://annie-barber.vercel.app/\nalebo zavolaj na 0951 833 488.\n\nBARBERIS');
     }
     await notifyOwner('new', { when, service: svc.name, barber: who, name, phone, email });
     return res.status(200).json({ ok: true, barber: who, time, date, duration: dur });
