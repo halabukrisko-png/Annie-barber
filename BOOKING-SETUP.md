@@ -24,6 +24,6 @@ Po pridaní premenných treba nasadiť znova (Redeploy).
 
 ## Ako to funguje
 - Voľné časy sa počítajú z kalendárov barberov: **akákoľvek udalosť v kalendári barbera blokuje čas** (dovolenka, obed… stačí si ju tam pridať).
-- Dĺžky služieb a hodiny sú v `api/_lib/config.js` (strih 30 min, Vladis 45 min; komplet 60; brada, detský, farbenie, pleť 30; holenie + brada 45).
-- Medzi termínmi je 5 min prestávka. Pri voľbe „Nezáleží“ sa termín priradí barberovi, ku ktorému sa najlepšie hodí (nalepí sa na jeho existujúce termíny a nerozbíja voľné okná iných).
+- Dĺžky služieb a hodiny sú v `api/_lib/config.js` (komplet 60 min, ostatné 30 min; Vladis má strih a holenie 45 min).
+- Termíny sa ponúkajú po 30 min a bez prestávky (Vladis: po 15 min a s 5 min prestávkou). Pri voľbe „Nezáleží“ sa termín priradí barberovi, ku ktorému sa najlepšie hodí (nalepí sa na jeho existujúce termíny a nerozbíja voľné okná iných).
 - Rezervovať sa dá najskôr o hodinu dopredu a max. 60 dní vopred.

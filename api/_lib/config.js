@@ -13,8 +13,10 @@ const HOURS = {
   6: [8 * 60, 14 * 60],
 };
 
-const BREAK_MIN = 5;          // prestávka medzi dvoma termínmi
-const GRID_MIN = 15;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
+const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi
+const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
+// Vladis má vlastné nastavenie: krok 15 min a 5 min prestávka
+const BARBER_TIMING = { Vladis: { breakMin: 5, gridMin: 15 } };
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
 const HORIZON_DAYS = 60;      // ako ďaleko dopredu sa dá rezervovať
 
@@ -32,7 +34,7 @@ const SERVICES = {
   komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60 },
   brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30 },
   detsky:    { name: 'Detský strih do 12 r.', nameEn: 'Kids haircut (under 12)',          price: '15 €',     min: 30 },
-  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 45 },
+  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 30, byBarber: { Vladis: 45 } },
   farbenie:  { name: 'Farbenie brady', nameEn: 'Beard colouring',                 price: '5 – 10 €', min: 30 },
   cistenie:  { name: 'Čistenie pleti', nameEn: 'Facial cleansing',                 price: 'od 10 €',  min: 30 },
 };
@@ -43,8 +45,11 @@ function durationFor(serviceId, barber) {
   return (s.byBarber && s.byBarber[barber]) || s.min;
 }
 
+function breakFor(barber) { return (BARBER_TIMING[barber] || {}).breakMin ?? BREAK_MIN; }
+function gridFor(barber) { return (BARBER_TIMING[barber] || {}).gridMin ?? GRID_MIN; }
+
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
 }
 
-module.exports = { TZ, HOURS, BREAK_MIN, GRID_MIN, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, calendarId };
+module.exports = { TZ, HOURS, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, calendarId };
