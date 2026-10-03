@@ -32,7 +32,7 @@ const SERVICES = {
   komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60 },
   brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30 },
   detsky:    { name: 'Detský strih do 12 r.', nameEn: 'Kids haircut (under 12)',          price: '15 €',     min: 30 },
-  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 30, byBarber: { Vladis: 45 } },
+  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 60 },
   farbenie:  { name: 'Farbenie brady', nameEn: 'Beard colouring',                 price: '5 – 10 €', min: 30 },
   cistenie:  { name: 'Čistenie pleti', nameEn: 'Facial cleansing',                 price: 'od 10 €',  min: 30 },
 };
@@ -44,7 +44,7 @@ function durationFor(serviceId, barber) {
 }
 
 function breakFor() { return BREAK_MIN; }
-function gridFor(barber) { return barber === 'Vladis' ? 15 : GRID_MIN; } // Vladis: krok 15 min
+function gridFor() { return GRID_MIN; } // všetci barberi: krok 30 min
 
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;

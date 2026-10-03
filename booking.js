@@ -20,7 +20,7 @@
   var HOURS_OPEN = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
   var DUR = { // minúty; Vladis má strih 45 min
     strih: { d: 30, Vladis: 45 }, komplet: { d: 60 }, brada: { d: 30 }, detsky: { d: 30 },
-    holenie: { d: 30, Vladis: 45 }, farbenie: { d: 30 }, cistenie: { d: 30 }
+    holenie: { d: 60 }, farbenie: { d: 30 }, cistenie: { d: 30 }
   };
 
   var todayDate = new Date(); todayDate.setHours(0, 0, 0, 0);
