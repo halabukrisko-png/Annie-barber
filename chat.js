@@ -9,6 +9,7 @@
   var BOOK = '/o-nas#booking';
   // mobile pages (X-m.html) get their own variants of a few answers
   var MOBILE = /-m(\.html)?\/?$/.test(location.pathname);
+  if (MOBILE) BOOK = '/o-nas-m#booking';
 
   var HOURS = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
   function isOpenNow() {
@@ -58,7 +59,7 @@
       if (picked) {
         var pd = picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate());
         html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
-          '<div class="bb-slots"><a href="/o-nas?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
+          '<div class="bb-slots"><a href="' + (MOBILE ? '/o-nas-m' : '/o-nas') + '?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
           '<div class="bb-cal-note">' + (en ? 'Choose your barber and service to see the exact free times.' : 'Vyber barbera a službu a uvidíš presné voľné časy.') + '</div>';
       }
       wrap.innerHTML = html;
