@@ -541,7 +541,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     background: radial-gradient(closest-side, rgba(201,160,106,0.28), transparent); filter: blur(30px);
   }
   @keyframes heroFrame { from { opacity: 0; transform: translate3d(-26px, -26px, 0); } to { opacity: 1; transform: none; } }
-  .hero-visual > img {
+  .hero-visual img {
     position: relative !important; inset: auto !important; display: block; width: 100% !important; height: auto !important; aspect-ratio: 1449 / 2000;
     object-fit: cover !important; object-position: 50% 30% !important; border-radius: var(--radius); border: 1px solid var(--line);
     box-shadow: 0 60px 100px -50px rgba(0,0,0,0.95);
@@ -684,8 +684,8 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 /* 6. Reduced motion -------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
   .d-rv { opacity: 1 !important; transform: none !important; transition: none !important; }
-  #hero::after, .hero-visual > img, .hero-visual::before, .hero-meta, .booking-badge .dot { animation: none !important; }
-  .hero-visual > img, .intro-inner .intro-photo, .cta-body > img { transform: none !important; }
+  #hero::after, .hero-visual img, .hero-visual::before, .hero-meta, .booking-badge .dot { animation: none !important; }
+  .hero-visual img, .intro-inner .intro-photo, .cta-body > img { transform: none !important; }
   .btn-cta::after { display: none; }
   .svc-hover-row, .team-frame, .review-card, .photo-frame img, .contact-action, .cta-body > img, .svc-thumb { transition-duration: .01ms !important; }
 }
@@ -810,7 +810,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     -webkit-mask-composite: source-in; mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.55) 22%, #000 48%), linear-gradient(180deg, #000 70%, transparent 100%); mask-composite: intersect;
   }
   .hero-visual::before, .hero-visual::after { display: none !important; }
-  .hero-visual > img {
+  .hero-visual img {
     position: absolute !important; inset: 0 !important; width: 100% !important; height: 100% !important; aspect-ratio: auto; border: 0 !important; border-radius: 0 !important; box-shadow: none !important;
     object-fit: cover !important; object-position: 50% 16% !important; filter: brightness(.62) saturate(.8) contrast(1.08);
   }
@@ -825,7 +825,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.8) 60%, #000 80%), linear-gradient(180deg, #000 62%, transparent 100%) !important;
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,0.25) 30%, rgba(0,0,0,0.8) 60%, #000 80%), linear-gradient(180deg, #000 62%, transparent 100%) !important;
   }
-  .hero-visual > img { object-position: 78% 18% !important; filter: brightness(.5) saturate(.7) contrast(1.12) !important; }
+  .hero-visual img { object-position: 78% 18% !important; filter: brightness(.5) saturate(.7) contrast(1.12) !important; }
   #hero h1 { font-size: clamp(46px, 5.4vw, 84px) !important; line-height: 1.0 !important; font-weight: 800; letter-spacing: -0.02em !important; }
   #hero h1 #tw-l2 { background: linear-gradient(90deg, #b8934f 0%, #f1d9a6 55%, #d9b573 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
   .hero-content > p { font-size: clamp(17px, 1.5vw, 21px) !important; color: rgba(244,237,225,0.78) !important; max-width: 520px !important; }
@@ -840,7 +840,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   #hero h1 #tw-l2 > span { background: linear-gradient(180deg, #f1d9a6 0%, #d3ad6c 55%, #b8934f 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
   .hero-content > .hero-cta-row { flex-wrap: nowrap !important; gap: 14px !important; }
   .hero-content > .hero-cta-row a { padding: 17px 24px !important; }
-  .hero-visual > img { object-position: 70% 14% !important; object-fit: cover !important; }
+  .hero-visual img { object-position: 70% 14% !important; object-fit: cover !important; }
   .hero-visual { width: 88% !important; inset: 0 0 0 auto !important; }
   #hero h1 { font-size: clamp(44px, 4.8vw, 72px) !important; min-height: 0 !important; }
 }
@@ -851,13 +851,13 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     mask-image: none !important;
     -webkit-mask-image: none !important;
   }
-  .hero-visual > img {
+  .hero-visual img {
     object-fit: contain !important; object-position: 74% 100% !important; filter: brightness(.58) saturate(.75) contrast(1.1) !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.4) 18%, #000 40%, #000 82%, transparent 100%); mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.4) 18%, #000 40%, #000 82%, transparent 100%);
   }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img { -webkit-mask-image: none !important; mask-image: none !important; }
+  .hero-visual img { -webkit-mask-image: none !important; mask-image: none !important; }
   .hero-visual {
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 14%, #000 34%, #000 66%, rgba(0,0,0,.35) 86%, transparent 100%) !important;
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 14%, #000 34%, #000 66%, rgba(0,0,0,.35) 86%, transparent 100%) !important;
@@ -865,7 +865,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 }
 @media (min-width: 1024px) {
   .hero-visual { -webkit-mask-image: none !important; mask-image: none !important; }
-  .hero-visual > img {
+  .hero-visual img {
     inset: 0 12% 0 auto !important; width: auto !important; height: 100% !important; aspect-ratio: 1449 / 2000 !important; object-fit: cover !important; object-position: 50% 50% !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 16%, #000 42%, #000 76%, rgba(0,0,0,.4) 92%, transparent 100%) !important;
     mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.45) 16%, #000 42%, #000 76%, rgba(0,0,0,.4) 92%, transparent 100%) !important;
@@ -874,8 +874,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 
 /* hero v3: the wide studio shot as the full-bleed background, shifted right so the copy sits on its dark left side ---- */
 @media (min-width: 1024px) {
-  .hero-visual > img {
-    content: url('assets/hero-wide.jpg');
+  .hero-visual img {
     inset: 0 0 0 auto !important; width: 108% !important; height: 100% !important; aspect-ratio: auto !important; object-fit: cover !important; object-position: 30% 50% !important; max-width: none !important;
     transform: translateX(14%) !important; filter: brightness(.82) saturate(.9) contrast(1.05) !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, rgba(0,0,0,.35) 22%, #000 46%), linear-gradient(180deg, #000 78%, transparent 100%) !important;
@@ -885,21 +884,21 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .hero-visual { width: 100% !important; inset: 0 !important; overflow: hidden; }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img {
+  .hero-visual img {
     inset: auto 0 0 auto !important; width: 118% !important; height: auto !important; aspect-ratio: 2032 / 774 !important; object-fit: fill !important; transform: translateX(19%) !important; filter: brightness(.85) saturate(.9) contrast(1.05) !important;
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%) !important; mask-image: linear-gradient(180deg, transparent 0%, #000 22%, #000 100%) !important;
     -webkit-mask-composite: source-over !important; mask-composite: add !important;
   }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img {
+  .hero-visual img {
     width: 132% !important; transform: translateX(24%) !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%), linear-gradient(180deg, transparent 0%, #000 26%) !important; -webkit-mask-composite: source-in !important;
     mask-image: linear-gradient(90deg, transparent 0%, #000 34%), linear-gradient(180deg, transparent 0%, #000 26%) !important; mask-composite: intersect !important;
   }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img {
+  .hero-visual img {
     inset: auto auto 0 50% !important; width: 128% !important; transform: translateX(-50%) !important;
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 26%) !important; mask-image: linear-gradient(180deg, transparent 0%, #000 26%) !important; -webkit-mask-composite: source-over !important; mask-composite: add !important;
   }
@@ -907,7 +906,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     background: linear-gradient(90deg, rgba(20,19,17,.94) 0%, rgba(20,19,17,.78) 26%, rgba(20,19,17,0) 50%), linear-gradient(270deg, rgba(20,19,17,.55) 0%, rgba(20,19,17,0) 24%); filter: none !important; width: auto !important; height: auto !important; border-radius: 0 !important; }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img { filter: brightness(.55) saturate(.8) contrast(1.08) !important; }
+  .hero-visual img { filter: brightness(.55) saturate(.8) contrast(1.08) !important; }
   .hero-visual::after {
     background:
       linear-gradient(90deg, rgba(20,19,17,.97) 0%, rgba(20,19,17,.88) 32%, rgba(20,19,17,.35) 52%, rgba(20,19,17,0) 66%),
@@ -916,7 +915,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   }
 }
 @media (min-width: 1024px) {
-  .hero-visual > img { filter: brightness(.62) saturate(.82) contrast(1.08) !important; }
+  .hero-visual img { filter: brightness(.62) saturate(.82) contrast(1.08) !important; }
   .hero-visual::after {
     background:
       linear-gradient(90deg, rgba(20,19,17,.9) 0%, rgba(20,19,17,.66) 30%, rgba(20,19,17,.12) 50%, rgba(20,19,17,0) 62%),
@@ -977,14 +976,14 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
     -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 70px), transparent 100%) !important; mask-image: linear-gradient(180deg, transparent 0, #000 70px, #000 calc(100% - 70px), transparent 100%) !important; -webkit-mask-composite: source-over !important; mask-composite: add !important;
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::before {
-    content: ''; position: absolute; inset: 0; background: url('assets/lounge-detail.jpg') center / cover no-repeat; filter: blur(22px) brightness(.55) saturate(.9); transform: scale(1.1); z-index: -1;
+    content: ''; position: absolute; inset: 0; background: url('assets/lounge-detail-1400.webp') center / cover no-repeat; filter: blur(22px) brightness(.55) saturate(.9); transform: scale(1.1); z-index: -1;
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div { background: linear-gradient(90deg, rgba(20,19,17,.5) 0%, rgba(20,19,17,.2) 30%, rgba(20,19,17,.05) 55%, rgba(20,19,17,.3) 100%) !important; }
 }
 @media (min-width: 1024px) {
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] { background-image: none !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    content: ''; position: absolute; inset: 0; z-index: 0; background: url('assets/lounge-detail.jpg') 100% 60% / 78vw auto no-repeat;
+    content: ''; position: absolute; inset: 0; z-index: 0; background: url('assets/lounge-detail-1400.webp') 100% 60% / 78vw auto no-repeat;
     -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 30%); mask-image: linear-gradient(90deg, transparent 0%, #000 30%);
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div { z-index: 1; }
@@ -997,7 +996,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 @media (min-width: 1024px) {
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::before { display: none !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    background: url('assets/lounge-detail.jpg') 50% 60% / 78vw auto no-repeat;
+    background: url('assets/lounge-detail-1400.webp') 50% 60% / 78vw auto no-repeat;
     -webkit-mask-image: linear-gradient(90deg, transparent 11%, rgba(0,0,0,.45) 22%, #000 36%, #000 64%, rgba(0,0,0,.45) 78%, transparent 89%); mask-image: linear-gradient(90deg, transparent 11%, rgba(0,0,0,.45) 22%, #000 36%, #000 64%, rgba(0,0,0,.45) 78%, transparent 89%);
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div { background: linear-gradient(90deg, rgba(20,19,17,.55) 0%, rgba(20,19,17,.15) 40%, rgba(20,19,17,.15) 60%, rgba(20,19,17,.55) 100%) !important; }
@@ -1022,7 +1021,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 @media (min-width: 1024px) {
   .reveal-stagger[style*="padding:60px 0 40px"] > div { min-height: clamp(560px, 46vw, 680px); }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    background: url('assets/lounge-detail.jpg') 50% 78% / 86vw auto no-repeat;
+    background: url('assets/lounge-detail-1400.webp') 50% 78% / 86vw auto no-repeat;
     -webkit-mask-image: linear-gradient(90deg, transparent 4%, rgba(0,0,0,.5) 16%, #000 32%, #000 68%, rgba(0,0,0,.5) 84%, transparent 96%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
     -webkit-mask-composite: source-in;
     mask-image: linear-gradient(90deg, transparent 4%, rgba(0,0,0,.5) 16%, #000 32%, #000 68%, rgba(0,0,0,.5) 84%, transparent 96%), linear-gradient(180deg, transparent 0%, #000 14%, #000 80%, transparent 100%);
@@ -1073,7 +1072,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { align-self: start !important; max-width: 700px !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"]::before { display: none; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    background: url('assets/lounge-detail.jpg') 50% calc(100% + 34px) / 74vw auto no-repeat !important;
+    background: url('assets/lounge-detail-1400.webp') 50% calc(100% + 34px) / 74vw auto no-repeat !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 12%, rgba(0,0,0,.5) 22%, #000 36%, #000 64%, rgba(0,0,0,.5) 78%, transparent 88%), linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 34%, #000 52%, #000 86%, transparent 100%) !important;
     -webkit-mask-composite: source-in !important;
     mask-image: linear-gradient(90deg, transparent 12%, rgba(0,0,0,.5) 22%, #000 36%, #000 64%, rgba(0,0,0,.5) 78%, transparent 88%), linear-gradient(180deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 34%, #000 52%, #000 86%, transparent 100%) !important;
@@ -1085,7 +1084,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div { min-height: clamp(600px, 47vw, 690px); align-items: flex-end !important; padding: 0 0 clamp(28px, 3vw, 44px) !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[style*="padding:0 24px"] { align-self: end !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    background: url('assets/lounge-detail.jpg') 50% -150px / 74vw auto no-repeat !important;
+    background: url('assets/lounge-detail-1400.webp') 50% -150px / 74vw auto no-repeat !important;
     -webkit-mask-image: linear-gradient(90deg, transparent 12%, rgba(0,0,0,.5) 22%, #000 36%, #000 64%, rgba(0,0,0,.5) 78%, transparent 88%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 14%, #000 30%, #000 52%, rgba(0,0,0,.5) 68%, transparent 82%) !important;
     mask-image: linear-gradient(90deg, transparent 12%, rgba(0,0,0,.5) 22%, #000 36%, #000 64%, rgba(0,0,0,.5) 78%, transparent 88%), linear-gradient(180deg, transparent 0%, rgba(0,0,0,.4) 14%, #000 30%, #000 52%, rgba(0,0,0,.5) 68%, transparent 82%) !important;
   }
@@ -1221,7 +1220,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::before { display: none !important; }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"]::after {
-    background: url('assets/lounge-detail.jpg') 50% 62% / cover no-repeat !important; -webkit-mask-image: none !important; mask-image: none !important;
+    background: url('assets/lounge-detail-1400.webp') 50% 62% / cover no-repeat !important; -webkit-mask-image: none !important; mask-image: none !important;
     filter: brightness(.42) saturate(.8); transition: filter 1s ease;
   }
   .reveal-stagger[style*="padding:60px 0 40px"] > div > div[aria-hidden="true"] > div { background: radial-gradient(ellipse at 50% 50%, rgba(14,13,11,.45), rgba(14,13,11,.7)) !important; transition: opacity 1s ease; }
@@ -1408,7 +1407,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 }
 
 /* service photos (Pánsky strih, Strih + brada, Ornament): the picture sits a bit higher in its frame ---- */
-.svc-thumb[style*="gallery-1.jpg"], .svc-thumb[style*="gallery-3.jpg"], .svc-thumb[style*="gallery-4.jpg"] { background-position: 50% 14% !important; }
+.svc-thumb[style*="gallery-1-480.webp"], .svc-thumb[style*="gallery-3-480.webp"], .svc-thumb[style*="gallery-4-480.webp"] { background-position: 50% 14% !important; }
 
 /* badge sits above the animated card frame, so the frame line no longer cuts through it ---- */
 .svc-hover-row .svc-badge { z-index: 3 !important; }
@@ -1425,7 +1424,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 
 /* o-nas "Naša kozmetika": photo as the card background, text centred on top */
 .bio-card.reveal {
-  background: linear-gradient(rgba(14,13,11,.72), rgba(14,13,11,.82)), url('assets/lounge-detail.jpg') center / cover no-repeat !important;
+  background: linear-gradient(rgba(14,13,11,.72), rgba(14,13,11,.82)), url('assets/lounge-detail-1400.webp') center / cover no-repeat !important;
   text-align: center !important;
 }
 .bio-card.reveal > div:first-child { justify-content: center !important; }
@@ -1513,3 +1512,5 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
 @media (min-width: 1024px) {
   .bio-card.reveal { background: linear-gradient(135deg, #1d1b17 0%, #171613 100%) !important; }
 }
+
+.hero-visual picture { display: contents; }

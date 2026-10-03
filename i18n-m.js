@@ -2,6 +2,36 @@
    English strings live in EN below, keyed by the exact Slovak text. */
 (function () {
   var EN = {
+    // SEO / a11y additions
+    'BARBERIS | Barber & pánsky strih Prievidza': 'BARBERIS | Barber & men’s haircut Prievidza',
+    'O nás a online rezervácia | BARBERIS barber Prievidza': 'About us & online booking | BARBERIS barber Prievidza',
+    'Galéria strihov a práce | BARBERIS Prievidza': 'Haircut gallery | BARBERIS Prievidza',
+    'Tím BARBERIS – Anett, Karvy a Vladis v barbershope v Prievidzi': 'The BARBERIS team – Anett, Karvy and Vladis in the barbershop in Prievidza',
+    'Anett, zakladateľka barbershopu BARBERIS v Prievidzi': 'Anett, founder of the BARBERIS barbershop in Prievidza',
+    'Karvy, barber v BARBERIS Prievidza': 'Karvy, barber at BARBERIS Prievidza',
+    'Vladis, barber v BARBERIS Prievidza': 'Vladis, barber at BARBERIS Prievidza',
+    'Oddychová zóna s koženou sedačkou v BARBERIS': 'Relaxation zone with a leather sofa at BARBERIS',
+    'Ukážka strihu z BARBERIS': 'Haircut preview from BARBERIS',
+    'BARBERIS – pánsky barber v Prievidzi:': 'BARBERIS – men’s barber in Prievidza:',
+    'O nás – barbershop BARBERIS v Prievidzi:': 'About us – BARBERIS barbershop in Prievidza:',
+    'strihov a práce – BARBERIS Prievidza': 'haircuts and work – BARBERIS Prievidza',
+    'Pánsky strih, strih s bradou, úprava brady aj detský strih — v centre Prievidze, pár krokov od námestia. Vyber si, čo ti sadne.': 'Men’s haircut, haircut with beard, beard trim and kids’ haircut — in the centre of Prievidza, a few steps from the square. Pick what suits you.',
+    'Rezervovať si termín online': 'Book an appointment online',
+    '— vyber barbera, službu a voľný čas.': '— choose a barber, a service and a free time.',
+    'Každý strih je originál – pozri si, ako pracujeme v BARBERIS v Prievidzi.': 'Every haircut is one of a kind – see how we work at BARBERIS in Prievidza.',
+    'Zobraziť mapu': 'Show map',
+    'Zobraziť interaktívnu mapu': 'Show the interactive map',
+    'Preskočiť na obsah': 'Skip to content',
+    'Barber strihá klientovi vlasy nožnicami a hrebeňom': 'A barber cutting a client’s hair with scissors and a comb',
+    'Zákazník s upravenou bradou a strihom v barber kresle': 'A client with a groomed beard and haircut in the barber chair',
+    'Barberka upravuje zákazníkovi bradu v pláštenke BARBERIS': 'A barber grooming a client’s beard in a BARBERIS cape',
+    'Vladis v priestoroch barbershopu BARBERIS': 'Vladis in the BARBERIS barbershop',
+    'Karvy sedí v koženom kresle v BARBERIS': 'Karvy sitting in a leather armchair at BARBERIS',
+    'Anett pri barber kresle v BARBERIS': 'Anett by the barber chair at BARBERIS',
+    'Detail krátkeho pánskeho strihu zboku': 'Side view of a short men’s haircut',
+    'Barberka tvaruje zákazníkovi strih a bradu nožnicami': 'A barber shaping a client’s haircut and beard with scissors',
+    'Zákazník v pláštenke BARBERIS počas úpravy s parou': 'A client in a BARBERIS cape during a steam treatment',
+
     // page titles
     'BARBERIS — Pánsky barbershop v Prievidzi': 'BARBERIS — Men’s barbershop in Prievidza',
     'O nás — BARBERIS': 'About us — BARBERIS',

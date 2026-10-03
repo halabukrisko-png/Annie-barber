@@ -6,7 +6,7 @@
   var TEL = 'tel:+421951833488';
   var MAPS = 'https://maps.google.com/?q=Hurbana+4,+Prievidza';
   var IG = 'https://www.instagram.com/_barberis._/';
-  var BOOK = 'o-nas.html#booking';
+  var BOOK = '/o-nas#booking';
 
   var HOURS = { 1: [8, 18], 2: [8, 18], 3: [8, 18], 4: [8, 18], 5: [8, 18], 6: [8, 14] };
   function isOpenNow() {
@@ -19,7 +19,7 @@
   }
   function gallery(n) {
     var h = '<div class="bb-grid">';
-    for (var i = 1; i <= n; i++) h += img('assets/gallery/gallery-' + i + '.jpg', 'BARBERIS');
+    for (var i = 1; i <= n; i++) h += img('assets/gallery/gallery-' + i + '-480.webp', 'BARBERIS');
     return h + '</div>';
   }
 
@@ -52,7 +52,7 @@
       if (picked) {
         var pd = picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate());
         html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
-          '<div class="bb-slots"><a href="o-nas.html?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
+          '<div class="bb-slots"><a href="/o-nas?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
           '<div class="bb-cal-note">' + (en ? 'Choose your barber and service to see the exact free times.' : 'Vyber barbera a službu a uvidíš presné voľné časy.') + '</div>';
       }
       wrap.innerHTML = html;
@@ -110,10 +110,10 @@
       keys: ['kde', 'adres', 'ulic', 'prievidz', 'hurban', 'mapa', 'navig', 'where', 'address', 'location', 'map', 'find', 'directions', 'parking', 'parkov'],
       chip: { sk: 'Kde nás nájdeš', en: 'Where to find us' },
       sk: function () {
-        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
+        return img('assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
       },
       en: function () {
-        return img('assets/storefront.jpg', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
+        return img('assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
       }
     },
     services: {
@@ -130,10 +130,10 @@
       keys: ['tim', 'barber', 'anett', 'karvy', 'vladis', 'team', 'who', 'kto', 'zakladat', 'founder'],
       chip: { sk: 'Náš tím', en: 'Our team' },
       sk: function () {
-        return img('assets/hero-team.jpg', 'Anett, Karvy, Vladis') + '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><a href="index.html#team">Spoznať tím →</a>';
+        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><a href="index.html#team">Spoznať tím →</a>';
       },
       en: function () {
-        return img('assets/hero-team.jpg', 'Anett, Karvy, Vladis') + '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><a href="index.html#team">Meet the team →</a>';
+        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><a href="index.html#team">Meet the team →</a>';
       }
     },
     change: {
@@ -171,8 +171,8 @@
     ornament: {
       keys: ['ornament', 'kreativ', 'creative', 'design', 'vzor'],
       chip: { sk: 'Ornament', en: 'Ornament' },
-      sk: function () { return img('assets/gallery/gallery-2.jpg', 'Ornament') + '<b>Ornament</b> – kreatívny detail vytvorený presne podľa tvojho želania, cena dohodou. Ornamentálne strihy sú špecialitou Karvyho.'; },
-      en: function () { return img('assets/gallery/gallery-2.jpg', 'Ornament') + '<b>Ornament</b> – a creative detail made exactly to your wishes, price by agreement. Ornamental cuts are Karvy’s specialty.'; }
+      sk: function () { return img('assets/gallery/gallery-2-480.webp', 'Ornament') + '<b>Ornament</b> – kreatívny detail vytvorený presne podľa tvojho želania, cena dohodou. Ornamentálne strihy sú špecialitou Karvyho.'; },
+      en: function () { return img('assets/gallery/gallery-2-480.webp', 'Ornament') + '<b>Ornament</b> – a creative detail made exactly to your wishes, price by agreement. Ornamental cuts are Karvy’s specialty.'; }
     },
     skin: {
       keys: ['plet', 'facial', 'skin', 'pokozk'],
@@ -188,18 +188,18 @@
     },
     anett: {
       keys: ['anett', 'annet', 'zakladat', 'founder'],
-      sk: function () { return img('assets/anett.jpg', 'Anett') + '<b>Anett</b> – zakladateľka BARBERIS. Barberingu sa venuje takmer 7 rokov a najviac ju baví práca s ľuďmi.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return img('assets/anett.jpg', 'Anett') + '<b>Anett</b> – founder of BARBERIS. She has been barbering for almost 7 years and enjoys working with people the most.<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/anett-480.webp', 'Anett') + '<b>Anett</b> – zakladateľka BARBERIS. Barberingu sa venuje takmer 7 rokov a najviac ju baví práca s ľuďmi.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/anett-480.webp', 'Anett') + '<b>Anett</b> – founder of BARBERIS. She has been barbering for almost 7 years and enjoys working with people the most.<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     karvy: {
       keys: ['karvy', 'karvi'],
-      sk: function () { return img('assets/karvy.jpg', 'Karvy') + '<b>Karvy</b> – barber s 6 rokmi skúseností, špecialista na ornamentálnu tvorbu a jeden z našich showmanov. Vie postarať o dobrú náladu v kresle. 😄<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return img('assets/karvy.jpg', 'Karvy') + '<b>Karvy</b> – a barber with 6 years of experience, an ornamental work specialist and one of our showmen. He knows how to keep the mood good in the chair. 😄<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/karvy-480.webp', 'Karvy') + '<b>Karvy</b> – barber s 6 rokmi skúseností, špecialista na ornamentálnu tvorbu a jeden z našich showmanov. Vie postarať o dobrú náladu v kresle. 😄<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/karvy-480.webp', 'Karvy') + '<b>Karvy</b> – a barber with 6 years of experience, an ornamental work specialist and one of our showmen. He knows how to keep the mood good in the chair. 😄<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     vladis: {
       keys: ['vladis'],
-      sk: function () { return img('assets/vladis.jpg', 'Vladis') + '<b>Vladis</b> – barber so 4 rokmi skúseností. Dbá na kvalitnú, precíznu prácu a spokojného zákazníka.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
-      en: function () { return img('assets/vladis.jpg', 'Vladis') + '<b>Vladis</b> – a barber with 4 years of experience. He cares about quality, precise work and a satisfied customer.<br><a href="' + BOOK + '">Book now →</a>'; }
+      sk: function () { return img('assets/vladis-480.webp', 'Vladis') + '<b>Vladis</b> – barber so 4 rokmi skúseností. Dbá na kvalitnú, precíznu prácu a spokojného zákazníka.<br><a href="' + BOOK + '">Objednať sa →</a>'; },
+      en: function () { return img('assets/vladis-480.webp', 'Vladis') + '<b>Vladis</b> – a barber with 4 years of experience. He cares about quality, precise work and a satisfied customer.<br><a href="' + BOOK + '">Book now →</a>'; }
     },
     cosmetics: {
       keys: ['kozmet', 'cosmetic', 'produkt', 'product', 'vosk', 'wax'],
@@ -210,8 +210,8 @@
     atmosphere: {
       keys: ['atmosfer', 'atmosphere', 'vibe', 'kava', 'coffee', 'pokec'],
       chip: { sk: 'Atmosféra', en: 'Atmosphere' },
-      sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="o-nas.html">O nás →</a>'; },
-      en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="o-nas.html">About us →</a>'; }
+      sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="/o-nas">O nás →</a>'; },
+      en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="/o-nas">About us →</a>'; }
     },
     booknew: {
       keys: [],
@@ -222,8 +222,8 @@
     gallery: {
       keys: ['galeri', 'gallery', 'foto', 'photo', 'obrazk', 'picture', 'ukazk'],
       chip: { sk: 'Galéria', en: 'Gallery' },
-      sk: function () { return gallery(4) + 'Pár ukážok z našej práce a priestoru.<br><a href="galeria.html">Celá galéria →</a>'; },
-      en: function () { return gallery(4) + 'A few samples of our work and space.<br><a href="galeria.html">Full gallery →</a>'; }
+      sk: function () { return gallery(4) + 'Pár ukážok z našej práce a priestoru.<br><a href="/galeria">Celá galéria →</a>'; },
+      en: function () { return gallery(4) + 'A few samples of our work and space.<br><a href="/galeria">Full gallery →</a>'; }
     },
     calendar: {
       keys: ['kalendar', 'calendar', 'volne terminy', 'available'],
@@ -234,8 +234,8 @@
     about: {
       keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
       chip: { sk: 'O nás', en: 'About us' },
-      sk: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br>Nájdeš nás v centre Prievidze na adrese <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="o-nas.html">O nás →</a>'; },
-      en: function () { return img('assets/lounge.jpg', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br>You will find us in the center of Prievidza at <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="o-nas.html">About us →</a>'; }
+      sk: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br>Nájdeš nás v centre Prievidze na adrese <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="/o-nas">O nás →</a>'; },
+      en: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br>You will find us in the center of Prievidza at <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="/o-nas">About us →</a>'; }
     },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],

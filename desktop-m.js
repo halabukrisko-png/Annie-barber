@@ -20,8 +20,8 @@
   var header = document.querySelector('.site-header, .topbar');
   var wrap = document.querySelector('.wrap');
   var isHome = !!document.getElementById('hero');
-  var path = location.pathname.split('/').pop() || 'index.html';
-  var home = isHome ? '' : 'index.html';
+  var path = (location.pathname.split('/').pop() || 'index-m').replace(/\.html$/, '');
+  var home = isHome ? '' : '/index-m';
 
   /* translatable labels: keep the Slovak source, render through T() */
   var labels = [];
@@ -50,10 +50,10 @@
     var nav = el('nav', 'd-nav', true);
     nav.setAttribute('aria-label', 'Hlavná navigácia');
     [
-      ['Úvod', isHome ? '#hero' : 'index.html', path === 'index.html' || path === '', 'hero'],
-      ['O nás', 'o-nas.html', path === 'o-nas.html'],
-      ['Galéria', 'galeria.html', path === 'galeria.html'],
-      ['Kontakt', isHome ? '#contact' : 'index.html#contact', false, 'contact']
+      ['Úvod', isHome ? '#hero' : '/index-m', path === 'index-m' || path === '', 'hero'],
+      ['O nás', '/o-nas-m', path === 'o-nas-m'],
+      ['Galéria', '/galeria-m', path === 'galeria-m'],
+      ['Kontakt', isHome ? '#contact' : '/index-m#contact', false, 'contact']
     ].forEach(function (l) {
       var a = label(el('a'), l[0]);
       a.href = l[1];
@@ -84,7 +84,7 @@
   }
 
   /* ---------- hero: wrap the photo so desktop can frame it (display:contents = no-op on mobile) ---------- */
-  var heroImg = document.querySelector('#hero > img');
+  var heroImg = document.querySelector('#hero > picture, #hero > img');
   if (heroImg) {
     var visual = el('div', 'hero-visual');
     visual.style.display = 'contents';
@@ -106,6 +106,7 @@
   /* ---------- footer ---------- */
   if (wrap) {
     var f = el('footer', 'd-footer', true);
+    f.setAttribute('role', 'contentinfo');
     var grid = el('div', 'd-footer-grid');
 
     var brand = el('div');
@@ -136,7 +137,7 @@
       return c;
     }
     grid.appendChild(col('Navigácia', [
-      ['Úvod', home + '#hero'], ['O nás', 'o-nas.html'], ['Galéria', 'galeria.html'], ['Kontakt', home + '#contact']
+      ['Úvod', home + '#hero'], ['O nás', '/o-nas-m'], ['Galéria', '/galeria-m'], ['Kontakt', home + '#contact']
     ]));
     grid.appendChild(col('Kontakt', [
       ['0951 833 488', 'tel:+421951833488'],
