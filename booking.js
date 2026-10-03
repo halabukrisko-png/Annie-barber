@@ -13,7 +13,7 @@
   var monthLabel = $('cal-month-label'), prevBtn = $('cal-prev'), nextBtn = $('cal-next');
   var slotsWrap = $('cal-slots-wrap'), slotsGrid = $('cal-slots'), selectedDateLabel = $('cal-selected-date');
   var summary = $('cal-summary'), confirmBtn = $('cal-confirm'), step4Wrap = $('cal-step4-wrap');
-  var nameField = $('cal-name'), phoneField = $('cal-phone');
+  var nameField = $('cal-name'), phoneField = $('cal-phone'), emailField = $('cal-email');
   var svcGrid = $('svc-grid'), barberGrid = $('barber-grid'), afterBarberWrap = $('cal-after-barber-wrap');
   var msgBox = $('cal-msg'), formBox = $('cal-form-box'), doneBox = $('cal-done');
 
@@ -147,15 +147,17 @@
   function setMsg(text) { msgBox.textContent = text; msgBox.hidden = !text; }
 
   function book() {
-    var name = nameField.value.trim(), phone = phoneField.value.trim();
+    var name = nameField.value.trim(), phone = phoneField.value.trim(), mail = emailField.value.trim();
     if (name.length < 2) { setMsg(tr('Zadaj svoje meno.')); nameField.focus(); return; }
     if (phone.replace(/\D/g, '').length < 9) { setMsg(tr('Zadaj platné telefónne číslo.')); phoneField.focus(); return; }
+    if (!mail) { setMsg(tr('Zadaj e-mail.')); emailField.focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { setMsg(tr('Zadaj platný e-mail.')); emailField.focus(); return; }
     setMsg('');
     confirmBtn.classList.add('is-busy'); confirmBtn.setAttribute('aria-disabled', 'true');
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-        name: name, phone: phone, lang: en() ? 'en' : 'sk', website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
+        name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
@@ -180,7 +182,7 @@
   }
 
   function resetAfterBooking() {
-    nameField.value = ''; phoneField.value = '';
+    nameField.value = ''; phoneField.value = ''; emailField.value = '';
     selectedTime = null; selectedDate = null; slotsWrap.hidden = true;
     load();
   }
@@ -210,7 +212,7 @@
       changed();
     });
   });
-  [nameField, phoneField].forEach(function (f) { f.addEventListener('input', function () { if (msgBox.textContent) setMsg(''); }); });
+  [nameField, phoneField, emailField].forEach(function (f) { f.addEventListener('input', function () { if (msgBox.textContent) setMsg(''); }); });
 
   prevBtn.addEventListener('click', function () { view.setMonth(view.getMonth() - 1); resetSelection(); load(); });
   nextBtn.addEventListener('click', function () { view.setMonth(view.getMonth() + 1); resetSelection(); load(); });

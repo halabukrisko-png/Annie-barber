@@ -27,7 +27,7 @@ module.exports = async function handler(req, res) {
     if (!isDateStr(date) || !/^\d{2}:\d{2}$/.test(time)) return res.status(400).json({ error: 'Neplatný termín' });
     if (name.length < 2) return res.status(400).json({ error: 'Zadaj meno', field: 'name' });
     if (phone.replace(/\D/g, '').length < 9) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
-    if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Neplatný e-mail', field: 'email' });
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Neplatný e-mail', field: 'email' });
 
     const nowMs = Date.now();
     if (date > addDays(todayStr(nowMs), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
