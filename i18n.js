@@ -117,7 +117,7 @@
     '5 – 10 €': '€5 – 10',
     'Rýchla online objednávka na pár klikov. ✂️': 'Quick online booking in just a few clicks. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
-    'Čo si môžeš dať u nás:': 'What you can get with us:',
+    'Naše komplety:': 'Our packages:',
 
     // team
     'O Barberis · náš tím': 'About Barberis · our team',
