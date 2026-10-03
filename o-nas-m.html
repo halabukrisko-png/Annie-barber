@@ -826,6 +826,44 @@
   })();
 </script>
 <script src="booking.js?v=20261003seo" defer></script>
+<script>
+/* "Zarezervovať termín" -> slow, smooth glide to the booking section */
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var raf = 0;
+  function glide(el, duration) {
+    var startY = window.pageYOffset;
+    var targetY = Math.max(0, startY + el.getBoundingClientRect().top - 64);
+    if (reduce) { window.scrollTo(0, targetY); return; }
+    var t0 = null;
+    function stop() { cancelAnimationFrame(raf); window.removeEventListener('touchstart', stop); window.removeEventListener('wheel', stop); }
+    window.addEventListener('touchstart', stop, { passive: true });
+    window.addEventListener('wheel', stop, { passive: true });
+    function step(ts) {
+      if (!t0) t0 = ts;
+      var p = Math.min((ts - t0) / duration, 1);
+      var e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;
+      window.scrollTo(0, startY + (targetY - startY) * e);
+      if (p < 1) raf = requestAnimationFrame(step); else stop();
+    }
+    raf = requestAnimationFrame(step);
+  }
+  document.addEventListener('click', function (ev) {
+    var a = ev.target.closest && ev.target.closest('a[href="#booking"]');
+    var el = document.getElementById('booking');
+    if (!a || !el) return;
+    ev.preventDefault();
+    var ov = document.getElementById('nav-overlay');
+    var wait = ov && ov.classList.contains('open') ? 350 : 0;
+    if (wait) { var cb = document.getElementById('nav-close'); if (cb) cb.click(); }
+    setTimeout(function () { glide(el, 1800); }, wait);
+  });
+  if (location.hash === '#booking') {
+    var el = document.getElementById('booking');
+    if (el) { window.addEventListener('load', function () { window.scrollTo(0, 0); setTimeout(function () { glide(el, 1800); }, 350); }); }
+  }
+})();
+</script>
 <script src="chat.js" defer></script>
 <script src="btnfill.js?v=20261003seo" defer></script>
 <script src="desktop-m.js" defer></script>
