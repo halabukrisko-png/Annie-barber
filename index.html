@@ -90,6 +90,8 @@
   .scroll-line-wrap { position: relative; width: 100%; height: 1px; display: flex; align-items: center; justify-content: space-between; }
   .scroll-line { width: 44%; height: 1px; opacity: 0; transition: transform 1.5s cubic-bezier(.22,1,.36,1) 0.4s, opacity 0.5s ease-out 0.4s; }
   .scroll-line.left { transform: scaleX(0); transform-origin: left; background: linear-gradient(90deg, transparent, var(--bronze) 55%, transparent); }
+  #intro .scroll-line.left { background: linear-gradient(90deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
+  #intro .scroll-line.right { background: linear-gradient(270deg, transparent 0%, rgba(201,160,106,0.25) 18%, rgba(201,160,106,0.6) 45%, var(--bronze) 100%); }
   .scroll-line.right { transform: scaleX(0); transform-origin: right; background: linear-gradient(90deg, transparent, var(--bronze) 45%, transparent); }
   .scroll-line-wrap.in-view .scroll-line { opacity: 1; transform: scaleX(1); }
   .scroll-line-initial { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 600; font-size: 19px; color: var(--bronze); background: var(--bg); padding: 0 12px; opacity: 0; transition: opacity 0.35s ease-out; }
@@ -172,7 +174,7 @@
   }
   .wrap { width: 100%; max-width: 480px; margin: 0 auto; position: relative; display: flex; flex-direction: column; }
   .service-card { flex: 1; background: var(--card); border: 1px solid rgba(244,237,225,0.08); border-radius: 3px; padding: 12px 10px; display: flex; flex-direction: column; gap: 8px; }
-  .service-swatch { width: 30px; height: 30px; border-radius: 2px; }
+  .service-swatch { width: 100%; aspect-ratio: 4/5; border-radius: 2px; background-size: cover; background-position: center; }
   .svc-badge { position: absolute; top: -9px; left: 14px; background: var(--bronze); color: #141311; font-size: 8.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 10px; display: none; }
   .svc-hover-row { position: relative; }
   .svc-thumb { flex: 0 0 56px; height: 56px; border-radius: 50%; background-size: cover; background-position: center; border: 1px solid rgba(201,160,106,0.3); cursor: zoom-in; }
@@ -334,7 +336,7 @@
 
   <!-- INTRO -->
   <div id="intro" style="position:relative;background:var(--bg);padding:14px 0 0;display:flex;flex-direction:column;">
-    <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><div class="scroll-line right"></div></div>
+    <div class="scroll-line-wrap" style="position:relative;z-index:2;padding:0 26px;"><div class="scroll-line left"></div><span class="scroll-line-initial">B</span><div class="scroll-line right"></div></div>
     <div class="intro-inner" style="position:relative;padding:16px 26px 0;display:flex;flex-direction:column;gap:16px;overflow:hidden;">
       <img class="intro-photo" src="assets/lounge-1000.webp" srcset="assets/lounge-640.webp 640w, assets/lounge-1000.webp 1000w, assets/lounge-1600.webp 1600w" sizes="100vw" width="1600" height="1066" alt="Oddychová zóna s koženou sedačkou v BARBERIS" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 60%;">
       <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,19,17,0.55) 0%,rgba(20,19,17,0.62) 35%,rgba(20,19,17,0.7) 80%,var(--bg) 100%);"></div>
@@ -424,17 +426,17 @@
     </div>
 
     <div class="svc-teaser" style="margin-top:8px;padding:0 26px;">
-      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Čo si môžeš dať u nás:</div>
+      <div style="font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:10px;">Naše komplety:</div>
       <div class="reveal-stagger reveal-stagger-x" style="display:flex;gap:8px;">
         <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#3a2f24,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Pánsky strih</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">20 €</div>
+          <div class="service-swatch" style="background-image:url('assets/komplet-1.webp');"></div>
+          <div style="font-size:11px;font-weight:600;line-height:1.25;">Kompletná úprava (strih + brada)</div>
+          <div style="font-size:11px;color:var(--bronze);font-weight:700;">30 €</div>
         </a>
         <a href="#booking" class="service-card">
-          <div class="service-swatch" style="background:linear-gradient(160deg,#2c231a,#1c1712);"></div>
-          <div style="font-size:11px;font-weight:600;line-height:1.25;">Strih + brada</div>
-          <div style="font-size:11px;color:var(--bronze);font-weight:700;">30 €</div>
+          <div class="service-swatch" style="background-image:url('assets/komplet-2.webp');"></div>
+          <div style="font-size:11px;font-weight:600;line-height:1.25;">Holenie hlavy + úprava brady</div>
+          <div style="font-size:11px;color:var(--bronze);font-weight:700;">25 €</div>
         </a>
       </div>
     </div>
