@@ -14,3 +14,6 @@ git config user.email "287959535+halabukrisko-png@users.noreply.github.com"
 - Vercel (free plán) má denný limit nasadení ("Deployment rate limited - retry in 24 hours"). Každý push = nasadenie, preto zlučuj viac zmien do jedného commitu/pushu a NEPOSIELAJ commity, ktoré len menia značku `<!-- build ... -->`.
 - Stav nasadenia commitu zistíš: `curl -s https://api.github.com/repos/halabukrisko-png/Annie-barber/commits/<sha>/statuses`.
 - Pred pushom `git fetch origin main`; ak `main` pribudol, zlúč ho (`git merge origin/main`), nerob force push.
+
+## Dve sady stránok (desktop `X.html` a mobil `X-m.html`)
+Každá textová zmena (cena, hodiny, telefón, odstavce) sa robí v oboch súboroch. Pred commitom spusti `python3 tools/check-sync.py` - vypíše rozdiely vo viditeľnom texte medzi desktop a mobilnou verziou a skončí chybou, ak sa líšia.
