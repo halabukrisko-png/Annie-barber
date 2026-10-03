@@ -1,0 +1,35 @@
+# BARBERIS
+
+> Pánsky barbershop v Prievidzi (Slovensko). Pánsky strih, úprava brady, strih + brada, detský strih a ornamenty. Objednať sa dá online cez web alebo telefonicky.
+
+Informácie nižšie sú prevzaté z webu a zodpovedajú tomu, čo je na ňom zverejnené.
+
+## Kontakt a adresa
+- Názov: BARBERIS
+- Adresa: Hurbana 4, 971 01 Prievidza, Slovensko
+- Telefón: 0951 833 488 (+421 951 833 488)
+- Instagram: https://www.instagram.com/_barberis._/
+- Facebook: https://www.facebook.com/p/BARBERIS-100077906015748/
+
+## Otváracie hodiny
+- Pondelok – Piatok: 8:00 – 18:00
+- Sobota: 8:00 – 14:00
+- Nedeľa: zatvorené
+
+## Cenník
+- Pánsky strih: 20 €
+- Strih + brada (kompletná úprava): 30 €
+- Úprava brady: 15 €
+- Detský strih do 12 rokov: 15 €
+- Holenie hlavy + úprava brady: 25 €
+- Farbenie brady: 5 – 10 €
+- Čistenie pleti: od 10 €
+- Ornament: podľa dohody
+
+## Tím
+- Anett (zakladateľka), Karvy (ornamentálna tvorba), Vladis
+
+## Dôležité stránky
+- [Úvod, služby a cenník](https://annie-barber.vercel.app/)
+- [O nás a online rezervácia](https://annie-barber.vercel.app/o-nas)
+- [Galéria](https://annie-barber.vercel.app/galeria)

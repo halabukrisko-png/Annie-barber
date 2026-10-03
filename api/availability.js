@@ -37,7 +37,6 @@ module.exports = async function handler(req, res) {
     return res.status(200).json({ days });
   } catch (e) {
     console.error(e);
-    // ?debug=1 pridá dôvod chyby (bez tajných údajov) – na diagnostiku nastavenia
-    return res.status(500).json({ error: 'Nepodarilo sa načítať voľné termíny', detail: (req.query && req.query.debug) ? String(e && e.message).slice(0, 300) : undefined });
+    return res.status(500).json({ error: 'Nepodarilo sa načítať voľné termíny' });
   }
 };
