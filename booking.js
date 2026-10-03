@@ -248,7 +248,7 @@
     function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
     function call(body) {
       return fetch('/api/cancel', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); });
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, status: r.status, j: j }; }); });
     }
     function fail(msg) { show('<span>' + esc(msg || (tr('Termín sa nepodarilo zrušiť. Zavolaj nám prosím na') + ' ' + PHONE + '.')) + '</span>'); }
     function when(it) {
@@ -265,10 +265,17 @@
           var it = items[+btn.getAttribute('data-i')];
           if (!window.confirm(tr('Naozaj zrušiť tento termín?') + '\n' + it.service + ' · ' + when(it))) return;
           btn.disabled = true;
-          call({ contact: contact, id: it.id, barber: it.barber }).then(function (res) {
+          // pri chybe servera / siete sa skúsi ešte raz automaticky
+          function attempt(n) {
+            return call({ contact: contact, id: it.id, barber: it.barber }).then(function (res) {
+              if (!res.ok && res.status >= 500 && n < 1) return attempt(n + 1);
+              return res;
+            }, function (err) { if (n < 1) return attempt(n + 1); throw err; });
+          }
+          attempt(0).then(function (res) {
             if (res.ok && res.j.ok) { cache = {}; show('<span class="cr-ok">' + esc(en() ? 'Your appointment on ' + when(it) + ' has been cancelled.' : 'Tvoj termín ' + when(it) + ' bol zrušený.') + '</span>'); load(); }
-            else { fail(res.j && res.j.error); }
-          }).catch(function () { fail(); });
+            else { btn.disabled = false; fail(res.j && res.j.error); }
+          }).catch(function () { btn.disabled = false; fail(); });
         });
       });
     }

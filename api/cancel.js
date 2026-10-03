@@ -28,10 +28,11 @@ module.exports = async function handler(req, res) {
     const from = Date.now(), to = from + (HORIZON_DAYS + 5) * 86400000;
 
     const mine = [];
-    for (const barber of BARBER_NAMES) {
+    const lists = await Promise.all(BARBER_NAMES.map((barber) => {
       const cal = calendarId(barber);
-      if (!cal) continue;
-      const r = await listEvents(cal, from, to, '&maxResults=250');
+      return cal ? listEvents(cal, from, to, '&maxResults=250').then((r) => ({ barber, r })) : null;
+    }).filter(Boolean));
+    for (const { barber, r } of lists) {
       (r.items || []).forEach((e) => {
         if (e.status === 'cancelled' || !e.start || !e.start.dateTime) return;
         const ms = Date.parse(e.start.dateTime);

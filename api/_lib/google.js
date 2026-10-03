@@ -55,16 +55,35 @@ async function getToken() {
   return tokenCache.token;
 }
 
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Pri dočasnej chybe (sieť, 429, 5xx) sa volanie zopakuje; zrušenie už zrušenej udalosti (404/410) je úspech.
 async function call(method, path, body) {
-  const r = await fetch('https://www.googleapis.com/calendar/v3' + path, {
-    method,
-    headers: { Authorization: 'Bearer ' + (await getToken()), 'Content-Type': 'application/json' },
-    body: body ? JSON.stringify(body) : undefined,
-  });
-  if (r.status === 204) return null;
-  const j = await r.json().catch(() => ({}));
-  if (!r.ok) throw new Error('Google Calendar ' + r.status + ': ' + ((j.error && j.error.message) || ''));
-  return j;
+  let lastErr;
+  for (let attempt = 0; attempt < 3; attempt++) {
+    if (attempt) await sleep(400 * attempt);
+    try {
+      const r = await fetch('https://www.googleapis.com/calendar/v3' + path, {
+        method,
+        headers: { Authorization: 'Bearer ' + (await getToken()), 'Content-Type': 'application/json' },
+        body: body ? JSON.stringify(body) : undefined,
+      });
+      if (r.status === 204) return null;
+      const j = await r.json().catch(() => ({}));
+      if (method === 'DELETE' && (r.status === 404 || r.status === 410)) return null;
+      if (!r.ok) {
+        lastErr = new Error('Google Calendar ' + r.status + ': ' + ((j.error && j.error.message) || ''));
+        if (r.status === 401) tokenCache = null;
+        if (r.status === 429 || r.status >= 500 || r.status === 401) continue;
+        throw lastErr;
+      }
+      return j;
+    } catch (e) {
+      if (e === lastErr && !/Google Calendar (429|5|401)/.test(e.message)) throw e;
+      lastErr = e;
+    }
+  }
+  throw lastErr;
 }
 
 // { calendarId: [{start, end} v ms] } – obsadené bloky (všetky nepriehľadné udalosti vrátane celodenných)
