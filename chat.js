@@ -16,12 +16,16 @@
     return !!(r && h >= r[0] && h < r[1]);
   }
 
-  function img(src, alt) {
+  function rawImg(src, alt) {
     return '<img class="bb-img" src="' + src + '" alt="' + alt + '" loading="lazy">';
+  }
+  function img(src, alt) {
+    var h = rawImg(src, alt);
+    return MOBILE ? '<span class="bb-ring bb-ringimg">' + h + '</span>' : h;
   }
   function gallery(n) {
     var h = '<div class="bb-grid">';
-    for (var i = 1; i <= n; i++) h += img('assets/gallery/gallery-' + i + '-480.webp', 'BARBERIS');
+    for (var i = 1; i <= n; i++) h += rawImg('assets/gallery/gallery-' + i + '-480.webp', 'BARBERIS');
     return h + '</div>';
   }
 
@@ -102,10 +106,10 @@
       keys: ['rezerv', 'objedn', 'termin', 'book', 'appointment', 'reserv', 'order', 'volny', 'available'],
       chip: { sk: 'Rezervovať termín', en: 'Book an appointment' },
       sk: function () {
-        return '<b>Termín si môžeš zarezervovať online</b> – vyberieš barbera, službu, dátum a čas a termín ti potvrdíme e-mailom.<br><a href="' + BOOK + '">Zarezervovať termín →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>, prípadne nám napíš na <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
+        return (MOBILE ? '<div class="bb-ring">' : '') + '<b>Termín si môžeš zarezervovať online</b> – vyberieš barbera, službu, dátum a čas a termín ti potvrdíme e-mailom.<br><a href="' + BOOK + '">Zarezervovať termín →</a><br><br>Alebo zavolaj na <a href="' + TEL + '">' + PHONE + '</a>, prípadne nám napíš na <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.' + (MOBILE ? '</div>' : '');
       },
       en: function () {
-        return '<b>You can book online</b> — choose a barber, a service, a date and a time, and we will confirm it by e-mail.<br><a href="' + BOOK + '">Book an appointment →</a><br><br>Or call <a href="' + TEL + '">' + PHONE + '</a>, or message us on <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.';
+        return (MOBILE ? '<div class="bb-ring">' : '') + '<b>You can book online</b> — choose a barber, a service, a date and a time, and we will confirm it by e-mail.<br><a href="' + BOOK + '">Book an appointment →</a><br><br>Or call <a href="' + TEL + '">' + PHONE + '</a>, or message us on <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a>.' + (MOBILE ? '</div>' : '');
       }
     },
     location: {
@@ -344,7 +348,7 @@
     '#bb-chat-btn.open .ic-x{opacity:1;transform:none;}' +
     '#bb-chat-btn::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid #c9a06a;opacity:0;pointer-events:none;}' +
     '@property --bbring{syntax:"<angle>";inherits:false;initial-value:0deg;}' +
-    '.bb-ring{position:relative;padding:8px 10px;margin:-6px -10px;border-radius:12px;}' +
+    '.bb-ring{position:relative;padding:8px 10px;margin:-6px -10px;border-radius:12px;}.bb-ringimg{display:block;padding:0;margin:0 0 6px;border-radius:8px;}.bb-ring.bb-ringimg::before{border-radius:8px;z-index:1;}.bb-ringimg .bb-img{margin:0;}' +
     '.bb-ring::before{content:"";position:absolute;inset:0;padding:1.5px;border-radius:12px;pointer-events:none;--bbring:372deg;background:conic-gradient(from 0deg,#c9a06a 0deg,#c9a06a calc(var(--bbring)/2 - 9deg),rgba(201,160,106,0) calc(var(--bbring)/2),rgba(201,160,106,0) calc(360deg - var(--bbring)/2),#c9a06a calc(360deg - var(--bbring)/2 + 9deg),#c9a06a 360deg);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);}' +
     '.bb-m.bot.typing{display:flex;gap:4px;align-items:center;padding:10px 12px;}' +
     '.bb-m.typing i{width:5px;height:5px;border-radius:50%;background:#c9a06a;opacity:.45;}' +
