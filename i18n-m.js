@@ -98,6 +98,7 @@
     '5 – 10 €': '€5 – 10',
     'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️': 'Book your appointment in advance and skip the wait. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
+    'Zatvoriť cenník ↑': 'Close the price list ↑',
     'Naše komplety:': 'Our packages:',
 
     // team
