@@ -30,6 +30,6 @@ Informácie nižšie sú prevzaté z webu a zodpovedajú tomu, čo je na ňom zv
 - Anett (zakladateľka), Karvy (ornamentálna tvorba), Vladis
 
 ## Dôležité stránky
-- [Úvod, služby a cenník](https://annie-barber.vercel.app/)
-- [O nás a online rezervácia](https://annie-barber.vercel.app/o-nas)
-- [Galéria](https://annie-barber.vercel.app/galeria)
+- [Úvod, služby a cenník](https://barberis-barber-prievidza.com/)
+- [O nás a online rezervácia](https://barberis-barber-prievidza.com/o-nas)
+- [Galéria](https://barberis-barber-prievidza.com/galeria)
