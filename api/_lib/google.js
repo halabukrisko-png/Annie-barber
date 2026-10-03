@@ -1,5 +1,6 @@
 // Minimálny klient Google Calendar API cez service account (bez závislostí).
 const crypto = require('crypto');
+const { localToMs } = require('./time');
 
 let tokenCache = null;
 
@@ -99,6 +100,14 @@ async function freeBusy(calendarIds, fromMs, toMs) {
     if (!c || (c.errors && c.errors.length)) throw new Error('Kalendár nie je dostupný: ' + id + ' ' + JSON.stringify(c && c.errors));
     out[id] = (c.busy || []).map((b) => ({ start: Date.parse(b.start), end: Date.parse(b.end) }));
   });
+  // Celodenné udalosti sú v Google Kalendári predvolene "voľný" čas, takže ich freeBusy nevidí – berieme ich ako obsadený celý deň.
+  await Promise.all(calendarIds.map(async (id) => {
+    const j2 = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,start,end)');
+    (j2.items || []).forEach((ev) => {
+      if (ev.status === 'cancelled' || !ev.start || !ev.start.date || !ev.end || !ev.end.date) return;
+      out[id].push({ start: localToMs(ev.start.date, 0), end: localToMs(ev.end.date, 0) });
+    });
+  }));
   return out;
 }
 
