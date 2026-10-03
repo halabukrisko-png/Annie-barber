@@ -54,7 +54,7 @@ module.exports = async function handler(req, res) {
 
     const target = mine.find((m) => m.id === String(b.id) && m.barber === String(b.barber));
     if (!target) return res.status(404).json({ error: 'Termín sa nenašiel (možno už je zrušený).' });
-    await deleteEvent(calendarId(target.barber), target.id);
+    // najprv kópia v spoločnom kalendári (značka „ešte neoznámené“ pre api/cron-cancel), potom termín barbera
     const shared = process.env.CAL_SHARED;
     if (shared) {
       try {
@@ -62,6 +62,7 @@ module.exports = async function handler(req, res) {
         for (const e of (m.items || [])) await deleteEvent(shared, e.id).catch(() => {});
       } catch (e) { console.error('shared cancel', e); }
     }
+    await deleteEvent(calendarId(target.barber), target.id);
     const when = target.date.split('-').reverse().join('. ') + ' o ' + target.time;
     if (target.email) {
       const lang = (b.lang === 'en' || target.lang === 'en') ? 'en' : 'sk';

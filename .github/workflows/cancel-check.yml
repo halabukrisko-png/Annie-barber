@@ -1,0 +1,14 @@
+# Každých ~5 minút zavolá /api/cron-cancel (e-mail o termínoch zmazaných ručne v Google Kalendári).
+# Vercel Hobby cron zvláda len 1x denne, preto spúšťač beží tu.
+# Secrets (Settings -> Secrets and variables -> Actions): SITE_URL (napr. https://barberis-barber-prievidza.com), CRON_SECRET.
+name: cancel-check
+on:
+  schedule:
+    - cron: '*/5 * * * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call /api/cron-cancel
+        run: curl -fsS --retry 2 -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" "${{ secrets.SITE_URL }}/api/cron-cancel"

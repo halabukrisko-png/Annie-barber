@@ -119,6 +119,11 @@ const listEvents = (calId, fromMs, toMs, extra) =>
   call('GET', '/calendars/' + encodeURIComponent(calId) + '/events?singleEvents=true&showDeleted=false&timeMin=' +
     encodeURIComponent(new Date(fromMs).toISOString()) + '&timeMax=' + encodeURIComponent(new Date(toMs).toISOString()) + (extra || ''));
 
+// Udalosti zmenené od sinceMs vrátane zrušených (status 'cancelled') – na zistenie ručne zmazaných termínov.
+const listChanged = (calId, sinceMs, extra) =>
+  call('GET', '/calendars/' + encodeURIComponent(calId) + '/events?showDeleted=true&maxResults=250&updatedMin=' +
+    encodeURIComponent(new Date(sinceMs).toISOString()) + (extra || ''));
+
 // Udalosti zapísané ručne do spoločného kalendára (CAL_SHARED) – blokujú všetkých barberov.
 // Zrkadlené rezervácie (barberis=1) sa preskakujú, tie patria len konkrétnemu barberovi.
 async function sharedBlocks(fromMs, toMs) {
@@ -135,4 +140,4 @@ async function sharedBlocks(fromMs, toMs) {
   return out;
 }
 
-module.exports = { sharedBlocks, freeBusy, insertEvent, deleteEvent, listEvents };
+module.exports = { sharedBlocks, freeBusy, insertEvent, deleteEvent, listEvents, listChanged };

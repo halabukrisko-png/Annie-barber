@@ -27,3 +27,8 @@ Po pridaní premenných treba nasadiť znova (Redeploy).
 - Dĺžky služieb a hodiny sú v `api/_lib/config.js` (komplet 60 min, ostatné 30 min; Vladis má strih a holenie 45 min).
 - Termíny sa ponúkajú po 30 min a bez prestávky (Vladis: po 15 min). Pri voľbe „Nezáleží“ sa termín priradí barberovi, ku ktorému sa najlepšie hodí (nalepí sa na jeho existujúce termíny a nerozbíja voľné okná iných).
 - Rezervovať sa dá najskôr o hodinu dopredu a max. 60 dní vopred.
+
+## E-mail pri ručnom zrušení termínu v kalendári
+`/api/cron-cancel` sa volá každých ~5 min z GitHub Actions (`.github/workflows/cancel-check.yml`; Vercel Hobby cron zvláda len 1x denne). Nájde termíny zmazané ručne v kalendári barbera a pošle e-mail zákazníkovi aj majiteľovi. Ručne pridané udalosti (bez rezervácie z webu) sa neoznamujú. Vyžaduje `CAL_SHARED`.
+1. Vo Verceli pridaj `CRON_SECRET` (ľubovoľný dlhý náhodný reťazec) a nasaď znova.
+2. V GitHub repe → Settings → Secrets and variables → Actions pridaj `CRON_SECRET` (rovnaká hodnota) a `SITE_URL` (napr. `https://barberis-barber-prievidza.com`).
