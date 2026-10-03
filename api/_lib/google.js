@@ -103,7 +103,7 @@ async function freeBusy(calendarIds, fromMs, toMs) {
   // Udalosti označené ako "voľný" čas (predvolené pri celodenných, často aj pri prestávkach) freeBusy nevidí.
   // Pre barbera ich berieme ako obsadené vždy – celodenné na celý deň, ostatné na ich čas.
   await Promise.all(calendarIds.map(async (id) => {
-    const j2 = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,transparency,start,end)');
+    const j2 = await listEvents(id, fromMs, toMs, '&maxResults=250&fields=items(status,transparency,start,end)').catch((e) => { console.error('listEvents', id, e.message); return { items: [] }; });
     (j2.items || []).forEach((ev) => {
       if (ev.status === 'cancelled' || !ev.start || !ev.end) return;
       if (ev.start.date && ev.end.date) out[id].push({ start: localToMs(ev.start.date, 0), end: localToMs(ev.end.date, 0) });

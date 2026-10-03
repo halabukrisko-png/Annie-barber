@@ -31,6 +31,10 @@ module.exports = async function handler(req, res) {
     const busyByBarber = {};
     names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]].concat(shared); });
 
+    if (q.debug === '1') {
+      const iso = (b) => new Date(b.start).toISOString() + ' – ' + new Date(b.end).toISOString();
+      return res.status(200).json({ from, to, shared: shared.map(iso), barbers: names.map((n, i) => ({ barber: n, calendar: ids[i].slice(0, 6) + '…' + ids[i].slice(-12), busy: busy[ids[i]].map(iso) })) });
+    }
     for (let d = from; d <= to; d = addDays(d, 1)) {
       const t = daySlots({ date: d, barber, service, busyByBarber, nowMs }).map((s) => s.time);
       if (t.length || HOURS[weekday(d)]) days[d] = t; // prázdne pole = otvorený deň, ale plne obsadený
