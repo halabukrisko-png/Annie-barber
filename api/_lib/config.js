@@ -5,12 +5,12 @@ const TZ = 'Europe/Bratislava';
 
 // Otváracie hodiny v minútach od polnoci (0 = nedeľa ... 6 = sobota); chýbajúci deň = zatvorené.
 const HOURS = {
-  1: [8 * 60, 18 * 60],
-  2: [8 * 60, 18 * 60],
-  3: [8 * 60, 18 * 60],
-  4: [8 * 60, 18 * 60],
-  5: [8 * 60, 18 * 60],
-  6: [8 * 60, 14 * 60],
+  1: [9 * 60, 18 * 60],
+  2: [9 * 60, 18 * 60],
+  3: [9 * 60, 18 * 60],
+  4: [9 * 60, 18 * 60],
+  5: [9 * 60, 18 * 60],
+  6: [9 * 60, 14 * 60],
 };
 
 const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi
