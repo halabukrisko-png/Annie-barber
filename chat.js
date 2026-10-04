@@ -36,6 +36,7 @@
     var wrap = document.createElement('div');
     wrap.className = 'bb-cal';
     var today = new Date(); today.setHours(0, 0, 0, 0);
+    var maxDate = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 44); // musí sedieť s HORIZON_DAYS v api/_lib/config.js
     var view = new Date(today.getFullYear(), today.getMonth(), 1);
     // today is preselected (when open), so it is immediately clear whether anything is left for it
     var picked = HOURS[today.getDay()] ? new Date(today.getTime()) : null;
@@ -58,7 +59,11 @@
       html += '</div>';
       if (picked) {
         var pd = picked.getFullYear() + '-' + pad(picked.getMonth() + 1) + '-' + pad(picked.getDate());
-        html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
+        if (picked > maxDate) {
+          html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
+            '<div class="bb-cal-note">' + (en ? 'Booking this far ahead is not possible online. If you would like to book this date, please call us or message us on Instagram: ' : 'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram: ') +
+            '<a href="' + TEL + '">' + PHONE + '</a> · <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a></div>';
+        } else html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
           '<div class="bb-slots"><a href="' + (MOBILE ? '/o-nas-m' : '/o-nas') + '?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
           '<div class="bb-cal-note">' + (en ? 'Choose your barber and service to see the exact free times.' : 'Vyber barbera a službu a uvidíš presné voľné časy.') + '</div>';
       }
