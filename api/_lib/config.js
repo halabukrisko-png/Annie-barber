@@ -12,8 +12,10 @@ const HOURS = {
   6: [9 * 60, 14 * 60],
 };
 
-// Obedňajšia prestávka (minúty od polnoci) v dňoch utorok – piatok: 12:30 – 14:00 (posledný termín o 12:00, ďalší o 14:00).
-const LUNCH = { 2: [12 * 60 + 30, 14 * 60], 3: [12 * 60 + 30, 14 * 60], 4: [12 * 60 + 30, 14 * 60], 5: [12 * 60 + 30, 14 * 60] };
+// Obedňajšia prestávka v dňoch utorok – piatok: 12:30 – 14:00. Posledný termín pred ňou začína o 12:00 (služba môže
+// presiahnuť do prestávky), ďalší o 14:00. Medzi 12:00 a 14:00 sa nezačína žiadny termín.
+const LUNCH_DAY = { from: 12 * 60 + 30, to: 14 * 60, last: 12 * 60 };
+const LUNCH = { 2: LUNCH_DAY, 3: LUNCH_DAY, 4: LUNCH_DAY, 5: LUNCH_DAY };
 
 const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi (žiadna)
 const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
