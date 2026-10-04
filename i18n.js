@@ -186,7 +186,7 @@
     'a': 'and',
     'niekto si len sadnúť': 'some just want to sit down',
     ', zavrieť oči a chvíľu vypnúť.': ', close their eyes and switch off for a while.',
-    'U nás je v poriadku všetko. Vieme byť poriadne zábavný, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.': 'With us, everything is fine. We can be properly fun, but we can also go quiet. You choose what mood you are in today.',
+    'U nás je v poriadku všetko. Vieme byť poriadne zábavní, ale vieme aj stíchnuť. Ty si vyberieš, na čo máš dnes náladu.': 'With us, everything is fine. We can be properly fun, but we can also go quiet. You choose what mood you are in today.',
     'My sa postaráme o strih. Ty si vyber, či chceš pokec, srandu alebo jednoducho pokoj.': 'We take care of the haircut. You choose whether you want a chat, some fun or simply peace.',
     'Naša kozmetika': 'Our cosmetics',
     'KVALITA, NA KTOREJ': 'QUALITY THAT',
