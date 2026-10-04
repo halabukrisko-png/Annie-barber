@@ -17,6 +17,9 @@ const HOURS = {
 const LUNCH_DAY = { from: 12 * 60 + 30, to: 14 * 60, last: 12 * 60 };
 const LUNCH = { 2: LUNCH_DAY, 3: LUNCH_DAY, 4: LUNCH_DAY, 5: LUNCH_DAY };
 
+// Posledný možný začiatok termínu (minúty od polnoci), ak je skorší než zatvorenie: sobota 13:00.
+const LAST_START = { 6: 13 * 60 };
+
 const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi (žiadna)
 const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
@@ -55,4 +58,4 @@ function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
 }
 
-module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, calendarId };
+module.exports = { TZ, HOURS, LUNCH, LAST_START, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, calendarId };
