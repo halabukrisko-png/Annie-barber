@@ -6,8 +6,8 @@ const MIN = 60000;
 
 // Voľné začiatky termínu pre jedného barbera.
 // busy = [{start,end}] v ms. Vráti [{start(ms), minute, score}] – menší score = lepšie "nalepený" na okolité termíny.
-function slotsForBarber(date, busy, dur, nowMs, barber) {
-  const BREAK_MIN = breakFor(barber), GRID_MIN = gridFor(barber);
+function slotsForBarber(date, busy, dur, nowMs, barber, service) {
+  const BREAK_MIN = breakFor(barber), GRID_MIN = gridFor(barber, service);
   const range = HOURS[weekday(date)];
   if (!range) return [];
   const open = localToMs(date, range[0]);
@@ -20,7 +20,9 @@ function slotsForBarber(date, busy, dur, nowMs, barber) {
 
   // kandidáti: pravidelná mriežka + čas hneď po konci existujúceho termínu (+ prestávka)
   const cand = new Set();
-  for (let m = range[0]; m + dur <= range[1]; m += GRID_MIN) cand.add(localToMs(date, m));
+  // mriežka sa rozbieha od otvorenia a od konca obedňajšej prestávky
+  const segs = lunch ? [[range[0], lunch[0]], [lunch[1], range[1]]] : [[range[0], range[1]]];
+  segs.forEach((sg) => { for (let m = sg[0]; m + dur <= sg[1]; m += GRID_MIN) cand.add(localToMs(date, m)); });
   blocks.forEach((b) => {
     const s = Math.ceil((b.end + BREAK_MIN * MIN) / MIN) * MIN;
     if (s >= open && s + dur * MIN <= close) cand.add(s);
@@ -55,7 +57,7 @@ function daySlots({ date, barber, service, busyByBarber, nowMs }) {
   names.forEach((n) => {
     const dur = durationFor(service, n);
     if (!dur) return;
-    slotsForBarber(date, busyByBarber[n] || [], dur, nowMs, n).forEach((c) => {
+    slotsForBarber(date, busyByBarber[n] || [], dur, nowMs, n, service).forEach((c) => {
       const cur = byStart.get(c.start);
       // najlepší = najtesnejšie nalepený, potom ten, kto je ten deň vyťaženejší (aby ostali celé voľné okná), potom poradie
       if (!cur || c.score < cur.score || (c.score === cur.score && load[n] > load[cur.barber])) {

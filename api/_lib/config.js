@@ -30,7 +30,7 @@ const BARBER_NAMES = Object.keys(BARBERS);
 
 // Dĺžky v minútach. `byBarber` prepisuje základnú dĺžku pre konkrétneho barbera.
 const SERVICES = {
-  strih:     { name: 'Strih', nameEn: 'Haircut',                          price: '20 €',     min: 30, byBarber: { Vladis: 45 } },
+  strih:     { name: 'Strih', nameEn: 'Haircut',                          price: '20 €',     min: 30, byBarber: { Vladis: 40 } },
   komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60 },
   brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30 },
   detsky:    { name: 'Detský strih do 12 r.', nameEn: 'Kids haircut (under 12)',          price: '15 €',     min: 30 },
@@ -46,7 +46,8 @@ function durationFor(serviceId, barber) {
 }
 
 function breakFor() { return BREAK_MIN; }
-function gridFor() { return GRID_MIN; } // všetci barberi: krok 30 min
+// krok ponúkaných časov: 30 min; Vladis pri strihu 40 min (rovnako ako dĺžka jeho strihu)
+function gridFor(barber, serviceId) { return barber === 'Vladis' && serviceId === 'strih' ? 40 : GRID_MIN; }
 
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
