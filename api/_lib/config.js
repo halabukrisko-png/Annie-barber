@@ -46,8 +46,8 @@ function durationFor(serviceId, barber) {
 }
 
 function breakFor() { return BREAK_MIN; }
-// krok ponúkaných časov: 30 min; Vladis pri strihu 40 min (rovnako ako dĺžka jeho strihu)
-function gridFor(barber, serviceId) { return barber === 'Vladis' && serviceId === 'strih' ? 40 : GRID_MIN; }
+// krok ponúkaných časov: 30 min; Vladis pri strihu 15 min (strih trvá 40 min)
+function gridFor(barber, serviceId) { return barber === 'Vladis' && serviceId === 'strih' ? 15 : GRID_MIN; }
 
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
