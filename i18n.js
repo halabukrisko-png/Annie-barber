@@ -244,7 +244,7 @@
     'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram:': 'Booking this far ahead is not possible online. If you would like to book this date, please call us or message us on Instagram:',
     'Tento deň už nie je voľný. Vyber si, prosím, iný dátum.': 'This day is no longer available. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
-    'Pondelok a nedeľa zatvorené · Sobota do 14:00 · Obedná prestávka 12:30 – 14:00 (Ut – Pi)': 'Closed on Monday and Sunday · Saturday until 2:00 PM · Lunch break 12:30 – 2:00 PM (Tue – Fri)',
+    'Pondelok a nedeľa zatvorené · Sobota do 13:00 · Obedná prestávka 12:30 – 14:00 (Ut – Pi)': 'Closed on Monday and Sunday · Saturday until 1:00 PM · Lunch break 12:30 – 2:00 PM (Tue – Fri)',
     '(Obedná prestávka Ut – Pi: 12:30 – 14:00)': '(Lunch break Tue – Fri: 12:30 – 2:00 PM)',
     'Obedná prestávka (Ut – Pi) · 12:30 – 14:00': 'Lunch break (Tue – Fri) · 12:30 – 2:00 PM',
     'Termín ti potvrdíme e-mailom.': 'We will confirm your appointment by e-mail.',
@@ -279,7 +279,7 @@
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
     'Utorok – Piatok · 9:00 – 18:00': 'Tuesday – Friday · 9:00 – 18:00',
-    'Sobota · 9:00 – 14:00': 'Saturday · 9:00 – 14:00',
+    'Sobota · 9:00 – 13:00': 'Saturday · 9:00 – 13:00',
     'Otváracie hodiny': 'Opening hours',
     'Adresa': 'Address',
     'Hurbana 4': 'Hurbana 4',
@@ -296,7 +296,7 @@
     'Zatvorené': 'Closed',
     'Práve otvorené': 'Open now',
     '9:00 – 18:00': '9:00 AM – 6:00 PM',
-    '9:00 – 14:00': '9:00 AM – 2:00 PM',
+    '9:00 – 13:00': '9:00 AM – 1:00 PM',
     'Mapa — BARBERIS, Hurbana 4, Prievidza': 'Map — BARBERIS, Hurbana 4, Prievidza',
 
     // desktop footer

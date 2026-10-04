@@ -9,7 +9,7 @@ const HOURS = {
   3: [9 * 60, 18 * 60],
   4: [9 * 60, 18 * 60],
   5: [9 * 60, 18 * 60],
-  6: [9 * 60, 13 * 60], // sobota: salón je do 14:00, ale objednať sa dá len tak, aby sa termín skončil do 13:00
+  6: [9 * 60, 13 * 60], // sobota: do 13:00
 };
 
 // Obedňajšia prestávka v dňoch utorok – piatok: 12:30 – 14:00. Posledný termín pred ňou začína o 12:00 (služba môže
