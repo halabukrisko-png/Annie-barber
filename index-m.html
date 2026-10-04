@@ -67,6 +67,12 @@
     --bronze: #c9a06a;
   }
   * { box-sizing: border-box; }
+  html, body { max-width: 100%; overflow-x: clip; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+  img, video, svg, iframe, canvas { max-width: 100%; }
+  p, li, h1, h2, h3, a, span { overflow-wrap: break-word; }
+  p, li { text-wrap: pretty; }
+  h1, h2, h3 { text-wrap: balance; }
   body { margin: 0; background: var(--bg); font-family: 'Work Sans', sans-serif; color: var(--cream); }
   h1, h2, h3 { font-family: 'Fraunces', serif; font-weight: 600; margin: 0; }
   a { color: inherit; text-decoration: none; }
