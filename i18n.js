@@ -244,7 +244,7 @@
     'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram:': 'Booking this far ahead is not possible online. If you would like to book this date, please call us or message us on Instagram:',
     'Tento deň už nie je voľný. Vyber si, prosím, iný dátum.': 'This day is no longer available. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
-    'Nedeľa zatvorené · Sobota do 14:00': 'Closed on Sunday · Saturday until 2:00 PM',
+    'Pondelok a nedeľa zatvorené · Sobota do 14:00': 'Closed on Monday and Sunday · Saturday until 2:00 PM',
     'Termín ti potvrdíme e-mailom.': 'We will confirm your appointment by e-mail.',
     'Zrušiť alebo zmeniť termín': 'Cancel or change appointment',
     'Potrebuješ termín zmeniť alebo zrušiť? Zavolaj nám priamo — radi ti nájdeme nový vyhovujúci čas.': 'Need to change or cancel your appointment? Call us directly — we will gladly find you a new time.',
@@ -276,7 +276,7 @@
     'Hurbana 4, 971 01 Prievidza': 'Hurbana 4, 971 01 Prievidza',
     'Navigovať →': 'Navigate →',
     'Otváracie hodiny:': 'Opening hours:',
-    'Pondelok – Piatok · 9:00 – 18:00': 'Monday – Friday · 9:00 – 18:00',
+    'Utorok – Piatok · 9:00 – 18:00': 'Tuesday – Friday · 9:00 – 18:00',
     'Sobota · 9:00 – 14:00': 'Saturday · 9:00 – 14:00',
     'Otváracie hodiny': 'Opening hours',
     'Adresa': 'Address',
@@ -299,7 +299,7 @@
 
     // desktop footer
     'Navigácia': 'Navigation',
-    'Nedeľa zatvorené': 'Closed on Sunday',
+    'Pondelok a nedeľa zatvorené': 'Closed on Monday and Sunday',
     'Všetky práva vyhradené.': 'All rights reserved.',
     'Späť hore ↑': 'Back to top ↑'
   };

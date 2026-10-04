@@ -452,7 +452,7 @@
         <div class="cal-weekdays"><span>Po</span><span>Ut</span><span>St</span><span>Št</span><span>Pi</span><span>So</span><span>Ne</span></div>
         <div class="cal-grid" id="cal-grid"></div>
         <div class="cal-hours-note" id="cal-load-note" hidden></div>
-        <div class="cal-hours-note">Nedeľa zatvorené · Sobota do 14:00</div>
+        <div class="cal-hours-note">Pondelok a nedeľa zatvorené · Sobota do 14:00</div>
 
         <div class="cal-right">
         <div id="cal-slots-wrap" hidden>
@@ -579,7 +579,7 @@
           <div id="open-status" class="open-status"></div>
         </div>
         <ul class="hours-list">
-          <li data-day="1"><span>Pondelok</span><i></i><span>9:00 – 18:00</span></li>
+          <li data-day="1"><span>Pondelok</span><i></i><span style="color:rgba(244,237,225,0.4);">Zatvorené</span></li>
           <li data-day="2"><span>Utorok</span><i></i><span>9:00 – 18:00</span></li>
           <li data-day="3"><span>Streda</span><i></i><span>9:00 – 18:00</span></li>
           <li data-day="4"><span>Štvrtok</span><i></i><span>9:00 – 18:00</span></li>
@@ -742,7 +742,7 @@
   })();
 
   (function () {
-    var hours = { 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 14] };
+    var hours = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 14] };
     var now = new Date();
     var day = now.getDay();
     var h = now.getHours() + now.getMinutes() / 60;

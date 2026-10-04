@@ -17,7 +17,7 @@
   var svcGrid = $('svc-grid'), barberGrid = $('barber-grid'), afterBarberWrap = $('cal-after-barber-wrap');
   var msgBox = $('cal-msg'), formBox = $('cal-form-box'), doneBox = $('cal-done');
 
-  var HOURS_OPEN = { 1: 1, 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
+  var HOURS_OPEN = { 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
   var DUR = { // minúty; Vladis má strih 45 min
     strih: { d: 30, Vladis: 45 }, komplet: { d: 60 }, brada: { d: 30 }, detsky: { d: 30 },
     holenie: { d: 60 }, farbenie: { d: 30 }, cistenie: { d: 30 }

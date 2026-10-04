@@ -168,7 +168,7 @@
       ['Hurbana 4, 971 01 Prievidza', 'https://maps.google.com/?q=Hurbana+4,+Prievidza']
     ]));
     grid.appendChild(col('Otváracie hodiny', [
-      ['Pondelok – Piatok · 9:00 – 18:00'], ['Sobota · 9:00 – 14:00'], ['Nedeľa zatvorené']
+      ['Utorok – Piatok · 9:00 – 18:00'], ['Sobota · 9:00 – 14:00'], ['Pondelok a nedeľa zatvorené']
     ]));
     f.appendChild(grid);
 

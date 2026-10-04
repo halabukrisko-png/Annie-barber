@@ -11,7 +11,7 @@
   var MOBILE = /-m(\.html)?\/?$/.test(location.pathname);
   if (MOBILE) BOOK = '/o-nas-m#booking';
 
-  var HOURS = { 1: [9, 18], 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 14] };
+  var HOURS = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 14] };
   function isOpenNow() {
     var n = new Date(), r = HOURS[n.getDay()], h = n.getHours() + n.getMinutes() / 60;
     return !!(r && h >= r[0] && h < r[1]);
@@ -97,10 +97,10 @@
       keys: ['otvor', 'hodin', 'kedy', 'zatvor', 'open', 'close', 'hours', 'when', 'sobot', 'nedel', 'saturday', 'sunday', 'today', 'dnes', 'time'],
       chip: { sk: 'Otváracie hodiny', en: 'Opening hours' },
       sk: function () {
-        return '<b>Otváracie hodiny</b><br>Pondelok – Piatok – 9:00 – 18:00<br>Sobota – 9:00 – 14:00<br>Nedeľa – zatvorené<br><br>' + (isOpenNow() ? 'Práve máme otvorené.' : 'Práve máme zatvorené.');
+        return '<b>Otváracie hodiny</b><br>Utorok – Piatok – 9:00 – 18:00<br>Sobota – 9:00 – 14:00<br>Pondelok a nedeľa – zatvorené<br><br>' + (isOpenNow() ? 'Práve máme otvorené.' : 'Práve máme zatvorené.');
       },
       en: function () {
-        return '<b>Opening hours</b><br>Monday – Friday – 9:00 AM – 6:00 PM<br>Saturday – 9:00 AM – 2:00 PM<br>Sunday – closed<br><br>' + (isOpenNow() ? 'We are open right now.' : 'We are closed right now.');
+        return '<b>Opening hours</b><br>Tuesday – Friday – 9:00 AM – 6:00 PM<br>Saturday – 9:00 AM – 2:00 PM<br>Monday and Sunday – closed<br><br>' + (isOpenNow() ? 'We are open right now.' : 'We are closed right now.');
       }
     },
     booking: {
