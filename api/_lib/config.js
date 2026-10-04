@@ -16,7 +16,7 @@ const HOURS = {
 const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi (žiadna)
 const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
-const HORIZON_DAYS = 60;      // ako ďaleko dopredu sa dá rezervovať
+const HORIZON_DAYS = 44;      // mesiac a 2 týždne; ako ďaleko dopredu sa dá rezervovať
 
 // colorId = farba udalosti v Google Kalendári (3 fialová, 7 tyrkysová, 6 oranžová)
 const BARBERS = {

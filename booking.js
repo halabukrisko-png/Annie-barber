@@ -24,6 +24,8 @@
   };
 
   var todayDate = new Date(); todayDate.setHours(0, 0, 0, 0);
+  var MAX_DAYS = 44; // mesiac a 2 týždne dopredu (musí sedieť s HORIZON_DAYS v api/_lib/config.js)
+  var maxDate = new Date(todayDate.getFullYear(), todayDate.getMonth(), todayDate.getDate() + MAX_DAYS);
   var view = new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
   var selectedDate = null, selectedTime = null, avail = null, loading = false, failed = false, token = 0;
   var cache = {};
@@ -81,7 +83,12 @@
         var btn = document.createElement('button');
         btn.type = 'button'; btn.className = 'cal-day'; btn.textContent = d;
         var free = avail && avail[key(date)];
-        if (date < todayDate || !HOURS_OPEN[date.getDay()] || !free) { btn.classList.add('disabled'); btn.disabled = true; }
+        if (date > maxDate && HOURS_OPEN[date.getDay()]) {
+          // príliš ďaleko: vyzerá ako nedostupný, ale po kliknutí vysvetlí, že treba zavolať/napísať
+          btn.classList.add('disabled'); btn.style.cursor = 'pointer';
+          btn.addEventListener('click', function () { selectDate(date, btn); });
+        }
+        else if (date < todayDate || !HOURS_OPEN[date.getDay()] || !free) { btn.classList.add('disabled'); btn.disabled = true; }
         else {
           // obsadený deň (prázdne pole): vyzerá ako nedostupný, ale po kliknutí napíše, že už nie je voľný
           if (!free.length) { btn.classList.add('disabled'); btn.style.cursor = 'pointer'; }
@@ -111,6 +118,15 @@
 
   function renderSlots() {
     slotsGrid.innerHTML = '';
+    if (selectedDate > maxDate) {
+      var far = document.createElement('div');
+      far.style.cssText = 'grid-column:1/-1;font-size:12.5px;line-height:1.5;color:var(--cream);text-align:center;padding:14px;border:1px dashed rgba(201,160,106,0.55);border-radius:3px;background:rgba(201,160,106,0.06);';
+      far.appendChild(document.createTextNode(tr('Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte alebo napíšte nám:') + ' '));
+      var a = document.createElement('a'); a.href = 'tel:+421951833488'; a.textContent = '0951 833 488'; a.style.color = 'inherit';
+      far.appendChild(a);
+      slotsGrid.appendChild(far);
+      return;
+    }
     var times = (avail && selectedDate && avail[key(selectedDate)]) || [];
     times.forEach(function (t) {
       var btn = document.createElement('button');
