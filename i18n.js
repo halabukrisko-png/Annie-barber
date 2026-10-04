@@ -241,7 +241,7 @@
     'Rezervovať termín': 'Book appointment',
     'Napísať na Instagrame': 'Message on Instagram',
     'Zavolať': 'Call',
-    'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte alebo napíšte nám:': 'Booking this far ahead is not possible online. If you would like to book this date, please call or message us:',
+    'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram:': 'Booking this far ahead is not possible online. If you would like to book this date, please call us or message us on Instagram:',
     'Tento deň už nie je voľný. Vyber si, prosím, iný dátum.': 'This day is no longer available. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
     'Nedeľa zatvorené · Sobota do 14:00': 'Closed on Sunday · Saturday until 2:00 PM',

@@ -121,9 +121,12 @@
     if (selectedDate > maxDate) {
       var far = document.createElement('div');
       far.style.cssText = 'grid-column:1/-1;font-size:12.5px;line-height:1.5;color:var(--cream);text-align:center;padding:14px;border:1px dashed rgba(201,160,106,0.55);border-radius:3px;background:rgba(201,160,106,0.06);';
-      far.appendChild(document.createTextNode(tr('Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte alebo napíšte nám:') + ' '));
+      far.appendChild(document.createTextNode(tr('Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram:') + ' '));
       var a = document.createElement('a'); a.href = 'tel:+421951833488'; a.textContent = '0951 833 488'; a.style.color = 'inherit';
       far.appendChild(a);
+      far.appendChild(document.createTextNode(' · '));
+      var ig = document.createElement('a'); ig.href = 'https://www.instagram.com/_barberis._/'; ig.target = '_blank'; ig.rel = 'noopener'; ig.textContent = tr('Napísať na Instagrame'); ig.style.color = 'inherit';
+      far.appendChild(ig);
       slotsGrid.appendChild(far);
       return;
     }
