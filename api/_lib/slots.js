@@ -13,18 +13,19 @@ function slotsForBarber(date, busy, dur, nowMs, barber, service) {
   const open = localToMs(date, range[0]);
   const close = localToMs(date, range[1]);
   const earliest = nowMs + LEAD_MIN * MIN;
-  const blocks = busy.filter((b) => b.end > open && b.start < close);
   const lunch = LUNCH[weekday(date)];
-  if (lunch) blocks.push({ start: localToMs(date, lunch[0]), end: localToMs(date, lunch[1]) });
-  blocks.sort((a, b) => a.start - b.start);
+  const lunchFrom = lunch ? localToMs(date, lunch.from) : 0, lunchTo = lunch ? localToMs(date, lunch.to) : 0, lastBefore = lunch ? localToMs(date, lunch.last) : 0;
+  const blocks = busy.filter((b) => b.end > open && b.start < close).sort((a, b) => a.start - b.start);
 
   // kandidáti: pravidelná mriežka + čas hneď po konci existujúceho termínu (+ prestávka)
   const cand = new Set();
-  // mriežka sa rozbieha od otvorenia a od konca obedňajšej prestávky
-  const segs = lunch ? [[range[0], lunch[0]], [lunch[1], range[1]]] : [[range[0], range[1]]];
-  segs.forEach((sg) => { for (let m = sg[0]; m + dur <= sg[1]; m += GRID_MIN) cand.add(localToMs(date, m)); });
+  // mriežka sa rozbieha od otvorenia (do posledného predobedného času) a od konca obedňajšej prestávky
+  const segs = lunch ? [[range[0], lunch.last, true], [lunch.to, range[1], false]] : [[range[0], range[1], false]];
+  segs.forEach((sg) => { for (let m = sg[0]; sg[2] ? m <= sg[1] : m + dur <= sg[1]; m += GRID_MIN) if (m + dur <= range[1]) cand.add(localToMs(date, m)); });
   blocks.forEach((b) => {
     const s = Math.ceil((b.end + BREAK_MIN * MIN) / MIN) * MIN;
+    // v obedňajšej prestávke sa lepí len na klienta, ktorý tam už je (začína v prestávke)
+    if (lunch && s > lastBefore && s < lunchTo && b.start < lunchFrom) return;
     if (s >= open && s + dur * MIN <= close) cand.add(s);
   });
 
