@@ -233,7 +233,7 @@
     'Tento deň už nie je voľný. Vyber si, prosím, iný dátum.': 'This day is no longer available. Please choose another date.',
     'Zobrazené len voľné časy': 'Only available times are shown',
     'Pondelok a nedeľa zatvorené · Sobota do 14:00 · Obedná prestávka 12:30 – 14:00 (Ut – Pi)': 'Closed on Monday and Sunday · Saturday until 2:00 PM · Lunch break 12:30 – 2:00 PM (Tue – Fri)',
-    'Obedná prestávka (Ut – Pi)': 'Lunch break (Tue – Fri)',
+    '(Obedná prestávka Ut – Pi: 12:30 – 14:00)': '(Lunch break Tue – Fri: 12:30 – 2:00 PM)',
     'Obedná prestávka (Ut – Pi) · 12:30 – 14:00': 'Lunch break (Tue – Fri) · 12:30 – 2:00 PM',
     'Termín ti potvrdíme e-mailom.': 'We will confirm your appointment by e-mail.',
     'Zrušiť alebo zmeniť termín': 'Cancel or change appointment',
