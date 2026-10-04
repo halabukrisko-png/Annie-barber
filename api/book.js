@@ -26,6 +26,7 @@ module.exports = async function handler(req, res) {
     if (barber && !BARBER_NAMES.includes(barber)) return res.status(400).json({ error: 'Neznámy barber' });
     if (!isDateStr(date) || !/^\d{2}:\d{2}$/.test(time)) return res.status(400).json({ error: 'Neplatný termín' });
     if (name.length < 2) return res.status(400).json({ error: 'Zadaj meno', field: 'name' });
+    if (b.consent !== true) return res.status(400).json({ error: 'Je potrebný súhlas so spracovaním osobných údajov', field: 'consent' });
     if (phone.replace(/\D/g, '').length < 9) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Neplatný e-mail', field: 'email' });
 

@@ -175,12 +175,14 @@
     if (phone.replace(/\D/g, '').length < 9) { setMsg(tr('Zadaj platné telefónne číslo.')); phoneField.focus(); return; }
     if (!mail) { setMsg(tr('Zadaj e-mail.')); emailField.focus(); return; }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { setMsg(tr('Zadaj platný e-mail.')); emailField.focus(); return; }
+    var gdpr = $('cal-gdpr');
+    if (gdpr && !gdpr.checked) { setMsg(tr('Pred rezerváciou musíš súhlasiť so spracovaním osobných údajov.')); gdpr.focus(); return; }
     setMsg('');
     confirmBtn.classList.add('is-busy'); confirmBtn.setAttribute('aria-disabled', 'true');
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-        name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
+        name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
@@ -206,6 +208,7 @@
 
   function resetAfterBooking() {
     nameField.value = ''; phoneField.value = ''; emailField.value = '';
+    if ($('cal-gdpr')) $('cal-gdpr').checked = false;
     selectedTime = null; selectedDate = null; slotsWrap.hidden = true;
     load();
   }
@@ -235,7 +238,7 @@
       changed();
     });
   });
-  [nameField, phoneField, emailField].forEach(function (f) { f.addEventListener('input', function () { if (msgBox.textContent) setMsg(''); }); });
+  [nameField, phoneField, emailField, $('cal-gdpr')].forEach(function (f) { if (f) f.addEventListener('input', function () { if (msgBox.textContent) setMsg(''); }); });
 
   prevBtn.addEventListener('click', function () { view.setMonth(view.getMonth() - 1); resetSelection(); load(); });
   nextBtn.addEventListener('click', function () { view.setMonth(view.getMonth() + 1); resetSelection(); load(); });
