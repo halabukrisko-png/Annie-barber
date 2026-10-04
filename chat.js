@@ -62,7 +62,7 @@
         if (picked > maxDate) {
           html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
             '<div class="bb-cal-note">' + (en ? 'Booking this far ahead is not possible online. If you would like to book this date, please call us or message us on Instagram: ' : 'Tak ďaleko dopredu sa online objednať nedá. Ak si prajete objednať tento dátum, zavolajte nám alebo napíšte na Instagram: ') +
-            '<a href="' + TEL + '">' + PHONE + '</a> · <a href="' + IG + '" target="_blank" rel="noopener">Instagram</a></div>';
+            '<a href="' + TEL + '">' + PHONE + '</a> · <a href="' + IG + '" target="_blank" rel="noopener">@BARBERIS</a></div>';
         } else html += '<div class="bb-cal-sub">' + I18N.dateShort(picked) + '</div>' +
           '<div class="bb-slots"><a href="' + (MOBILE ? '/o-nas-m' : '/o-nas') + '?d=' + pd + '#booking">' + (en ? 'See free times →' : 'Zobraziť voľné časy →') + '</a></div>' +
           '<div class="bb-cal-note">' + (en ? 'Choose your barber and service to see the exact free times.' : 'Vyber barbera a službu a uvidíš presné voľné časy.') + '</div>';

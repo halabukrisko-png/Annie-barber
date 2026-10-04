@@ -125,7 +125,7 @@
       var a = document.createElement('a'); a.href = 'tel:+421951833488'; a.textContent = '0951 833 488'; a.style.color = 'inherit';
       far.appendChild(a);
       far.appendChild(document.createTextNode(' · '));
-      var ig = document.createElement('a'); ig.href = 'https://www.instagram.com/_barberis._/'; ig.target = '_blank'; ig.rel = 'noopener'; ig.textContent = 'Instagram'; ig.style.color = 'inherit';
+      var ig = document.createElement('a'); ig.href = 'https://www.instagram.com/_barberis._/'; ig.target = '_blank'; ig.rel = 'noopener'; ig.textContent = '@BARBERIS'; ig.style.color = 'inherit';
       far.appendChild(ig);
       slotsGrid.appendChild(far);
       return;
