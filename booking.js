@@ -191,6 +191,9 @@
           formBox.hidden = true; doneBox.hidden = false;
           var who = res.j.barber ? ((en() ? ' with ' : ' u ') + res.j.barber) : '';
           var sb = selService();
+          var verify = !!res.j.verify;
+          $('cal-done-title').textContent = tr(verify ? 'Skontroluj e-mail ✉️' : 'Termín je zarezervovaný ✓');
+          $('cal-done-note').textContent = tr(verify ? 'Poslali sme ti e-mail s odkazom. Rezervácia sa uloží, až keď naň klikneš (platí 30 minút). Pozri aj do spamu.' : 'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.');
           $('cal-done-text').textContent = (sb ? sb.querySelector('.svc-name').textContent : '') + (res.j.barber ? ((en() ? ' with ' : ' u ') + res.j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
           doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
           resetAfterBooking();

@@ -2,7 +2,7 @@
 const esc = (s) => String(s || '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
 async function sendMail(to, subject, text, html) {
-  if (!process.env.RESEND_API_KEY || !process.env.MAIL_FROM || !to) return;
+  if (!process.env.RESEND_API_KEY || !process.env.MAIL_FROM || !to) return false;
   try {
     const body = { from: process.env.MAIL_FROM, to: [].concat(to), subject, text };
     if (html) body.html = html;
@@ -12,7 +12,8 @@ async function sendMail(to, subject, text, html) {
       body: JSON.stringify(body),
     });
     if (!r.ok) console.error('mail', r.status, await r.text().catch(() => ''));
-  } catch (e) { console.error('mail', e); }
+    return r.ok;
+  } catch (e) { console.error('mail', e); return false; }
 }
 
 // Oznam pre majiteľa: zelený = nová rezervácia, červený = zrušenie. Posiela sa na OWNER_EMAIL.
@@ -71,4 +72,27 @@ async function mailCustomer(kind, lang, to, d) {
   await sendMail(to, K.subject + ' – ' + d.when + ' – BARBERIS', text, html);
 }
 
-module.exports = { sendMail, notifyOwner, mailCustomer };
+const VTXT = {
+  sk: { subject: 'Potvrď rezerváciu', title: 'Potvrď svoju rezerváciu', hi: 'Ahoj ', intro: 'skoro hotovo. Termín bude rezervovaný až po kliknutí na tlačidlo:', btn: 'Potvrdiť rezerváciu', exp: 'Odkaz platí {m} minút. Ak si rezerváciu nerobil(a) ty, tento e-mail ignoruj.', rows: ['Termín', 'Služba', 'Barber'] },
+  en: { subject: 'Confirm your booking', title: 'Confirm your booking', hi: 'Hi ', intro: 'almost done. Your appointment will be booked once you click the button:', btn: 'Confirm booking', exp: 'This link is valid for {m} minutes. If you did not make this booking, just ignore this email.', rows: ['Date', 'Service', 'Barber'] },
+};
+
+// Overovací e-mail s odkazom na potvrdenie rezervácie. d: { name, when, service, barber }
+async function mailVerify(lang, to, d, link, minutes) {
+  const L = VTXT[lang === 'en' ? 'en' : 'sk'], color = '#c9a06a';
+  const rows = [[L.rows[0], d.when], [L.rows[1], d.service]].concat(d.barber ? [[L.rows[2], d.barber]] : []);
+  const exp = L.exp.replace('{m}', minutes);
+  const text = L.hi + (d.name || '') + ',\n\n' + L.intro + '\n' + link + '\n\n' + rows.map((r) => r[0] + ': ' + r[1]).join('\n') + '\n\n' + exp + '\n\nBARBERIS';
+  const html = '<div style="font-family:Arial,sans-serif;max-width:480px;color:#111">' +
+    '<h2 style="margin:0 0 12px">' + L.title + '</h2>' +
+    '<p style="margin:0 0 12px;font-size:15px">' + esc(L.hi + (d.name || '')) + ',<br>' + L.intro + '</p>' +
+    '<table style="border-collapse:collapse;font-size:15px">' +
+    rows.map((r) => '<tr><td style="padding:4px 12px 4px 0;color:#666">' + r[0] + '</td><td style="padding:4px 0"><b>' + esc(r[1]) + '</b></td></tr>').join('') +
+    '</table>' +
+    '<p style="margin:18px 0"><a href="' + esc(link) + '" style="display:inline-block;background:' + color + ';color:#141311;text-decoration:none;padding:12px 22px;border-radius:6px;font-size:15px;font-weight:bold">' + L.btn + '</a></p>' +
+    '<p style="margin:0 0 4px;font-size:13px;color:#666">' + exp + '</p>' +
+    '<p style="margin:12px 0 0;font-size:14px;color:#888">BARBERIS</p></div>';
+  return sendMail(to, L.subject + ' – ' + d.when + ' – BARBERIS', text, html);
+}
+
+module.exports = { sendMail, notifyOwner, mailCustomer, mailVerify, SITE };
