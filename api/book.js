@@ -2,7 +2,7 @@
 // S nastaveným VERIFY_SECRET pošle zákazníkovi overovací e-mail; rezerváciu zapíše až /api/verify.
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS } = require('./_lib/config');
 const { addDays, todayStr, isDateStr } = require('./_lib/time');
-const { createBooking } = require('./_lib/booking');
+const { createBooking, overLimit, LIMIT_MSG, DISPOSABLE } = require('./_lib/booking');
 const { verifyEnabled, sendVerification } = require('./_lib/verify');
 
 const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
@@ -29,6 +29,7 @@ module.exports = async function handler(req, res) {
     if (phone.replace(/\D/g, '').length < 9) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return res.status(400).json({ error: 'Neplatný e-mail', field: 'email' });
 
+    if (DISPOSABLE.test(email)) return res.status(400).json({ error: 'Jednorazové e-maily nie sú povolené. Zadaj svoj bežný e-mail.', field: 'email' });
     const lang = b.lang === 'en' ? 'en' : 'sk';
     const data = { service, barber, date, time, name, phone, email, lang };
 
@@ -36,6 +37,7 @@ module.exports = async function handler(req, res) {
     if (verifyEnabled()) {
       const nowMs = Date.now();
       if (date > addDays(todayStr(nowMs), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
+      if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
       const sent = await sendVerification(data);
       if (!sent) return res.status(503).json({ error: 'Overovací e-mail sa nepodarilo odoslať. Skontroluj e-mail alebo zavolaj.', field: 'email' });
       return res.status(200).json({ ok: true, verify: true });

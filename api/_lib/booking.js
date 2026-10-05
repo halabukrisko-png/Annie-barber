@@ -7,6 +7,26 @@ const { mailCustomer, notifyOwner } = require('./mail');
 
 const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 
+const MAX_ACTIVE = 2; // max. počet budúcich rezervácií na jedno telefónne číslo / e-mail
+const DISPOSABLE = /@(mailinator|guerrillamail|10minutemail|tempmail|temp-mail|yopmail|trashmail|sharklasers|getnada|dispostable|maildrop|throwawaymail|fakeinbox|mohmal|emailondeck)\./i;
+
+// true, ak má kontakt už MAX_ACTIVE budúcich rezervácií (ochrana proti zahlteniu falošnými rezerváciami)
+async function overLimit(phone, email) {
+  const pk = phoneKey(phone), em = String(email || '').toLowerCase();
+  const from = Date.now(), to = from + (HORIZON_DAYS + 5) * 86400000;
+  const lists = await Promise.all(BARBER_NAMES.map(calendarId).filter(Boolean).map((id) =>
+    listEvents(id, from, to, '&maxResults=250&fields=items(status,extendedProperties)').catch(() => ({ items: [] }))));
+  let n = 0;
+  lists.forEach((r) => (r.items || []).forEach((e) => {
+    const pr = (e.extendedProperties && e.extendedProperties.private) || {};
+    if (e.status === 'cancelled' || pr.barberis !== '1') return;
+    if ((pk && pr.phoneKey === pk) || (em && pr.emailKey === em)) n++;
+  }));
+  return n >= MAX_ACTIVE;
+}
+
+const LIMIT_MSG = 'Na tento telefón alebo e-mail už máš maximálny počet rezervácií. Ak potrebuješ ďalší termín, zavolaj nám na 0951 833 488.';
+
 // d: { service, barber, date, time, name, phone, email, lang, vid? } (už overené). Vráti { status, body }.
 // Ak je zadané vid (ID overenej rezervácie), opakované použitie rovnakého odkazu rezerváciu nezdvojí.
 async function createBooking(d) {
@@ -25,6 +45,7 @@ async function createBooking(d) {
     const dup = days.some((r) => (r.items || []).some((e) => e.status !== 'cancelled' && e.extendedProperties && e.extendedProperties.private && e.extendedProperties.private.vid === vid));
     if (dup) return { status: 200, body: { ok: true, already: true, time, date } };
   }
+  if (await overLimit(phone, email)) return { status: 429, body: { error: LIMIT_MSG } };
   const [busy, shared] = await Promise.all([freeBusy(ids, dayFrom, dayTo), sharedBlocks(dayFrom, dayTo)]);
   const busyByBarber = {};
   names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]].concat(shared); });
@@ -70,4 +91,4 @@ async function createBooking(d) {
   return { status: 200, body: { ok: true, barber: who, time, date, duration: dur } };
 }
 
-module.exports = { createBooking, phoneKey };
+module.exports = { createBooking, phoneKey, overLimit, LIMIT_MSG, DISPOSABLE };
