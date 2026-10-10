@@ -20,10 +20,9 @@ module.exports = async function handler(req, res) {
     if (code.length < 4 || code.length > 10) return res.status(400).json({ error: 'Zadaj kód z SMS.', field: 'code' });
 
     const { exp, sms, ...d } = t.data;
-    const c = await checkCode(d.phone, code);
+    const c = checkCode(d.vid, code);
     if (c === 'wrong') return res.status(400).json({ error: 'Nesprávny kód. Skús to znova.', field: 'code' });
-    if (c === 'expired') return res.status(400).json({ error: 'Kód vypršal alebo bol zadaný príliš veľakrát nesprávne. Pošli si nový.', expired: true });
-    if (c !== 'ok') return res.status(503).json({ error: 'Kód sa nepodarilo overiť. Skús to prosím znova alebo zavolaj.' });
+    if (c === 'locked') return res.status(400).json({ error: 'Príliš veľa nesprávnych pokusov. Pošli si nový kód.', expired: true });
 
     const r = await createBooking(d);
     return res.status(r.status).json(r.body);

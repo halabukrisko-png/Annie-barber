@@ -8,8 +8,8 @@ const verifyEnabled = () => !!process.env.VERIFY_SECRET;
 const b64 = (buf) => Buffer.from(buf).toString('base64url');
 const sign = (s) => crypto.createHmac('sha256', process.env.VERIFY_SECRET).update(s).digest('base64url');
 
-function makeToken(data) {
-  const body = b64(JSON.stringify(Object.assign({}, data, { exp: Date.now() + TTL_MIN * 60000, vid: crypto.randomBytes(9).toString('hex') })));
+function makeToken(data, ttlMin) {
+  const body = b64(JSON.stringify(Object.assign({ vid: crypto.randomBytes(9).toString('hex') }, data, { exp: Date.now() + (ttlMin || TTL_MIN) * 60000 })));
   return body + '.' + sign(body);
 }
 

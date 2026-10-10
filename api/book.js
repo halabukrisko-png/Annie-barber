@@ -4,7 +4,8 @@ const { SERVICES, BARBER_NAMES, HORIZON_DAYS } = require('./_lib/config');
 const { addDays, todayStr, isDateStr } = require('./_lib/time');
 const { createBooking, overLimit, LIMIT_MSG, DISPOSABLE } = require('./_lib/booking');
 const { verifyEnabled, sendVerification, makeToken } = require('./_lib/verify');
-const { smsEnabled, toE164, sendCode } = require('./_lib/sms');
+const crypto = require('crypto');
+const { smsEnabled, toE164, sendCode, TTL_MIN: SMS_TTL } = require('./_lib/sms');
 
 const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
 
@@ -39,8 +40,9 @@ module.exports = async function handler(req, res) {
       if (!toE164(phone)) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
       if (date > addDays(todayStr(Date.now()), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
       if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
-      if (!(await sendCode(phone, lang))) return res.status(503).json({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' });
-      return res.status(200).json({ ok: true, sms: true, token: makeToken(Object.assign({ sms: 1 }, data)) });
+      const vid = crypto.randomBytes(9).toString('hex');
+      if (!(await sendCode(phone, lang, vid))) return res.status(503).json({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' });
+      return res.status(200).json({ ok: true, sms: true, token: makeToken(Object.assign({ sms: 1, vid }, data), SMS_TTL) });
     }
 
     // overenie e-mailu: rezervácia sa zapíše až po kliknutí na odkaz v e-maile (/api/verify)
