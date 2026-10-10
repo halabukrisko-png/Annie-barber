@@ -494,10 +494,16 @@
               Overenie telefónu
               <div class="cal-confirm-value" id="cal-code-text"></div>
             </div>
-            <input type="text" class="cal-field" id="cal-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="Kód z SMS" aria-label="Kód z SMS" style="text-align:center;letter-spacing:0.3em;font-size:18px;">
+            <label for="cal-code" style="display:block;margin:0 0 8px;font-size:12.5px;line-height:1.5;color:rgba(207,198,184,0.85);">Zadajte 6-miestny overovací kód zo SMS</label>
+            <input type="text" class="cal-field" id="cal-code" inputmode="numeric" pattern="[0-9]*" autocomplete="one-time-code" maxlength="6" placeholder="– – – – – –" aria-label="Overovací kód zo SMS" style="text-align:center;letter-spacing:0.45em;font-size:20px;font-weight:700;padding:14px 12px;">
             <div id="cal-code-msg" class="cal-msg" role="alert" hidden></div>
             <a href="#" role="button" class="btn-cta" id="cal-code-ok" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Potvrdiť kód</a>
-            <div class="cal-footnote">Termín sa zapíše až po zadaní správneho kódu. <a href="#" id="cal-code-resend" style="color:inherit;text-decoration:underline;">Poslať kód znova</a> · <a href="#" id="cal-code-back" style="color:inherit;text-decoration:underline;">Zmeniť číslo</a></div>
+            <div class="cal-footnote" style="margin-bottom:4px;">Termín sa zapíše do kalendára až po zadaní správneho kódu.</div>
+            <div style="display:flex;gap:10px;">
+              <a href="#" role="button" class="btn-outline" id="cal-code-resend" style="flex:1;margin-top:10px;">Poslať kód znova</a>
+              <a href="#" role="button" class="btn-outline" id="cal-code-back" style="flex:1;margin-top:10px;">Zmeniť číslo</a>
+            </div>
+            <a href="#" role="button" class="btn-outline" id="cal-code-return" style="margin-top:10px;">← Vrátiť sa späť</a>
           </div>
           <div id="cal-done" class="cal-done" hidden>
             <div class="cal-done-title" id="cal-done-title">Termín je zarezervovaný ✓</div>

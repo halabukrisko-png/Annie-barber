@@ -244,7 +244,8 @@
 
   codeOk.addEventListener('click', function (e) { e.preventDefault(); if (codeOk.getAttribute('aria-disabled') !== 'true') confirmCode(); });
   codeField.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); confirmCode(); } });
-  $('cal-code-back').addEventListener('click', function (e) { e.preventDefault(); codeBox.hidden = true; formBox.hidden = false; });
+  $('cal-code-back').addEventListener('click', function (e) { e.preventDefault(); codeBox.hidden = true; formBox.hidden = false; phoneField.focus(); phoneField.select(); });
+  $('cal-code-return').addEventListener('click', function (e) { e.preventDefault(); codeBox.hidden = true; formBox.hidden = false; step4Wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' }); });
   $('cal-code-resend').addEventListener('click', function (e) {
     e.preventDefault();
     if (!lastPayload) return;
