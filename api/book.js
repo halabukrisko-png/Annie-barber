@@ -41,7 +41,8 @@ module.exports = async function handler(req, res) {
       if (date > addDays(todayStr(Date.now()), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
       if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
       const vid = crypto.randomBytes(9).toString('hex');
-      if (!(await sendCode(phone, lang, vid))) return res.status(503).json({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' });
+      const sent = await sendCode(phone, lang, vid);
+      if (!sent.ok) return res.status(503).json(Object.assign({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' }, b.debug ? { detail: sent.detail } : {}));
       return res.status(200).json({ ok: true, sms: true, token: makeToken(Object.assign({ sms: 1, vid }, data), SMS_TTL) });
     }
 

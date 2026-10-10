@@ -24,7 +24,7 @@ const codeFor = (vid) => {
 
 async function sendCode(phone, lang, vid) {
   const to = toE164(phone);
-  if (!to || !vid) return false;
+  if (!to || !vid) return { ok: false, detail: 'neplatné číslo' };
   const code = codeFor(vid);
   const body = lang === 'en'
     ? 'BARBERIS: your verification code is ' + code + '. Valid for ' + TTL_MIN + ' minutes.'
@@ -38,9 +38,12 @@ async function sendCode(phone, lang, vid) {
       },
       body: new URLSearchParams({ To: to, From: process.env.TWILIO_FROM, Body: body }).toString(),
     });
-    if (!r.ok) console.error('sms send', r.status, await r.text().catch(() => ''));
-    return r.ok;
-  } catch (e) { console.error('sms send', e); return false; }
+    if (r.ok) return { ok: true };
+    const txt = await r.text().catch(() => '');
+    console.error('sms send', r.status, txt);
+    let j = {}; try { j = JSON.parse(txt); } catch (e) { /* nie JSON */ }
+    return { ok: false, detail: 'Twilio ' + r.status + (j.code ? ' / ' + j.code : '') + (j.message ? ': ' + j.message : '') };
+  } catch (e) { console.error('sms send', e); return { ok: false, detail: 'sieťová chyba: ' + e.message }; }
 }
 
 // Obmedzenie pokusov (best-effort: počíta sa v pamäti inštancie, platnosť kódu je navyše krátka)
