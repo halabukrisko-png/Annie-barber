@@ -19,6 +19,7 @@ Pre každý skopíruj *ID kalendára* (Nastavenia kalendára → Integrovať kal
 | `CAL_SHARED` | ID spoločného kalendára (každá rezervácia sa tam zrkadlí s menom barbera) |
 | `RESEND_API_KEY`, `MAIL_FROM` | e-maily cez Resend (klient dostane potvrdenie aj zrušenie). `MAIL_FROM` napr. `BARBERIS <rezervacie@tvojadomena.sk>` – doména musí byť overená v Resende |
 | `VERIFY_SECRET` | ľubovoľný dlhý náhodný reťazec. Zapne **overenie e-mailu**: rezervácia sa zapíše do kalendára až po kliknutí na odkaz v e-maile (platí 30 min). Vyžaduje funkčné `RESEND_API_KEY` + `MAIL_FROM`. Bez neho sa rezervuje hneď ako predtým |
+| `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_VERIFY_SID` | **Overenie telefónu SMS kódom** (Twilio Verify: twilio.com → Verify → Services → Create, skopíruj *Service SID* `VA…`). Po vyplnení (a s nastaveným `VERIFY_SECRET`) zákazník po odoslaní formulára dostane SMS s kódom a rezervácia sa zapíše do kalendára až po jeho zadaní. Twilio samo limituje počet pokusov (5) a platnosť kódu (10 min). Má prednosť pred overením e-mailom. SMS sú spoplatnené (~0,05–0,10 € za správu) |
 | `OWNER_EMAIL` | tvoj Gmail (viac adries oddeľ čiarkou) – dostaneš farebný e-mail: 🟢 zelený pri novej rezervácii, 🔴 červený pri zrušení |
 
 Po pridaní premenných treba nasadiť znova (Redeploy).

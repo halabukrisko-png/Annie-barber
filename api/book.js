@@ -1,9 +1,10 @@
 // POST /api/book { service, barber, date, time, name, phone, email }
-// S nastaveným VERIFY_SECRET pošle zákazníkovi overovací e-mail; rezerváciu zapíše až /api/verify.
+// S nastaveným Twilio (SMS kód, /api/confirm) alebo VERIFY_SECRET pošle zákazníkovi overovací e-mail; rezerváciu zapíše až /api/verify.
 const { SERVICES, BARBER_NAMES, HORIZON_DAYS } = require('./_lib/config');
 const { addDays, todayStr, isDateStr } = require('./_lib/time');
 const { createBooking, overLimit, LIMIT_MSG, DISPOSABLE } = require('./_lib/booking');
-const { verifyEnabled, sendVerification } = require('./_lib/verify');
+const { verifyEnabled, sendVerification, makeToken } = require('./_lib/verify');
+const { smsEnabled, toE164, sendCode } = require('./_lib/sms');
 
 const clean = (s, n) => String(s || '').replace(/[\r\n\t]+/g, ' ').trim().slice(0, n);
 
@@ -32,6 +33,15 @@ module.exports = async function handler(req, res) {
     if (DISPOSABLE.test(email)) return res.status(400).json({ error: 'Jednorazové e-maily nie sú povolené. Zadaj svoj bežný e-mail.', field: 'email' });
     const lang = b.lang === 'en' ? 'en' : 'sk';
     const data = { service, barber, date, time, name, phone, email, lang };
+
+    // overenie telefónu: pošle sa SMS kód; rezervácia sa zapíše až po jeho zadaní (/api/confirm)
+    if (smsEnabled()) {
+      if (!toE164(phone)) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
+      if (date > addDays(todayStr(Date.now()), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
+      if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
+      if (!(await sendCode(phone, lang))) return res.status(503).json({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' });
+      return res.status(200).json({ ok: true, sms: true, token: makeToken(Object.assign({ sms: 1 }, data)) });
+    }
 
     // overenie e-mailu: rezervácia sa zapíše až po kliknutí na odkaz v e-maile (/api/verify)
     if (verifyEnabled()) {

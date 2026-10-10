@@ -487,7 +487,17 @@
           </details>
           <div id="cal-msg" class="cal-msg" role="alert" hidden></div>
           <a href="#" role="button" class="btn-cta" id="cal-confirm" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Rezervovať termín</a>
-          <div class="cal-footnote">Na e-mail ti pošleme odkaz. Termín je rezervovaný až po jeho potvrdení.</div>
+          <div class="cal-footnote">Na telefón ti pošleme SMS s kódom. Termín je rezervovaný až po jeho zadaní.</div>
+          </div>
+          <div id="cal-code-box" hidden>
+            <div class="cal-confirm-box">
+              Overenie telefónu
+              <div class="cal-confirm-value" id="cal-code-text"></div>
+            </div>
+            <input type="text" class="cal-field" id="cal-code" inputmode="numeric" autocomplete="one-time-code" maxlength="8" placeholder="Kód z SMS" aria-label="Kód z SMS" style="text-align:center;letter-spacing:0.3em;font-size:18px;">
+            <div id="cal-code-msg" class="cal-msg" role="alert" hidden></div>
+            <a href="#" role="button" class="btn-cta" id="cal-code-ok" style="margin-top:0;background:var(--bronze);color:#141311;text-align:center;padding:15px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:0.07em;text-transform:uppercase;">Potvrdiť kód</a>
+            <div class="cal-footnote">Termín sa zapíše až po zadaní správneho kódu. <a href="#" id="cal-code-resend" style="color:inherit;text-decoration:underline;">Poslať kód znova</a> · <a href="#" id="cal-code-back" style="color:inherit;text-decoration:underline;">Zmeniť číslo</a></div>
           </div>
           <div id="cal-done" class="cal-done" hidden>
             <div class="cal-done-title" id="cal-done-title">Termín je zarezervovaný ✓</div>

@@ -33,4 +33,4 @@ async function sendVerification(d) {
   return mailVerify(d.lang, d.email, { name: d.name, when, service: en ? (svc.nameEn || svc.name) : svc.name, barber: d.barber }, link, TTL_MIN);
 }
 
-module.exports = { verifyEnabled, sendVerification, readToken };
+module.exports = { verifyEnabled, sendVerification, readToken, makeToken };

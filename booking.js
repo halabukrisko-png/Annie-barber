@@ -15,6 +15,8 @@
   var summary = $('cal-summary'), confirmBtn = $('cal-confirm'), step4Wrap = $('cal-step4-wrap');
   var nameField = $('cal-name'), phoneField = $('cal-phone'), emailField = $('cal-email');
   var svcGrid = $('svc-grid'), barberGrid = $('barber-grid'), afterBarberWrap = $('cal-after-barber-wrap');
+  var codeBox = $('cal-code-box'), codeField = $('cal-code'), codeMsg = $('cal-code-msg'), codeOk = $('cal-code-ok');
+  var smsToken = null, lastPayload = null, lastPhone = '';
   var msgBox = $('cal-msg'), formBox = $('cal-form-box'), doneBox = $('cal-done');
 
   var HOURS_OPEN = { 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
@@ -150,7 +152,7 @@
     selectedTime = t;
     all(slotsGrid, '.slot-btn').forEach(function (el) { el.classList.remove('selected'); });
     if (btn) btn.classList.add('selected');
-    step4Wrap.hidden = false; formBox.hidden = false; doneBox.hidden = true; setMsg('');
+    step4Wrap.hidden = false; formBox.hidden = false; doneBox.hidden = true; codeBox.hidden = true; setMsg('');
     updateSummary();
     step4Wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
@@ -179,24 +181,22 @@
     if (gdpr && !gdpr.checked) { setMsg(tr('Pred rezerváciou musíš súhlasiť so spracovaním osobných údajov.')); gdpr.focus(); return; }
     setMsg('');
     confirmBtn.classList.add('is-busy'); confirmBtn.setAttribute('aria-disabled', 'true');
+    var payload = { service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
+      name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) };
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-        name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) })
+      body: JSON.stringify(payload)
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         confirmBtn.classList.remove('is-busy'); confirmBtn.removeAttribute('aria-disabled');
-        if (res.ok && res.j.ok) {
-          cache = {};
-          formBox.hidden = true; doneBox.hidden = false;
-          var who = res.j.barber ? ((en() ? ' with ' : ' u ') + res.j.barber) : '';
-          var sb = selService();
-          var verify = !!res.j.verify;
-          $('cal-done-title').textContent = tr(verify ? 'Skontroluj e-mail ✉️' : 'Termín je zarezervovaný ✓');
-          $('cal-done-note').textContent = tr(verify ? 'Poslali sme ti e-mail s odkazom. Rezervácia sa uloží, až keď naň klikneš (platí 30 minút). Pozri aj do spamu.' : 'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.');
-          $('cal-done-text').textContent = (sb ? sb.querySelector('.svc-name').textContent : '') + (res.j.barber ? ((en() ? ' with ' : ' u ') + res.j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
-          doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-          resetAfterBooking();
+        if (res.ok && res.j.ok && res.j.sms) {
+          smsToken = res.j.token; lastPayload = payload; lastPhone = phone;
+          formBox.hidden = true; doneBox.hidden = true; codeBox.hidden = false;
+          $('cal-code-text').textContent = tr('Poslali sme SMS s kódom na číslo') + ' ' + phone;
+          codeField.value = ''; setCodeMsg('');
+          codeField.focus();
+        } else if (res.ok && res.j.ok) {
+          showDone(res.j);
         } else {
           if (res.j && res.j.detail) { setMsg((res.j.error || '') + ' [' + res.j.detail + ']'); return; }
           setMsg(res.j && res.j.error ? (res.j.taken ? tr('Tento čas už nie je voľný. Vyber si, prosím, iný.') : res.j.error) : tr('Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.'));
@@ -208,6 +208,54 @@
         setMsg(tr('Rezerváciu sa nepodarilo uložiť. Zavolaj nám prosím.') + (/[?&]debug=1/.test(location.search) ? ' [sieťová chyba]' : ''));
       });
   }
+
+  function showDone(j) {
+    cache = {};
+    formBox.hidden = true; codeBox.hidden = true; doneBox.hidden = false;
+    var sb = selService();
+    var verify = !!j.verify;
+    $('cal-done-title').textContent = tr(verify ? 'Skontroluj e-mail ✉️' : 'Termín je zarezervovaný ✓');
+    $('cal-done-note').textContent = tr(verify ? 'Poslali sme ti e-mail s odkazom. Rezervácia sa uloží, až keď naň klikneš (platí 30 minút). Pozri aj do spamu.' : 'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.');
+    $('cal-done-text').textContent = (sb ? sb.querySelector('.svc-name').textContent : '') + (j.barber ? ((en() ? ' with ' : ' u ') + j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
+    doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    resetAfterBooking();
+  }
+
+  function setCodeMsg(text) { codeMsg.textContent = text; codeMsg.hidden = !text; }
+
+  function confirmCode() {
+    var code = codeField.value.replace(/\D/g, '');
+    if (code.length < 4) { setCodeMsg(tr('Zadaj kód z SMS.')); codeField.focus(); return; }
+    setCodeMsg('');
+    codeOk.classList.add('is-busy'); codeOk.setAttribute('aria-disabled', 'true');
+    fetch('/api/confirm', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token: smsToken, code: code }) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        codeOk.classList.remove('is-busy'); codeOk.removeAttribute('aria-disabled');
+        if (res.ok && res.j.ok) { showDone(res.j); return; }
+        if (res.j && res.j.taken) { codeBox.hidden = true; formBox.hidden = false; setMsg(tr('Tento čas už nie je voľný. Vyber si, prosím, iný.')); cache = {}; selectedTime = null; load(function () { if (selectedDate) renderSlots(); }); return; }
+        setCodeMsg(res.j && res.j.error ? res.j.error : tr('Kód sa nepodarilo overiť. Skús to prosím znova alebo zavolaj.'));
+      })
+      .catch(function () {
+        codeOk.classList.remove('is-busy'); codeOk.removeAttribute('aria-disabled');
+        setCodeMsg(tr('Kód sa nepodarilo overiť. Skús to prosím znova alebo zavolaj.'));
+      });
+  }
+
+  codeOk.addEventListener('click', function (e) { e.preventDefault(); if (codeOk.getAttribute('aria-disabled') !== 'true') confirmCode(); });
+  codeField.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); confirmCode(); } });
+  $('cal-code-back').addEventListener('click', function (e) { e.preventDefault(); codeBox.hidden = true; formBox.hidden = false; });
+  $('cal-code-resend').addEventListener('click', function (e) {
+    e.preventDefault();
+    if (!lastPayload) return;
+    fetch('/api/book', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(lastPayload) })
+      .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (res.ok && res.j.sms) { smsToken = res.j.token; codeField.value = ''; setCodeMsg(''); setCodeMsg(tr('Kód bol poslaný znova.')); }
+        else setCodeMsg(res.j && res.j.error ? res.j.error : tr('Kód sa nepodarilo overiť. Skús to prosím znova alebo zavolaj.'));
+      })
+      .catch(function () { setCodeMsg(tr('Kód sa nepodarilo overiť. Skús to prosím znova alebo zavolaj.')); });
+  });
 
   function resetAfterBooking() {
     nameField.value = ''; phoneField.value = ''; emailField.value = '';
@@ -222,7 +270,7 @@
     book();
   });
   var again = $('cal-again');
-  if (again) again.addEventListener('click', function () { step4Wrap.hidden = true; doneBox.hidden = true; formBox.hidden = false; });
+  if (again) again.addEventListener('click', function () { step4Wrap.hidden = true; doneBox.hidden = true; codeBox.hidden = true; formBox.hidden = false; });
 
   function changed() { resetSelection(); updateServiceLabels(); load(); }
 
