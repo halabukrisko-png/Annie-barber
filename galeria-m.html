@@ -89,6 +89,7 @@
   }
   .photo-frame .frame-inner { position: relative; overflow: hidden; border-radius: 1px; }
   .photo-frame img { width: 100%; height: 100%; object-fit: cover; display: block; aspect-ratio: 1/1; cursor: zoom-in; transition: opacity 0.2s ease, transform 0.3s ease; }
+  .photo-frame img.pos-top { object-position: center top; }
   .photo-frame img:hover { opacity: 0.88; transform: scale(1.03); }
   .photo-number {
     position: absolute;
@@ -148,9 +149,9 @@
   .btn-outline { display: block; text-align: center; border: 1px solid rgba(201,160,106,0.45); color: var(--bronze); padding: 13px; border-radius: 3px; font-weight: 700; font-size: 11.5px; letter-spacing: 0.07em; text-transform: uppercase; margin-top: 10px; transition: background 0.2s ease, border-color 0.2s ease; }
   .btn-outline:hover { background: rgba(201,160,106,0.1); border-color: var(--bronze); }
   .ig-strip { display: flex; align-items: center; justify-content: center; gap: 6px; margin-bottom: 24px; }
-  .ig-strip img { display: block; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
-  .ig-strip .ig-side { width: 26%; height: 130px; opacity: 0.5; }
-  .ig-strip .ig-main { width: 38%; height: 180px; border: 1px solid rgba(201,160,106,0.5); box-shadow: 0 0 26px rgba(201,160,106,0.22); }
+  .ig-strip img { display: block; min-width: 0; border-radius: 8px; object-fit: cover; transition: opacity 0.25s ease; }
+  .ig-strip .ig-side { flex: 1 1 0; width: 0; height: 130px; opacity: 0.5; }
+  .ig-strip .ig-main { flex: 1.45 1 0; width: 0; height: 180px; border: 1px solid rgba(201,160,106,0.5); box-shadow: 0 0 26px rgba(201,160,106,0.22); }
   .ig-arrow { flex: none; background: transparent; border: 1px solid rgba(201,160,106,0.35); color: var(--bronze); width: 30px; height: 30px; border-radius: 50%; font-size: 15px; line-height: 1; cursor: pointer; transition: background 0.2s ease, border-color 0.2s ease; }
   .ig-arrow:hover { background: rgba(201,160,106,0.14); border-color: var(--bronze); }
   .contact-frame { border: 1px solid rgba(201,160,106,0.45); box-shadow: 0 0 10px rgba(201,160,106,0.2); border-radius: 4px; padding: 18px 14px 14px; background: var(--bg); }
@@ -233,7 +234,7 @@
     <div class="photo-frame"><span class="photo-number">01</span><div class="frame-inner"><img src="assets/gallery/gallery-1-full.webp" srcset="assets/gallery/gallery-1-480.webp 480w, assets/gallery/gallery-1-800.webp 800w, assets/gallery/gallery-1-full.webp 987w" sizes="(min-width: 768px) 270px, 180px" width="987" height="1400" loading="lazy" decoding="async" alt="Barber strihá klientovi vlasy nožnicami a hrebeňom"></div></div>
     <div class="photo-frame"><span class="photo-number">02</span><div class="frame-inner"><img src="assets/gallery/gallery-2-full.webp" srcset="assets/gallery/gallery-2-480.webp 480w, assets/gallery/gallery-2-800.webp 800w, assets/gallery/gallery-2-full.webp 1400w" sizes="(min-width: 768px) 270px, 180px" width="1400" height="1005" loading="lazy" decoding="async" alt="Zákazník s upravenou bradou a strihom v barber kresle"></div></div>
     <div class="photo-frame"><span class="photo-number">03</span><div class="frame-inner"><img src="assets/gallery/gallery-3-full.webp" srcset="assets/gallery/gallery-3-480.webp 480w, assets/gallery/gallery-3-800.webp 800w, assets/gallery/gallery-3-full.webp 1010w" sizes="(min-width: 768px) 270px, 180px" width="1010" height="1400" loading="lazy" decoding="async" alt="Barberka upravuje zákazníkovi bradu v pláštenke BARBERIS"></div></div>
-    <div class="photo-frame"><span class="photo-number">04</span><div class="frame-inner"><img src="assets/gallery/gallery-4-full.webp" srcset="assets/gallery/gallery-4-480.webp 480w, assets/gallery/gallery-4-800.webp 800w, assets/gallery/gallery-4-full.webp 1068w" sizes="(min-width: 768px) 270px, 180px" width="1068" height="1400" loading="lazy" decoding="async" alt="Vladis v priestoroch barbershopu BARBERIS"></div></div>
+    <div class="photo-frame"><span class="photo-number">04</span><div class="frame-inner"><img class="pos-top" src="assets/gallery/gallery-4-full.webp" srcset="assets/gallery/gallery-4-480.webp 480w, assets/gallery/gallery-4-800.webp 800w, assets/gallery/gallery-4-full.webp 1068w" sizes="(min-width: 768px) 270px, 180px" width="1068" height="1400" loading="lazy" decoding="async" alt="Vladis v priestoroch barbershopu BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">05</span><div class="frame-inner"><img src="assets/gallery/gallery-5-full.webp" srcset="assets/gallery/gallery-5-480.webp 480w, assets/gallery/gallery-5-800.webp 800w, assets/gallery/gallery-5-full.webp 1050w" sizes="(min-width: 768px) 270px, 180px" width="1050" height="1400" loading="lazy" decoding="async" alt="Karvy sedí v koženom kresle v BARBERIS"></div></div>
     <div class="photo-frame"><span class="photo-number">06</span><div class="frame-inner"><img src="assets/gallery/gallery-6-full.webp" srcset="assets/gallery/gallery-6-480.webp 480w, assets/gallery/gallery-6-800.webp 800w, assets/gallery/gallery-6-full.webp 977w" sizes="(min-width: 768px) 270px, 180px" width="977" height="1400" loading="lazy" decoding="async" alt="Anett pri barber kresle v BARBERIS"></div></div>
     <div class="photo-frame no-anim"><span class="photo-number">07</span><div class="frame-inner"><img src="assets/gallery/gallery-7-full.webp" srcset="assets/gallery/gallery-7-480.webp 480w, assets/gallery/gallery-7-800.webp 800w, assets/gallery/gallery-7-full.webp 1000w" sizes="(min-width: 768px) 270px, 180px" width="1000" height="1333" loading="lazy" decoding="async" alt="Detail krátkeho pánskeho strihu zboku"></div></div>
