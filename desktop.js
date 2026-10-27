@@ -53,6 +53,7 @@
       ['Úvod', isHome ? '#hero' : '/', path === 'index' || path === '', 'hero'],
       ['O nás', '/o-nas', path === 'o-nas'],
       ['Galéria', '/galeria', path === 'galeria'],
+      ['Blog', '/blog', path === 'blog'],
       ['Kontakt', isHome ? '#contact' : '/#contact', false, 'contact']
     ].forEach(function (l) {
       var a = label(el('a'), l[0]);
@@ -159,7 +160,7 @@
       return c;
     }
     grid.appendChild(col('Navigácia', [
-      ['Úvod', home + '#hero'], ['O nás', '/o-nas'], ['Galéria', '/galeria'], ['Kontakt', home + '#contact']
+      ['Úvod', home + '#hero'], ['O nás', '/o-nas'], ['Galéria', '/galeria'], ['Blog', '/blog'], ['Kontakt', home + '#contact']
     ]));
     grid.appendChild(col('Kontakt', [
       ['0951 833 488', 'tel:+421951833488'],
