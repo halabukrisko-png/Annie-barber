@@ -35,7 +35,7 @@ async function notifyOwner(kind, d) {
   await sendMail(to.split(',').map((s) => s.trim()).filter(Boolean), (ok ? '🟢 ' : '🔴 ') + title + ' – ' + d.name + ', ' + d.when, text, html);
 }
 
-const SITE = 'https://barberis-barber-prievidza.com/';
+const SITE = 'https://barberis.sk/';
 const PHONE = '0951 833 488';
 const ADDRESS = 'Hurbana 4, Prievidza';
 const TXT = {

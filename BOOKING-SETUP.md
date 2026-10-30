@@ -33,4 +33,4 @@ Po pridaní premenných treba nasadiť znova (Redeploy).
 ## E-mail pri ručnom zrušení termínu v kalendári
 `/api/cron-cancel` sa volá každých ~5 min z GitHub Actions (`.github/workflows/cancel-check.yml`; Vercel Hobby cron zvláda len 1x denne). Nájde termíny zmazané ručne v kalendári barbera a pošle e-mail zákazníkovi aj majiteľovi. Ručne pridané udalosti (bez rezervácie z webu) sa neoznamujú. Vyžaduje `CAL_SHARED`.
 1. Vo Verceli pridaj `CRON_SECRET` (ľubovoľný dlhý náhodný reťazec) a nasaď znova.
-2. V GitHub repe → Settings → Secrets and variables → Actions pridaj `CRON_SECRET` (rovnaká hodnota) a `SITE_URL` (napr. `https://barberis-barber-prievidza.com`).
+2. V GitHub repe → Settings → Secrets and variables → Actions pridaj `CRON_SECRET` (rovnaká hodnota) a `SITE_URL` (napr. `https://barberis.sk`).

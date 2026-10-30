@@ -1,6 +1,6 @@
 # Každých ~5 minút zavolá /api/cron-cancel (e-mail o termínoch zmazaných ručne v Google Kalendári).
 # Vercel Hobby cron zvláda len 1x denne, preto spúšťač beží tu.
-# Secrets (Settings -> Secrets and variables -> Actions): SITE_URL (napr. https://barberis-barber-prievidza.com), CRON_SECRET.
+# Secrets (Settings -> Secrets and variables -> Actions): SITE_URL (napr. https://barberis.sk), CRON_SECRET.
 name: cancel-check
 on:
   schedule:
