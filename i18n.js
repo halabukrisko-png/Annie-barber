@@ -118,6 +118,7 @@
     'Rýchla online objednávka na pár klikov. ✂️': 'Quick online booking in just a few clicks. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Viac o pánskom strihu →': 'More about men\'s haircuts →',
+    'Viac o úprave brady →': 'More about beard trims →',
     'Naše komplety:': 'Our packages:',
 
     // team

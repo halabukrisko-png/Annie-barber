@@ -99,6 +99,7 @@
     'Rezervujte si termín vopred a vyhnite sa čakaniu. ✂️': 'Book your appointment in advance and skip the wait. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Viac o pánskom strihu →': 'More about men\'s haircuts →',
+    'Viac o úprave brady →': 'More about beard trims →',
     'Zatvoriť cenník ↑': 'Close the price list ↑',
     'Naše komplety:': 'Our packages:',
 
