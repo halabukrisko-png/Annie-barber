@@ -4,7 +4,7 @@
 (function () {
   var PHONE = '0951 833 488';
   var TEL = 'tel:+421951833488';
-  var MAPS = 'https://maps.google.com/?q=Hurbana+4,+Prievidza';
+  var MAPS = 'https://maps.google.com/?q=BARBERIS+Barbershop,+J.+M.+Hurbana+858/4,+Prievidza';
   var IG = 'https://www.instagram.com/_barberis._/';
   var BOOK = '/o-nas#booking';
   // mobile pages (X-m.html) get their own variants of a few answers
@@ -122,10 +122,10 @@
       keys: ['kde', 'adres', 'ulic', 'prievidz', 'hurban', 'mapa', 'navig', 'where', 'address', 'location', 'map', 'find', 'directions', 'parking', 'parkov'],
       chip: { sk: 'Kde nás nájdeš', en: 'Where to find us' },
       sk: function () {
-        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>V centre Prievidze, pár krokov od námestia.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
+        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, J. M. Hurbana 858/4') + '<b>BARBERIS</b><br>J. M. Hurbana 858/4, 971 01 Prievidza<br>Na sídlisku Zapotôčky v Prievidzi.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigovať →</a>';
       },
       en: function () {
-        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, Hurbana 4') + '<b>BARBERIS</b><br>Hurbana 4, 971 01 Prievidza<br>In the center of Prievidza, a few steps from the square.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
+        return img(MOBILE ? 'assets/storefront-m-640.webp' : 'assets/storefront-640.webp', 'BARBERIS, J. M. Hurbana 858/4') + '<b>BARBERIS</b><br>J. M. Hurbana 858/4, 971 01 Prievidza<br>In the Zapotôčky area of Prievidza.<br><a href="' + MAPS + '" target="_blank" rel="noopener">Navigate →</a>';
       }
     },
     services: {
@@ -248,8 +248,8 @@
     about: {
       keys: ['o nas', 'about us', 'o vas', 'pribeh', 'story'],
       chip: { sk: 'O nás', en: 'About us' },
-      sk: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br>Nájdeš nás v centre Prievidze na adrese <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="/o-nas">O nás →</a>'; },
-      en: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br>You will find us in the center of Prievidza at <b>Hurbana 4, 971 01 Prievidza</b>.<br><a href="/o-nas">About us →</a>'; }
+      sk: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Dobrý strih. Dobrá atmosféra. Tvoje tempo.</b><br>Nie každý prichádza do barberu na hodinový pokec – u nás si vyberieš, či chceš pokec, srandu alebo jednoducho pokoj.<br>Nájdeš nás na sídlisku Zapotôčky v Prievidzi na adrese <b>J. M. Hurbana 858/4, 971 01 Prievidza</b>.<br><a href="/o-nas">O nás →</a>'; },
+      en: function () { return img('assets/lounge-640.webp', 'BARBERIS') + '<b>Good haircut. Good vibes. Your pace.</b><br>Not everyone comes to the barber for an hour-long chat — with us you choose whether you want a chat, some fun or simply peace.<br>You will find us in the Zapotôčky area of Prievidza at <b>J. M. Hurbana 858/4, 971 01 Prievidza</b>.<br><a href="/o-nas">About us →</a>'; }
     },
     hello: {
       keys: ['ahoj', 'cau', 'dobry den', 'zdravim', 'hello', 'hi', 'hey', 'good morning', 'good evening'],

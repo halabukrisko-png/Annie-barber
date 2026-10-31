@@ -112,7 +112,7 @@
 
     var brand = el('div');
     var b = el('div', 'd-footer-brand'); b.textContent = 'BARBERIS'; brand.appendChild(b);
-    brand.appendChild(label(el('p', 'd-footer-tag'), 'Pánsky barbershop v Prievidzi · Hurbana 4'));
+    brand.appendChild(label(el('p', 'd-footer-tag'), 'Pánsky barbershop v Prievidzi · J. M. Hurbana 858/4'));
     var fcta = el('a', 'd-footer-cta'); fcta.href = home + '#booking';
     fcta.appendChild(label(el('span'), 'Zarezervovať termín →'));
     brand.appendChild(fcta);
@@ -144,7 +144,7 @@
       ['0951 833 488', 'tel:+421951833488'],
       ['Instagram', 'https://www.instagram.com/_barberis._/'],
       ['Facebook', 'https://www.facebook.com/p/BARBERIS-100077906015748/'],
-      ['Hurbana 4, 971 01 Prievidza', 'https://maps.google.com/?q=Hurbana+4,+Prievidza']
+      ['J. M. Hurbana 858/4, 971 01 Prievidza', 'https://maps.google.com/?q=BARBERIS+Barbershop,+J.+M.+Hurbana+858/4,+Prievidza']
     ]));
     grid.appendChild(col('Otváracie hodiny', [
       ['Utorok – Piatok · 9:00 – 18:00'], ['Obedná prestávka (Ut – Pi) · 12:30 – 14:00'], ['Sobota · 9:00 – 13:00'], ['Pondelok a nedeľa zatvorené']
