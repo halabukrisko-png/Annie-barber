@@ -349,7 +349,7 @@
     '.bb-cal-note{margin-top:6px;font-size:10px;color:rgba(244,237,225,0.55);}.bb-cal-note.none{font-size:11px;line-height:1.45;color:#f4ede1;text-align:center;padding:8px;border:1px dashed rgba(201,160,106,0.55);border-radius:8px;background:rgba(201,160,106,0.07);}' +
     '#bb-lang{margin-left:auto;margin-right:6px;}#bb-lang .lang-switch button{padding:2px 5px;font-size:10px;}#bb-msgs{flex:1;overflow-y:auto;padding:10px;display:flex;flex-direction:column;gap:5px;scrollbar-width:thin;scrollbar-color:rgba(201,160,106,0.3) transparent;}' +
     '.bb-m{max-width:90%;padding:6px 10px;border-radius:12px;font-size:11.5px;line-height:1.45;}' +
-    '.bb-m a{color:#c9a06a;text-decoration:underline;}' +
+    '.bb-m a{color:#c9a06a;text-decoration:none;padding-bottom:1px;background:linear-gradient(rgba(201,160,106,0.4),rgba(201,160,106,0.4)) 0 100%/100% 1px no-repeat,linear-gradient(#e4c48f,#e4c48f) 0 100%/0 1px no-repeat;transition:color .3s ease,background-size .5s cubic-bezier(.22,1,.36,1);}.bb-m a:hover{color:#e4c48f;background-size:100% 1px,100% 1px;}.bb-slots a,.bb-slots a:hover{background-image:none;padding-bottom:3px;}' +
     '.bb-m.bot{background:#241f1a;color:#cfc6b8;align-self:flex-start;border-bottom-left-radius:4px;}' +
     '.bb-m.me{background:linear-gradient(145deg,#dcb883,#c9a06a);color:#141311;align-self:flex-end;border-bottom-right-radius:4px;}' +
     '#bb-chips{display:flex;flex-wrap:wrap;gap:4px;padding:0 10px 8px;flex:0 0 auto;}' +

@@ -57,6 +57,25 @@
     }
   }
 
+  /* frames: let the bronze line run round the frame once it scrolls into view */
+  (function () {
+    var fr = [].slice.call(doc.querySelectorAll('.feat,.cta>div,.tip,.answer'));
+    if (!fr.length) return;
+    var go = function (el) {
+      el.classList.add('ring-in');
+      setTimeout(function () { el.classList.add('ring-done'); }, reduce ? 50 : 2900);
+    };
+    if (!('IntersectionObserver' in window)) { fr.forEach(go); return; }
+    var ro = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { go(e.target); ro.unobserve(e.target); } });
+    }, { threshold: 0.3 });
+    fr.forEach(function (el) { ro.observe(el); });
+  })();
+
+  /* footer: back to top */
+  var up = doc.getElementById('to-top');
+  if (up) up.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+
   /* category filter (blog index) */
   var bar = doc.querySelector('.filters'), chips = [].slice.call(doc.querySelectorAll('.chip'));
   var list = doc.getElementById('list'), feat = doc.getElementById('feat'), empty = doc.getElementById('empty');
