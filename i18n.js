@@ -117,6 +117,7 @@
     '5 – 10 €': '€5 – 10',
     'Rýchla online objednávka na pár klikov. ✂️': 'Quick online booking in just a few clicks. ✂️',
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
+    'Viac o pánskom strihu →': 'More about men\'s haircuts →',
     'Naše komplety:': 'Our packages:',
 
     // team
