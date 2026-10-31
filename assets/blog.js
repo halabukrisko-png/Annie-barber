@@ -59,7 +59,7 @@
 
   /* frames: let the bronze line run round the frame once it scrolls into view */
   (function () {
-    var fr = [].slice.call(doc.querySelectorAll('.feat,.cta>div,.tip,.answer'));
+    var fr = [].slice.call(doc.querySelectorAll('.feat,.cta>div,.tip,.answer,.contact-frame'));
     if (!fr.length) return;
     var go = function (el) {
       el.classList.add('ring-in');
@@ -72,9 +72,25 @@
     fr.forEach(function (el) { ro.observe(el); });
   })();
 
-  /* footer: back to top */
-  var up = doc.getElementById('to-top');
-  if (up) up.addEventListener('click', function () { window.scrollTo({ top: 0, behavior: reduce ? 'auto' : 'smooth' }); });
+  /* contact: map loads on request, today's opening hours and open/closed badge */
+  [].forEach.call(doc.querySelectorAll('.map-load'), function (btn) {
+    btn.addEventListener('click', function () {
+      var fr = btn.parentNode.querySelector('iframe[data-src]');
+      if (fr) fr.src = fr.getAttribute('data-src');
+      btn.parentNode.removeChild(btn);
+    });
+  });
+  (function () {
+    var hours = { 2: [9, 18], 3: [9, 18], 4: [9, 18], 5: [9, 18], 6: [9, 13] };
+    var now = new Date(), day = now.getDay(), h = now.getHours() + now.getMinutes() / 60;
+    var today = doc.querySelector('.hours-list li[data-day="' + day + '"]');
+    if (today) today.classList.add('today');
+    var el = doc.getElementById('open-status');
+    if (!el) return;
+    var open = hours[day] && h >= hours[day][0] && h < hours[day][1];
+    el.textContent = open ? 'Práve otvorené' : 'Zatvorené';
+    el.classList.add(open ? 'is-open' : 'is-closed');
+  })();
 
   /* category filter (blog index) */
   var bar = doc.querySelector('.filters'), chips = [].slice.call(doc.querySelectorAll('.chip'));
