@@ -18,7 +18,7 @@
   }
 
   function rawImg(src, alt) {
-    return '<img class="bb-img" src="' + src + '" alt="' + alt + '" loading="lazy">';
+    return '<img class="bb-img" src="' + (src.charAt(0) === '/' ? src : '/' + src) + '" alt="' + alt + '" loading="lazy">';
   }
   function img(src, alt) {
     var h = rawImg(src, alt);
@@ -227,6 +227,18 @@
       sk: function () { return 'U nás si vyberieš, na čo máš náladu – pokec, srandu alebo jednoducho pokoj. My sa postaráme o strih. 😄<br><a href="/o-nas">O nás →</a>'; },
       en: function () { return 'With us you choose the mood — a chat, some fun or simply peace. We take care of the haircut. 😄<br><a href="/o-nas">About us →</a>'; }
     },
+    voucher: {
+      keys: ['poukaz', 'poukaz', 'voucher', 'darcek', 'darcekov', 'gift', 'vianoc', 'christmas'],
+      chip: { sk: 'Darčekový poukaz', en: 'Gift voucher' },
+      sk: function () { return img('assets/blog/poukaz-titulka-480.webp', 'Darčekový poukaz BARBERIS') + '<b>Darčekový poukaz</b> kúpiš osobne u nás v barbershope, na konkrétnu službu alebo v ľubovoľnej sume. Platí 12 mesiacov od vydania.<br><a href="/blog/darcekovy-poukaz-barbershop-vianoce">Prečítať článok →</a>'; },
+      en: function () { return img('assets/blog/poukaz-titulka-480.webp', 'BARBERIS gift voucher') + 'You can buy a <b>gift voucher</b> in person at our barbershop, for a specific service or for any amount. It is valid for 12 months from issue.<br><a href="/blog/darcekovy-poukaz-barbershop-vianoce">Read the article →</a>'; }
+    },
+    blog: {
+      keys: ['blog', 'clanok', 'clanky', 'clanku', 'article', 'tipy', 'tips', 'rady', 'fade', 'taper', 'upravit bradu', 'trim your beard'],
+      chip: { sk: 'Blog', en: 'Blog' },
+      sk: function () { return '<b>Blog BARBERIS</b> – rady priamo z nášho kresla:<br>• <a href="/blog/fade-strih-low-mid-high">Low, mid alebo high fade? Ktorý je pre teba</a><br>• <a href="/blog/ako-upravit-bradu-doma">Úprava brady doma v 7 krokoch</a><br>• <a href="/blog/darcekovy-poukaz-barbershop-vianoce">Darček pre neho na Vianoce: poukaz do barbershopu</a><br><a href="/blog">Celý blog →</a>'; },
+      en: function () { return '<b>The BARBERIS blog</b> – advice straight from our chair:<br>• <a href="/blog/fade-strih-low-mid-high">Low, mid or high fade? Which one is for you</a><br>• <a href="/blog/ako-upravit-bradu-doma">Trimming your beard at home in 7 steps</a><br>• <a href="/blog/darcekovy-poukaz-barbershop-vianoce">A Christmas gift for him: a barbershop gift voucher</a><br><a href="/blog">Whole blog →</a>'; }
+    },
     booknew: {
       keys: [],
       chip: { sk: 'Rezervovať nový termín', en: 'Book a new appointment' },
@@ -262,10 +274,10 @@
       en: function () { return 'You are welcome! We look forward to seeing you in the chair. 💈'; }
     }
   };
-  var ORDER = ['change', 'calendar', 'gallery', 'about', 'kids', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
+  var ORDER = ['change', 'voucher', 'blog', 'calendar', 'gallery', 'about', 'kids', 'ornament', 'beard', 'skin', 'includes', 'anett', 'karvy', 'vladis', 'cosmetics', 'atmosphere', 'booking', 'prices', 'hours', 'location', 'team', 'contact', 'services', 'hello', 'thanks'];
   // Hierarchical quick-reply menus: 'about' and 'services' open a submenu with a Back button.
   var MENUS = {
-    main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'change'],
+    main: ['booking', 'about', 'services', 'hours', 'location', 'contact', 'blog', 'change'],
     booking: ['calendar', 'change', '_back'],
     change: ['booknew', '_back'],
     hours: ['booking', 'location', '_back'],

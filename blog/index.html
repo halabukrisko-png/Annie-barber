@@ -29,7 +29,7 @@
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF}
 </style>
-<link rel="stylesheet" href="/assets/blog.css?v=1">
+<link rel="stylesheet" href="/assets/blog.css?v=2">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">{"@context": "https://schema.org", "@type": "Blog", "name": "BARBERIS Blog", "url": "https://barberis.sk/blog", "inLanguage": "sk", "publisher": {"@type": "Organization", "name": "BARBERIS"}, "blogPost": [{"@type": "BlogPosting", "headline": "Low, mid alebo high fade? Ktorý je pre teba", "url": "https://barberis.sk/blog/fade-strih-low-mid-high", "datePublished": "2026-10-27"}, {"@type": "BlogPosting", "headline": "Úprava brady doma v 7 krokoch", "url": "https://barberis.sk/blog/ako-upravit-bradu-doma", "datePublished": "2026-10-28"}, {"@type": "BlogPosting", "headline": "Darček pre neho na Vianoce: poukaz do barbershopu", "url": "https://barberis.sk/blog/darcekovy-poukaz-barbershop-vianoce", "datePublished": "2026-10-31"}]}</script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -38,15 +38,17 @@
 <body>
 <a class="skip" href="#obsah">Preskočiť na obsah</a>
 <header class="topbar">
-  <a class="logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>
+  <a class="logo" href="/" aria-label="BARBERIS"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><span class="wm">BARBERIS</span></a>
   <nav class="d-nav" aria-label="Hlavná navigácia"><a href="/">Úvod</a><a href="/o-nas">O nás</a><a href="/galeria">Galéria</a><a href="/blog" class="active">Blog</a><a href="/#contact">Kontakt</a></nav>
-  <a class="d-cta" href="/o-nas#booking">Zarezervovať termín <span>→</span></a>
-  <button class="burger" id="m-open" aria-label="Menu" aria-expanded="false" aria-controls="m-nav"><span></span><span></span><span></span></button>
+  <div class="d-right">
+    <a class="d-cta" href="/o-nas#booking"><b>Zarezervovať termín</b><span aria-hidden="true">→</span></a>
+    <button id="nav-open" aria-label="Menu" aria-expanded="false" aria-controls="nav-overlay"><span></span><span></span><span></span></button>
+  </div>
 </header>
-<div class="m-nav" id="m-nav" role="dialog" aria-label="Menu">
-  <div class="m-nav-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button class="m-close" id="m-close" aria-label="Zavrieť menu">&times;</button></div>
-  <nav class="m-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
-  <a class="btn" href="/o-nas#booking">Zarezervovať termín →</a>
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav-overlay-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button></div>
+  <nav class="nav-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
+  <div class="nav-cta"><a class="btn" href="/o-nas#booking">Zarezervovať termín →</a></div>
 </div>
 <main id="obsah">
 <section class="b-hero">
@@ -85,13 +87,6 @@
 </section>
 <div class="empty" id="empty"><div><h2>Čoskoro pribudne</h2><p>V tejto kategórii zatiaľ nič nie je. Pozri si ostatné články alebo sa vráť o pár dní.</p><button type="button" id="empty-reset">Zobraziť všetky články</button></div></div>
 </main>
-<footer>
-  <div class="f-brand"><a class="f-logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>Pánsky barbershop na sídlisku Zapotôčky v Prievidzi. Kvalita, detail a atmosféra.</div>
-  <div><h4>Navigácia</h4><ul><li><a href="/">Úvod</a></li><li><a href="/o-nas">O nás</a></li><li><a href="/galeria">Galéria</a></li><li><a href="/blog">Blog</a></li></ul></div>
-  <div><h4>Kontakt</h4><ul><li><a href="tel:+421951833488">0951 833 488</a></li><li><a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/p/BARBERIS-100077906015748/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://maps.google.com/?q=J.+M.+Hurbana+858/4,+Prievidza" target="_blank" rel="noopener">J. M. Hurbana 858/4, 971 01 Prievidza</a></li></ul></div>
-  <div><h4>Otváracie hodiny</h4><ul><li>Ut – Pi · 9:00 – 18:00</li><li>Obed (Ut – Pi) · 12:30 – 14:00</li><li>So · 9:00 – 13:00</li><li>Po a Ne zatvorené</li></ul></div>
-  <div class="f-bottom">© 2026 BARBERIS · J. M. Hurbana 858/4, Prievidza</div>
-</footer>
 <script>
 (function(){var cs=document.querySelectorAll('.chip'),it=document.querySelectorAll('.list>[data-cat]'),em=document.getElementById('empty');
 cs.forEach(function(c){c.addEventListener('click',function(){var k=c.getAttribute('data-cat'),n=0;
@@ -99,6 +94,9 @@ cs.forEach(function(x){x.classList.toggle('on',x===c)});
 it.forEach(function(i){var v=k==='vsetko'||i.getAttribute('data-cat')===k;i.style.display=v?'':'none';if(v)n++});
 em.style.display=n?'none':'block';})});})();
 </script>
-<script defer src="/assets/blog.js?v=1"></script>
+<script src="/i18n.js?v=60261003seo"></script>
+<script defer src="/chat.js?v=60261003seo"></script>
+<script defer src="/assets/blog-en.js?v=2"></script>
+<script defer src="/assets/blog.js?v=2"></script>
 </body>
 </html>

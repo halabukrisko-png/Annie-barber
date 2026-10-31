@@ -29,7 +29,7 @@
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF}
 </style>
-<link rel="stylesheet" href="/assets/blog.css?v=1">
+<link rel="stylesheet" href="/assets/blog.css?v=2">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Úprava brady doma v 7 krokoch", "description": "Ako si upraviť bradu doma, aby vyzerala ako od barbera: náradie, 7 krokov, správna línia na krku, najčastejšie chyby a kedy je lepšie prísť k barberovi.", "image": "https://barberis.sk/assets/blog/brada-titulka-800.webp", "datePublished": "2026-10-28", "dateModified": "2026-10-28", "inLanguage": "sk", "mainEntityOfPage": "https://barberis.sk/blog/ako-upravit-bradu-doma", "author": {"@type": "Organization", "name": "BARBERIS tím", "url": "https://barberis.sk"}, "publisher": {"@type": "Organization", "name": "BARBERIS", "logo": {"@type": "ImageObject", "url": "https://barberis.sk/assets/logo.png"}}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://barberis.sk/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://barberis.sk/blog"}, {"@type": "ListItem", "position": 3, "name": "Úprava brady doma v 7 krokoch", "item": "https://barberis.sk/blog/ako-upravit-bradu-doma"}]}, {"@context": "https://schema.org", "@type": "HowTo", "name": "Ako si upraviť bradu doma v 7 krokoch", "inLanguage": "sk", "step": [{"@type": "HowToStep", "position": 1, "name": "Umy a vysuš bradu"}, {"@type": "HowToStep", "position": 2, "name": "Rozčeš bradu"}, {"@type": "HowToStep", "position": 3, "name": "Skráť dĺžku strojčekom"}, {"@type": "HowToStep", "position": 4, "name": "Uprav líniu na krku"}, {"@type": "HowToStep", "position": 5, "name": "Uprav líniu na lícach"}, {"@type": "HowToStep", "position": 6, "name": "Zarovnaj fúzy"}, {"@type": "HowToStep", "position": 7, "name": "Ošetri bradu olejom alebo balzamom"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Mám bradu strihať mokrú alebo suchú?", "acceptedAnswer": {"@type": "Answer", "text": "Suchú. Mokrá brada vyzerá dlhšia a rovnejšia, takže po vyschnutí by si zistil, že si zastrihol viac, než si chcel. Bradu umy, dobre vysuš a až potom strihaj."}}, {"@type": "Question", "name": "Kde má byť línia brady na krku?", "acceptedAnswer": {"@type": "Answer", "text": "Orientačne jeden až dva prsty nad ohryzkom. Vyššie strihať neodporúčame – príliš vysoká línia skráti bradu, zvýrazní podbradok a profil pôsobí slabšie."}}, {"@type": "Question", "name": "Ako často si mám bradu upravovať?", "acceptedAnswer": {"@type": "Answer", "text": "Kontúry na krku a lícach stačí doma dorovnať raz za pár dní, dĺžku zhruba raz za týždeň. Celkový tvar je dobré nechať raz za 2–5 týždňov upraviť u barbera – závisí to od toho, ako rýchlo ti brada rastie a ako upravene chceš vyzerať."}}, {"@type": "Question", "name": "Koľko stojí úprava brady v BARBERIS?", "acceptedAnswer": {"@type": "Answer", "text": "Úprava brady stojí 15 €, strih spolu s úpravou brady 30 €."}}]}]</script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -39,15 +39,17 @@
 <a class="skip" href="#obsah">Preskočiť na obsah</a>
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
-  <a class="logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>
+  <a class="logo" href="/" aria-label="BARBERIS"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><span class="wm">BARBERIS</span></a>
   <nav class="d-nav" aria-label="Hlavná navigácia"><a href="/">Úvod</a><a href="/o-nas">O nás</a><a href="/galeria">Galéria</a><a href="/blog" class="active">Blog</a><a href="/#contact">Kontakt</a></nav>
-  <a class="d-cta" href="/o-nas#booking">Zarezervovať termín <span>→</span></a>
-  <button class="burger" id="m-open" aria-label="Menu" aria-expanded="false" aria-controls="m-nav"><span></span><span></span><span></span></button>
+  <div class="d-right">
+    <a class="d-cta" href="/o-nas#booking"><b>Zarezervovať termín</b><span aria-hidden="true">→</span></a>
+    <button id="nav-open" aria-label="Menu" aria-expanded="false" aria-controls="nav-overlay"><span></span><span></span><span></span></button>
+  </div>
 </header>
-<div class="m-nav" id="m-nav" role="dialog" aria-label="Menu">
-  <div class="m-nav-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button class="m-close" id="m-close" aria-label="Zavrieť menu">&times;</button></div>
-  <nav class="m-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
-  <a class="btn" href="/o-nas#booking">Zarezervovať termín →</a>
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav-overlay-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button></div>
+  <nav class="nav-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
+  <div class="nav-cta"><a class="btn" href="/o-nas#booking">Zarezervovať termín →</a></div>
 </div>
 <main id="obsah">
 <section class="a-head">
@@ -174,13 +176,9 @@
   </div>
 </section>
 </main>
-<footer>
-  <div class="f-brand"><a class="f-logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>Pánsky barbershop na sídlisku Zapotôčky v Prievidzi. Kvalita, detail a atmosféra.</div>
-  <div><h4>Navigácia</h4><ul><li><a href="/">Úvod</a></li><li><a href="/o-nas">O nás</a></li><li><a href="/galeria">Galéria</a></li><li><a href="/blog">Blog</a></li></ul></div>
-  <div><h4>Kontakt</h4><ul><li><a href="tel:+421951833488">0951 833 488</a></li><li><a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/p/BARBERIS-100077906015748/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://maps.google.com/?q=J.+M.+Hurbana+858/4,+Prievidza" target="_blank" rel="noopener">J. M. Hurbana 858/4, 971 01 Prievidza</a></li></ul></div>
-  <div><h4>Otváracie hodiny</h4><ul><li>Ut – Pi · 9:00 – 18:00</li><li>Obed (Ut – Pi) · 12:30 – 14:00</li><li>So · 9:00 – 13:00</li><li>Po a Ne zatvorené</li></ul></div>
-  <div class="f-bottom">© 2026 BARBERIS · J. M. Hurbana 858/4, Prievidza</div>
-</footer>
-<script defer src="/assets/blog.js?v=1"></script>
+<script src="/i18n.js?v=60261003seo"></script>
+<script defer src="/chat.js?v=60261003seo"></script>
+<script defer src="/assets/blog-en.js?v=2"></script>
+<script defer src="/assets/blog.js?v=2"></script>
 </body>
 </html>

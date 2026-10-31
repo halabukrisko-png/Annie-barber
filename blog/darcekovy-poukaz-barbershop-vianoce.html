@@ -29,7 +29,7 @@
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin.woff2) format('woff2');unicode-range:U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+2000-206F,U+20AC,U+2122,U+2212}
 @font-face{font-family:'Cormorant Garamond';font-style:italic;font-weight:600;font-display:swap;src:url(/assets/fonts/cormorant-garamond-i600-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+1E00-1EFF}
 </style>
-<link rel="stylesheet" href="/assets/blog.css?v=1">
+<link rel="stylesheet" href="/assets/blog.css?v=2">
 <script>document.documentElement.classList.add("js")</script>
 <script type="application/ld+json">[{"@context": "https://schema.org", "@type": "BlogPosting", "headline": "Darčekový poukaz do barbershopu – darček pre muža na Vianoce", "description": "Nevieš, čo kúpiť mužovi na Vianoce? Darčekový poukaz do BARBERIS v Prievidzi na službu alebo akúkoľvek sumu, platný 12 mesiacov. Pre partnera, otca aj syna.", "image": "https://barberis.sk/assets/blog/poukaz-titulka-800.webp", "datePublished": "2026-10-31", "dateModified": "2026-10-31", "inLanguage": "sk", "mainEntityOfPage": "https://barberis.sk/blog/darcekovy-poukaz-barbershop-vianoce", "author": {"@type": "Organization", "name": "BARBERIS tím", "url": "https://barberis.sk"}, "publisher": {"@type": "Organization", "name": "BARBERIS", "logo": {"@type": "ImageObject", "url": "https://barberis.sk/assets/logo.png"}}}, {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Úvod", "item": "https://barberis.sk/"}, {"@type": "ListItem", "position": 2, "name": "Blog", "item": "https://barberis.sk/blog"}, {"@type": "ListItem", "position": 3, "name": "Darčekový poukaz do barbershopu", "item": "https://barberis.sk/blog/darcekovy-poukaz-barbershop-vianoce"}]}, {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Na aké služby môže byť poukaz?", "acceptedAnswer": {"@type": "Answer", "text": "Na ktorúkoľvek službu z nášho cenníka – pánsky strih, strih s úpravou brady, úpravu brady, holenie hlavy s úpravou brady aj detský strih."}}, {"@type": "Question", "name": "Dá sa poukaz kúpiť aj na konkrétnu sumu?", "acceptedAnswer": {"@type": "Answer", "text": "Áno. Poukaz si môžeš kúpiť v akejkoľvek sume."}}, {"@type": "Question", "name": "Aká je platnosť poukazu?", "acceptedAnswer": {"@type": "Answer", "text": "Poukaz platí 12 mesiacov od vydania, takže obdarovaný má na strih dosť času."}}, {"@type": "Question", "name": "Ako si poukaz kúpim?", "acceptedAnswer": {"@type": "Answer", "text": "Poukaz sa kupuje osobne priamo u nás v barbershope na J. M. Hurbana 858/4 na sídlisku Zapotôčky v Prievidzi počas otváracích hodín."}}, {"@type": "Question", "name": "Môže si obdarovaný vybrať barbera a termín?", "acceptedAnswer": {"@type": "Answer", "text": "Áno. Termín si rezervuje sám online alebo telefonicky a vyberie si barbera, ku ktorému chce ísť. Poukaz len ukáže pri návšteve."}}]}]</script>
 <script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
@@ -39,21 +39,23 @@
 <a class="skip" href="#obsah">Preskočiť na obsah</a>
 <div class="progress" aria-hidden="true"><i></i></div>
 <header class="topbar">
-  <a class="logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>
+  <a class="logo" href="/" aria-label="BARBERIS"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><span class="wm">BARBERIS</span></a>
   <nav class="d-nav" aria-label="Hlavná navigácia"><a href="/">Úvod</a><a href="/o-nas">O nás</a><a href="/galeria">Galéria</a><a href="/blog" class="active">Blog</a><a href="/#contact">Kontakt</a></nav>
-  <a class="d-cta" href="/o-nas#booking">Zarezervovať termín <span>→</span></a>
-  <button class="burger" id="m-open" aria-label="Menu" aria-expanded="false" aria-controls="m-nav"><span></span><span></span><span></span></button>
+  <div class="d-right">
+    <a class="d-cta" href="/o-nas#booking"><b>Zarezervovať termín</b><span aria-hidden="true">→</span></a>
+    <button id="nav-open" aria-label="Menu" aria-expanded="false" aria-controls="nav-overlay"><span></span><span></span><span></span></button>
+  </div>
 </header>
-<div class="m-nav" id="m-nav" role="dialog" aria-label="Menu">
-  <div class="m-nav-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button class="m-close" id="m-close" aria-label="Zavrieť menu">&times;</button></div>
-  <nav class="m-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
-  <a class="btn" href="/o-nas#booking">Zarezervovať termín →</a>
+<div class="nav-overlay" id="nav-overlay" role="dialog" aria-modal="true" aria-label="Menu">
+  <div class="nav-overlay-top"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"><button id="nav-close" class="nav-close" aria-label="Zavrieť menu">&times;</button></div>
+  <nav class="nav-links"><a href="/"><span>01</span>Úvod</a><a href="/o-nas"><span>02</span>O nás</a><a href="/galeria"><span>03</span>Galéria</a><a href="/blog" class="active"><span>04</span>Blog</a><a href="/#contact"><span>05</span>Kontakt</a></nav>
+  <div class="nav-cta"><a class="btn" href="/o-nas#booking">Zarezervovať termín →</a></div>
 </div>
 <main id="obsah">
 <section class="a-head">
   <div class="hero-in">
-    <nav class="crumbs" aria-label="Omrvinky" style="--i:0"><a href="/">Úvod</a><span>/</span><a href="/blog">Blog</a><span>/</span>Pre ňu</nav>
-    <div class="eyebrow" style="--i:1">Pre ňu · Vianoce</div>
+    <nav class="crumbs" aria-label="Omrvinky" style="--i:0"><a href="/">Úvod</a><span>/</span><a href="/blog">Blog</a><span>/</span>Tipy od barbera</nav>
+    <div class="eyebrow" style="--i:1">Tipy od barbera · Vianoce</div>
     <h1 style="--i:2">Darček pre neho na Vianoce: <em>poukaz do barbershopu</em></h1>
     <p class="perex" style="--i:3">Ďalšie ponožky, voňavka, ktorú nikdy nepoužije? Darčekový poukaz do BARBERIS v Prievidzi je darček, ktorý mužovi naozaj padne – doslova.</p>
     <div class="meta" style="--i:4"><span class="mono" aria-hidden="true">B</span><span><b>BARBERIS tím</b></span><span class="sep"></span><span>5 min čítania</span><span class="sep"></span><time datetime="2026-10-31">31. 10. 2026</time></div>
@@ -145,13 +147,9 @@
   </div>
 </section>
 </main>
-<footer>
-  <div class="f-brand"><a class="f-logo" href="/"><img src="/assets/logo-light.png" alt="BARBERIS" width="64" height="41"></a>Pánsky barbershop na sídlisku Zapotôčky v Prievidzi. Kvalita, detail a atmosféra.</div>
-  <div><h4>Navigácia</h4><ul><li><a href="/">Úvod</a></li><li><a href="/o-nas">O nás</a></li><li><a href="/galeria">Galéria</a></li><li><a href="/blog">Blog</a></li></ul></div>
-  <div><h4>Kontakt</h4><ul><li><a href="tel:+421951833488">0951 833 488</a></li><li><a href="https://www.instagram.com/_barberis._/" target="_blank" rel="noopener">Instagram</a></li><li><a href="https://www.facebook.com/p/BARBERIS-100077906015748/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://maps.google.com/?q=J.+M.+Hurbana+858/4,+Prievidza" target="_blank" rel="noopener">J. M. Hurbana 858/4, 971 01 Prievidza</a></li></ul></div>
-  <div><h4>Otváracie hodiny</h4><ul><li>Ut – Pi · 9:00 – 18:00</li><li>Obed (Ut – Pi) · 12:30 – 14:00</li><li>So · 9:00 – 13:00</li><li>Po a Ne zatvorené</li></ul></div>
-  <div class="f-bottom">© 2026 BARBERIS · J. M. Hurbana 858/4, Prievidza</div>
-</footer>
-<script defer src="/assets/blog.js?v=1"></script>
+<script src="/i18n.js?v=60261003seo"></script>
+<script defer src="/chat.js?v=60261003seo"></script>
+<script defer src="/assets/blog-en.js?v=2"></script>
+<script defer src="/assets/blog.js?v=2"></script>
 </body>
 </html>

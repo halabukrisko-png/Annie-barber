@@ -5,19 +5,40 @@
   var doc = document, root = doc.documentElement;
   var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* mobile menu */
-  var o = doc.getElementById('m-open'), n = doc.getElementById('m-nav'), c = doc.getElementById('m-close');
+  /* full-screen menu (same behaviour as the main site) */
+  var o = doc.getElementById('nav-open'), n = doc.getElementById('nav-overlay'), c = doc.getElementById('nav-close');
   if (o && n && c) {
     var setMenu = function (v) {
       n.classList.toggle('open', v);
       o.setAttribute('aria-expanded', v);
       doc.body.style.overflow = v ? 'hidden' : '';
-      if (v) c.focus(); else o.focus();
+      (v ? c : o).focus();
     };
     o.addEventListener('click', function () { setMenu(true); });
     c.addEventListener('click', function () { setMenu(false); });
+    n.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
     doc.addEventListener('keydown', function (e) { if (e.key === 'Escape' && n.classList.contains('open')) setMenu(false); });
   }
+
+  /* desktop: the SK / EN switch sits next to the logo, like on the main site */
+  (function () {
+    var header = doc.querySelector('.topbar'), mq = window.matchMedia('(min-width: 1024px)');
+    if (!header) return;
+    function setup() {
+      var logo = header.querySelector('.logo'), sw = header.querySelector('.lang-switch');
+      if (!logo || !sw || header.querySelector('.d-brand')) return;
+      var brand = doc.createElement('div'); brand.className = 'd-brand';
+      logo.parentNode.insertBefore(brand, logo); brand.appendChild(logo);
+      var burger = doc.getElementById('nav-open');
+      function place() {
+        if (mq.matches) { if (sw.parentNode !== brand) brand.appendChild(sw); }
+        else if (burger && sw.parentNode === brand) burger.parentNode.insertBefore(sw, burger);
+      }
+      place();
+      mq.addEventListener ? mq.addEventListener('change', place) : mq.addListener(place);
+    }
+    if (doc.readyState === 'complete') setup(); else window.addEventListener('load', setup);
+  })();
 
   /* scroll reveals */
   var rv = [].slice.call(doc.querySelectorAll('.rv'));
@@ -117,4 +138,65 @@
     window.addEventListener('resize', upd);
     upd();
   }
+
+  /* SK / EN content translation. Slovak is the source language in the HTML; English lives in
+     /assets/blog-en.js (window.BLOG_EN, keyed by the exact Slovak markup of each text block).
+     The switch itself is the site-wide one from i18n.js (fires "langchange"). */
+  (function () {
+    var SKIP = '.topbar,.nav-overlay,script,style,svg,noscript';
+    var main = doc.querySelector('main');
+    if (!main) return;
+    var norm = function (t) { return t.replace(/\s+/g, ' ').trim(); };
+    var hasText = function (el) {
+      for (var i = 0; i < el.childNodes.length; i++) {
+        var nd = el.childNodes[i];
+        if (nd.nodeType === 3 && nd.nodeValue.trim()) return true;
+      }
+      return false;
+    };
+    function collect() {
+      var out = [], attrs = [];
+      (function walk(el) {
+        if (el.matches && el.matches(SKIP)) return;
+        if (el.tagName === 'IMG' && el.getAttribute('alt')) attrs.push([el, 'alt']);
+        if (el.hasAttribute && el.hasAttribute('aria-label')) attrs.push([el, 'aria-label']);
+        if (hasText(el)) { out.push(el); return; }
+        for (var i = 0; i < el.children.length; i++) walk(el.children[i]);
+      })(main);
+      return { units: out, attrs: attrs };
+    }
+    var data = null, meta = [];
+    function metaNodes() {
+      if (meta.length) return meta;
+      var t = doc.querySelector('title');
+      if (t) meta.push({ get: function () { return doc.title; }, set: function (v) { doc.title = v; } });
+      ['meta[name="description"]', 'meta[property="og:title"]', 'meta[property="og:description"]'].forEach(function (q) {
+        var m = doc.querySelector(q);
+        if (m) meta.push({ get: function () { return m.getAttribute('content'); }, set: function (v) { m.setAttribute('content', v); } });
+      });
+      meta.forEach(function (m) { m.sk = m.get(); });
+      return meta;
+    }
+    function apply(en) {
+      var dict = window.BLOG_EN || {};
+      if (!data) data = collect();
+      data.units.forEach(function (el) {
+        if (el.__sk === undefined) el.__sk = el.innerHTML;
+        var tr = en && dict[norm(el.__sk)];
+        el.innerHTML = tr || el.__sk;
+      });
+      data.attrs.forEach(function (a) {
+        var el = a[0], k = 'data-sk-' + a[1];
+        if (!el.hasAttribute(k)) el.setAttribute(k, el.getAttribute(a[1]));
+        var sk = el.getAttribute(k), tr = en && dict[norm(sk)];
+        el.setAttribute(a[1], tr || sk);
+      });
+      metaNodes().forEach(function (m) { var tr = en && dict[norm(m.sk)]; m.set(tr || m.sk); });
+    }
+    var isEn = function () { return window.LANG && window.LANG() === 'en'; };
+    window.addEventListener('langchange', function () { apply(isEn()); });
+    window.BLOG_I18N = { keys: function () { var d = collect(), k = []; d.units.forEach(function (e) { k.push(norm(e.innerHTML)); }); d.attrs.forEach(function (a) { k.push(norm(a[0].getAttribute(a[1]))); }); metaNodes().forEach(function (m) { k.push(norm(m.sk)); }); return k; } };
+    if (isEn()) apply(true);
+    else if (doc.readyState !== 'complete') window.addEventListener('load', function () { if (isEn()) apply(true); });
+  })();
 })();
