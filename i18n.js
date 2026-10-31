@@ -119,6 +119,7 @@
     'Pozrieť celý cenník ↓': 'See the full price list ↓',
     'Viac o pánskom strihu →': 'More about men\'s haircuts →',
     'Viac o úprave brady →': 'More about beard trims →',
+    'Viac o detskom strihu →': 'More about kids\' haircuts →',
     'Naše komplety:': 'Our packages:',
 
     // team
