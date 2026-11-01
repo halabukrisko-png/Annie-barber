@@ -154,6 +154,11 @@
     '„Super prístup a príjemná atmosféra. Chodím už pár rokov a vždy odchádzam spokojný. Môžem len odporučiť.“': '“Great approach and pleasant atmosphere. I\'ve been coming for a few years and always leave satisfied. I can only recommend it.”',
     '„Najlepšie miesto na zostrih v meste, vždy super atmosféra s top barbermi, určite odporúčam vyskúšať.“': '“The best place for a haircut in town, always a great atmosphere with top barbers, definitely recommend trying it.”',
     'Zobraziť viac recenzií ↓': 'Show more reviews ↓',
+    'Hodnotenie na Google': 'Google rating',
+    '(120+ recenzií)': '(120+ reviews)',
+    'Všetky recenzie →': 'All reviews →',
+    'Čítať na Google →': 'Read on Google →',
+    '„Najlepší barberi vôbec, všetci traja!! Odporúčam každému.“': '“The best barbers ever, all three of them!! I recommend them to everyone.”',
     'Zobraziť menej ↑': 'Show less ↑',
 
     // booking strip

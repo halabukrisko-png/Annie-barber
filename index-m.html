@@ -561,7 +561,6 @@
 
   <!-- RECENZIE -->
   <div id="reviews-wrap">
-    <div class="rv-frame" aria-hidden="true"></div>
   <div id="reviews" style="padding:32px 24px 0;text-align:center;">
     <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:0.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px;">
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
@@ -572,94 +571,249 @@
     <p class="reveal" style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Najlepšia vizitka nie sú naše slová, ale skúsenosti tých, ktorí u nás už sedeli v kresle.</p>
   </div>
 
-  <div style="padding:16px 24px 0;display:flex;flex-direction:column;gap:10px;" class="reveal-stagger" data-reveal-together>
-    <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+  <style>
+  /* Google rating bar + moving reviews */
+  .rv-bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 16px;padding:18px 24px 4px;text-align:center}
+  .rv-g{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream-dim)}
+  .rv-score{display:inline-flex;align-items:center;gap:10px}
+  .rv-score b{font-family:'Fraunces',serif;font-size:30px;line-height:1;color:var(--cream);font-weight:600}
+  .rv-score .stars{font-size:16px;letter-spacing:2px;color:var(--bronze)}
+  .rv-count{font-size:12.5px;color:rgba(244,237,225,.6)}
+  .rv-all{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,160,106,.55);border-radius:999px;padding:9px 18px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);text-decoration:none;transition:background .3s ease,color .3s ease}
+  .rv-all:hover{background:var(--bronze);color:#141311}
+  .rv-marquee{position:relative;overflow:hidden;padding:18px 0 8px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .rv-track{display:flex;gap:14px;width:max-content;animation:rv-scroll 70s linear infinite}
+  .rv-marquee:hover .rv-track,.rv-marquee:focus-within .rv-track,.rv-marquee.rv-paused .rv-track{animation-play-state:paused}
+  @keyframes rv-scroll{to{transform:translateX(calc(-50% - 7px))}}
+  .rv-track .review-card{flex:0 0 280px !important;min-width:0 !important;width:280px;display:flex !important;flex-direction:column;text-align:left}
+  .rv-track .review-card p{display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical;overflow:hidden}
+  .rv-more{margin-top:auto;padding-top:12px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+  @media (min-width:768px){.rv-track{gap:22px;animation-name:rv-scroll-l}.rv-track .review-card{flex-basis:360px !important;width:360px}.rv-bar{padding-top:34px}}
+  @keyframes rv-scroll-l{to{transform:translateX(calc(-50% - 11px))}}
+  @media (prefers-reduced-motion:reduce){.rv-track{animation:none}.rv-marquee{overflow-x:auto;-webkit-mask-image:none;mask-image:none}.rv-track [aria-hidden="true"]{display:none !important}}
+</style>
+  <div class="rv-bar">
+    <span class="rv-g">Hodnotenie na Google</span>
+    <span class="rv-score"><b>5,0</b><span class="stars" aria-label="5 z 5 hviezdičiek">★★★★★</span></span>
+    <span class="rv-count">(120+ recenzií)</span>
+    <a class="rv-all" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener">Všetky recenzie →</a>
+  </div>
+  <div class="rv-marquee">
+    <div class="rv-track">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+    <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+    </div>
+    <div style="flex:1;">
+    <div style="font-size:12.5px;font-weight:600;">Majka Brand Jamriška</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-10-18">Pred 2 týždňami</div>
+    </div>
+    <div class="stars">★★★★★</div>
+    </div>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barberi vôbec, všetci traja!! Odporúčam každému.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+    </a>
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
     <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
     </div>
     <div style="flex:1;">
     <div style="font-size:12.5px;font-weight:600;">Jan Z</div>
-    <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
     </div>
     <div class="stars">★★★★★</div>
     </div>
     <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepšie miesto na zostrih v meste, vždy super atmosféra s top barbermi, určite odporúčam vyskúšať.“</p>
+    <span class="rv-more">Čítať na Google →</span>
     </a>
-    <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
     <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
     </div>
     <div style="flex:1;">
     <div style="font-size:12.5px;font-weight:600;">Kristián Kopčan</div>
-    <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
     </div>
     <div class="stars">★★★★★</div>
     </div>
     <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Super prístup a príjemná atmosféra. Chodím už pár rokov a vždy odchádzam spokojný. Môžem len odporučiť.“</p>
+    <span class="rv-more">Čítať na Google →</span>
     </a>
-    <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
     <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
     <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
     </div>
     <div style="flex:1;">
     <div style="font-size:12.5px;font-weight:600;">Ezechiel Daniel</div>
-    <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
     </div>
     <div class="stars">★★★★★</div>
     </div>
     <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barber, u ktorého som bol! Perfektný fade, precízne upravená brada a super atmosféra. Cítil som sa komfortne a odchádzal som maximálne spokojný. 10/10“</p>
+    <span class="rv-more">Čítať na Google →</span>
     </a>
-  </div>
-
-  <div style="padding:0 24px;display:flex;flex-direction:column;gap:10px;">
-    <div id="reviews-more" class="toggle-fade" style="display:none;flex-direction:column;gap:10px;">
-      <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
       <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
       </div>
       <div style="flex:1;">
       <div style="font-size:12.5px;font-weight:600;">Jan Letavay</div>
-      <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
       </div>
       <div class="stars">★★★★★</div>
       </div>
       <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Už roky vedú moje kroky práve do BARBERIS. Oceňujem hlavne príjemné prostredie, cit pre detail a skvelý prístup. Anet výborná profesionálka vo svojom obore. Určite odporúčam.“</p>
+    <span class="rv-more">Čítať na Google →</span>
       </a>
-      <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
       <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
       </div>
       <div style="flex:1;">
       <div style="font-size:12.5px;font-weight:600;">Patrik Pánis</div>
-      <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 6 mesiacmi</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-04-01">Pred 7 mesiacmi</div>
       </div>
       <div class="stars">★★★★★</div>
       </div>
       <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Ak chceš mať najlepší a najkrajší fresh cut, určite odporúčam navštíviť Barberis v Prievidza. Chalani majú top prístup, top kvalitu práce a vždy tam panuje skvelá atmosféra. Dobrá nálada, profesionálny prístup a výsledok vždy stojí za to. Za mňa jednoznačne najlepší barber v meste.“</p>
+    <span class="rv-more">Čítať na Google →</span>
       </a>
-      <a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+<a class="review-card" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
       <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
       <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
       </div>
       <div style="flex:1;">
       <div style="font-size:12.5px;font-weight:600;">Martin Suchý</div>
-      <div style="font-size:10px;color:rgba(244,237,225,0.5);">Pred 7 mesiacmi</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
       </div>
       <div class="stars">★★★★★</div>
       </div>
       <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barbershop v okrese je jednoznačne BARBERIS. Prečo? Lebo tam vládne jedinečná atmosféra, príjemné prostredie a hlavne profesionálny prístup barberov k práci na čele s Anettkou, ktorí ťa zmenia na nepoznanie, ale samozrejme k lepšiemu, a navyše ťa pohostia aj dobrou kávičkou. S parkovaním svojho auta tiež nemáš problém a samozrejme zadarmo. Takže za mňa super, odporúčam ostatným.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+      </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+    <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+    </div>
+    <div style="flex:1;">
+    <div style="font-size:12.5px;font-weight:600;">Majka Brand Jamriška</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-10-18">Pred 2 týždňami</div>
+    </div>
+    <div class="stars">★★★★★</div>
+    </div>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barberi vôbec, všetci traja!! Odporúčam každému.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+    </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+    <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+    </div>
+    <div style="flex:1;">
+    <div style="font-size:12.5px;font-weight:600;">Jan Z</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
+    </div>
+    <div class="stars">★★★★★</div>
+    </div>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepšie miesto na zostrih v meste, vždy super atmosféra s top barbermi, určite odporúčam vyskúšať.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+    </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+    <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+    </div>
+    <div style="flex:1;">
+    <div style="font-size:12.5px;font-weight:600;">Kristián Kopčan</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
+    </div>
+    <div class="stars">★★★★★</div>
+    </div>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Super prístup a príjemná atmosféra. Chodím už pár rokov a vždy odchádzam spokojný. Môžem len odporučiť.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+    </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+    <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+    </div>
+    <div style="flex:1;">
+    <div style="font-size:12.5px;font-weight:600;">Ezechiel Daniel</div>
+    <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
+    </div>
+    <div class="stars">★★★★★</div>
+    </div>
+    <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barber, u ktorého som bol! Perfektný fade, precízne upravená brada a super atmosféra. Cítil som sa komfortne a odchádzal som maximálne spokojný. 10/10“</p>
+    <span class="rv-more">Čítať na Google →</span>
+    </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+      <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+      </div>
+      <div style="flex:1;">
+      <div style="font-size:12.5px;font-weight:600;">Jan Letavay</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
+      </div>
+      <div class="stars">★★★★★</div>
+      </div>
+      <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Už roky vedú moje kroky práve do BARBERIS. Oceňujem hlavne príjemné prostredie, cit pre detail a skvelý prístup. Anet výborná profesionálka vo svojom obore. Určite odporúčam.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+      </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+      <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+      </div>
+      <div style="flex:1;">
+      <div style="font-size:12.5px;font-weight:600;">Patrik Pánis</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-04-01">Pred 7 mesiacmi</div>
+      </div>
+      <div class="stars">★★★★★</div>
+      </div>
+      <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Ak chceš mať najlepší a najkrajší fresh cut, určite odporúčam navštíviť Barberis v Prievidza. Chalani majú top prístup, top kvalitu práce a vždy tam panuje skvelá atmosféra. Dobrá nálada, profesionálny prístup a výsledok vždy stojí za to. Za mňa jednoznačne najlepší barber v meste.“</p>
+    <span class="rv-more">Čítať na Google →</span>
+      </a>
+<a class="review-card" aria-hidden="true" tabindex="-1" href="https://share.google/831Rxam0sakLnpOqe" target="_blank" rel="noopener" aria-label="Zobraziť recenzie na Google">
+      <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;">
+      <div style="width:30px;height:30px;border-radius:50%;background:#241f1a;display:flex;align-items:center;justify-content:center;flex:0 0 auto;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7f70" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"></circle><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>
+      </div>
+      <div style="flex:1;">
+      <div style="font-size:12.5px;font-weight:600;">Martin Suchý</div>
+      <div style="font-size:10px;color:rgba(244,237,225,0.5);" data-rv-date="2026-03-01">Pred 8 mesiacmi</div>
+      </div>
+      <div class="stars">★★★★★</div>
+      </div>
+      <p style="margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim);">„Najlepší barbershop v okrese je jednoznačne BARBERIS. Prečo? Lebo tam vládne jedinečná atmosféra, príjemné prostredie a hlavne profesionálny prístup barberov k práci na čele s Anettkou, ktorí ťa zmenia na nepoznanie, ale samozrejme k lepšiemu, a navyše ťa pohostia aj dobrou kávičkou. S parkovaním svojho auta tiež nemáš problém a samozrejme zadarmo. Takže za mňa super, odporúčam ostatným.“</p>
+    <span class="rv-more">Čítať na Google →</span>
       </a>
     </div>
-
-    <button id="reviews-toggle" type="button" aria-expanded="false" style="display:block;width:100%;background:none;border:none;color:var(--bronze);padding:8px;font-family:inherit;font-size:11px;font-weight:700;letter-spacing:0.06em;text-transform:uppercase;cursor:pointer;">Zobraziť viac recenzií ↓</button>
   </div>
-  </div>
+  <script>(function(){
+    /* review dates: shown as "Pred 8 mesiacmi" etc., recalculated every day from the real date */
+    function rel(iso,en){var d=new Date(iso+'T12:00:00'),n=new Date(),days=Math.floor((n-d)/864e5);
+      var mo=(n.getFullYear()-d.getFullYear())*12+n.getMonth()-d.getMonth()-(n.getDate()<d.getDate()?1:0);
+      function p(k,one,many,e1,eN){return en?(k===1?e1:k+' '+eN+' ago'):(k===1?one:'Pred '+k+' '+many);}
+      if(days<1)return en?'Today':'Dnes'; if(days<2)return en?'Yesterday':'Včera';
+      if(days<7)return p(days,'Včera','dňami','Yesterday','days');
+      if(days<30)return p(Math.floor(days/7),'Pred týždňom','týždňami','A week ago','weeks');
+      if(mo<12)return p(Math.max(mo,1),'Pred mesiacom','mesiacmi','A month ago','months');
+      return p(Math.floor(mo/12),'Pred rokom','rokmi','A year ago','years');}
+    function run(){var en=typeof window.LANG==='function'&&window.LANG()==='en';
+      Array.prototype.forEach.call(document.querySelectorAll('[data-rv-date]'),function(e){e.textContent=rel(e.getAttribute('data-rv-date'),en);});}
+    run();window.addEventListener('langchange',run);
+  })();</script>
+  <script>(function(){var m=document.querySelector('.rv-marquee');if(!m)return;var t;m.addEventListener('touchstart',function(){clearTimeout(t);m.classList.add('rv-paused');},{passive:true});m.addEventListener('touchend',function(){t=setTimeout(function(){m.classList.remove('rv-paused');},2500);});})();</script>
+  </div><!-- /reviews-wrap -->
 
   <div style="height:28px;"></div>
 
