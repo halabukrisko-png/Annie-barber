@@ -47,7 +47,8 @@
       '.ms-tog{cursor:pointer;background:none;border:0;border-radius:0;-webkit-appearance:none;appearance:none}' +
       '.ms-tog:after{content:"";display:inline-block;width:8px;height:8px;margin-left:12px;border-right:1.5px solid #c9a06a;border-bottom:1.5px solid #c9a06a;transform:translateY(-5px) rotate(45deg);transition:transform .3s ease}' +
       '.ms-tog[aria-expanded="true"]:after{transform:translateY(0) rotate(-135deg)}' +
-      '.ms-list{width:100%;max-height:0;overflow:hidden;transition:max-height .35s ease}' +
+      '.ms-list{width:100%;max-height:0;overflow:hidden;transition:max-height .35s ease;flex-shrink:0}' +
+      '.ms-tog{flex-shrink:0}' +
       '.ms-list.open{max-height:260px}' +
       '.ms-list a.ms-msub{display:block!important;width:100%;font-family:"Work Sans",system-ui,sans-serif!important;font-size:15px!important;letter-spacing:.08em;text-transform:uppercase;color:#cfc6b8!important;padding:11px 0!important;border-bottom:1px solid rgba(244,237,225,.05)!important;text-align:inherit}' +
       '.ms-list a.ms-msub.ms-on{color:#c9a06a!important}';
@@ -84,6 +85,8 @@
     if (list.querySelector('.ms-tog')) return;
     var about = aboutLink(list);
     if (!about) return;
+    var panelBox = list.closest('.m-nav'); // service pages: let the whole menu scroll on short screens
+    if (panelBox) panelBox.style.overflowY = 'auto';
     var tog = document.createElement('button'); tog.type = 'button'; tog.className = 'ms-tog';
     tog.setAttribute('aria-expanded', 'false');
     copy(about, tog, ['display', 'width', 'fontFamily', 'fontSize', 'fontWeight', 'letterSpacing', 'color', 'paddingTop', 'paddingBottom', 'paddingLeft', 'paddingRight', 'borderBottomWidth', 'borderBottomStyle', 'borderBottomColor', 'textAlign', 'lineHeight', 'justifyContent', 'alignItems', 'gap']);
@@ -104,11 +107,18 @@
       var a = document.createElement('a'); a.className = 'ms-msub' + (i[2] === path ? ' ms-on' : ''); a.href = i[2];
       box.appendChild(txt(a, i[0], i[1]));
     });
+    function fit() {
+      // if the opened menu no longer fits the screen, let it scroll from the top instead of clipping
+      list.style.justifyContent = ''; list.style.overflowY = '';
+      if (list.scrollHeight > list.clientHeight + 1) { list.style.justifyContent = 'flex-start'; list.style.overflowY = 'auto'; }
+    }
     tog.addEventListener('click', function () {
       var o = tog.getAttribute('aria-expanded') !== 'true';
       tog.setAttribute('aria-expanded', o ? 'true' : 'false');
       box.classList.toggle('open', o);
+      setTimeout(fit, 380);
     });
+    window.addEventListener('resize', fit);
     about.parentNode.insertBefore(box, about.nextSibling);
     about.parentNode.insertBefore(tog, box);
     // renumber 01, 02, ... if the menu uses numbers
@@ -120,6 +130,7 @@
       });
     }
     if (onService) { tog.setAttribute('aria-expanded', 'true'); box.classList.add('open'); }
+    setTimeout(fit, 0);
   }
 
   function run() {
