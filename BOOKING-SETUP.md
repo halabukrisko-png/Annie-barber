@@ -3,19 +3,19 @@
 Rezervácie bežia cez Vercel funkcie v `api/` (`/api/availability`, `/api/book`) a zapisujú do Google Kalendára.
 
 ## 1. Google kalendáre
-Vytvor 4 kalendáre (Google Kalendár → Ďalšie kalendáre → Vytvoriť): **Anett**, **Karvy**, **Vladis** a **BARBERIS spoločný**.
+Vytvor 5 kalendárov (Google Kalendár → Ďalšie kalendáre → Vytvoriť): **Anett**, **Karvy**, **Vladis**, **Sebastian** a **BARBERIS spoločný**.
 Pre každý skopíruj *ID kalendára* (Nastavenia kalendára → Integrovať kalendár).
 
 ## 2. Service account
 1. <https://console.cloud.google.com> → nový projekt → *APIs & Services* → zapni **Google Calendar API**.
 2. *IAM & Admin → Service Accounts* → vytvor účet → *Keys → Add key → JSON* (stiahne sa súbor).
-3. Každý zo 4 kalendárov zdieľaj s e-mailom service accountu (`...@...iam.gserviceaccount.com`) s právom **Vykonávať zmeny udalostí**.
+3. Každý z kalendárov zdieľaj s e-mailom service accountu (`...@...iam.gserviceaccount.com`) s právom **Vykonávať zmeny udalostí**.
 
 ## 3. Premenné prostredia vo Verceli (Project → Settings → Environment Variables)
 | Názov | Hodnota |
 |---|---|
 | `GOOGLE_SERVICE_ACCOUNT_JSON` | **celý obsah** stiahnutého JSON súboru (otvoriť v Poznámkovom bloku, Ctrl+A, Ctrl+C, vložiť). Alternatíva: samostatné `GOOGLE_SERVICE_ACCOUNT_EMAIL` a `GOOGLE_PRIVATE_KEY` |
-| `CAL_ANETT`, `CAL_KARVY`, `CAL_VLADIS` | ID kalendárov barberov |
+| `CAL_ANETT`, `CAL_KARVY`, `CAL_VLADIS`, `CAL_Sebo` | ID kalendárov barberov |
 | `CAL_SHARED` | ID spoločného kalendára (každá rezervácia sa tam zrkadlí s menom barbera) |
 | `RESEND_API_KEY`, `MAIL_FROM` | e-maily cez Resend (klient dostane potvrdenie aj zrušenie). `MAIL_FROM` napr. `BARBERIS <rezervacie@tvojadomena.sk>` – doména musí byť overená v Resende |
 | `VERIFY_SECRET` | ľubovoľný dlhý náhodný reťazec. Zapne **overenie e-mailu**: rezervácia sa zapíše do kalendára až po kliknutí na odkaz v e-maile (platí 30 min). Vyžaduje funkčné `RESEND_API_KEY` + `MAIL_FROM`. Bez neho sa rezervuje hneď ako predtým |

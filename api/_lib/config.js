@@ -22,11 +22,12 @@ const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas 
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
 const HORIZON_DAYS = 44;      // mesiac a 2 týždne; ako ďaleko dopredu sa dá rezervovať
 
-// colorId = farba udalosti v Google Kalendári (3 fialová, 7 tyrkysová, 6 oranžová)
+// colorId = farba udalosti v Google Kalendári (3 fialová, 7 tyrkysová, 6 oranžová, 10 zelená)
 const BARBERS = {
   Anett: { calendarEnv: 'CAL_ANETT', colorId: '3', icon: '🟣' },
   Karvy: { calendarEnv: 'CAL_KARVY', colorId: '7', icon: '🔵' },
   Vladis: { calendarEnv: 'CAL_VLADIS', colorId: '6', icon: '🟠' },
+  Sebastian: { calendarEnv: 'CAL_Sebo', colorId: '10', icon: '🟢' },
 };
 const BARBER_NAMES = Object.keys(BARBERS);
 

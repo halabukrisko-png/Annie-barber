@@ -419,7 +419,7 @@ div[style*="padding:36px 24px 0;"]:has(> .bio-card.reveal) { padding: var(--sect
 #booking[style*="padding:36px 24px 48px"] { padding: var(--section) var(--pad) 0 !important; }
 .booking-calendar { max-width: 1080px; margin: 0 auto; padding: clamp(28px, 3.4vw, 52px) !important; border-radius: var(--radius) !important; border-color: var(--line) !important; }
 .step-label { font-size: 12px !important; letter-spacing: 0.18em !important; margin-bottom: 16px !important; }
-.barber-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 14px !important; }
+.barber-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; gap: 14px !important; }
 .barber-btn { padding: 20px 10px !important; transition: transform .4s var(--ease), border-color .3s ease, background .3s ease !important; }
 .barber-btn:hover { transform: translateY(-3px); border-color: var(--line-strong) !important; }
 .barber-avatar { width: 64px !important; height: 64px !important; }
@@ -656,7 +656,7 @@ html #bb-chat { zoom: 1; right: 18px; bottom: 58px; }
   .bio-card.reveal { grid-template-columns: minmax(0, 1fr); row-gap: 8px; }
   .bio-card.reveal p { grid-column: 1; grid-row: auto; margin-top: 14px !important; }
 
-  .barber-grid { grid-template-columns: repeat(4, minmax(0, 1fr)) !important; }
+  .barber-grid { grid-template-columns: repeat(5, minmax(0, 1fr)) !important; }
   /* booking photos fill the whole frame instead of leaving an empty strip below */
   .cta-body > img { height: auto !important; aspect-ratio: auto !important; align-self: stretch; object-fit: cover !important; min-height: 460px; }
   .cancel-card { grid-template-columns: minmax(0, 1fr); row-gap: 16px; }

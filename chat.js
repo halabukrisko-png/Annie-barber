@@ -142,10 +142,10 @@
       keys: ['tim', 'barber', 'anett', 'karvy', 'vladis', 'team', 'who', 'kto', 'zakladat', 'founder'],
       chip: { sk: 'Náš tím', en: 'Our team' },
       sk: function () {
-        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><a href="index.html#team">Spoznať tím →</a>';
+        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – zakladateľka, barbering robí takmer 7 rokov.<br><b>Karvy</b> – 6 rokov skúseností, špecialista na ornamentálne strihy a jeden z našich showmanov.<br><b>Vladis</b> – 4 roky skúseností, precízna práca a pohodová atmosféra.<br><b>Sebastian</b> – 8 rokov skúseností, moderné FADE strihy aj dlhšie účesy.<br><a href="index.html#team">Spoznať tím →</a>';
       },
       en: function () {
-        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><a href="index.html#team">Meet the team →</a>';
+        return img('assets/hero-team-640.webp', 'Anett, Karvy, Vladis') + '<b>Anett</b> – founder, barbering for almost 7 years.<br><b>Karvy</b> – 6 years of experience, ornamental cuts specialist and one of our showmen.<br><b>Vladis</b> – 4 years of experience, precise work and a relaxed atmosphere.<br><b>Sebastian</b> – 8 years of experience, modern FADE cuts and longer hairstyles.<br><a href="index.html#team">Meet the team →</a>';
       }
     },
     change: {

@@ -183,7 +183,7 @@
   .svc-lightbox.open { display: flex; }
   .svc-lightbox img { max-width: 100%; max-height: 100%; border-radius: 6px; box-shadow: 0 30px 60px -10px rgba(0,0,0,0.7); }
   .svc-lightbox-close { position: absolute; top: 20px; right: 20px; background: none; border: 1px solid rgba(244,237,225,0.3); border-radius: 50%; width: 34px; height: 34px; color: var(--cream); font-size: 20px; line-height: 1; cursor: pointer; }
-  .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .team-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
   .team-frame { background: var(--card); border: 1px solid rgba(244,237,225,0.12); border-radius: 5px; padding: 6px; box-shadow: 0 10px 22px -8px rgba(0,0,0,0.5); }
   .team-trigger { display: block; width: 100%; font-family: inherit; color: inherit; cursor: pointer; transition: border-color 0.2s ease, transform 0.2s ease; }
   .team-trigger:hover { transform: translateY(-2px); }
@@ -457,7 +457,7 @@
       <span style="width:4px;height:4px;border-radius:50%;background:var(--bronze);"></span>
     </div>
     <h2 style="font-size:22px;margin-bottom:14px;">O BARBERIS<br>NÁŠ TÍM</h2>
-    <p style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Traja ľudia, jedna vášeň pre remeslo. Spoznaj tím, ktorý sa postará o tvoj nový vzhľad.</p>
+    <p style="margin:0;font-size:13px;line-height:1.55;color:var(--cream-dim);">Štyria ľudia, jedna vášeň pre remeslo. Spoznaj tím, ktorý sa postará o tvoj nový vzhľad.</p>
   </div>
 
   <div style="padding:18px 24px 0;" class="team-grid">
@@ -484,6 +484,15 @@
       <div class="team-caption">
         <h3>VLADIS</h3>
         <div class="role">Barber · 4 roky skúseností</div>
+        <div class="team-hint">Zobraziť viac ↓</div>
+      </div>
+    </button>
+
+    <button type="button" class="team-frame team-trigger" data-bio="bio-sebastian" aria-expanded="false">
+      <div class="team-photo"><img src="assets/sebastian-800.webp" srcset="assets/sebastian-480.webp 480w, assets/sebastian-800.webp 800w, assets/sebastian-1200.webp 1200w" sizes="(min-width: 1024px) 340px, (min-width: 768px) 30vw, 33vw" width="1398" height="2000" alt="Sebastian, barber v BARBERIS Prievidza" loading="lazy" decoding="async"><span class="tap-hint"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 14a8 8 0 0 1-8 8"></path><path d="M18 11v-1a2 2 0 0 0-2-2a2 2 0 0 0-2 2"></path><path d="M14 10V9a2 2 0 0 0-2-2a2 2 0 0 0-2 2v1"></path><path d="M10 9.5V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v10"></path><path d="M18 11a2 2 0 1 1 4 0v3a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15"></path></svg></span></div>
+      <div class="team-caption">
+        <h3>SEBASTIAN</h3>
+        <div class="role">Barber · 8 rokov skúseností</div>
         <div class="team-hint">Zobraziť viac ↓</div>
       </div>
     </button>
@@ -529,6 +538,19 @@
       <p>Keď sa rozbehne naša klasická BARBERIS nálada, vie sa pridať. Jeho prioritou je kvalitná a precízna práca a spokojný zákazník.</p>
       <p>K svojej práci pristupuje s pokorou a vždy sa snaží, aby si z kresla odišiel spokojný. Rád si s tebou prejde, čo máš na mysli, poradí s tvarom aj dĺžkou a dotiahne každý detail, kým to nesedí presne podľa tvojich predstáv.</p>
       <span class="bio-tag">Precízne strihy • Detail • Pohodová atmosféra</span>
+      <a href="/o-nas#booking" class="bio-book">Zarezervovať termín →</a>
+    </div>
+
+    <div class="bio-card" id="bio-sebastian" hidden>
+      <button type="button" class="bio-close" data-close-bio aria-label="Zavrieť">&times;</button>
+      <div class="bio-head">
+        <div class="bio-photo"><img src="assets/sebastian-800.webp" srcset="assets/sebastian-480.webp 480w, assets/sebastian-800.webp 800w, assets/sebastian-1200.webp 1200w" sizes="(min-width: 768px) 360px, 90vw" width="1398" height="2000" alt="Sebastian, barber v BARBERIS Prievidza" loading="lazy" decoding="async"></div>
+        <span class="bio-tag-under">Precízne strihy • Detail • Pohodová atmosféra</span>
+      </div>
+      <div class="bio-name"><h3>SEBASTIAN</h3><div class="role">Barber · 8 rokov skúseností</div></div>
+      <p>Sebastian má za sebou 8 rokov skúseností a barbering je pre neho viac než len práca. Venuje sa moderným FADE strihom aj dlhším účesom, pričom si potrpí na precíznosť a každý detail.</p>
+      <p>Je energický, komunikatívny a rozhodne patrí medzi ľudí, ktorí sa postarajú o poriadnu dávku zábavy. Na prvý pohľad možno pôsobí drsnejšie, no v skutočnosti je to pohodový chalan, ktorý do partie BARBERIS perfektne zapadol.</p>
+      <span class="bio-tag">FADE strihy • Detail • Dobrá nálada</span>
       <a href="/o-nas#booking" class="bio-book">Zarezervovať termín →</a>
     </div>
   </div>
