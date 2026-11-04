@@ -811,6 +811,55 @@
   <script>(function(){var m=document.querySelector('.rv-marquee');if(!m)return;var t;m.addEventListener('touchstart',function(){clearTimeout(t);m.classList.add('rv-paused');},{passive:true});m.addEventListener('touchend',function(){t=setTimeout(function(){m.classList.remove('rv-paused');},2500);});})();</script>
   </div><!-- /reviews-wrap -->
 
+  <!-- BLOG -->
+  <section id="home-blog" aria-labelledby="home-blog-h">
+  <style>
+  #home-blog{padding:30px 0 6px;text-align:center}
+  #home-blog .hb-k{display:flex;align-items:center;justify-content:center;gap:10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze);margin-bottom:6px}
+  #home-blog .hb-k i{width:4px;height:4px;border-radius:50%;background:var(--bronze)}
+  #home-blog h2{font-size:20px;line-height:1.2;margin:0 0 12px;padding:0 24px}
+  #home-blog .hb-sub{margin:0 auto;padding:0 24px;max-width:520px;font-size:13px;line-height:1.55;color:var(--cream-dim)}
+  .hb-scroll{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding:20px 24px 10px;scroll-padding:0 24px;scrollbar-width:none;text-align:left}
+  .hb-scroll::-webkit-scrollbar{display:none}
+  .hb-card{flex:0 0 250px;scroll-snap-align:start;display:flex;flex-direction:column;color:inherit;text-decoration:none;background:var(--card);border:1px solid rgba(201,160,106,.3);border-radius:3px;overflow:hidden}
+  .hb-card .hb-ph{position:relative;aspect-ratio:4/5;overflow:hidden}
+  .hb-card img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .6s ease}
+  .hb-card:hover img{transform:scale(1.04)}
+  .hb-tag{position:absolute;left:10px;top:10px;background:rgba(20,19,17,.82);color:var(--bronze);font-size:9.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 9px;border-radius:2px}
+  .hb-tx{padding:14px;display:flex;flex-direction:column;flex:1}
+  .hb-meta{font-size:10.5px;letter-spacing:.08em;color:rgba(244,237,225,.55);margin-bottom:6px}
+  .hb-tx h3{font-size:16px;line-height:1.25;margin:0 0 8px;color:var(--cream)}
+  .hb-tx p{margin:0;font-size:12px;line-height:1.5;color:var(--cream-dim)}
+  .hb-read{margin-top:auto;padding-top:12px;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+  .hb-foot{padding:6px 24px 0}
+  .hb-all{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,160,106,.55);border-radius:999px;padding:9px 18px;font-size:10.5px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze);text-decoration:none;transition:background .3s ease,color .3s ease}
+  .hb-all:hover{background:var(--bronze);color:#141311}
+  @media (min-width:768px){#home-blog{padding-top:44px}#home-blog h2{font-size:26px}.hb-scroll{gap:22px;padding:26px max(24px,calc((100vw - 1100px)/2)) 12px;scroll-padding:0 max(24px,calc((100vw - 1100px)/2))}.hb-card{flex-basis:320px}.hb-tx h3{font-size:18px}}
+  </style>
+    <div class="hb-k"><i></i><span>Blog</span><i></i></div>
+    <h2 id="home-blog-h" class="reveal">TIPY OD NAŠICH BARBEROV</h2>
+    <p class="hb-sub reveal">Strihy, brada a starostlivosť. Krátko, jasne a priamo z nášho kresla.</p>
+    <div class="hb-scroll" tabindex="0" role="region" aria-label="Články z blogu">
+      <a class="hb-card" href="/blog/strih-na-stuzkovu-a-ples">
+        <div class="hb-ph"><span class="hb-tag">Strihy &amp; trendy</span><img src="/assets/blog/stuzkova-titulka-480.webp" srcset="/assets/blog/stuzkova-titulka-480.webp 480w, /assets/blog/stuzkova-titulka-800.webp 800w" sizes="(min-width:768px) 320px, 250px" width="480" height="640" alt="Upravený pánsky strih s jemným fade z BARBERIS Prievidza" loading="lazy" decoding="async" style="object-position:50% 40%"></div>
+        <div class="hb-tx"><div class="hb-meta">5 min čítania · 4. 11. 2026</div><h3>Strih na stužkovú a ples bez stresu</h3><p>Kedy sa objednať, aký strih k obleku a ako prísť celá partia.</p><span class="hb-read">Čítať článok →</span></div>
+      </a>
+      <a class="hb-card" href="/blog/darcekovy-poukaz-barbershop-vianoce">
+        <div class="hb-ph"><span class="hb-tag">Tipy od barbera</span><img src="/assets/blog/poukaz-titulka-480.webp" srcset="/assets/blog/poukaz-titulka-480.webp 480w, /assets/blog/poukaz-titulka-800.webp 800w" sizes="(min-width:768px) 320px, 250px" width="480" height="600" alt="Darčekový poukaz BARBERIS pod vianočným stromčekom" loading="lazy" decoding="async" style="object-position:50% 55%"></div>
+        <div class="hb-tx"><div class="hb-meta">5 min čítania · 31. 10. 2026</div><h3>Darček pre neho na Vianoce: poukaz do barbershopu</h3><p>Komu ho darovať, na aké služby môže byť a ako ho kúpiť.</p><span class="hb-read">Čítať článok →</span></div>
+      </a>
+      <a class="hb-card" href="/blog/ako-upravit-bradu-doma">
+        <div class="hb-ph"><span class="hb-tag">Brada &amp; holenie</span><img src="/assets/blog/brada-titulka-480.webp" srcset="/assets/blog/brada-titulka-480.webp 480w, /assets/blog/brada-titulka-800.webp 800w" sizes="(min-width:768px) 320px, 250px" width="480" height="640" alt="Zákazník BARBERIS s upravenou bradou v barbershope v Prievidzi" loading="lazy" decoding="async" style="object-position:50% 38%"></div>
+        <div class="hb-tx"><div class="hb-meta">6 min čítania · 28. 10. 2026</div><h3>Úprava brady doma v 7 krokoch</h3><p>Ako upraviť bradu doma, aby vyzerala ako od barbera.</p><span class="hb-read">Čítať článok →</span></div>
+      </a>
+      <a class="hb-card" href="/blog/fade-strih-low-mid-high">
+        <div class="hb-ph"><span class="hb-tag">Strihy &amp; trendy</span><img src="/assets/gallery/gallery-7-480.webp" srcset="/assets/gallery/gallery-7-480.webp 480w, /assets/gallery/gallery-7-800.webp 800w" sizes="(min-width:768px) 320px, 250px" width="480" height="640" alt="Zákazník BARBERIS s high fade z profilu" loading="lazy" decoding="async" style="object-position:50% 62%"></div>
+        <div class="hb-tx"><div class="hb-meta">6 min čítania · 27. 10. 2026</div><h3>Low, mid alebo high fade? Ktorý je pre teba</h3><p>Kde prechod začína, komu ktorý sedí a ako často k barberovi.</p><span class="hb-read">Čítať článok →</span></div>
+      </a>
+    </div>
+    <div class="hb-foot"><a class="hb-all" href="/blog">Všetky články →</a></div>
+  </section>
+
   <div style="height:28px;"></div>
 
   <!-- BOOKING CTA -->
