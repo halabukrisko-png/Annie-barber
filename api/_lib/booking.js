@@ -7,7 +7,7 @@ const { mailCustomer, notifyOwner } = require('./mail');
 
 const phoneKey = (p) => String(p || '').replace(/\D/g, '').slice(-9);
 
-const MAX_ACTIVE = 2; // max. počet budúcich rezervácií na jedno telefónne číslo / e-mail
+const MAX_ACTIVE = 3; // max. počet budúcich rezervácií na jedno telefónne číslo / e-mail
 const DISPOSABLE = /@(mailinator|guerrillamail|10minutemail|tempmail|temp-mail|yopmail|trashmail|sharklasers|getnada|dispostable|maildrop|throwawaymail|fakeinbox|mohmal|emailondeck)\./i;
 
 // true, ak má kontakt už MAX_ACTIVE budúcich rezervácií (ochrana proti zahlteniu falošnými rezerváciami)
