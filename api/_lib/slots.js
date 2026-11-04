@@ -1,5 +1,5 @@
 // "Inteligentný" výpočet voľných termínov (čistá funkcia – ľahko testovateľná).
-const { HOURS, LUNCH, breakFor, gridFor, LEAD_MIN, BARBER_NAMES, durationFor } = require('./config');
+const { HOURS, LUNCH, breakFor, gridFor, LEAD_MIN, BARBER_NAMES, durationFor, partyDuration } = require('./config');
 const { localToMs, weekday, hhmm, minuteOfDay } = require('./time');
 
 const MIN = 60000;
@@ -33,6 +33,8 @@ function slotsForBarber(date, busy, dur, nowMs, barber, service) {
     const e = s + dur * MIN;
     if (s < earliest || s < open || e > close) return;
     if (lunch && s > noStartFrom && s < noStartTo) return;
+    // dlhší termín (skupina) nesmie zasiahnuť do obedňajšej prestávky viac než jedna 60-min služba (do 13:00)
+    if (lunch && s <= noStartFrom && e > localToMs(date, lunch.from + 30)) return;
     let prevEnd = open, nextStart = close, ok = true;
     for (const b of blocks) {
       if (s < b.end + BREAK_MIN * MIN && e + BREAK_MIN * MIN > b.start) { ok = false; break; }
@@ -50,13 +52,13 @@ function slotsForBarber(date, busy, dur, nowMs, barber, service) {
 
 // Všetky voľné časy v deň. barber = '' => ktorýkoľvek.
 // Vráti [{ time:'HH:MM', start(ms), barber }] – pri "ktorýkoľvek" je barber ten, ku ktorému sa termín najlepšie hodí.
-function daySlots({ date, barber, service, color, busyByBarber, nowMs }) {
+function daySlots({ date, barber, service, color, party, busyByBarber, nowMs }) {
   const names = barber ? [barber] : BARBER_NAMES;
   const load = {};
   names.forEach((n) => { load[n] = (busyByBarber[n] || []).length; });
   const byStart = new Map();
   names.forEach((n) => {
-    const dur = durationFor(service, n, color);
+    const dur = party ? partyDuration(party, n) : durationFor(service, n, color);
     if (!dur) return;
     slotsForBarber(date, busyByBarber[n] || [], dur, nowMs, n, service).forEach((c) => {
       const cur = byStart.get(c.start);

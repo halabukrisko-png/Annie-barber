@@ -1,6 +1,6 @@
 // POST /api/book { service, barber, date, time, name, phone, email }
 // S nastaveným Twilio (SMS kód, /api/confirm) alebo VERIFY_SECRET pošle zákazníkovi overovací e-mail; rezerváciu zapíše až /api/verify.
-const { SERVICES, BARBER_NAMES, HORIZON_DAYS } = require('./_lib/config');
+const { SERVICES, BARBER_NAMES, HORIZON_DAYS, buildParty } = require('./_lib/config');
 const { addDays, todayStr, isDateStr } = require('./_lib/time');
 const { createBooking, overLimit, LIMIT_MSG, DISPOSABLE } = require('./_lib/booking');
 const { verifyEnabled, sendVerification, makeToken } = require('./_lib/verify');
@@ -34,13 +34,16 @@ module.exports = async function handler(req, res) {
     if (DISPOSABLE.test(email)) return res.status(400).json({ error: 'Jednorazové e-maily nie sú povolené. Zadaj svoj bežný e-mail.', field: 'email' });
     const lang = b.lang === 'en' ? 'en' : 'sk';
     const color = b.color === true && !!SERVICES[service].beard; // farbenie brady (+30 min)
-    const data = { service, barber, date, time, name, phone, email, lang, color };
+    const extra = (Array.isArray(b.extra) ? b.extra : []).map((x) => clean(x, 24));
+    const party = buildParty(service, color, extra); // hlavná osoba + max. 2 ďalšie
+    if (!party) return res.status(400).json({ error: 'Neplatný počet osôb alebo služba' });
+    const data = { service, barber, date, time, name, phone, email, lang, color, extra };
 
     // overenie telefónu: pošle sa SMS kód; rezervácia sa zapíše až po jeho zadaní (/api/confirm)
     if (smsEnabled()) {
       if (!toE164(phone)) return res.status(400).json({ error: 'Zadaj platné telefónne číslo', field: 'phone' });
       if (date > addDays(todayStr(Date.now()), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
-      if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
+      if (await overLimit(phone, email, party.length)) return res.status(429).json({ error: LIMIT_MSG });
       const vid = crypto.randomBytes(9).toString('hex');
       const sent = await sendCode(phone, lang, vid);
       if (!sent.ok) return res.status(503).json(Object.assign({ error: 'SMS s kódom sa nepodarilo odoslať. Skontroluj telefónne číslo alebo zavolaj.', field: 'phone' }, b.debug ? { detail: sent.detail } : {}));
@@ -51,7 +54,7 @@ module.exports = async function handler(req, res) {
     if (verifyEnabled()) {
       const nowMs = Date.now();
       if (date > addDays(todayStr(nowMs), HORIZON_DAYS)) return res.status(400).json({ error: 'Termín je príliš ďaleko' });
-      if (await overLimit(phone, email)) return res.status(429).json({ error: LIMIT_MSG });
+      if (await overLimit(phone, email, party.length)) return res.status(429).json({ error: LIMIT_MSG });
       const sent = await sendVerification(data);
       if (!sent) return res.status(503).json({ error: 'Overovací e-mail sa nepodarilo odoslať. Skontroluj e-mail alebo zavolaj.', field: 'email' });
       return res.status(200).json({ ok: true, verify: true });
