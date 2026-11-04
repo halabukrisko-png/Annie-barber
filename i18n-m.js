@@ -137,6 +137,7 @@
     'FADE strihy • Detail • Dobrá nálada': 'FADE cuts • Detail • Good mood',
     'Objednaj si strih u Sebastiana →': 'Book a haircut with Sebastian →',
     'Sebastian — barber': 'Sebastian — barber',
+    'Chceš aj farbenie brady?': 'Would you also like beard colouring?',
     'Anett — zakladateľka Barberis': 'Anett — founder of Barberis',
     'Karvy — barber': 'Karvy — barber',
     'Vladis — barber': 'Vladis — barber',

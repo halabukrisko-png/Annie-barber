@@ -1,6 +1,6 @@
 // Overenie e-mailu pred rezerváciou: údaje rezervácie sa podpíšu (HMAC) a pošlú v odkaze; zapíšu sa až po kliknutí.
 const crypto = require('crypto');
-const { SERVICES } = require('./config');
+const { serviceLabel } = require('./config');
 const { mailVerify, SITE } = require('./mail');
 
 const TTL_MIN = 30;
@@ -26,11 +26,10 @@ function readToken(t) {
 }
 
 async function sendVerification(d) {
-  const svc = SERVICES[d.service];
   const en = d.lang === 'en';
   const when = d.date.split('-').reverse().join('. ') + (en ? ' at ' : ' o ') + d.time;
   const link = SITE + 'api/verify?t=' + makeToken(d);
-  return mailVerify(d.lang, d.email, { name: d.name, when, service: en ? (svc.nameEn || svc.name) : svc.name, barber: d.barber }, link, TTL_MIN);
+  return mailVerify(d.lang, d.email, { name: d.name, when, service: serviceLabel(d.service, d.lang, d.color), barber: d.barber }, link, TTL_MIN);
 }
 
 module.exports = { verifyEnabled, sendVerification, readToken, makeToken };

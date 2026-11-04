@@ -14,6 +14,7 @@
   var slotsWrap = $('cal-slots-wrap'), slotsGrid = $('cal-slots'), selectedDateLabel = $('cal-selected-date');
   var summary = $('cal-summary'), confirmBtn = $('cal-confirm'), step4Wrap = $('cal-step4-wrap');
   var nameField = $('cal-name'), phoneField = $('cal-phone'), emailField = $('cal-email');
+  var colorOpt = $('color-opt'), colorBox = $('cal-color');
   var svcGrid = $('svc-grid'), barberGrid = $('barber-grid'), afterBarberWrap = $('cal-after-barber-wrap');
   var codeBox = $('cal-code-box'), codeField = $('cal-code'), codeMsg = $('cal-code-msg'), codeOk = $('cal-code-ok');
   var smsToken = null, lastPayload = null, lastPhone = '';
@@ -35,13 +36,22 @@
   function selService() { return svcGrid.querySelector('.svc-btn.selected'); }
   function selBarber() { var b = barberGrid.querySelector('.barber-btn.selected'); return b ? b.getAttribute('data-barber') : null; }
   function svcId() { var s = selService(); return s ? s.getAttribute('data-service') : 'strih'; }
+  // farbenie brady (+30 min) sa ponúka pri službách s bradou
+  var BEARD = { komplet: 1, brada: 1, holenie: 1 };
+  function hasColor() { return !!(BEARD[svcId()] && colorBox && colorBox.checked); }
+  function updateColorOpt() {
+    if (!colorOpt) return;
+    var show = !!BEARD[svcId()];
+    colorOpt.hidden = !show;
+    if (!show && colorBox) colorBox.checked = false;
+  }
 
   // popisky služieb s dĺžkou podľa vybraného barbera
   function updateServiceLabels() {
     var b = selBarber() || '';
     all(svcGrid, '.svc-btn').forEach(function (btn) {
       var d = DUR[btn.getAttribute('data-service')];
-      var m = (b && d[b]) || d.d;
+      var m = ((b && d[b]) || d.d) + (hasColor() && BEARD[btn.getAttribute('data-service')] && btn.classList.contains('selected') ? 30 : 0);
       btn.querySelector('.svc-dur').textContent = m + ' min · ' + btn.getAttribute('data-price');
     });
   }
@@ -54,11 +64,12 @@
   function load(cb) {
     var b = selBarber() || '', s = svcId();
     var from = key(view), to = key(new Date(view.getFullYear(), view.getMonth() + 1, 0));
-    var ck = [s, b, from].join('|');
+    var c = hasColor() ? '1' : '';
+    var ck = [s, b, from, c].join('|');
     var my = ++token;
     if (cache[ck] && Date.now() - cache[ck].t < 60000) { avail = cache[ck].days; failed = false; loading = false; render(); if (cb) cb(); return; }
     loading = true; failed = false; avail = null; render();
-    fetch('/api/availability?service=' + encodeURIComponent(s) + '&barber=' + encodeURIComponent(b) + '&from=' + from + '&to=' + to, { cache: 'no-store' })
+    fetch('/api/availability?service=' + encodeURIComponent(s) + '&barber=' + encodeURIComponent(b) + (c ? '&color=1' : '') + '&from=' + from + '&to=' + to, { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (j) {
         if (my !== token) return;
@@ -165,7 +176,7 @@
   function updateSummary() {
     if (!selectedDate || !selectedTime) return;
     var sb = selService();
-    var svcName = sb ? sb.querySelector('.svc-name').textContent : '';
+    var svcName = (sb ? sb.querySelector('.svc-name').textContent : '') + (hasColor() ? (en() ? ' + beard colouring' : ' + farbenie brady') : '');
     summary.textContent = svcName + barberText() + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
   }
 
@@ -179,10 +190,10 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { setMsg(tr('Zadaj platný e-mail.')); emailField.focus(); return; }
     var gdpr = $('cal-gdpr');
     if (gdpr && !gdpr.checked) { setMsg(tr('Pred rezerváciou musíš súhlasiť so spracovaním osobných údajov.')); gdpr.focus(); return; }
-    setMsg('');
+    setMsg(''); lastColor = hasColor();
     confirmBtn.classList.add('is-busy'); confirmBtn.setAttribute('aria-disabled', 'true');
     var payload = { service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-      name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) };
+      color: hasColor(), name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) };
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -209,6 +220,7 @@
       });
   }
 
+  var lastColor = false;
   function showDone(j) {
     cache = {};
     formBox.hidden = true; codeBox.hidden = true; doneBox.hidden = false;
@@ -216,7 +228,7 @@
     var verify = !!j.verify;
     $('cal-done-title').textContent = tr(verify ? 'Skontroluj e-mail ✉️' : 'Termín je zarezervovaný ✓');
     $('cal-done-note').textContent = tr(verify ? 'Poslali sme ti e-mail s odkazom. Rezervácia sa uloží, až keď naň klikneš (platí 30 minút). Pozri aj do spamu.' : 'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.');
-    $('cal-done-text').textContent = (sb ? sb.querySelector('.svc-name').textContent : '') + (j.barber ? ((en() ? ' with ' : ' u ') + j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
+    $('cal-done-text').textContent = (sb ? sb.querySelector('.svc-name').textContent : '') + (lastColor ? (en() ? ' + beard colouring' : ' + farbenie brady') : '') + (j.barber ? ((en() ? ' with ' : ' u ') + j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
     doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     resetAfterBooking();
   }
@@ -273,7 +285,8 @@
   var again = $('cal-again');
   if (again) again.addEventListener('click', function () { step4Wrap.hidden = true; doneBox.hidden = true; codeBox.hidden = true; formBox.hidden = false; });
 
-  function changed() { resetSelection(); updateServiceLabels(); load(); }
+  function changed() { resetSelection(); updateColorOpt(); updateServiceLabels(); load(); }
+  if (colorBox) colorBox.addEventListener('change', function () { resetSelection(); updateServiceLabels(); load(); });
 
   all(svcGrid, '.svc-btn').forEach(function (el) {
     el.addEventListener('click', function () {

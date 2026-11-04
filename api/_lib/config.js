@@ -34,18 +34,30 @@ const BARBER_NAMES = Object.keys(BARBERS);
 // Dĺžky v minútach. `byBarber` prepisuje základnú dĺžku pre konkrétneho barbera.
 const SERVICES = {
   strih:     { name: 'Strih', nameEn: 'Haircut',                          price: '20 €',     min: 30, byBarber: { Vladis: 40 } },
-  komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60 },
-  brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30 },
+  komplet:   { name: 'Kompletná úprava (strih + brada)', nameEn: 'Full grooming (haircut + beard)', price: '30 €',   min: 60, beard: true },
+  brada:     { name: 'Úprava brady', nameEn: 'Beard trim',                   price: '15 €',     min: 30, beard: true },
   detsky:    { name: 'Detský strih do 12 r.', nameEn: 'Kids haircut (under 12)',          price: '15 €',     min: 30 },
-  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 60 },
+  holenie:   { name: 'Holenie hlavy + úprava brady', nameEn: 'Head shave + beard trim',   price: '25 €',     min: 60, beard: true },
   farbenie:  { name: 'Farbenie brady', nameEn: 'Beard colouring',                 price: '5 – 10 €', min: 30 },
   cistenie:  { name: 'Čistenie pleti', nameEn: 'Facial cleansing',                 price: 'od 10 €',  min: 30 },
 };
 
-function durationFor(serviceId, barber) {
+// Pri službách s bradou (beard: true) sa dá pridať farbenie brady: predĺži termín o COLOR_MIN minút.
+const COLOR_MIN = 30;
+const COLOR_PRICE = '5 – 10 €';
+
+function durationFor(serviceId, barber, color) {
   const s = SERVICES[serviceId];
   if (!s) return null;
-  return (s.byBarber && s.byBarber[barber]) || s.min;
+  return ((s.byBarber && s.byBarber[barber]) || s.min) + (color && s.beard ? COLOR_MIN : 0);
+}
+
+// názov služby (s dodatkom o farbení brady)
+function serviceLabel(serviceId, lang, color) {
+  const s = SERVICES[serviceId];
+  if (!s) return '';
+  const en = lang === 'en';
+  return (en ? (s.nameEn || s.name) : s.name) + (color && s.beard ? (en ? ' + beard colouring' : ' + farbenie brady') : '');
 }
 
 function breakFor() { return BREAK_MIN; }
@@ -56,4 +68,4 @@ function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
 }
 
-module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, calendarId };
+module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, serviceLabel, COLOR_MIN, COLOR_PRICE, calendarId };

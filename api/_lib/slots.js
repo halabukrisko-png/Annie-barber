@@ -50,13 +50,13 @@ function slotsForBarber(date, busy, dur, nowMs, barber, service) {
 
 // Všetky voľné časy v deň. barber = '' => ktorýkoľvek.
 // Vráti [{ time:'HH:MM', start(ms), barber }] – pri "ktorýkoľvek" je barber ten, ku ktorému sa termín najlepšie hodí.
-function daySlots({ date, barber, service, busyByBarber, nowMs }) {
+function daySlots({ date, barber, service, color, busyByBarber, nowMs }) {
   const names = barber ? [barber] : BARBER_NAMES;
   const load = {};
   names.forEach((n) => { load[n] = (busyByBarber[n] || []).length; });
   const byStart = new Map();
   names.forEach((n) => {
-    const dur = durationFor(service, n);
+    const dur = durationFor(service, n, color);
     if (!dur) return;
     slotsForBarber(date, busyByBarber[n] || [], dur, nowMs, n, service).forEach((c) => {
       const cur = byStart.get(c.start);

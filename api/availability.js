@@ -11,6 +11,7 @@ module.exports = async function handler(req, res) {
     const q = req.query || {};
     const service = String(q.service || '');
     const barber = String(q.barber || '');
+    const color = q.color === '1' && !!(SERVICES[service] && SERVICES[service].beard);
     if (!SERVICES[service]) return res.status(400).json({ error: 'Neznáma služba' });
     if (barber && !BARBER_NAMES.includes(barber)) return res.status(400).json({ error: 'Neznámy barber' });
     if (!isDateStr(q.from) || !isDateStr(q.to)) return res.status(400).json({ error: 'Neplatný dátum' });
@@ -36,7 +37,7 @@ module.exports = async function handler(req, res) {
       return res.status(200).json({ from, to, shared: shared.map(iso), barbers: names.map((n, i) => ({ barber: n, sameAsShared: ids[i] === process.env.CAL_SHARED, sameAsOther: ids.filter((x) => x === ids[i]).length > 1, calendar: ids[i].slice(0, 6) + '…' + ids[i].slice(-12), busy: busy[ids[i]].map(iso) })) });
     }
     for (let d = from; d <= to; d = addDays(d, 1)) {
-      const t = daySlots({ date: d, barber, service, busyByBarber, nowMs }).map((s) => s.time);
+      const t = daySlots({ date: d, barber, service, color, busyByBarber, nowMs }).map((s) => s.time);
       if (t.length || HOURS[weekday(d)]) days[d] = t; // prázdne pole = otvorený deň, ale plne obsadený
     }
     return res.status(200).json({ days });

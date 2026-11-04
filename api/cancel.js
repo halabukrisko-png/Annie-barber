@@ -1,7 +1,7 @@
 // POST /api/cancel
 //   { contact }            -> { items: [{ id, barber, service, date, time }] }  (budúce termíny s týmto telefónom/e-mailom)
 //   { contact, id, barber } -> { ok: true }  (termín sa zruší v kalendári barbera aj v spoločnom)
-const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId } = require('./_lib/config');
+const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId, serviceLabel } = require('./_lib/config');
 const { todayStr, minuteOfDay, hhmm } = require('./_lib/time');
 const { listEvents, deleteEvent } = require('./_lib/google');
 const { mailCustomer, notifyOwner } = require('./_lib/mail');
@@ -38,8 +38,8 @@ module.exports = async function handler(req, res) {
         const ms = Date.parse(e.start.dateTime);
         const pr = (e.extendedProperties && e.extendedProperties.private) || {};
         if (!matches(pr, e.description)) return;
-        mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? SERVICES[pr.service].name : (e.summary || ''),
-          serviceEn: SERVICES[pr.service] ? (SERVICES[pr.service].nameEn || SERVICES[pr.service].name) : (e.summary || ''), lang: pr.lang || 'sk',
+        mine.push({ id: e.id, barber, ms, service: SERVICES[pr.service] ? serviceLabel(pr.service, 'sk', pr.color === '1') : (e.summary || ''),
+          serviceEn: SERVICES[pr.service] ? serviceLabel(pr.service, 'en', pr.color === '1') : (e.summary || ''), lang: pr.lang || 'sk',
           date: todayStr(ms), time: hhmm(minuteOfDay(ms)),
           name: ((e.description || '').match(/Zákazník:\s*(.+)/) || [])[1] || '',
           phone: pr.phone || '',

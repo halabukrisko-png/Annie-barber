@@ -2,7 +2,7 @@
 // Nájde termíny zmazané ručne v Google Kalendári barbera a pošle zákazníkovi aj majiteľovi e-mail o zrušení.
 // Dedupe: kópia termínu v spoločnom kalendári (CAL_SHARED) = „zákazník ešte nevie“. Po odoslaní sa kópia zmaže;
 // /api/cancel ju maže pred zrušením termínu, takže zrušenia cez web sa neoznamujú dvakrát.
-const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId } = require('./_lib/config');
+const { SERVICES, BARBER_NAMES, HORIZON_DAYS, calendarId, serviceLabel } = require('./_lib/config');
 const { todayStr, minuteOfDay, hhmm } = require('./_lib/time');
 const { listEvents, deleteEvent, listChanged } = require('./_lib/google');
 const { mailCustomer, notifyOwner } = require('./_lib/mail');
@@ -40,9 +40,9 @@ module.exports = async function handler(req, res) {
           const date = todayStr(startMs), time = hhmm(minuteOfDay(startMs));
           const dmy = date.split('-').reverse().join('. ');
           const when = dmy + ' o ' + time;
-          const service = svc ? svc.name : '';
+          const service = svc ? serviceLabel(pr.service, 'sk', pr.color === '1') : '';
           if (email) {
-            await mailCustomer('cancel', lang, email, { name, barber, service: lang === 'en' && svc ? (svc.nameEn || svc.name) : service,
+            await mailCustomer('cancel', lang, email, { name, barber, service: lang === 'en' && svc ? serviceLabel(pr.service, 'en', pr.color === '1') : service,
               when: lang === 'en' ? dmy + ' at ' + time : when });
           }
           await notifyOwner('cancel', { when, service, barber, name, phone: pr.phone || '', email });

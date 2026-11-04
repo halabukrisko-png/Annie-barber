@@ -1,5 +1,5 @@
 // Samotné vytvorenie rezervácie (kontrola voľného času + zápis do kalendárov + e-maily).
-const { SERVICES, BARBERS, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, calendarId } = require('./config');
+const { SERVICES, BARBERS, BARBER_NAMES, HORIZON_DAYS, TZ, durationFor, serviceLabel, COLOR_PRICE, calendarId } = require('./config');
 const { localToMs, addDays, todayStr } = require('./time');
 const { freeBusy, sharedBlocks, insertEvent, deleteEvent, listEvents } = require('./google');
 const { daySlots } = require('./slots');
@@ -31,6 +31,7 @@ const LIMIT_MSG = 'Na tento telefón alebo e-mail už máš maximálny počet re
 // Ak je zadané vid (ID overenej rezervácie), opakované použitie rovnakého odkazu rezerváciu nezdvojí.
 async function createBooking(d) {
   const { service, barber, date, time, name, phone, email, lang, vid } = d;
+  const color = d.color === true && !!(SERVICES[service] && SERVICES[service].beard);
   const nowMs = Date.now();
   if (date > addDays(todayStr(nowMs), HORIZON_DAYS)) return { status: 400, body: { error: 'Termín je príliš ďaleko' } };
 
@@ -49,25 +50,27 @@ async function createBooking(d) {
   const [busy, shared] = await Promise.all([freeBusy(ids, dayFrom, dayTo), sharedBlocks(dayFrom, dayTo)]);
   const busyByBarber = {};
   names.forEach((n, i) => { busyByBarber[n] = busy[ids[i]].concat(shared); });
-  const slot = daySlots({ date, barber, service, busyByBarber, nowMs }).find((s) => s.time === time);
+  const slot = daySlots({ date, barber, service, color, busyByBarber, nowMs }).find((s) => s.time === time);
   if (!slot) return { status: 409, body: { error: 'Tento čas už nie je voľný. Vyber si, prosím, iný.', taken: true } };
 
   const who = slot.barber;
-  const dur = durationFor(service, who);
+  const dur = durationFor(service, who, color);
   const startMs = slot.start, endMs = startMs + dur * 60000;
   const svc = SERVICES[service];
       const iso = (ms) => new Date(ms).toISOString();
   const when = date.split('-').reverse().join('. ') + ' o ' + time;
-  const description = '✂️ ' + svc.name + ' · ' + svc.price + ' · ' + dur + ' min\n' +
+  const svcName = svc.name + (color ? ' + farbenie brady' : '');
+  const price = svc.price + (color ? ' + farbenie brady ' + COLOR_PRICE : '');
+  const description = '✂️ ' + svcName + ' · ' + price + ' · ' + dur + ' min\n' +
     BARBERS[who].icon + ' Barber: ' + who + '\n' +
     '👤 Zákazník: ' + name + '\n' +
     '📞 Telefón: ' + phone + (email ? '\n✉️ E-mail: ' + email : '') +
     '\n\nRezervované cez web.';
   const base = { start: { dateTime: iso(startMs), timeZone: TZ }, end: { dateTime: iso(endMs), timeZone: TZ }, description,
     colorId: BARBERS[who].colorId, reminders: { useDefault: false },
-    extendedProperties: { private: Object.assign({ barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase(), lang }, vid ? { vid } : {}) } };
+    extendedProperties: { private: Object.assign({ barberis: '1', barber: who, service, phone, phoneKey: phoneKey(phone), emailKey: email.toLowerCase(), lang }, color ? { color: '1' } : {}, vid ? { vid } : {}) } };
 
-  const own = await insertEvent(calendarId(who), Object.assign({ summary: svc.name + ' · ' + name }, base));
+  const own = await insertEvent(calendarId(who), Object.assign({ summary: svcName + ' · ' + name }, base));
 
   // ochrana proti súbehu: ak sa v rovnakom čase vytvoril iný termín skôr, ten náš zrušíme
   const near = await listEvents(calendarId(who), startMs, endMs);
@@ -79,15 +82,15 @@ async function createBooking(d) {
   }
 
   if (sharedId) {
-    await insertEvent(sharedId, Object.assign({ summary: BARBERS[who].icon + ' ' + who + ' · ' + svc.name + ' · ' + name,
+    await insertEvent(sharedId, Object.assign({ summary: BARBERS[who].icon + ' ' + who + ' · ' + svcName + ' · ' + name,
       extendedProperties: { private: { barberis: '1', barber: who, service, phone, lang, source: own.id } } }, { start: base.start, end: base.end, description, colorId: base.colorId, reminders: base.reminders })).catch((e) => console.error('shared', e));
   }
 
   if (email) {
     const whenL = lang === 'en' ? date.split('-').reverse().join('. ') + ' at ' + time : when;
-    await mailCustomer('new', lang, email, { name, when: whenL, service: lang === 'en' ? (svc.nameEn || svc.name) : svc.name, barber: who });
+    await mailCustomer('new', lang, email, { name, when: whenL, service: serviceLabel(service, lang, color), barber: who });
   }
-  await notifyOwner('new', { when, service: svc.name, barber: who, name, phone, email });
+  await notifyOwner('new', { when, service: svcName, barber: who, name, phone, email });
   return { status: 200, body: { ok: true, barber: who, time, date, duration: dur } };
 }
 

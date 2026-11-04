@@ -33,7 +33,8 @@ module.exports = async function handler(req, res) {
 
     if (DISPOSABLE.test(email)) return res.status(400).json({ error: 'Jednorazové e-maily nie sú povolené. Zadaj svoj bežný e-mail.', field: 'email' });
     const lang = b.lang === 'en' ? 'en' : 'sk';
-    const data = { service, barber, date, time, name, phone, email, lang };
+    const color = b.color === true && !!SERVICES[service].beard; // farbenie brady (+30 min)
+    const data = { service, barber, date, time, name, phone, email, lang, color };
 
     // overenie telefónu: pošle sa SMS kód; rezervácia sa zapíše až po jeho zadaní (/api/confirm)
     if (smsEnabled()) {
