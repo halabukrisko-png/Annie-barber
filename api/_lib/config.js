@@ -64,25 +64,8 @@ function breakFor() { return BREAK_MIN; }
 // krok ponúkaných časov: 30 min; Vladis pri strihu 15 min (strih trvá 40 min)
 function gridFor(barber, serviceId) { return barber === 'Vladis' && serviceId === 'strih' ? 15 : GRID_MIN; }
 
-const MAX_PARTY = 3; // max. počet osôb (rezervácií) naraz
-
-// Zloží skupinu: hlavná osoba + 'extra' (zoznam tokenov 'sluzba' alebo 'sluzba+c', čiarkou alebo pole). Vráti [{service, color}] alebo null pri chybe.
-function buildParty(service, color, extra) {
-  const first = SERVICES[service];
-  if (!first) return null;
-  const party = [{ service, color: !!(color && first.beard) }];
-  const list = Array.isArray(extra) ? extra : String(extra || '').split(',').filter(Boolean);
-  for (const tok of list) {
-    const m = /^([a-z]+)(\+c)?$/.exec(String(tok));
-    if (!m || !SERVICES[m[1]]) return null;
-    party.push({ service: m[1], color: !!(m[2] && SERVICES[m[1]].beard) });
-  }
-  return party.length <= MAX_PARTY ? party : null;
-}
-const partyDuration = (party, barber) => party.reduce((t, p) => t + durationFor(p.service, barber, p.color), 0);
-
 function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
 }
 
-module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, serviceLabel, buildParty, partyDuration, MAX_PARTY, COLOR_MIN, COLOR_PRICE, calendarId };
+module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, serviceLabel, COLOR_MIN, COLOR_PRICE, calendarId };

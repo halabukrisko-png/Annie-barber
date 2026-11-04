@@ -15,8 +15,9 @@
   var summary = $('cal-summary'), confirmBtn = $('cal-confirm'), step4Wrap = $('cal-step4-wrap');
   var nameField = $('cal-name'), phoneField = $('cal-phone'), emailField = $('cal-email');
   var colorOpt = $('color-opt'), colorBox = $('cal-color');
-  var partyBtns = $('party-btns'), partyNote = $('party-note'), partyExtra = $('party-extra');
-  var partyN = 1, extras = ['strih', 'strih']; // extras[0] = osoba 2, extras[1] = osoba 3 (token 'sluzba' alebo 'sluzba+c')
+  var partyBtns = $('party-btns'), partyTabs = $('party-tabs'), partyNote = $('party-note');
+  var partyN = 1, cur = 0, persons = [blankPerson(), blankPerson(), blankPerson()]; // každá osoba: vlastný barber, služba, dátum, čas
+  function blankPerson() { return { barber: null, service: 'strih', color: false, date: null, time: null, view: null }; }
   var svcGrid = $('svc-grid'), barberGrid = $('barber-grid'), afterBarberWrap = $('cal-after-barber-wrap');
   var codeBox = $('cal-code-box'), codeField = $('cal-code'), codeMsg = $('cal-code-msg'), codeOk = $('cal-code-ok');
   var smsToken = null, lastPayload = null, lastPhone = '';
@@ -41,34 +42,6 @@
   // farbenie brady (+30 min) sa ponúka pri službách s bradou
   var BEARD = { komplet: 1, brada: 1, holenie: 1 };
   function hasColor() { return !!(BEARD[svcId()] && colorBox && colorBox.checked); }
-  function extraParam() { return extras.slice(0, partyN - 1).join(','); }
-  function tokenLabel(tok) {
-    var p = tok.split('+'), btn = svcGrid.querySelector('.svc-btn[data-service="' + p[0] + '"]');
-    return (btn ? btn.querySelector('.svc-name').textContent : p[0]) + (p[1] ? (en() ? ' + beard colouring' : ' + farbenie brady') : '');
-  }
-  function partyText() { // zoznam služieb všetkých osôb
-    var main = (selService() ? selService().querySelector('.svc-name').textContent : '') + (hasColor() ? (en() ? ' + beard colouring' : ' + farbenie brady') : '');
-    return [main].concat(extras.slice(0, partyN - 1).map(tokenLabel)).join(', ');
-  }
-  function buildExtraRows() {
-    partyExtra.innerHTML = '';
-    for (var i = 0; i < partyN - 1; i++) {
-      (function (i) {
-        var row = document.createElement('div'); row.className = 'party-row';
-        var lab = document.createElement('label'); lab.textContent = (en() ? 'Person ' : 'Osoba ') + (i + 2) + (en() ? ' – service' : ' – služba');
-        var sel = document.createElement('select');
-        all(svcGrid, '.svc-btn').forEach(function (btn) {
-          var id = btn.getAttribute('data-service'), nm = btn.querySelector('.svc-name').textContent;
-          var o = document.createElement('option'); o.value = id; o.textContent = nm; sel.appendChild(o);
-          if (BEARD[id]) { var o2 = document.createElement('option'); o2.value = id + '+c'; o2.textContent = nm + (en() ? ' + beard colouring' : ' + farbenie brady'); sel.appendChild(o2); }
-        });
-        sel.value = extras[i];
-        sel.addEventListener('change', function () { extras[i] = sel.value; resetSelection(); load(); });
-        row.appendChild(lab); row.appendChild(sel); partyExtra.appendChild(row);
-      })(i);
-    }
-    partyNote.hidden = partyN < 2;
-  }
   function updateColorOpt() {
     if (!colorOpt) return;
     var show = !!BEARD[svcId()];
@@ -89,17 +62,84 @@
   function resetSelection() {
     selectedDate = null; selectedTime = null;
     slotsWrap.hidden = true; step4Wrap.hidden = true;
+    commit();
+  }
+
+  // ---- viac osôb: každá osoba má vlastný výber (záložky Osoba 1/2/3) ----
+  function saveCur() {
+    var p = persons[cur];
+    p.barber = selBarber(); p.service = svcId(); p.color = hasColor(); p.date = selectedDate; p.time = selectedTime; p.view = new Date(view);
+  }
+  function commit() { saveCur(); renderTabs(); }
+  function allDone() { for (var i = 0; i < partyN; i++) if (!persons[i].date || !persons[i].time) return false; return true; }
+  function renderTabs() {
+    if (!partyTabs) return;
+    partyTabs.hidden = partyN < 2; if (partyNote) partyNote.hidden = partyN < 2;
+    partyTabs.innerHTML = '';
+    for (var i = 0; i < partyN; i++) {
+      (function (i) {
+        var p = persons[i], b = document.createElement('button');
+        b.type = 'button'; b.className = 'party-tab' + (i === cur ? ' selected' : '') + (p.date && p.time ? ' done' : '');
+        var n = document.createElement('span'); n.className = 'pt-name'; n.textContent = (en() ? 'Person ' : 'Osoba ') + (i + 1);
+        var t = document.createElement('span'); t.className = 'pt-sub'; t.textContent = p.date && p.time ? I18N.dateShort(p.date) + ' · ' + p.time : (en() ? 'choose' : 'vyber');
+        b.appendChild(n); b.appendChild(t);
+        b.addEventListener('click', function () { if (i !== cur) goTo(i); });
+        partyTabs.appendChild(b);
+      })(i);
+    }
+  }
+  var calBox = $('booking-calendar');
+  function goTo(i) {
+    saveCur(); cur = i;
+    var p = persons[i];
+    all(barberGrid, '.barber-btn').forEach(function (b) { b.classList.remove('selected'); });
+    if (p.barber !== null) { var bb = barberGrid.querySelector('.barber-btn[data-barber="' + p.barber + '"]'); if (bb) bb.classList.add('selected'); }
+    afterBarberWrap.hidden = p.barber === null;
+    all(svcGrid, '.svc-btn').forEach(function (b) { b.classList.toggle('selected', b.getAttribute('data-service') === p.service); });
+    if (colorBox) colorBox.checked = !!p.color;
+    updateColorOpt(); updateServiceLabels();
+    selectedDate = p.date; selectedTime = p.time;
+    view = p.view ? new Date(p.view) : new Date(todayDate.getFullYear(), todayDate.getMonth(), 1);
+    step4Wrap.hidden = !allDone();
+    slotsWrap.hidden = !selectedDate;
+    renderTabs();
+    if (calBox) calBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (p.barber === null) { render(); return; }
+    load(function () { if (selectedDate) { selectedDateLabel.textContent = I18N.dateShort(selectedDate); renderSlots(); slotsWrap.hidden = false; } if (allDone()) updateSummary(); });
+  }
+  function setParty(n) {
+    saveCur();
+    partyN = n;
+    all(partyBtns, '.party-btn').forEach(function (b) { var on = +b.getAttribute('data-n') === n; b.classList.toggle('selected', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+    if (cur >= n) goTo(0); else renderTabs();
+    step4Wrap.hidden = !allDone();
+  }
+  if (partyBtns) all(partyBtns, '.party-btn').forEach(function (b) { b.addEventListener('click', function () { setParty(+b.getAttribute('data-n')); }); });
+  // iná osoba s rovnakým barberom v rovnaký deň: prekrývajúce sa časy sa neponúknu
+  function conflicts(t) {
+    var b = selBarber(); if (!b || !selectedDate) return false;
+    var key0 = key(selectedDate), mine = DUR[svcId()] || {};
+    function mins(x) { var a = x.split(':'); return +a[0] * 60 + +a[1]; }
+    var d1 = (mine[b] || mine.d) + (hasColor() ? 30 : 0), s1 = mins(t);
+    for (var j = 0; j < partyN; j++) {
+      if (j === cur) continue;
+      var o = persons[j];
+      if (!o.date || !o.time || o.barber !== b || key(o.date) !== key0) continue;
+      var od = DUR[o.service] || {}, d2 = (od[b] || od.d) + (o.color ? 30 : 0), s2 = mins(o.time);
+      if (s1 < s2 + d2 && s2 < s1 + d1) return true;
+    }
+    return false;
   }
 
   function load(cb) {
     var b = selBarber() || '', s = svcId();
     var from = key(view), to = key(new Date(view.getFullYear(), view.getMonth() + 1, 0));
     var c = hasColor() ? '1' : '';
-    var ck = [s, b, from, c, extraParam()].join('|');
+    var ck = [s, b, from, c].join('|');
     var my = ++token;
     if (cache[ck] && Date.now() - cache[ck].t < 60000) { avail = cache[ck].days; failed = false; loading = false; render(); if (cb) cb(); return; }
     loading = true; failed = false; avail = null; render();
-    fetch('/api/availability?service=' + encodeURIComponent(s) + '&barber=' + encodeURIComponent(b) + (c ? '&color=1' : '') + (partyN > 1 ? '&extra=' + encodeURIComponent(extraParam()) : '') + '&from=' + from + '&to=' + to, { cache: 'no-store' })
+    fetch('/api/availability?service=' + encodeURIComponent(s) + '&barber=' + encodeURIComponent(b) + (c ? '&color=1' : '') + '&from=' + from + '&to=' + to, { cache: 'no-store' })
       .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
       .then(function (j) {
         if (my !== token) return;
@@ -173,7 +213,7 @@
       slotsGrid.appendChild(far);
       return;
     }
-    var times = (avail && selectedDate && avail[key(selectedDate)]) || [];
+    var times = ((avail && selectedDate && avail[key(selectedDate)]) || []).filter(function (t) { return !conflicts(t); });
     times.forEach(function (t) {
       var btn = document.createElement('button');
       btn.type = 'button'; btn.className = 'slot-btn'; btn.textContent = t;
@@ -193,6 +233,14 @@
     selectedTime = t;
     all(slotsGrid, '.slot-btn').forEach(function (el) { el.classList.remove('selected'); });
     if (btn) btn.classList.add('selected');
+    commit();
+    if (!allDone()) { // ďalšia osoba ešte nemá termín: prepne sa na ňu
+      step4Wrap.hidden = true;
+      var nx = -1;
+      for (var k = 1; k <= partyN; k++) { var idx = (cur + k) % partyN; if (!persons[idx].date || !persons[idx].time) { nx = idx; break; } }
+      if (nx >= 0) setTimeout(function () { goTo(nx); }, 350);
+      return;
+    }
     step4Wrap.hidden = false; formBox.hidden = false; doneBox.hidden = true; codeBox.hidden = true; setMsg('');
     updateSummary();
     step4Wrap.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -203,11 +251,20 @@
     return b ? ((en() ? ' with ' : ' u ') + b) : '';
   }
 
+  function personLine(p) {
+    var sb = svcGrid.querySelector('.svc-btn[data-service="' + p.service + '"]');
+    var svcName = (sb ? sb.querySelector('.svc-name').textContent : '') + (p.color ? (en() ? ' + beard colouring' : ' + farbenie brady') : '');
+    return svcName + (p.barber ? ((en() ? ' with ' : ' u ') + p.barber) : '') + ' · ' + I18N.dateLong(p.date) + (en() ? ' at ' : ' o ') + p.time;
+  }
+  function peopleText() {
+    var out = [];
+    for (var i = 0; i < partyN; i++) out.push((partyN > 1 ? (en() ? 'Person ' : 'Osoba ') + (i + 1) + ': ' : '') + personLine(persons[i]));
+    return out.join('\n');
+  }
   function updateSummary() {
-    if (!selectedDate || !selectedTime) return;
-    var sb = selService();
-    var svcName = partyN > 1 ? partyText() : (sb ? sb.querySelector('.svc-name').textContent : '') + (hasColor() ? (en() ? ' + beard colouring' : ' + farbenie brady') : '');
-    summary.textContent = svcName + barberText() + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
+    if (!allDone()) return;
+    summary.style.whiteSpace = 'pre-line';
+    summary.textContent = peopleText();
   }
 
   function setMsg(text) { msgBox.textContent = text; msgBox.hidden = !text; }
@@ -220,10 +277,12 @@
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)) { setMsg(tr('Zadaj platný e-mail.')); emailField.focus(); return; }
     var gdpr = $('cal-gdpr');
     if (gdpr && !gdpr.checked) { setMsg(tr('Pred rezerváciou musíš súhlasiť so spracovaním osobných údajov.')); gdpr.focus(); return; }
-    setMsg(''); lastColor = hasColor(); lastParty = partyN; lastText = partyText();
+    setMsg('');
     confirmBtn.classList.add('is-busy'); confirmBtn.setAttribute('aria-disabled', 'true');
-    var payload = { service: svcId(), barber: selBarber() || '', date: key(selectedDate), time: selectedTime,
-      color: hasColor(), extra: extras.slice(0, partyN - 1), name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) };
+    saveCur(); lastText = peopleText();
+    var people = persons.slice(0, partyN).map(function (p) { return { service: p.service, color: !!p.color, barber: p.barber || '', date: key(p.date), time: p.time }; });
+    var payload = { service: people[0].service, barber: people[0].barber, date: people[0].date, time: people[0].time, people: partyN > 1 ? people : undefined,
+      color: people[0].color, name: name, phone: phone, email: mail, lang: en() ? 'en' : 'sk', consent: true, website: ($('cal-website') || {}).value || '', debug: /[?&]debug=1/.test(location.search) };
     fetch('/api/book', {
       method: 'POST', headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload)
@@ -250,15 +309,14 @@
       });
   }
 
-  var lastColor = false, lastParty = 1, lastText = '';
+  var lastText = '';
   function showDone(j) {
     cache = {};
     formBox.hidden = true; codeBox.hidden = true; doneBox.hidden = false;
-    var sb = selService();
     var verify = !!j.verify;
     $('cal-done-title').textContent = tr(verify ? 'Skontroluj e-mail ✉️' : 'Termín je zarezervovaný ✓');
     $('cal-done-note').textContent = tr(verify ? 'Poslali sme ti e-mail s odkazom. Rezervácia sa uloží, až keď naň klikneš (platí 30 minút). Pozri aj do spamu.' : 'Tešíme sa na teba. Ak potrebuješ termín zmeniť alebo zrušiť, zavolaj nám.');
-    $('cal-done-text').textContent = (lastParty > 1 ? lastText : (sb ? sb.querySelector('.svc-name').textContent : '') + (lastColor ? (en() ? ' + beard colouring' : ' + farbenie brady') : '')) + (j.barber ? ((en() ? ' with ' : ' u ') + j.barber) : '') + ' · ' + I18N.dateLong(selectedDate) + (en() ? ' at ' : ' o ') + selectedTime;
+    $('cal-done-text').style.whiteSpace = 'pre-line'; $('cal-done-text').textContent = lastText;
     doneBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     resetAfterBooking();
   }
@@ -304,7 +362,9 @@
     nameField.value = ''; phoneField.value = ''; emailField.value = '';
     if ($('cal-gdpr')) $('cal-gdpr').checked = false;
     selectedTime = null; selectedDate = null; slotsWrap.hidden = true;
-    if (partyBtns && partyN !== 1) { partyN = 1; all(partyBtns, '.party-btn').forEach(function (b) { b.classList.toggle('selected', b.getAttribute('data-n') === '1'); }); buildExtraRows(); }
+    partyN = 1; cur = 0; persons = [blankPerson(), blankPerson(), blankPerson()];
+    all(partyBtns, '.party-btn').forEach(function (b) { b.classList.toggle('selected', b.getAttribute('data-n') === '1'); b.setAttribute('aria-pressed', b.getAttribute('data-n') === '1' ? 'true' : 'false'); });
+    saveCur(); renderTabs();
     load();
   }
 
@@ -316,12 +376,6 @@
   var again = $('cal-again');
   if (again) again.addEventListener('click', function () { step4Wrap.hidden = true; doneBox.hidden = true; codeBox.hidden = true; formBox.hidden = false; });
 
-  function setParty(n) {
-    partyN = n;
-    all(partyBtns, '.party-btn').forEach(function (b) { var on = +b.getAttribute('data-n') === n; b.classList.toggle('selected', on); b.setAttribute('aria-pressed', on ? 'true' : 'false'); });
-    buildExtraRows(); resetSelection(); load();
-  }
-  if (partyBtns) all(partyBtns, '.party-btn').forEach(function (b) { b.addEventListener('click', function () { setParty(+b.getAttribute('data-n')); }); });
   function changed() { resetSelection(); updateColorOpt(); updateServiceLabels(); load(); }
   if (colorBox) colorBox.addEventListener('change', function () { resetSelection(); updateServiceLabels(); load(); });
 
@@ -346,7 +400,7 @@
   nextBtn.addEventListener('click', function () { view.setMonth(view.getMonth() + 1); resetSelection(); load(); });
 
   window.addEventListener('langchange', function () {
-    render(); if (partyN > 1) buildExtraRows();
+    render(); renderTabs();
     if (selectedDate) { selectedDateLabel.textContent = I18N.dateShort(selectedDate); renderSlots(); updateSummary(); }
   });
 

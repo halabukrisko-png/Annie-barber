@@ -1,6 +1,6 @@
 // Overenie e-mailu pred rezerváciou: údaje rezervácie sa podpíšu (HMAC) a pošlú v odkaze; zapíšu sa až po kliknutí.
 const crypto = require('crypto');
-const { serviceLabel, buildParty } = require('./config');
+const { serviceLabel } = require('./config');
 const { mailVerify, SITE } = require('./mail');
 
 const TTL_MIN = 30;
@@ -27,9 +27,12 @@ function readToken(t) {
 
 async function sendVerification(d) {
   const en = d.lang === 'en';
-  const when = d.date.split('-').reverse().join('. ') + (en ? ' at ' : ' o ') + d.time;
+  const list = Array.isArray(d.people) && d.people.length ? d.people : [{ service: d.service, color: d.color, barber: d.barber, date: d.date, time: d.time }];
+  const when = list.map((p) => p.date.split('-').reverse().join('. ') + (en ? ' at ' : ' o ') + p.time).join(' · ');
+  const service = list.map((p) => serviceLabel(p.service, d.lang, p.color)).join(', ');
+  const barber = Array.from(new Set(list.map((p) => p.barber).filter(Boolean))).join(', ');
   const link = SITE + 'api/verify?t=' + makeToken(d);
-  return mailVerify(d.lang, d.email, { name: d.name, when, service: (buildParty(d.service, d.color, d.extra) || [{ service: d.service, color: d.color }]).map((p) => serviceLabel(p.service, d.lang, p.color)).join(', '), barber: d.barber }, link, TTL_MIN);
+  return mailVerify(d.lang, d.email, { name: d.name, when, service, barber }, link, TTL_MIN);
 }
 
 module.exports = { verifyEnabled, sendVerification, readToken, makeToken };
