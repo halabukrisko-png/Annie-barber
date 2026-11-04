@@ -189,7 +189,6 @@
     'TIPY OD NAŠICH BARBEROV': 'TIPS FROM OUR BARBERS',
     'Strihy, brada a starostlivosť. Krátko, jasne a priamo z nášho kresla.': 'Haircuts, beards and grooming. Short, clear and straight from our chair.',
     'Články z blogu': 'Blog articles',
-    'Prejsť na blog': 'Go to the blog',
     'Predchádzajúce články': 'Previous articles',
     'Ďalšie články': 'Next articles',
     'Strihy & trendy': 'Cuts & trends',
