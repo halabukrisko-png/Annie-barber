@@ -811,6 +811,26 @@
   <script>(function(){var m=document.querySelector('.rv-marquee');if(!m)return;var t;m.addEventListener('touchstart',function(){clearTimeout(t);m.classList.add('rv-paused');},{passive:true});m.addEventListener('touchend',function(){t=setTimeout(function(){m.classList.remove('rv-paused');},2500);});})();</script>
   </div><!-- /reviews-wrap -->
 
+  <!-- SCROLL ŠÍPKA -->
+  <div class="sc-arrow-wrap">
+  <style>
+  .sc-arrow-wrap{display:flex;justify-content:center;padding:26px 0 0}
+  .sc-arrow{position:relative;width:52px;height:52px;display:block;color:var(--bronze);text-decoration:none}
+  .sc-arrow svg{position:absolute;inset:0;width:100%;height:100%;transform:rotate(-90deg)}
+  .sc-arrow .sc-bg{fill:rgba(20,19,17,.6);stroke:rgba(201,160,106,.3);stroke-width:2}
+  .sc-arrow .sc-fill{fill:none;stroke:var(--bronze);stroke-width:2.5;stroke-linecap:round;stroke-dasharray:138.2;stroke-dashoffset:138.2}
+  .sc-arrow .sc-ar{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:20px;line-height:1;transition:color .3s ease}
+  .sc-arrow.is-full .sc-ar{animation:sc-bob 1.6s ease-in-out infinite}
+  @keyframes sc-bob{50%{transform:translateY(3px)}}
+  @media (prefers-reduced-motion:reduce){.sc-arrow.is-full .sc-ar{animation:none}}
+  </style>
+  <a class="sc-arrow" href="#home-blog" aria-label="Prejsť na blog"><svg viewBox="0 0 52 52" aria-hidden="true"><circle class="sc-bg" cx="26" cy="26" r="22"/><circle class="sc-fill" cx="26" cy="26" r="22"/></svg><span class="sc-ar" aria-hidden="true">&#8595;</span></a>
+  <script>(function(){var a=document.querySelector('.sc-arrow');if(!a)return;var f=a.querySelector('.sc-fill'),L=138.2,t=false;
+    function u(){t=false;var r=a.getBoundingClientRect(),vh=window.innerHeight||800;var p=(vh*0.95-r.top)/(vh*0.65);p=Math.max(0,Math.min(1,p));f.style.strokeDashoffset=(L*(1-p)).toFixed(1);a.classList.toggle('is-full',p>=0.98);}
+    function q(){if(!t){t=true;requestAnimationFrame(u);}}
+    window.addEventListener('scroll',q,{passive:true});window.addEventListener('resize',q);u();})();</script>
+  </div>
+
   <!-- BLOG -->
   <section id="home-blog" aria-labelledby="home-blog-h">
   <style>
