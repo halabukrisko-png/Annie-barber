@@ -327,6 +327,14 @@
 
     // gallery
     'Naša práca': 'Our work',
+    "Naša práca v Prievidzi": "Our work in Prievidza",
+    "V galérii nájdeš ukážky toho, čo robíme každý deň: klasické aj moderné": "In the gallery you’ll find examples of what we do every day: classic and modern",
+    "pánske strihy": "men’s haircuts",
+    ", fade strihy,": ", fades,",
+    "úpravu brady": "beard trims",
+    "s holením britvou,": "with a straight-razor shave,",
+    "detské strihy": "kids’ haircuts",
+    "a vyholené ornamenty. Nechýbajú ani krátke videá priamo z kresla a fotky nášho tímu. Páči sa ti niektorý strih? Ukáž nám fotku pri návšteve a spravíme ti ho na mieru.": "and shaved designs. There are also short videos straight from the chair and photos of our team. Like one of the cuts? Show us the photo at your visit and we’ll tailor it to you.",
     'Všetko': 'All',
     'Strihy': 'Haircuts',
     'Pri práci': 'At work',
