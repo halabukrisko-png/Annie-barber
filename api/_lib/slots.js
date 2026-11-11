@@ -1,5 +1,5 @@
 // "Inteligentný" výpočet voľných termínov (čistá funkcia – ľahko testovateľná).
-const { HOURS, LUNCH, breakFor, gridFor, LEAD_MIN, BARBER_NAMES, durationFor } = require('./config');
+const { hoursFor, lunchFor, breakFor, gridFor, LEAD_MIN, BARBER_NAMES, durationFor } = require('./config');
 const { localToMs, weekday, hhmm, minuteOfDay } = require('./time');
 
 const MIN = 60000;
@@ -8,14 +8,14 @@ const MIN = 60000;
 // busy = [{start,end}] v ms. Vráti [{start(ms), minute, score}] – menší score = lepšie "nalepený" na okolité termíny.
 function slotsForBarber(date, busy, dur, nowMs, barber, service) {
   const BREAK_MIN = breakFor(barber), GRID_MIN = gridFor(barber, service);
-  const range = HOURS[weekday(date)];
+  const range = hoursFor(date, weekday(date));
   if (!range) return [];
   const open = localToMs(date, range[0]);
   const close = localToMs(date, range[1]);
   const earliest = nowMs + LEAD_MIN * MIN;
   const blocks = busy.filter((b) => b.end > open && b.start < close).sort((a, b) => a.start - b.start);
   // obed: žiadny termín nezačína medzi posledným predobedným časom (12:00) a koncom prestávky (14:00)
-  const lunch = LUNCH[weekday(date)];
+  const lunch = lunchFor(date, weekday(date));
   const noStartFrom = lunch ? localToMs(date, lunch.last) : 0, noStartTo = lunch ? localToMs(date, lunch.to) : 0;
 
   // kandidáti: pravidelná mriežka + čas hneď po konci existujúceho termínu (+ prestávka)

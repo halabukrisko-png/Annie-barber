@@ -24,6 +24,8 @@
   var msgBox = $('cal-msg'), formBox = $('cal-form-box'), doneBox = $('cal-done');
 
   var HOURS_OPEN = { 2: 1, 3: 1, 4: 1, 5: 1, 6: 1 };
+  var EXTRA_OPEN = { '2026-12-14': 1, '2026-12-21': 1, '2026-12-28': 1 }; // výnimočne otvorené pondelky (sedí s EXTRA_OPEN v api/_lib/config.js)
+  function isOpen(date) { return HOURS_OPEN[date.getDay()] || EXTRA_OPEN[key(date)]; }
   var DUR = { // minúty; Vladis má strih 40 min
     strih: { d: 30, Vladis: 40 }, komplet: { d: 60 }, brada: { d: 30 }, detsky: { d: 30 },
     holenie: { d: 60 }, farbenie: { d: 30 }, cistenie: { d: 30 }
@@ -166,12 +168,12 @@
         var btn = document.createElement('button');
         btn.type = 'button'; btn.className = 'cal-day'; btn.textContent = d;
         var free = avail && avail[key(date)];
-        if (date > maxDate && HOURS_OPEN[date.getDay()]) {
+        if (date > maxDate && isOpen(date)) {
           // príliš ďaleko: vyzerá ako nedostupný, ale po kliknutí vysvetlí, že treba zavolať/napísať
           btn.classList.add('disabled'); btn.style.cursor = 'pointer';
           btn.addEventListener('click', function () { selectDate(date, btn); });
         }
-        else if (date < todayDate || !HOURS_OPEN[date.getDay()] || !free) { btn.classList.add('disabled'); btn.disabled = true; }
+        else if (date < todayDate || !isOpen(date) || !free) { btn.classList.add('disabled'); btn.disabled = true; }
         else {
           // obsadený deň (prázdne pole): vyzerá ako nedostupný, ale po kliknutí napíše, že už nie je voľný
           if (!free.length) { btn.classList.add('disabled'); btn.style.cursor = 'pointer'; }

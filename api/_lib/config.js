@@ -17,6 +17,11 @@ const HOURS = {
 const LUNCH_DAY = { from: 12 * 60 + 30, to: 14 * 60, last: 12 * 60 };
 const LUNCH = { 2: LUNCH_DAY, 3: LUNCH_DAY, 4: LUNCH_DAY, 5: LUNCH_DAY };
 
+// Výnimočne otvorené dni (RRRR-MM-DD) – napr. decembrové pondelky; hodiny a obed ako utorok – piatok.
+const EXTRA_OPEN = ['2026-12-14', '2026-12-21', '2026-12-28'];
+function hoursFor(date, wd) { return EXTRA_OPEN.includes(date) ? HOURS[2] : HOURS[wd]; }
+function lunchFor(date, wd) { return EXTRA_OPEN.includes(date) ? LUNCH_DAY : LUNCH[wd]; }
+
 const BREAK_MIN = 0;          // prestávka medzi dvoma termínmi (žiadna)
 const GRID_MIN = 30;          // základný krok ponúkaných časov (plus čas hneď po existujúcom termíne)
 const LEAD_MIN = 60;          // najskôr o hodinu odteraz
@@ -68,4 +73,4 @@ function calendarId(barber) {
   return process.env[BARBERS[barber].calendarEnv] || null;
 }
 
-module.exports = { TZ, HOURS, LUNCH, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, serviceLabel, COLOR_MIN, COLOR_PRICE, calendarId };
+module.exports = { TZ, HOURS, LUNCH, EXTRA_OPEN, hoursFor, lunchFor, BREAK_MIN, GRID_MIN, breakFor, gridFor, LEAD_MIN, HORIZON_DAYS, BARBERS, BARBER_NAMES, SERVICES, durationFor, serviceLabel, COLOR_MIN, COLOR_PRICE, calendarId };

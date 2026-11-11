@@ -1,6 +1,6 @@
 // GET /api/availability?service=strih&barber=Anett|''&from=YYYY-MM-DD&to=YYYY-MM-DD
 // -> { days: { 'YYYY-MM-DD': ['09:00', ...] } }  (prázdne pole = deň je obsadený)
-const { SERVICES, BARBER_NAMES, HORIZON_DAYS, HOURS, calendarId } = require('./_lib/config');
+const { SERVICES, BARBER_NAMES, HORIZON_DAYS, hoursFor, calendarId } = require('./_lib/config');
 const { localToMs, addDays, todayStr, isDateStr, weekday } = require('./_lib/time');
 const { freeBusy, sharedBlocks } = require('./_lib/google');
 const { daySlots } = require('./_lib/slots');
@@ -38,7 +38,7 @@ module.exports = async function handler(req, res) {
     }
     for (let d = from; d <= to; d = addDays(d, 1)) {
       const t = daySlots({ date: d, barber, service, color, busyByBarber, nowMs }).map((s) => s.time);
-      if (t.length || HOURS[weekday(d)]) days[d] = t; // prázdne pole = otvorený deň, ale plne obsadený
+      if (t.length || hoursFor(d, weekday(d))) days[d] = t; // prázdne pole = otvorený deň, ale plne obsadený
     }
     return res.status(200).json({ days });
   } catch (e) {
