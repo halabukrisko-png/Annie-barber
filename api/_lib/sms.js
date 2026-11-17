@@ -5,7 +5,8 @@ const crypto = require('crypto');
 
 const TTL_MIN = 10;
 const MAX_TRIES = 5;
-const smsEnabled = () => !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM && process.env.VERIFY_SECRET);
+// SMS kód je zatiaľ vypnutý (kým Twilio nie je schválené). Zapne sa nastavením SMS_ENABLED=1.
+const smsEnabled = () => process.env.SMS_ENABLED === '1' && !!(process.env.TWILIO_ACCOUNT_SID && process.env.TWILIO_AUTH_TOKEN && process.env.TWILIO_FROM && process.env.VERIFY_SECRET);
 
 // 0951 833 488 -> +421951833488 (číslo bez predvoľby sa berie ako slovenské)
 function toE164(p) {
