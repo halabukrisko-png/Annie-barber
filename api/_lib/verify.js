@@ -4,7 +4,8 @@ const { serviceLabel } = require('./config');
 const { mailVerify, SITE } = require('./mail');
 
 const TTL_MIN = 30;
-const verifyEnabled = () => !!process.env.VERIFY_SECRET;
+// Overovací e-mail je zatiaľ vypnutý. Zapne sa nastavením EMAIL_VERIFY=1 (a VERIFY_SECRET).
+const verifyEnabled = () => process.env.EMAIL_VERIFY === '1' && !!process.env.VERIFY_SECRET;
 const b64 = (buf) => Buffer.from(buf).toString('base64url');
 const sign = (s) => crypto.createHmac('sha256', process.env.VERIFY_SECRET).update(s).digest('base64url');
 
